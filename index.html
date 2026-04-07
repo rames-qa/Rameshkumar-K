@@ -21,93 +21,47 @@ body {
 nav {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding: 15px 30px;
     background: #020617;
     position: sticky;
     top: 0;
     z-index: 100;
 }
-nav .nav-left {
-    display: flex;
-    align-items: center;
-}
-.nav-circle {
+.nav-left .nav-circle {
     width: 50px;
     height: 50px;
-    background: #fff;
+    background: white;
     color: #8e44ad;
-    border-radius: 50%;
+    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
+    border-radius: 50%;
     font-size: 1.2rem;
-    margin-right: 10px;
 }
-nav a {
+.nav-right {
+    display: flex;
+    flex-direction: column; /* vertical stack */
+    align-items: flex-end;  /* align right */
+}
+.nav-right p, .nav-right a {
     color: #38bdf8;
     text-decoration: none;
-    margin: 0 10px;
+    margin: 5px 0;
+    font-weight: 500;
 }
-nav a:hover { text-decoration: underline; }
+.nav-right p:hover, .nav-right a:hover {
+    text-decoration: underline;
+}
 
 /* Hero */
 header {
     position: relative;
     text-align: center;
-    padding: 100px 20px 150px 20px;
+    padding: 150px 20px 100px 20px;
 }
-.banner-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 400px;
-    margin-bottom: 30px;
-}
-.banner {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 500px;
-    height: 100px;
-    background: var(--banner-grad);
-    border-radius: 0 50px 50px 0;
-    z-index: 1;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    background-image: linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%), 
-                      linear-gradient(-45deg, rgba(255,255,255,0.05) 25%, transparent 25%);
-    background-size: 20px 20px;
-}
-.circle-main {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 240px;
-    height: 240px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-    text-align: center;
-}
-.circle-main h1 { margin: 0; color: #8e44ad; font-size: 2rem; text-transform: uppercase; letter-spacing: 2px; }
-.circle-main p { margin: 5px 0 0; color: #888; font-size: 0.9rem; letter-spacing: 1px; }
-.deco-circle { position: absolute; border-radius: 50%; z-index: 2; opacity: 0.8; }
-.c1 { width: 140px; height: 140px; background: var(--green-grad); left: 20%; top: 10%; }
-.c2 { width: 160px; height: 160px; background: var(--primary-grad); left: 10%; top: 40%; }
-.c3 { width: 120px; height: 120px; background: #2575fc; left: 30%; bottom: 10%; }
-.dot { position: absolute; border-radius: 50%; z-index: 5; }
-.d1 { width: 20px; height: 20px; background: #e056fd; top: 20%; left: 60%; }
-.d2 { width: 15px; height: 15px; background: #be2edd; top: 30%; left: 65%; }
-.d3 { width: 30px; height: 30px; background: #22a6b3; bottom: 10%; left: 20%; }
-
-header h1#typing { margin-top: 420px; font-size: 40px; }
+header h1#typing { font-size: 40px; margin-bottom: 10px; }
 header p { margin: 5px 0; }
 .btn {
     padding: 10px 20px;
@@ -142,32 +96,18 @@ footer { text-align: center; padding: 20px; background: #020617; }
 <nav>
     <div class="nav-left">
         <div class="nav-circle">RK</div>
-        <div>Profile</div>
     </div>
-    <div>
-        <a href="#">Home</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+    <div class="nav-right">
+        <p>Profile</p>
+        <a href1="#">Home</a>
+        <a href2="#skills">Skills</a>
+        <a href3="#projects">Projects</a>
+        <a href4="#contact">Contact</a>
     </div>
 </nav>
 
 <!-- Hero Section -->
 <header>
-    <div class="banner-container">
-        <div class="deco-circle c1"></div>
-        <div class="deco-circle c2"></div>
-        <div class="deco-circle c3"></div>
-        <div class="dot d1"></div>
-        <div class="dot d2"></div>
-        <div class="dot d3"></div>
-        <div class="banner"></div>
-        <div class="circle-main">
-            <h1>RK</h1>
-            <p>Profile</p>
-        </div>
-    </div>
-
     <h1 id="typing"></h1>
     <p>4.7 Years | Selenium | Java | TestNG | API | CI/CD</p>
     <p style="color:#94a3b8;">🚀 Automation Engineer building scalable testing frameworks</p>
