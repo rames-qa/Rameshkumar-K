@@ -4,72 +4,104 @@
 <meta charset="UTF-8">
 <title>Ramesh Kumar K | Automation Engineer</title>
 
+<!-- Google Fonts for Professional Look -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
+/* Reset & Body */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0f172a;
-  color: white;
+  font-family: 'Roboto', sans-serif;
+  background: #f9f9f9; /* Light professional background */
+  color: #1f2937;       /* Dark text */
+  line-height: 1.6;
 }
 
 /* Navbar */
 nav {
   display: flex;
   justify-content: space-between;
-  padding: 15px 30px;
-  background: #020617;
+  align-items: center;
+  padding: 15px 40px;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
+  z-index: 100;
 }
 
 nav a {
-  color: #38bdf8;
+  color: #2563eb;
   text-decoration: none;
-  margin: 0 10px;
+  margin: 0 15px;
+  font-weight: 500;
 }
 
-/* Hero */
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Hero Section */
 header {
   text-align: center;
-  padding: 80px 20px;
+  padding: 100px 20px;
+  background: #2563eb; /* Professional blue */
+  color: #ffffff;
 }
 
-h1 {
-  font-size: 40px;
+header h1 {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+header p {
+  font-size: 18px;
+  margin: 8px 0;
 }
 
 .btn {
-  padding: 10px 20px;
-  background: #38bdf8;
-  color: maroon;
+  padding: 12px 25px;
+  background: #22c55e; /* Green CTA */
+  color: #ffffff;
   text-decoration: none;
   border-radius: 6px;
-  margin: 5px;
-  display: inline-black;
+  margin: 8px;
+  display: inline-block;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #16a34a;
 }
 
 /* Sections */
 section {
-  padding: 50px 20px;
-  text-align: center;
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: auto;
 }
 
 h2 {
-  color: #38bdf8;
+  color: #2563eb;
+  font-size: 32px;
+  margin-bottom: 25px;
 }
 
+/* Cards */
 .card {
-  background: #1e293b;
-  padding: 15px;
-  margin: 10px;
-  border-radius: 10px;
+  background: #ffffff;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 12px;
   width: 250px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
-  transform: scale(1.05);
-  transition: 0.3s;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 .skills, .projects {
@@ -81,8 +113,20 @@ h2 {
 /* Footer */
 footer {
   text-align: center;
-  padding: 20px;
-  background: #020617;
+  padding: 25px;
+  background: #f3f4f6;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Links inside footer */
+footer a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
 </style>
 </head>
@@ -91,7 +135,7 @@ footer {
 
 <!-- Navbar -->
 <nav>
-  <div>Ramesh's Profile</div>
+  <div><b>Ramesh Kumar K</b></div>
   <div>
     <a href="#">Home</a>
     <a href="#skills">Skills</a>
@@ -103,23 +147,17 @@ footer {
 <!-- Hero -->
 <header>
   <h1 id="typing"></h1>
+  <p>Automation Engineer | 4.7 Years Experience</p>
+  <p>Specialized in Selenium, Java, API Testing & CI/CD</p>
 
-  <p>4.7 Years | Selenium | Java | TestNG | API | CI/CD</p>
-
-  <p style="color:#94a3b8;">
-    🚀 Automation Engineer building scalable testing frameworks
-  </p>
-
-  <!-- ✅ FIXED RESUME LINK -->
   <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/ramesh.pdf" target="_blank" class="btn">
     Download Resume
   </a>
+  <a href="mailto:rameshkumae93.68@gmail.com" class="btn">Contact Me</a>
 
-  <a href="mailto:rameshkumae93.68@gmail.com" class="btn">If you want to know about Me? Feel free and ask me</a>
-
-  <p>
-    🔗 <a href="https://github.com/rames-qa" target="_blank" style="color:#38bdf8;">GitHub</a> |
-    💼 <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" target="_blank" style="color:#38bdf8;">LinkedIn</a>
+  <p style="margin-top:20px;">
+    🔗 <a href="https://github.com/rames-qa" target="_blank">GitHub</a> |
+    💼 <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" target="_blank">LinkedIn</a>
   </p>
 </header>
 
@@ -130,7 +168,7 @@ footer {
   • Automation Test Engineer with 4.7 years of experience in Selenium & Java<br>
   • Specialized in scalable frameworks<br>
   • API testing & CI/CD pipelines
-  </p>
+</p>
 </section>
 
 <!-- Skills -->
@@ -152,7 +190,6 @@ footer {
 <section id="projects">
   <h2>Projects</h2>
   <div class="projects">
-
     <div class="card">
       <b>Selenium Automation Framework</b><br>
       <small>POM + TestNG framework with reporting</small><br><br>
@@ -164,23 +201,20 @@ footer {
       <small>Rest Assured framework for API testing</small><br><br>
       <a href="https://github.com/rames-qa" target="_blank">View Code</a>
     </div>
-
   </div>
 </section>
 
 <!-- Contact -->
 <section id="contact">
   <h2>Contact</h2>
-
   <p>📞 9632758871</p>
   <p>📧 rameshkumae93.68@gmail.com</p>
-  <p>📍 Bangalore , Karnataka , India</p>
-
+  <p>📍 Bangalore, Karnataka, India</p>
 </section>
 
 <!-- Footer -->
 <footer>
-  <p>© 2026 Ramesh Kumar K</p>
+  <p>© 2026 Ramesh Kumar K | Made with ❤️</p>
 </footer>
 
 <!-- Typing Animation -->
