@@ -1,17 +1,122 @@
-<!-- ONLY IMPORTANT PARTS SHOWN BELOW -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ramesh Kumar K Portfolio</title>
 
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: #020617;
+  position: sticky;
+  top: 0;
+}
+
+nav a {
+  color: #38bdf8;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+/* Hero */
+header {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+.btn {
+  padding: 10px 20px;
+  background: #38bdf8;
+  color: black;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+/* Sections */
+section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+h2 {
+  color: #38bdf8;
+}
+
+.card {
+  background: #1e293b;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 10px;
+  width: 250px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+.skills, .projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #020617;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div>Ramesh</div>
+  <div>
+    <a href="#">Home</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- Hero -->
 <header>
   <h1 id="typing"></h1>
+
   <p>4.7 Years | Selenium | Java | TestNG | API | CI/CD</p>
+
+  <p style="color:#94a3b8;">
+    🚀 Delivering scalable automation solutions for high-quality software
+  </p>
 
   <a href="resume.pdf" target="_blank" class="btn">Download Resume</a>
 
   <p>
     🔗 <a href="https://github.com/rames-qa" style="color:#38bdf8;">GitHub</a> |
-    💼 <a href="linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" style="color:#38bdf8;">LinkedIn</a>
+    💼 <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" target="_blank" style="color:#38bdf8;">LinkedIn</a>
   </p>
 </header>
 
+<!-- About -->
 <section>
   <h2>About Me</h2>
   <p>
@@ -19,6 +124,7 @@
   </p>
 </section>
 
+<!-- Skills -->
 <section id="skills">
   <h2>Skills</h2>
   <div class="skills">
@@ -37,11 +143,72 @@
   </div>
 </section>
 
+<!-- Projects -->
 <section id="projects">
   <h2>Projects</h2>
   <div class="projects">
-    <div class="card">Automation Framework using Selenium</div>
-    <div class="card">API Testing Framework using RestAssured</div>
-    <div class="card">Hybrid Automation Framework using Selenium + TestNG</div>
+
+    <div class="card">
+      Automation Framework using Selenium <br>
+      <small>Built scalable test framework using TestNG & Page Object Model</small>
+    </div>
+
+    <div class="card">
+      API Testing Framework using RestAssured <br>
+      <small>Automated REST APIs with validations and reporting</small>
+    </div>
+
+    <div class="card">
+      Hybrid Automation Framework <br>
+      <small>Data-driven + keyword-driven framework using Selenium & TestNG</small>
+    </div>
+
   </div>
 </section>
+
+<!-- Contact -->
+<section id="contact">
+  <h2>Contact</h2>
+
+  <p>📞 9632758871</p>
+  <p>📧 rameshkumae93.68@gmail.com</p>
+
+  <p id="location">📍 Detecting location...</p>
+
+  <iframe 
+    src="https://www.google.com/maps?q=Bangalore&output=embed"
+    width="300" height="200"
+    style="border:0; border-radius:10px;">
+  </iframe>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2026 Ramesh Kumar K</p>
+</footer>
+
+<!-- Typing Animation -->
+<script>
+const text = "Hi, I'm Ramesh Kumar K";
+let i = 0;
+
+function typing() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typing, 50);
+  }
+}
+typing();
+
+/* Location */
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    document.getElementById("location").innerHTML =
+      "📍 Bangalore, India";
+  });
+}
+</script>
+
+</body>
+</html>
