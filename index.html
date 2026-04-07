@@ -2,245 +2,96 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Ramesh's Profile| Automation Engineer</title>
-
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<title>Ramesh's Profile | Automation Engineer</title>
 
 <style>
-/* Reset & Body */
-body, html {
+body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
-  height: 100%;
-  background: #1e3a8a; /* Dark blue background */
-  color: #ffffff;
-  line-height: 1.6;
-  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
 }
 
 /* Navbar */
 nav {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  background: rgba(0,0,0,0.2); /* semi-transparent navbar */
-  backdrop-filter: blur(5px);
+  padding: 15px 30px;
+  background: #020617;
   position: sticky;
   top: 0;
-  z-index: 100;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 nav a {
-  color: #ffffff;
+  color: #38bdf8;
   text-decoration: none;
-  margin: 0 15px;
-  font-weight: 500;
-  transition: color 0.3s;
+  margin: 0 10px;
 }
 
-nav a:hover {
-  color: #22c55e; /* green highlight on hover */
-}
-
-/* Hero Section */
+/* Hero */
 header {
-  position: relative;
   text-align: center;
-  padding: 120px 20px 100px;
-  z-index: 10;
-  background: linear-gradient(135deg, #1e3a8a, #2563eb); /* gradient dark blue */
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  padding: 80px 20px;
 }
 
-header h1 {
-  font-size: 52px;
-  margin-bottom: 15px;
-  font-weight: 700;
-}
-
-header p {
-  font-size: 20px;
-  margin: 10px 0;
-  font-weight: 400;
+h1 {
+  font-size: 40px;
 }
 
 .btn {
-  padding: 12px 28px;
-  background: #22c55e;
-  color: #ffffff;
+  padding: 10px 20px;
+  background: #38bdf8;
+  color: black;
   text-decoration: none;
   border-radius: 6px;
-  margin: 8px;
+  margin: 5px;
   display: inline-block;
-  font-weight: 500;
-  transition: background 0.3s, transform 0.3s;
-}
-
-.btn:hover {
-  background: #16a34a;
-  transform: translateY(-2px);
 }
 
 /* Sections */
 section {
-  padding: 60px 20px;
-  max-width: 1000px;
-  margin: 40px auto;
-  background: rgba(255,255,255,0.05);
-  border-radius: 12px;
+  padding: 50px 20px;
+  text-align: center;
 }
 
-/* Headings */
 h2 {
-  color: #ffffff;
-  font-size: 36px;
-  margin-bottom: 25px;
-  text-align: center;
+  color: #38bdf8;
 }
 
-/* Cards */
 .card {
-  background: rgba(255,255,255,0.1);
-  padding: 20px;
-  margin: 15px;
-  border-radius: 12px;
+  background: #1e293b;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 10px;
   width: 250px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  transition: transform 0.3s, box-shadow 0.3s;
-  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transform: scale(1.05);
+  transition: 0.3s;
 }
 
 .skills, .projects {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
 }
 
 /* Footer */
 footer {
   text-align: center;
-  padding: 25px;
-  background: rgba(255,255,255,0.1);
-  color: #ffffff;
-  font-size: 14px;
+  padding: 20px;
+  background: #020617;
 }
-
-footer a {
-  color: #22c55e;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-footer a:hover {
-  color: #ffffff;
-  text-decoration: underline;
-}
-
-/* Abstract Elements */
-.circle, .wave, .cloud, .leaf { position: absolute; z-index: 1; }
-
-/* Circles */
-.circle {
-  border-radius: 50%;
-  background: rgba(255,255,255,0.05);
-  animation: float 15s infinite ease-in-out;
-}
-
-.circle1 { width: 200px; height: 200px; top: 10%; left: 5%; }
-.circle2 { width: 150px; height: 150px; bottom: 15%; right: 10%; }
-.circle3 { width: 100px; height: 100px; top: 40%; right: 20%; }
-
-@keyframes float {
-  0%,100% { transform: translateY(0) translateX(0); }
-  50% { transform: translateY(-50px) translateX(50px); }
-}
-
-/* Wave */
-.wave {
-  bottom: 0;
-  width: 200%;
-  height: 300px;
-  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05), transparent 70%);
-  transform: rotate(180deg);
-  border-radius: 50%;
-}
-
-/* Cloud */
-.cloud {
-  top: 15%;
-  left: 60%;
-  width: 200px;
-  height: 60px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 50px;
-}
-.cloud::before, .cloud::after {
-  content: '';
-  position: absolute;
-  background: rgba(255,255,255,0.1);
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  top: -20px;
-}
-.cloud::before { left: 10px; }
-.cloud::after { right: 10px; }
-
-/* Leaves */
-.leaf {
-  width: 40px;
-  height: 20px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  transform: rotate(45deg);
-  animation: leafMove 10s infinite linear;
-}
-.leaf1 { top: 50%; left: 20%; }
-.leaf2 { top: 60%; right: 25%; }
-
-@keyframes leafMove {
-  0% { transform: rotate(45deg) translateY(0); }
-  50% { transform: rotate(45deg) translateY(-30px) translateX(20px); }
-  100% { transform: rotate(45deg) translateY(0); }
-}
-
-/* About Text Styling */
-.about-text {
-  font-size: 18px;
-  line-height: 1.8;
-  text-align: center;
-  max-width: 700px;
-  margin: auto;
-}
-
-/* Typing Animation */
 </style>
 </head>
 
 <body>
 
-<!-- Abstract Elements -->
-<div class="circle circle1"></div>
-<div class="circle circle2"></div>
-<div class="circle circle3"></div>
-<div class="wave"></div>
-<div class="cloud"></div>
-<div class="leaf leaf1"></div>
-<div class="leaf leaf2"></div>
-
 <!-- Navbar -->
 <nav>
-  <div><b>Ramesh Kumar K</b></div>
+  <div>Ramesh</div>
   <div>
     <a href="#">Home</a>
     <a href="#skills">Skills</a>
@@ -252,27 +103,33 @@ footer a:hover {
 <!-- Hero -->
 <header>
   <h1 id="typing"></h1>
-  <p>Automation Engineer | 4.7 Years in Software Testing</p>
-  <p>Proficient in Selenium, Java, API Testing, and CI/CD pipelines</p>
 
+  <p>4.7 Years | Selenium | Java | TestNG | API | CI/CD</p>
+
+  <p style="color:#94a3b8;">
+    🚀 Automation Engineer building scalable testing frameworks
+  </p>
+
+  <!-- ✅ FIXED RESUME LINK -->
   <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/ramesh.pdf" target="_blank" class="btn">
     Download Resume
   </a>
-  <a href="mailto:rameshkumae93.68@gmail.com" class="btn">Contact Me</a>
 
-  <p style="margin-top:20px;">
-    🔗 <a href="https://github.com/rames-qa" target="_blank">GitHub</a> |
-    💼 <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" target="_blank">LinkedIn</a>
+  <a href="mailto:rameshkumae93.68@gmail.com" class="btn">Hire Me</a>
+
+  <p>
+    🔗 <a href="https://github.com/rames-qa" target="_blank" style="color:#38bdf8;">GitHub</a> |
+    💼 <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" target="_blank" style="color:#38bdf8;">LinkedIn</a>
   </p>
 </header>
 
 <!-- About -->
 <section>
   <h2>About Me</h2>
-  <p class="about-text">
-    Automation Test Engineer with 4.7 years of experience in Selenium and Java,<br>
-    skilled in building scalable automation frameworks,<br>
-    expertise in API testing and CI/CD pipelines.
+  <p>
+  • Automation Test Engineer with 4.7 years of experience in Selenium & Java<br>
+  • Specialized in scalable frameworks<br>
+  • API testing & CI/CD pipelines    
   </p>
 </section>
 
@@ -295,31 +152,35 @@ footer a:hover {
 <section id="projects">
   <h2>Projects</h2>
   <div class="projects">
+
     <div class="card">
-      <b>Selenium Framework</b><br>
-      <small>POM + TestNG with reporting</small><br><br>
+      <b>Selenium Automation Framework</b><br>
+      <small>POM + TestNG framework with reporting</small><br><br>
       <a href="https://github.com/rames-qa" target="_blank">View Code</a>
     </div>
 
     <div class="card">
       <b>API Automation</b><br>
-      <small>Rest Assured framework</small><br><br>
+      <small>Rest Assured framework for API testing</small><br><br>
       <a href="https://github.com/rames-qa" target="_blank">View Code</a>
     </div>
+
   </div>
 </section>
 
 <!-- Contact -->
 <section id="contact">
   <h2>Contact</h2>
+
   <p>📞 9632758871</p>
   <p>📧 rameshkumae93.68@gmail.com</p>
-  <p>📍 Bangalore, Karnataka, India</p>
+  <p>📍 Bangalore , Karnataka , India</p>
+
 </section>
 
 <!-- Footer -->
 <footer>
-  <p>© 2026 Ramesh Kumar K | Made with ❤️</p>
+  <p>© 2026 Ramesh Kumar K</p>
 </footer>
 
 <!-- Typing Animation -->
