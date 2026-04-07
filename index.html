@@ -25,44 +25,51 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
-  background: rgba(255,255,255,0.05); /* transparent navbar over background */
+  background: rgba(0,0,0,0.2); /* semi-transparent navbar */
   backdrop-filter: blur(5px);
   position: sticky;
   top: 0;
   z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 nav a {
-  color:#808080;
+  color: #ffffff;
   text-decoration: none;
   margin: 0 15px;
   font-weight: 500;
+  transition: color 0.3s;
 }
 
 nav a:hover {
-  text-decoration: underline;
+  color: #22c55e; /* green highlight on hover */
 }
 
 /* Hero Section */
 header {
   position: relative;
   text-align: center;
-  padding: 150px 20px 100px 20px;
+  padding: 120px 20px 100px;
   z-index: 10;
+  background: linear-gradient(135deg, #1e3a8a, #2563eb); /* gradient dark blue */
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
 header h1 {
-  font-size: 48px;
+  font-size: 52px;
   margin-bottom: 15px;
+  font-weight: 700;
 }
 
 header p {
-  font-size: 18px;
-  margin: 8px 0;
+  font-size: 20px;
+  margin: 10px 0;
+  font-weight: 400;
 }
 
 .btn {
-  padding: 12px 25px;
+  padding: 12px 28px;
   background: #22c55e;
   color: #ffffff;
   text-decoration: none;
@@ -70,28 +77,29 @@ header p {
   margin: 8px;
   display: inline-block;
   font-weight: 500;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.3s;
 }
 
 .btn:hover {
-  background: #16A34A
+  background: #16a34a;
+  transform: translateY(-2px);
 }
 
 /* Sections */
 section {
   padding: 60px 20px;
   max-width: 1000px;
-  margin: auto;
+  margin: 40px auto;
   background: rgba(255,255,255,0.05);
   border-radius: 12px;
-  margin-bottom: 40px;
 }
 
 /* Headings */
 h2 {
   color: #ffffff;
-  font-size: 32px;
+  font-size: 36px;
   margin-bottom: 25px;
+  text-align: center;
 }
 
 /* Cards */
@@ -115,6 +123,7 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 10px;
 }
 
 /* Footer */
@@ -127,19 +136,23 @@ footer {
 }
 
 footer a {
-  color: #ffffff;
+  color: #22c55e;
   text-decoration: none;
+  transition: color 0.3s;
 }
 
 footer a:hover {
+  color: #ffffff;
   text-decoration: underline;
 }
 
-/* Abstract Circles */
+/* Abstract Elements */
+.circle, .wave, .cloud, .leaf { position: absolute; z-index: 1; }
+
+/* Circles */
 .circle {
-  position: absolute;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255,255,255,0.05);
   animation: float 15s infinite ease-in-out;
 }
 
@@ -152,28 +165,24 @@ footer a:hover {
   50% { transform: translateY(-50px) translateX(50px); }
 }
 
-/* Wave at bottom */
+/* Wave */
 .wave {
-  position: absolute;
   bottom: 0;
   width: 200%;
   height: 300px;
   background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05), transparent 70%);
   transform: rotate(180deg);
   border-radius: 50%;
-  z-index: 1;
 }
 
 /* Cloud */
 .cloud {
-  position: absolute;
   top: 15%;
   left: 60%;
   width: 200px;
   height: 60px;
   background: rgba(255,255,255,0.1);
   border-radius: 50px;
-  z-index: 2;
 }
 .cloud::before, .cloud::after {
   content: '';
@@ -189,22 +198,20 @@ footer a:hover {
 
 /* Leaves */
 .leaf {
-  position: absolute;
   width: 40px;
   height: 20px;
   background: rgba(255,255,255,0.05);
   border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   transform: rotate(45deg);
   animation: leafMove 10s infinite linear;
-  z-index: 2;
 }
 .leaf1 { top: 50%; left: 20%; }
 .leaf2 { top: 60%; right: 25%; }
 
 @keyframes leafMove {
   0% { transform: rotate(45deg) translateY(0); }
-  50% { transform: rotate(45deg) translateY(-30px) translateX(20px);}
-  100% { transform: rotate(45deg) translateY(0);}
+  50% { transform: rotate(45deg) translateY(-30px) translateX(20px); }
+  100% { transform: rotate(45deg) translateY(0); }
 }
 
 /* About Text Styling */
@@ -215,6 +222,8 @@ footer a:hover {
   max-width: 700px;
   margin: auto;
 }
+
+/* Typing Animation */
 </style>
 </head>
 
