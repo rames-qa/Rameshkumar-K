@@ -9,7 +9,7 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: #0f172a;
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
     color: white;
 }
 
@@ -17,15 +17,15 @@ body {
 nav {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     padding: 15px 40px;
-    background: #020617;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
 }
 
 .nav-left {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .nav-circle {
@@ -33,60 +33,51 @@ nav {
     height: 45px;
     background: white;
     color: #38bdf8;
-    border: 2px solid #38bdf8;
-    font-weight: bold;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
+    font-weight: bold;
 }
 
 .profile-text {
+    color: #38bdf8;
     font-weight: 600;
-    color: #38bdf8;
-}
-
-/* NAV RIGHT */
-.nav-right {
-    display: flex;
-    gap: 25px;
-}
-
-.nav-right a {
-    text-decoration: none;
-    color: #38bdf8;
-    font-weight: 500;
-}
-
-.nav-right a:hover {
-    color: white;
 }
 
 /* HERO */
 header {
     text-align: center;
-    padding: 120px 20px 80px;
+    padding: 120px 20px;
+    animation: fadeIn 2s ease;
 }
 
-header h1 {
-    font-size: 42px;
+@keyframes fadeIn {
+    from {opacity:0; transform: translateY(20px);}
+    to {opacity:1; transform: translateY(0);}
 }
 
-header p {
-    font-size: 18px;
-    color: #cbd5f5;
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#38bdf8,#6366f1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    margin: auto;
+    margin-bottom: 20px;
 }
 
-/* BUTTON */
 .btn {
     padding: 12px 22px;
     background: #38bdf8;
     color: black;
-    text-decoration: none;
     border-radius: 6px;
-    margin: 10px 5px;
+    text-decoration: none;
+    margin: 10px;
     display: inline-block;
-    font-weight: 600;
     transition: 0.3s;
 }
 
@@ -105,39 +96,59 @@ h2 {
     color: #38bdf8;
 }
 
-/* CARDS */
-.skills, .projects {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
+/* GLASS CARD */
 .card {
-    background: #1e293b;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 12px;
+    margin: 10px;
     width: 260px;
     transition: 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    background: #334155;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
-/* EXPERIENCE LIST */
-.card ul {
+/* FLEX */
+.flex {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* SKILL BARS */
+.skill {
     text-align: left;
-    margin-top: 10px;
+    margin: 10px auto;
+    max-width: 400px;
+}
+
+.bar {
+    height: 8px;
+    background: #1e293b;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: #38bdf8;
+    width: 0;
+    animation: load 2s forwards;
+}
+
+@keyframes load {
+    from {width:0;}
 }
 
 /* FOOTER */
 footer {
     text-align: center;
     padding: 20px;
-    background: #020617;
+    background: rgba(0,0,0,0.4);
 }
 </style>
 </head>
@@ -151,9 +162,7 @@ footer {
         <div class="profile-text">Automation Engineer</div>
     </div>
 
-    <div class="nav-right">
-        <a href="#">Home</a>
-        <a href="#experience">Experience</a>
+    <div>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
@@ -162,56 +171,14 @@ footer {
 
 <!-- HERO -->
 <header>
+    <div class="profile-pic">RK</div>
+
     <h1 id="typing"></h1>
+    <p><b>Automation Engineer | Selenium | API | CI/CD</b></p>
 
-    <p><b>Automation Engineer | Selenium | API Testing | CI/CD</b></p>
-    <p>4.7 Years of Experience in Building Scalable Automation Frameworks</p>
-
-    <p style="margin-top:10px; color:#94a3b8;">
-        Delivering high-quality automation solutions for scalable systems
-    </p>
-
-    <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/ramesh.pdf" target="_blank" class="btn">
-        Download Resume
-    </a>
-
-    <a href="mailto:rameshkumar93.68@gmail.com" class="btn">
-        Hire Me
-    </a>
-
-    <p>
-        🔗 <a href="https://github.com/rames-qa" style="color:#38bdf8;">GitHub</a> |
-        💼 <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" style="color:#38bdf8;">LinkedIn</a>
-    </p>
+    <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/ramesh.pdf" class="btn">Download Resume</a>
+    <a href="mailto:rameshkumar93.68@gmail.com" class="btn">I’m happy to provide further details if you needed</a>
 </header>
-
-<!-- ABOUT -->
-<section>
-    <h2>About Me</h2>
-    <ul style="max-width:700px; margin:auto; text-align:left; color:#cbd5f5; line-height:1.8;">
-        <li>Automation Test Engineer with 4.7 years of experience in Selenium and Java</li>
-        <li>Skilled in building scalable automation frameworks</li>
-        <li>Experienced in API testing and CI/CD pipelines</li>
-        <li>Focused on delivering high-quality software solutions</li>
-    </ul>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-    <h2>Experience</h2>
-
-    <div class="card">
-        <b>Tata Consultancy Services (Client: Google)</b><br>
-        <small>Automation Test Engineer | Oct 2022 – Present</small>
-
-        <ul>
-            <li>Developed Selenium automation frameworks using Java & TestNG</li>
-            <li>Integrated CI/CD pipelines using Jenkins</li>
-            <li>Performed API testing and backend validation</li>
-            <li>Improved test coverage and reduced manual effort</li>
-        </ul>
-    </div>
-</section>
 
 <!-- SKILLS -->
 <section id="skills">
@@ -229,32 +196,23 @@ footer {
         <div class="card">Git & GitHub</div>
         <div class="card">JIRA</div>
     </div>
+
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
     <h2>Projects</h2>
 
-    <div class="projects">
-
+    <div class="flex">
         <div class="card">
-            <b>Selenium Automation Framework</b><br>
-            <small>
-                Built using Java, TestNG, POM, Maven<br>
-                Integrated with Jenkins CI/CD
-            </small><br><br>
-            <a href="https://github.com/rames-qa" style="color:#38bdf8;">View Code</a>
+            <b>Selenium Framework</b><br>
+            Built using Java, TestNG, POM
         </div>
 
         <div class="card">
-            <b>API Testing Framework</b><br>
-            <small>
-                Automated REST APIs using Rest Assured<br>
-                Performed validations and reporting
-            </small><br><br>
-            <a href="https://github.com/rames-qa" style="color:#38bdf8;">View Code</a>
+            <b>API Testing</b><br>
+            Automated REST APIs using RestAssured
         </div>
-
     </div>
 </section>
 
@@ -267,7 +225,7 @@ footer {
 </section>
 
 <footer>
-    <p>© 2026 Ramesh Kumar K</p>
+    © 2026 Ramesh Kumar K
 </footer>
 
 <script>
