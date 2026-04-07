@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Ramesh Kumar K Portfolio</title>
+<title>Ramesh Kumar K | Automation Engineer</title>
 
 <style>
 body {
@@ -44,6 +44,8 @@ h1 {
   color: black;
   text-decoration: none;
   border-radius: 6px;
+  margin: 5px;
+  display: inline-block;
 }
 
 /* Sections */
@@ -105,13 +107,18 @@ footer {
   <p>4.7 Years | Selenium | Java | TestNG | API | CI/CD</p>
 
   <p style="color:#94a3b8;">
-    🚀 Delivering scalable automation solutions for high-quality software
+    🚀 Automation Engineer building scalable testing frameworks
   </p>
 
-  <a href="resume.pdf" target="_blank" class="btn">Download Resume</a>
+  <!-- ✅ FIXED RESUME LINK -->
+  <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/ramesh.pdf" target="_blank" class="btn">
+    Download Resume
+  </a>
+
+  <a href="mailto:rameshkumae93.68@gmail.com" class="btn">Hire Me</a>
 
   <p>
-    🔗 <a href="https://github.com/rames-qa" style="color:#38bdf8;">GitHub</a> |
+    🔗 <a href="https://github.com/rames-qa" target="_blank" style="color:#38bdf8;">GitHub</a> |
     💼 <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" target="_blank" style="color:#38bdf8;">LinkedIn</a>
   </p>
 </header>
@@ -120,9 +127,8 @@ footer {
 <section>
   <h2>About Me</h2>
   <p>
-  Automation Test Engineer with 4.7 years of experience in Java Selenium, 
-  building scalable automation frameworks with TestNG,Maven, Cucumber,and 
-  strong expertise in API testing, CI/CD, and SQL.
+  Automation Test Engineer with 4.7 years of experience in Selenium & Java,
+  specializing in scalable frameworks, API testing, and CI/CD pipelines.
   </p>
 </section>
 
@@ -131,15 +137,11 @@ footer {
   <h2>Skills</h2>
   <div class="skills">
     <div class="card">Selenium</div>
-    <div class="card">WebDriver</div>
     <div class="card">Java</div>
-    <div class="card">OOPs</div>
-    <div class="card">QA Testing</div>
     <div class="card">TestNG</div>
+    <div class="card">Cucumber</div>
     <div class="card">API Testing</div>
-    <div class="card">Manual Testing</div>
-    <div class="card">Cucumber BDD</div>
-    <div class="card">Maven</div>
+    <div class="card">Rest Assured</div>
     <div class="card">SQL</div>
     <div class="card">CI/CD</div>
   </div>
@@ -151,18 +153,15 @@ footer {
   <div class="projects">
 
     <div class="card">
-      Automation Framework using Selenium <br>
-      <small>Built scalable test framework using TestNG & Page Object Model</small>
+      <b>Selenium Automation Framework</b><br>
+      <small>POM + TestNG framework with reporting</small><br><br>
+      <a href="https://github.com/rames-qa" target="_blank">View Code</a>
     </div>
 
     <div class="card">
-      API Testing Framework using RestAssured <br>
-      <small>Automated REST APIs with validations and reporting</small>
-    </div>
-
-    <div class="card">
-      Hybrid Automation Framework <br>
-      <small>Data-driven + keyword-driven framework using Selenium & TestNG</small>
+      <b>API Automation</b><br>
+      <small>Rest Assured framework for API testing</small><br><br>
+      <a href="https://github.com/rames-qa" target="_blank">View Code</a>
     </div>
 
   </div>
@@ -174,14 +173,8 @@ footer {
 
   <p>📞 9632758871</p>
   <p>📧 rameshkumae93.68@gmail.com</p>
+  <p>📍 Bangalore, India</p>
 
-  <p id="location">📍 Detecting location...</p>
-
-  <iframe 
-    src="https://www.google.com/maps?q=Bangalore&output=embed"
-    width="300" height="200"
-    style="border:0; border-radius:10px;">
-  </iframe>
 </section>
 
 <!-- Footer -->
@@ -202,14 +195,6 @@ function typing() {
   }
 }
 typing();
-
-/* Location */
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(function(position) {
-    document.getElementById("location").innerHTML =
-      "📍 Bangalore, India";
-  });
-}
 </script>
 
 </body>
