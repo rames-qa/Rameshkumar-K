@@ -28,6 +28,23 @@ nav {
     top: 0;
     z-index: 100;
 }
+nav .nav-left {
+    display: flex;
+    align-items: center;
+}
+.nav-circle {
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    color: #8e44ad;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
 nav a {
     color: #38bdf8;
     text-decoration: none;
@@ -123,19 +140,32 @@ footer { text-align: center; padding: 20px; background: #020617; }
 
 <!-- Navbar -->
 <nav>
- <h1>RK</h1>
- <div class="circle-main">
- <p>Profile</p>
- <a href="#">Home</a>
- <a href="#skills">Skills</a>
- <a href="#projects">Projects</a>
- <a href="#contact">Contact</a>
+    <div class="nav-left">
+        <div class="nav-circle">RK</div>
+        <div>Profile</div>
+    </div>
+    <div>
+        <a href="#">Home</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
     </div>
 </nav>
 
 <!-- Hero Section -->
 <header>
-
+    <div class="banner-container">
+        <div class="deco-circle c1"></div>
+        <div class="deco-circle c2"></div>
+        <div class="deco-circle c3"></div>
+        <div class="dot d1"></div>
+        <div class="dot d2"></div>
+        <div class="dot d3"></div>
+        <div class="banner"></div>
+        <div class="circle-main">
+            <h1>RK</h1>
+            <p>Profile</p>
+        </div>
     </div>
 
     <h1 id="typing"></h1>
