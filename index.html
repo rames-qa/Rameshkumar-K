@@ -8,12 +8,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-body {
+/* Reset & Body */
+body, html {
   margin: 0;
   font-family: 'Roboto', sans-serif;
-  background: #f9f9f9;
-  color: #1f2937;
+  height: 100%;
+  background: #1e3a8a; /* Dark blue background */
+  color: #ffffff;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 /* Navbar */
@@ -22,15 +25,15 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
-  background: #ffffff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.05); /* transparent navbar over background */
+  backdrop-filter: blur(5px);
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
 nav a {
-  color: #2563eb;
+  color: #ffffff;
   text-decoration: none;
   margin: 0 15px;
   font-weight: 500;
@@ -42,10 +45,10 @@ nav a:hover {
 
 /* Hero Section */
 header {
+  position: relative;
   text-align: center;
-  padding: 100px 20px;
-  background: #2563eb;
-  color: #ffffff;
+  padding: 150px 20px 100px 20px;
+  z-index: 10;
 }
 
 header h1 {
@@ -71,7 +74,7 @@ header p {
 }
 
 .btn:hover {
-  background: #16a34a;
+  background: #16A34A
 }
 
 /* Sections */
@@ -79,28 +82,33 @@ section {
   padding: 60px 20px;
   max-width: 1000px;
   margin: auto;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  margin-bottom: 40px;
 }
 
+/* Headings */
 h2 {
-  color: #2563eb;
+  color: #ffffff;
   font-size: 32px;
   margin-bottom: 25px;
 }
 
 /* Cards */
 .card {
-  background: #ffffff;
+  background: rgba(255,255,255,0.1);
   padding: 20px;
   margin: 15px;
   border-radius: 12px;
   width: 250px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
 .skills, .projects {
@@ -113,23 +121,113 @@ h2 {
 footer {
   text-align: center;
   padding: 25px;
-  background: #f3f4f6;
-  color: #6b7280;
+  background: rgba(255,255,255,0.1);
+  color: #ffffff;
   font-size: 14px;
 }
 
 footer a {
-  color: #2563eb;
+  color: #ffffff;
   text-decoration: none;
 }
 
 footer a:hover {
   text-decoration: underline;
 }
+
+/* Abstract Circles */
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  animation: float 15s infinite ease-in-out;
+}
+
+.circle1 { width: 200px; height: 200px; top: 10%; left: 5%; }
+.circle2 { width: 150px; height: 150px; bottom: 15%; right: 10%; }
+.circle3 { width: 100px; height: 100px; top: 40%; right: 20%; }
+
+@keyframes float {
+  0%,100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-50px) translateX(50px); }
+}
+
+/* Wave at bottom */
+.wave {
+  position: absolute;
+  bottom: 0;
+  width: 200%;
+  height: 300px;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05), transparent 70%);
+  transform: rotate(180deg);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Cloud */
+.cloud {
+  position: absolute;
+  top: 15%;
+  left: 60%;
+  width: 200px;
+  height: 60px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50px;
+  z-index: 2;
+}
+.cloud::before, .cloud::after {
+  content: '';
+  position: absolute;
+  background: rgba(255,255,255,0.1);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  top: -20px;
+}
+.cloud::before { left: 10px; }
+.cloud::after { right: 10px; }
+
+/* Leaves */
+.leaf {
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  transform: rotate(45deg);
+  animation: leafMove 10s infinite linear;
+  z-index: 2;
+}
+.leaf1 { top: 50%; left: 20%; }
+.leaf2 { top: 60%; right: 25%; }
+
+@keyframes leafMove {
+  0% { transform: rotate(45deg) translateY(0); }
+  50% { transform: rotate(45deg) translateY(-30px) translateX(20px);}
+  100% { transform: rotate(45deg) translateY(0);}
+}
+
+/* About Text Styling */
+.about-text {
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: center;
+  max-width: 700px;
+  margin: auto;
+}
 </style>
 </head>
 
 <body>
+
+<!-- Abstract Elements -->
+<div class="circle circle1"></div>
+<div class="circle circle2"></div>
+<div class="circle circle3"></div>
+<div class="wave"></div>
+<div class="cloud"></div>
+<div class="leaf leaf1"></div>
+<div class="leaf leaf2"></div>
 
 <!-- Navbar -->
 <nav>
@@ -162,13 +260,13 @@ footer a:hover {
 <!-- About -->
 <section>
   <h2>About Me</h2>
-  <p>
+  <p class="about-text">
     Automation Test Engineer with 4.7 years of experience in Selenium and Java,<br>
     skilled in building scalable automation frameworks,<br>
     expertise in API testing and CI/CD pipelines.
   </p>
 </section>
-  
+
 <!-- Skills -->
 <section id="skills">
   <h2>Skills</h2>
