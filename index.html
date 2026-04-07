@@ -43,10 +43,10 @@ nav {
 
 .profile-text {
     font-weight: 600;
-    color: #38bdf8; /* ✅ NOW BLUE */
+    color: #38bdf8;
 }
 
-/* RIGHT NAV */
+/* NAV RIGHT */
 .nav-right {
     display: flex;
     gap: 25px;
@@ -77,15 +77,16 @@ header p {
     color: #cbd5f5;
 }
 
-/* BUTTONS */
+/* BUTTON */
 .btn {
-    padding: 10px 20px;
+    padding: 12px 22px;
     background: #38bdf8;
     color: black;
     text-decoration: none;
     border-radius: 6px;
     margin: 10px 5px;
     display: inline-block;
+    font-weight: 600;
     transition: 0.3s;
 }
 
@@ -94,7 +95,7 @@ header p {
     color: white;
 }
 
-/* Sections */
+/* SECTIONS */
 section {
     padding: 60px 20px;
     text-align: center;
@@ -104,7 +105,7 @@ h2 {
     color: #38bdf8;
 }
 
-/* Cards */
+/* CARDS */
 .skills, .projects {
     display: flex;
     justify-content: center;
@@ -114,18 +115,25 @@ h2 {
 
 .card {
     background: #1e293b;
-    padding: 15px;
+    padding: 20px;
     border-radius: 10px;
-    width: 250px;
+    width: 260px;
     transition: 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
     background: #334155;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
-/* Footer */
+/* EXPERIENCE LIST */
+.card ul {
+    text-align: left;
+    margin-top: 10px;
+}
+
+/* FOOTER */
 footer {
     text-align: center;
     padding: 20px;
@@ -145,6 +153,7 @@ footer {
 
     <div class="nav-right">
         <a href="#">Home</a>
+        <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
@@ -154,13 +163,21 @@ footer {
 <!-- HERO -->
 <header>
     <h1 id="typing"></h1>
-    <p>Automation Engineer with 4.7 Years of Experience in Selenium & Java</p>
+
+    <p><b>Automation Engineer | Selenium | API Testing | CI/CD</b></p>
+    <p>4.7 Years of Experience in Building Scalable Automation Frameworks</p>
+
+    <p style="margin-top:10px; color:#94a3b8;">
+        Delivering high-quality automation solutions for scalable systems
+    </p>
 
     <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/ramesh.pdf" target="_blank" class="btn">
         Download Resume
     </a>
 
-    <a href="mailto:rameshkumar93.68@gmail.com" class="btn">Open to connect and discuss my experience</a>
+    <a href="mailto:rameshkumar93.68@gmail.com" class="btn">
+        Hire Me
+    </a>
 
     <p>
         🔗 <a href="https://github.com/rames-qa" style="color:#38bdf8;">GitHub</a> |
@@ -171,14 +188,29 @@ footer {
 <!-- ABOUT -->
 <section>
     <h2>About Me</h2>
-
     <ul style="max-width:700px; margin:auto; text-align:left; color:#cbd5f5; line-height:1.8;">
         <li>Automation Test Engineer with 4.7 years of experience in Selenium and Java</li>
         <li>Skilled in building scalable automation frameworks</li>
         <li>Experienced in API testing and CI/CD pipelines</li>
         <li>Focused on delivering high-quality software solutions</li>
     </ul>
+</section>
 
+<!-- EXPERIENCE -->
+<section id="experience">
+    <h2>Experience</h2>
+
+    <div class="card">
+        <b>Tata Consultancy Services (Client: Google)</b><br>
+        <small>Automation Test Engineer | Oct 2022 – Present</small>
+
+        <ul>
+            <li>Developed Selenium automation frameworks using Java & TestNG</li>
+            <li>Integrated CI/CD pipelines using Jenkins</li>
+            <li>Performed API testing and backend validation</li>
+            <li>Improved test coverage and reduced manual effort</li>
+        </ul>
+    </div>
 </section>
 
 <!-- SKILLS -->
@@ -197,7 +229,6 @@ footer {
         <div class="card">Git & GitHub</div>
         <div class="card">JIRA</div>
     </div>
-
 </section>
 
 <!-- PROJECTS -->
@@ -205,17 +236,26 @@ footer {
     <h2>Projects</h2>
 
     <div class="projects">
+
         <div class="card">
-            Automation Framework <br><br>
+            <b>Selenium Automation Framework</b><br>
+            <small>
+                Built using Java, TestNG, POM, Maven<br>
+                Integrated with Jenkins CI/CD
+            </small><br><br>
             <a href="https://github.com/rames-qa" style="color:#38bdf8;">View Code</a>
         </div>
 
         <div class="card">
-            API Testing Framework <br><br>
+            <b>API Testing Framework</b><br>
+            <small>
+                Automated REST APIs using Rest Assured<br>
+                Performed validations and reporting
+            </small><br><br>
             <a href="https://github.com/rames-qa" style="color:#38bdf8;">View Code</a>
         </div>
+
     </div>
-
 </section>
 
 <!-- CONTACT -->
