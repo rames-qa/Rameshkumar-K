@@ -1,36 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Ramesh Kumar Portfolio</title>
+  <meta charset="UTF-8">
+  <title>Ramesh Kumar Portfolio</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      padding: 60px 20px;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #cbd5e1;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #38bdf8;
+      color: black;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 40px 20px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #38bdf8;
+    }
+
+    .card {
+      background: #1e293b;
+      margin: 10px auto;
+      padding: 15px;
+      border-radius: 10px;
+      width: 250px;
+    }
+
+    .skills, .projects {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    footer {
+      padding: 20px;
+      background: #020617;
+      margin-top: 30px;
+    }
+  </style>
 </head>
+
 <body>
 
-<h1>Hello, I'm RameshKumar K 👋</h1>
-<p>Automation Test Engineer</p>
+<header>
+  <h1>Hi, I'm Ramesh Kumar 👋</h1>
+  <p>Automation Test Engineer</p>
+  <a href="resume.pdf" target="_blank" class="btn">Download Resume</a>
+</header>
 
-<h2>Skills</h2>
-<ul>
-    <li>Selenium</li>
-    <li>Selenium WebDriver</li>
-    <li>Manual Testing </li>
-    <li>Automation Testing</li>
-    <li>Java</li>
-    <li>Python (Basic)</li>
-    <li>OOPs</li>
-    <li>TestNG</li>
-    <li>API Testing</li>
-</ul>
-<h2>Projects</h2>
-<p>Automation Framework using Selenium</p>
+<section>
+  <h2>About Me</h2>
+  <p>I have 4.7 years of experience in Automation Testing using Selenium, Java, TestNG and API Testing.</p>
+</section>
 
-<!-- 👇 ADD THIS PART -->
-<h2>Resume</h2>
-<a href="Ramesh.pdf" target="_blank">
-  👉 Download My Resume
-</a>
+<section>
+  <h2>Skills</h2>
+  <div class="skills">
+    <div class="card">Selenium</div>
+    <div class="card">WebDriver</div>
+    <div class="card">Java</div>
+    <div class="card">TestNG</div>
+    <div class="card">API Testing</div>
+    <div class="card">Manual Testing</div>
+    <div class="card">Python (Basic)</div>
+  </div>
+</section>
 
-<h2>Contact :9632758871</h2>
-<p>Email: rameshkumae93.68@gmail.com</p>
+<section>
+  <h2>Projects</h2>
+  <div class="projects">
+    <div class="card">Automation Framework using Selenium</div>
+  </div>
+</section>
+
+<section>
+  <h2>Contact</h2>
+  <p>📞 9632758871</p>
+  <p>📧 rameshkumae93.68@gmail.com</p>
+</section>
+
+<footer>
+  <p>© 2026 Ramesh Kumar</p>
+</footer>
 
 </body>
 </html>
