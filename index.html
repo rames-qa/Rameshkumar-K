@@ -4,137 +4,179 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ramesh Kumar K | Automation Engineer</title>
+
 <style>
-:root {
-    --primary-grad: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-    --green-grad: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-    --banner-grad: linear-gradient(to right, #6a11cb, #2575fc, #43e97b);
-}
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #0f172a;
     color: white;
-    overflow-x: hidden;
 }
 
-/* Hero */
-header {
-    position: relative;
-    text-align: center;
-    padding: 150px 20px 100px 20px;
+/* ---------- NAVBAR ---------- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: #020617;
 }
-header h1#typing { font-size: 40px; margin-bottom: 10px; }
-header p { margin: 5px 0; }
+
+/* Left side */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-circle {
+    width: 45px;
+    height: 45px;
+    background: white;
+    color: #8e44ad;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.profile-text {
+    font-weight: 600;
+    color: #94a3b8;
+}
+
+/* Right side */
+.nav-right {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-right a {
+    text-decoration: none;
+    color: #38bdf8;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-right a:hover {
+    color: white;
+}
+
+/* ---------- HERO ---------- */
+header {
+    text-align: center;
+    padding: 120px 20px 80px;
+}
+
+header h1 {
+    font-size: 42px;
+}
+
 .btn {
     padding: 10px 20px;
     background: #38bdf8;
     color: black;
     text-decoration: none;
     border-radius: 6px;
-    margin: 5px;
+    margin: 10px 5px;
     display: inline-block;
 }
-.btn:hover { background: #0ea5e9; color: white; transition: 0.3s; }
 
-section { padding: 50px 20px; text-align: center; }
-h2 { color: #38bdf8; margin-bottom: 20px; }
+.btn:hover {
+    background: #0ea5e9;
+    color: white;
+}
+
+/* Sections */
+section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #38bdf8;
+}
+
+.skills, .projects {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .card {
     background: #1e293b;
     padding: 15px;
     margin: 10px;
     border-radius: 10px;
     width: 250px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    transition: transform 0.3s;
 }
-.card:hover { transform: scale(1.05); }
-.skills, .projects { display: flex; flex-wrap: wrap; justify-content: center; }
-footer { text-align: center; padding: 20px; background: #020617; }
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #020617;
+}
 </style>
 </head>
+
 <body>
 
-<!-- Navbar -->
+<!-- NAVBAR -->
 <nav>
     <div class="nav-left">
         <div class="nav-circle">RK</div>
+        <div class="profile-text">Profile</div>
     </div>
+
     <div class="nav-right">
-        <p>Profile</p>
-        <a href1="#">Home</a>
-        <a href2="#skills">Skills</a>
-        <a href3="#projects">Projects</a>
-        <a href4="#contact">Contact</a>
+        <a href="#">Home</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
     </div>
 </nav>
 
-<!-- Hero Section -->
+<!-- HERO -->
 <header>
     <h1 id="typing"></h1>
     <p>4.7 Years | Selenium | Java | TestNG | API | CI/CD</p>
-    <p style="color:#94a3b8;">🚀 Automation Engineer building scalable testing frameworks</p>
 
-    <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/ramesh.pdf" target="_blank" class="btn">Download Resume</a>
-    <a href="mailto:rameshkumae93.68@gmail.com" class="btn">Hire Me</a>
-
-    <p>
-        🔗 <a href="https://github.com/rames-qa" target="_blank" style="color:#38bdf8;">GitHub</a> |
-        💼 <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" target="_blank" style="color:#38bdf8;">LinkedIn</a>
-    </p>
+    <a href="#" class="btn">Download Resume</a>
+    <a href="#" class="btn">Hire Me</a>
 </header>
 
-<!-- About Section -->
+<!-- ABOUT -->
 <section>
     <h2>About Me</h2>
-    <p>
-        • Automation Test Engineer with 4.7 years of experience in Selenium & Java<br>
-        • Specialized in scalable frameworks<br>
-        • API testing & CI/CD pipelines    
-    </p>
+    <p>Automation Engineer with strong experience in Selenium & Java</p>
 </section>
 
-<!-- Skills Section -->
+<!-- SKILLS -->
 <section id="skills">
     <h2>Skills</h2>
     <div class="skills">
         <div class="card">Selenium</div>
         <div class="card">Java</div>
         <div class="card">TestNG</div>
-        <div class="card">Cucumber</div>
-        <div class="card">API Testing</div>
-        <div class="card">Rest Assured</div>
-        <div class="card">SQL</div>
-        <div class="card">CI/CD</div>
     </div>
 </section>
 
-<!-- Projects Section -->
+<!-- PROJECTS -->
 <section id="projects">
     <h2>Projects</h2>
     <div class="projects">
-        <div class="card">
-            <b>Selenium Automation Framework</b><br>
-            <small>POM + TestNG framework with reporting</small><br><br>
-            <a href="https://github.com/rames-qa" target="_blank">View Code</a>
-        </div>
-        <div class="card">
-            <b>API Automation</b><br>
-            <small>Rest Assured framework for API testing</small><br><br>
-            <a href="https://github.com/rames-qa" target="_blank">View Code</a>
-        </div>
+        <div class="card">Automation Framework</div>
+        <div class="card">API Testing</div>
     </div>
 </section>
 
-<!-- Contact Section -->
+<!-- CONTACT -->
 <section id="contact">
     <h2>Contact</h2>
     <p>📞 9632758871</p>
-    <p>📧 <a href="mailto:rameshkumae93.68@gmail.com" style="color:#38bdf8;">rameshkumae93.68@gmail.com</a></p>
-    <p>📍 Bangalore, Karnataka, India</p>
 </section>
 
-<!-- Footer -->
 <footer>
     <p>© 2026 Ramesh Kumar K</p>
 </footer>
@@ -142,6 +184,7 @@ footer { text-align: center; padding: 20px; background: #020617; }
 <script>
 const text = "Hi, I'm Ramesh Kumar K";
 let i = 0;
+
 function typing() {
     if (i < text.length) {
         document.getElementById("typing").innerHTML += text.charAt(i);
