@@ -9,6 +9,7 @@
             --primary-blue: #38bdf8;
             --dark-bg: #030712;
             --card-bg: rgba(255, 255, 255, 0.03);
+            --btn-bg: rgba(30, 64, 175, 0.4); /* Same background for all buttons */
             --border-color: rgba(255, 255, 255, 0.15);
         }
 
@@ -72,7 +73,7 @@
         .hero-circle {
             width: 120px;
             height: 120px;
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            background: linear-gradient(135deg, #3b82f6);
             border-radius: 50%;
             margin: 0 auto 20px;
             display: flex;
@@ -87,8 +88,9 @@
         h1 { font-size: 2.5rem; margin-bottom: 10px; }
         .subtitle { color: #94a3b8; font-size: 1.1rem; margin-bottom: 30px; letter-spacing: 1px; }
 
-        /* BUTTONS */
+        /* UNIFIED BUTTONS */
         .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        
         .btn {
             padding: 10px 20px;
             border-radius: 5px;
@@ -97,11 +99,19 @@
             font-size: 0.9rem;
             transition: 0.3s;
             cursor: pointer;
-            border: 1px solid var(--primary-blue);
+            /* Updated to match Toggle button styles */
+            background: var(--btn-bg);
+            color: white;
+            border: 1px solid #1e40af; 
+            display: inline-block;
         }
-        .btn-filled { background: #1d4ed8; color: white; }
-        .btn-outline { background: rgba(30, 64, 175, 0.3); color: white; }
-        .btn:hover { background: var(--primary-blue); color: #030712; transform: translateY(-2px); }
+
+        .btn:hover { 
+            background: var(--primary-blue); 
+            color: #030712; 
+            transform: translateY(-2px);
+            border-color: var(--primary-blue);
+        }
 
         /* SECTION TITLES */
         .section-title {
@@ -137,7 +147,7 @@
             align-items: center;
             gap: 8px;
         }
-        .skill-item::before { content: "✓"; color: var(--primary-blue); font-weight: bold; }
+        .skill-item::before { content:; color: var(--primary-blue); font-weight: bold; }
 
         /* PROJECT CARDS */
         .projects-container {
@@ -161,7 +171,6 @@
             padding-bottom: 10px;
             color: #fff;
             font-weight: bold;
-            position: relative;
         }
         .project-header::before, .project-header::after {
             content: "———";
@@ -187,7 +196,6 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             padding: 25px;
-            text-align: left;
         }
         .contact-item {
             display: flex;
@@ -233,10 +241,8 @@
     <h1>Hi, I'm Ramesh Kumar K</h1>
     <p class="subtitle">Automation Engineer | Java | Selenium | API | TestNG | CI/CD</p>
     <div class="btn-group">
-        <a href="#" class="btn btn-filled">Download Resume</a>
-        <div class="btn btn-outline">Toggle Skills</div>
-        <div class="btn btn-outline">Toggle Projects</div>
-        <div class="btn btn-outline">Get In Touch</div>
+        <a href="#" class="btn">Download Resume</a>
+        <div class="btn">Get In Touch</div>
     </div>
 </header>
 
