@@ -133,6 +133,7 @@ header {
 
 .btn-linkedin:hover {
     background: #004182;
+    color: white;
 }
 
 /* SECTIONS */
@@ -278,7 +279,10 @@ footer {
     <p>📍 Bangalore, Karnataka, India</p>
 
     <p>
-        <a href="ramesh.CV.pdf" class="btn" target="_blank">
+        <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/ramesh.CV.pdf" 
+        class="btn" 
+        target="_blank" 
+        rel="noopener noreferrer">
         Download Resume
         </a>
 
@@ -301,7 +305,7 @@ let i = 0;
 
 function typing() {
     if (i < text.length) {
-        document.getElementById("typing").innerHTML += text.charAt(i);
+        document.getElementById("typing").textContent += text.charAt(i);
         i++;
         setTimeout(typing, 60);
     }
