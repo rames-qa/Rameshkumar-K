@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ramesh Kumar K | Automation Engineer</title>
-
 <style>
-
 /* GLOBAL */
 body {
     margin: 0;
@@ -14,7 +12,6 @@ body {
     background: linear-gradient(135deg, #0f172a, #1e3a8a);
     color: white;
 }
-
 /* NAVBAR */
 nav {
     display: flex;
@@ -25,14 +22,11 @@ nav {
     position: sticky;
     top: 0;
 }
-
-/* ALIGNMENT */
 .nav-left {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
-
 .nav-circle {
     background: white;
     color: #1e3a8a;
@@ -40,44 +34,41 @@ nav {
     border-radius: 50%;
     font-weight: bold;
 }
-
 .profile-text {
     color: #38bdf8;
     font-weight: 600;
 }
-
 .nav-links a {
     color: #38bdf8;
     margin-left: 15px;
     text-decoration: none;
+    transition: 0.3s;
 }
-
+.nav-links a:hover {
+    color: white;
+}
 /* HERO */
 header {
     text-align: center;
     padding: 60px 20px;
 }
-
 #typing {
     font-size: 2.2rem;
     margin: 15px 0;
 }
-
 /* DIAGRAM */
 .diagram {
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
     margin: 30px auto;
 }
-
 .circle {
     width: 100%;
     height: 100%;
     border: 3px dotted #aaa;
     border-radius: 50%;
 }
-
 .center-text {
     position: absolute;
     top: 50%;
@@ -86,7 +77,6 @@ header {
     font-weight: 500;
     text-align: center;
 }
-
 .step {
     position: absolute;
     background: #1e7f3f;
@@ -94,7 +84,6 @@ header {
     border-radius: 20px;
     font-size: 12px;
 }
-
 /* Positions */
 .selenium { top: -10px; left: 50%; transform: translateX(-50%); }
 .testng { top: 60px; right: -30px; }
@@ -102,7 +91,6 @@ header {
 .testing { bottom: 80px; left: -30px; }
 .deployment { top: 60px; left: -30px; }
 .building { bottom: -10px; left: 50%; transform: translateX(-50%); }
-
 /* BUTTONS */
 .btn, .btn-linkedin {
     padding: 10px 20px;
@@ -110,18 +98,22 @@ header {
     text-decoration: none;
     margin: 10px;
     display: inline-block;
+    transition: 0.3s;
 }
-
 .btn {
     background: #38bdf8;
     color: black;
 }
-
+.btn:hover {
+    background: white;
+}
 .btn-linkedin {
-    background: #38bdf8;
+    background:  #38bdf8;
     color: black;
 }
-
+.btn-linkedin:hover {
+    background: #004182;
+}
 /* SECTIONS */
 section {
     padding: 50px 20px;
@@ -129,57 +121,65 @@ section {
     margin: auto;
     text-align: center;
 }
-
 .flex {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
 }
-
 .card {
     background: rgba(255,255,255,0.08);
     padding: 20px;
     border-radius: 10px;
     width: 220px;
+    transition: 0.3s;
 }
-
+.card:hover {
+    transform: translateY(-5px);
+}
 /* FOOTER */
 footer {
     text-align: center;
     padding: 20px;
     background: rgba(0,0,0,0.5);
 }
-
+/* MOBILE */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .diagram {
+        width: 220px;
+        height: 220px;
+    }
+    .step {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+}
 </style>
 </head>
-
 <body>
-
 <!-- NAV -->
 <nav>
     <div class="nav-left">
         <div class="nav-circle">RK</div>
-        <div class="profile-text">Automation Engineer</div>
+        <div class="profile-text">Software Automation Engineer</div>
     </div>
-
     <div class="nav-links">
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
     </div>
 </nav>
-
 <!-- HERO -->
 <header>
     <h1 id="typing"></h1>
     <p>Automation Engineer | Java | Selenium | API | TestNG | CI/CD</p>
-
-    <!-- DIAGRAM -->
     <div class="diagram">
         <div class="circle"></div>
-        <div class="center-text">Automation<br>Engineer</div>
-
+        <div class="center-text">Software<br>Automation<br>Engineer</div>
         <div class="step selenium">Selenium</div>
         <div class="step testng">TestNG</div>
         <div class="step manual">Manual</div>
@@ -188,7 +188,6 @@ footer {
         <div class="step building">Build</div>
     </div>
 </header>
-
 <!-- SKILLS -->
 <section id="skills">
     <h2>Skills</h2>
@@ -202,44 +201,36 @@ footer {
         <div class="card">DLC</div>
     </div>
 </section>
-
 <!-- PROJECTS -->
 <section id="projects">
     <h2>Projects</h2>
     <div class="flex">
-
-        <div class="card project-card">
-            <h3 style="color:#38bdf8;",>Selenium WebDriver</h3>
+        <div class="card">
+            <h3 style="color:#38bdf8;">Selenium WebDriver</h3>
             <p>Built automation using Java, Selenium, TestNG and Page Object Model.</p>
-
             <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn">
                 🚀 GitHub Repo
             </a>
-
         </div>      
-
-        <div class="card project-card">
-            <h3 style="color:#38bdf8;";>Automation Framework</h3>
+        <div class="card">
+            <h3 style="color:#38bdf8;">Automation Framework</h3>
             <p>Automated APIs using RestAssured with validation and reporting.</p>
             <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" class="btn">
                 🚀 GitHub Repo
             </a>
         </div>
-
     </div>
 </section>
-
 <!-- CONTACT -->
 <section id="contact">
     <h2>Contact</h2>
     <p>📞 9632758871</p>
     <p>📧 rameshkumar93.68@gmail.com</p>
-    <p>📍 Bangalore , Karnataka , India</p>
+    <p>📍 Bangalore, Karnataka, India</p>
     <p>
         <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/ramesh.pdf" class="btn" target="_blank">
         Download Resume
         </a>
-
         <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" 
         class="btn-linkedin" 
         target="_blank" 
@@ -248,15 +239,12 @@ footer {
         </a>
     </p>
 </section>
-
 <footer>
 © 2026 Ramesh Kumar K
 </footer>
-
 <script>
 const text = "Hi, I'm Ramesh Kumar K";
 let i = 0;
-
 function typing() {
     if (i < text.length) {
         document.getElementById("typing").innerHTML += text.charAt(i);
