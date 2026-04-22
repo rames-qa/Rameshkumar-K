@@ -1,214 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ramesh Kumar K | Automation Engineer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramesh Kumar K | Automation Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #38bdf8;
+            --bg-dark: #020617;
+            --bg-light: #0f172a;
+            --text-light: #ffffff;
+            --text-muted: #94a3b8;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
 
-<style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: "Segoe UI", Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-/* ===== GLOBAL ===== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        /* --- NAVBAR --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 10%;
+            background: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+        }
+        .nav-circle {
+            background: var(--primary);
+            color: #000;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .nav-left { display: flex; align-items: center; }
+        .nav-links a {
+            color: var(--text-muted);
+            margin-left: 25px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary); }
 
-html {
-    scroll-behavior: smooth;
-}
+        /* --- BANNER --- */
+        .banner {
+            min-height: 300px;
+            background: radial-gradient(circle at top right, #0c2144, var(--bg-dark));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 10%;
+        }
+        .banner-left h1 { font-size: 2.5rem; letter-spacing: 1px; }
+        .banner-left h2 {
+            font-size: 1rem;
+            color: var(--primary);
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+        }
+        .stats span { margin-right: 15px; font-size: 0.85rem; color: var(--text-muted); }
+        .stats i { color: var(--primary); margin-right: 5px; }
 
-body {
-    font-family: "Segoe UI", sans-serif;
-    background: #0a0f1f;
-    color: white;
-}
+        /* HUD ANIMATION */
+        .hud-container { position: relative; }
+        .hud {
+            width: 120px;
+            height: 120px;
+            border: 2px solid rgba(56, 189, 248, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: rotate 10s linear infinite;
+        }
+        .hud i { font-size: 2rem; color: var(--primary); animation: counter-rotate 10s linear infinite; }
+        
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes counter-rotate { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
 
-/* ===== NAVBAR ===== */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 50px;
-    background: rgba(0,0,0,0.8);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
+        /* --- DIAGRAM SECTION --- */
+        .diagram-box {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .circle-orbit {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1px dashed var(--text-muted);
+            border-radius: 50%;
+        }
+        .step {
+            position: absolute;
+            background: var(--bg-light);
+            border: 1px solid var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+        /* Specific Positions */
+        .s-1 { top: -10px; } .s-2 { right: -30px; top: 80px; } .s-3 { right: -30px; bottom: 80px; }
+        .s-4 { bottom: -10px; } .s-5 { left: -30px; bottom: 80px; } .s-6 { left: -30px; top: 80px; }
 
-.nav-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+        /* --- CARDS & PROJECTS --- */
+        section { padding: 80px 10%; max-width: 1200px; margin: auto; }
+        .section-title { margin-bottom: 40px; font-size: 2rem; position: relative; display: inline-block; }
+        .section-title::after {
+            content: ''; width: 50%; height: 3px; background: var(--primary);
+            position: absolute; bottom: -10px; left: 0;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.4s;
+            text-align: left;
+        }
+        .card:hover {
+            background: rgba(56, 189, 248, 0.05);
+            border-color: var(--primary);
+            transform: translateY(-10px);
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
 
-.nav-circle {
-    background:#ffff;
-    color: black;
-    padding: 10px;
-    border-radius: 50%;
-    font-weight: bold;
-}
+        footer { padding: 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); }
 
-.profile-text {
-    color: #00e5ff;
-    font-weight: 600;
-}
-
-.nav-links a {
-    color: #00e5ff;
-    margin-left: 20px;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.nav-links a:hover {
-    color: Cyan A400;
-}
-
-/* ===== ULTRA BANNER ===== */
-.banner {
-    height: 300px;
-    position: relative;
-    background: radial-gradient(circle at right, #0d2c5a, #022b1a);
-    overflow: hidden;
-}
-
-/* GRID ANIMATION */
-.banner::before {
-    content: "";
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    background: repeating-linear-gradient(
-        0deg,
-        rgba(0,255,255,0.05) 0px,
-        rgba(0,255,255,0.05) 1px,
-        transparent 1px,
-        transparent 40px
-    );
-    animation: moveGrid 30s linear infinite;
-}
-
-@keyframes moveGrid {
-    from { transform: translateY(0); }
-    to { transform: translateY(-200px); }
-}
-
-/* LEFT TEXT */
-.banner-content {
-    position: absolute;
-    left: 60px;
-    top: 70px;
-    z-index:2;
-}
-
-.banner-content h1 {
-    font-size: 40px;
-}
-
-.banner-content h2 {
-    color: #00e5ff;
-    margin-top: 10px;
-}
-
-.banner-content p {
-    margin-top: 10px;
-    font-size: 14px;
-}
-
-/* HUD */
-.hud {
-    position: absolute;
-    right: 150px;
-    top: 80px;
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    border: 2px solid #00e5ff;
-    box-shadow: 0 0 20px #00e5ff;
-    animation: rotate 10s linear infinite;
-}
-
-.hud::before {
-    content: "";
-    position: absolute;
-    inset: 20px;
-    border: 2px dashed #00e5ff;
-    border-radius: 50%;
-}
-
-@keyframes rotate {
-    to { transform: rotate(360deg); }
-}
-
-/* ===== HERO ===== */
-header {
-    text-align: center;
-    padding: 60px 20px;
-}
-
-#typing {
-    font-size: 2rem;
-    color: #00e5ff;
-}
-
-/* ===== SKILLS ===== */
-section {
-    padding: 50px 20px;
-    text-align: center;
-}
-
-.flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.card {
-    background: rgba(255,255,255,0.05);
-    padding: 20px;
-    border-radius: 10px;
-    width: 220px;
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 15px #00e5ff;
-}
-
-/* ===== BUTTON ===== */
-.btn {
-    background: #00e5ff;
-    color: black;
-    padding: 8px 15px;
-    border-radius: 6px;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 10px;
-}
-
-/* ===== FOOTER ===== */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #000;
-}
-
-</style>
+        @media (max-width: 768px) {
+            .banner { flex-direction: column; text-align: center; gap: 30px; }
+            nav { padding: 15px 5%; }
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- NAV -->
 <nav>
     <div class="nav-left">
         <div class="nav-circle">RK</div>
-        <div class="profile-text">Software Automation Engineer</div>
+        <span style="font-weight: bold; letter-spacing: 1px;">RAMESH KUMAR K</span>
     </div>
-
     <div class="nav-links">
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
@@ -216,100 +183,113 @@ footer {
     </div>
 </nav>
 
-<!-- BANNER -->
 <section class="banner">
-    <div class="banner-content">
-        <h1>RAMESH KUMAR K</h1>
+    <div class="banner-left">
         <h2>SOFTWARE AUTOMATION ENGINEER</h2>
-        <p>4.7+ Years | Quality Driven | Automation Enthusiast</p>
-        <p>Java | Python | Selenium | TestNG | API | CI/CD</p>
+        <h1><span id="typing"></span></h1>
+        <div class="stats">
+            <span><i class="fas fa-history"></i> 4.7+ Years</span>
+            <span><i class="fas fa-check-circle"></i> QA Specialist</span>
+            <span><i class="fas fa-code-branch"></i> CI/CD Expert</span>
+        </div>
     </div>
-    <div class="hud"></div>
+    <div class="hud-container">
+        <div class="hud"></div>
+        <div style="position: absolute; top:50%; left:50%; transform: translate(-50%, -50%);">
+            <i class="fas fa-robot" style="font-size: 2rem; color: var(--primary);"></i>
+        </div>
+    </div>
 </section>
 
-<!-- HERO -->
-<header>
-    <h1 id="typing"></h1>
-   
-</header>
-
-<!-- SKILLS -->
 <section id="skills">
-    <h2>Skills</h2>
-    <div class="flex">
-        <div class="card">Java</div>
-        <div class="card">Python</div>
-        <div class="card">Selenium</div>
-        <div class="card">TestNG</div>
-        <div class="card">API Testing</div>
-        <div class="card">CI/CD</div>
-        <div class="card">STLC</div>
-       <div class="card">SDLC</div>
+    <h2 class="section-title">Core Expertise</h2>
+    <div class="diagram-box">
+        <div class="circle-orbit"></div>
+        <div style="text-align: center; z-index: 2;">
+            <strong style="color: var(--primary);">Automation</strong><br>Lifecycle
+        </div>
+        <div class="step s-1">Selenium WebDriver</div>
+        <div class="step s-2">TestNG Framework</div>
+        <div class="step s-3">Java Development</div>
+        <div class="step s-4">Python Scripting</div>
+        <div class="step s-5">API Testing</div>
+        <div class="step s-6">Manual QA</div>
     </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
-    <h2>Projects</h2>
-    <div class="flex">
-
-       
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="grid">
         <div class="card">
-            <h3 style="color:#38bdf8;">Selenium WebDriver</h3>
-            <p>Built automation using Java, Selenium and Page Object Model.</p>
-            <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn">🚀 GitHub Repo</a>
+            <i class="fas fa-vial" style="color: var(--primary); font-size: 1.5rem; margin-bottom: 15px;"></i>
+            <h3>Selenium WebDriver</h3>
+            <p>End-to-end web automation using POM (Page Object Model) and TestNG.</p>
+            <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn">View Source →</a>
         </div>
-
-        <div class="card">  
-            <h3 style="color:#38bdf8;">Automation Framework</h3>
-            <p>Automated APIs using RestAssured with validation and reporting.</p>
-            <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" class="btn">🚀 GitHub Repo</a>
+        <div class="card">
+            <i class="fas fa-leaf" style="color: #4ade80; font-size: 1.5rem; margin-bottom: 15px;"></i>
+            <h3>Cucumber BDD</h3>
+            <p>Behavior Driven Development framework for readable and scalable test cases.</p>
+            <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" class="btn">View Source →</a>
         </div>
-
-        <div class="card">  
-            <h3 style="color:#38bdf8;">Cucumber Framework</h3>
-            <p>BDD automation using Cucumber with Selenium and TestNG integration.</p>
-            <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" class="btn">🚀 GitHub Repo</a>
+        <div class="card">
+            <i class="fab fa-python" style="color: #fbbf24; font-size: 1.5rem; margin-bottom: 15px;"></i>
+            <h3>Python-Selenium</h3>
+            <p>Robust automation suite leveraging Python and PyTest for high-speed execution.</p>
+            <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" class="btn">View Source →</a>
         </div>
-
-        <div class="card">  
-            <h3 style="color:#38bdf8;">Python-Code</h3>
-            <p>Python basic and OOPs concepts</p>
-            <a href="https://github.com/rames-qa/Python-codes" target="_blank" class="btn">🚀 GitHub Repo</a>
-        </div>
-
-        <div class="card">  
-            <h3 style="color:#38bdf8;">Python-Selenium</h3>
-            <p>Automation using Python with Selenium.</p>
-            <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" class="btn">🚀 GitHub Repo</a>
-        </div>
-
-
-     
     </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-    <h2>Contact</h2>
-    <p>📞 9632758871</p>
-    <p>📧 rameshkumar93.68@gmail.com</p>
-    <p>📍 Bangalore, Karnataka, India</p>
+<section id="contact" style="text-align: center;">
+    <h2 class="section-title">Get In Touch</h2>
+    <div style="margin-top: 20px;">
+        <p><i class="fas fa-phone"></i> +91 9632758871</p>
+        <p><i class="fas fa-envelope"></i> rameshkumar93.68@gmail.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Bangalore, India</p>
+    </div>
 </section>
 
 <footer>
-© 2026 Ramesh Kumar K
+    <p>© 2026 Ramesh Kumar K | Built with  for Quality Assurance</p>
 </footer>
-zsaq
 
-function typing() {
-    if (i < text.length) {
-        document.getElementById("typing").textContent += text.charAt(i);
-        i++;
-        setTimeout(typing, 60);
+<script>
+    const textArray = ["Ramesh Kumar K", "Automation Engineer", "QA Specialist"];
+    let part = 0;
+    let partIndex = 0;
+    let intervalVal;
+    const element = document.getElementById("typing");
+
+    function type() { 
+        let text =  textArray[part].substring(0, partIndex + 1);
+        element.innerHTML = text;
+        partIndex++;
+
+        if(text === textArray[part]) {
+            clearInterval(intervalVal);
+            setTimeout(function() {
+                intervalVal = setInterval(backspace, 50);
+            }, 1000);
+        }
     }
-}
-typing();
+
+    function backspace() {
+        let text =  textArray[part].substring(0, partIndex - 1);
+        element.innerHTML = text;
+        partIndex--;
+
+        if(text === '') {
+            clearInterval(intervalVal);
+            part = (part + 1) % textArray.length;
+            partIndex = 0;
+            setTimeout(function() {
+                intervalVal = setInterval(type, 100);
+            }, 200);
+        }
+    }
+
+    intervalVal = setInterval(type, 100);
 </script>
 
 </body>
