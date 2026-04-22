@@ -24,6 +24,7 @@ nav {
     background: rgba(0,0,0,0.7);
     position: sticky;
     top: 0;
+    flex-wrap: wrap;
 }
 
 .nav-left {
@@ -45,9 +46,15 @@ nav {
     font-weight: 600;
 }
 
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .nav-links a {
     color: #38bdf8;
-    margin-left: 15px;
+    margin: 5px 10px;
     text-decoration: none;
     transition: 0.3s;
 }
@@ -170,34 +177,6 @@ footer {
     background: rgba(0,0,0,0.5);
 }
 
-/* MOBILE */
-@media (max-width: 600px) {
-    nav {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .diagram {
-        width: 220px;
-        height: 220px;
-    }
-
-    .step {
-        font-size: 10px;
-        padding: 5px 8px;
-    }
-
-    .banner {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
-    }
-
-    .hud {
-        margin-top: 20px;
-    }
-}
-
 /* BANNER */
 .banner {
     min-height: 300px;
@@ -208,6 +187,7 @@ footer {
     background: radial-gradient(circle at right,#0d2c5a,#022b1a);
     position: relative;
     overflow: hidden;
+    flex-wrap: wrap;
 }
 
 .banner:before {
@@ -266,6 +246,40 @@ footer {
     to { transform: rotate(360deg); }
 }
 
+/* MOBILE */
+@media (max-width: 600px) {
+
+    nav {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .banner-content h1 {
+        font-size: 28px;
+    }
+
+    .diagram {
+        width: 220px;
+        height: 220px;
+    }
+
+    .step {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+
+    .hud {
+        margin-top: 20px;
+    }
+}
+
 </style>
 </head>
 
@@ -310,6 +324,7 @@ footer {
     <div class="step building">Python</div>
     <div class="step testing">Testing</div>
     <div class="step deployment">Manual</div>
+    <div class="step building">WebDriver</div>
 </div>
 
 </header>
@@ -393,8 +408,6 @@ footer {
 <footer>
 © 2026 Ramesh Kumar K
 </footer>
-
-
 
 </body>
 </html>
