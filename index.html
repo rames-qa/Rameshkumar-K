@@ -67,6 +67,137 @@ header {
     margin: 15px 0;
 }
 
+/* DIAGRAM */
+.diagram {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin: 30px auto;
+}
+
+.circle {
+    width: 100%;
+    height: 100%;
+    border: 3px dotted #aaa;
+    border-radius: 50%;
+}
+
+.center-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 500;
+    text-align: center;
+}
+
+.step {
+    position: absolute;
+    background: #1e7f3f;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* Positions */
+.selenium { top: -10px; left: 50%; transform: translateX(-50%); }
+.testng { top: 60px; right: -30px; }
+.manual { bottom: 80px; right: -30px; }
+.testing { bottom: 80px; left: -30px; }
+.deployment { top: 60px; left: -30px; }
+.building { bottom: -10px; left: 50%; transform: translateX(-50%); }
+
+/* BUTTONS */
+.btn, .btn-linkedin {
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin: 10px;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.btn {
+    background: #38bdf8;
+    color: black;
+}
+
+.btn:hover {
+    background: white;
+}
+
+.btn-linkedin {
+    background: #38bdf8;
+    color: black;
+}
+
+.btn-linkedin:hover {
+    background: #004182;
+    color: white;
+}
+
+/* SECTIONS */
+section {
+    padding: 50px 20px;
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    background: rgba(255,255,255,0.08);
+    padding: 20px;
+    border-radius: 10px;
+    width: 220px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.5);
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .diagram {
+        width: 220px;
+        height: 220px;
+    }
+
+    .step {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+
+    .banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .hud {
+        margin-top: 20px;
+    }
+}
+
 /* BANNER */
 .banner {
     min-height: 300px;
@@ -135,134 +266,12 @@ header {
     to { transform: rotate(360deg); }
 }
 
-/* DIAGRAM */
-.diagram {
-    position: relative;
-    width: 280px;
-    height: 280px;
-    margin: 30px auto;
-}
-
-.circle {
-    width: 100%;
-    height: 100%;
-    border: 3px dotted #aaa;
-    border-radius: 50%;
-}
-
-.center-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.step {
-    position: absolute;
-    background: #1e7f3f;
-    padding: 8px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-}
-
-.selenium { top: -10px; left: 50%; transform: translateX(-50%); }
-.testng { top: 60px; right: -30px; }
-.manual { bottom: 80px; right: -30px; }
-.testing { bottom: 80px; left: -30px; }
-.deployment { top: 60px; left: -30px; }
-.building { bottom: -10px; left: 50%; transform: translateX(-50%); }
-
-/* BUTTONS */
-.btn, .btn-linkedin {
-    padding: 10px 20px;
-    border-radius: 6px;
-    text-decoration: none;
-    margin: 10px;
-    display: inline-block;
-}
-
-.btn {
-    background: #38bdf8;
-    color: black;
-}
-
-.btn:hover {
-    background: white;
-}
-
-.btn-linkedin {
-    background: #38bdf8;
-    color: black;
-}
-
-.btn-linkedin:hover {
-    background: #004182;
-    color: white;
-}
-
-/* SECTIONS */
-section {
-    padding: 50px 20px;
-    max-width: 1000px;
-    margin: auto;
-    text-align: center;
-}
-
-.flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.card {
-    background: rgba(255,255,255,0.08);
-    padding: 20px;
-    border-radius: 10px;
-    width: 220px;
-}
-
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: rgba(0,0,0,0.5);
-}
-
-/* MOBILE */
-@media (max-width: 600px) {
-
-    nav {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .banner {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
-    }
-
-    .hud {
-        margin-top: 20px;
-    }
-
-    .diagram {
-        width: 220px;
-        height: 220px;
-    }
-
-    .step {
-        font-size: 10px;
-        padding: 5px 8px;
-    }
-}
-
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
 <nav>
     <div class="nav-left">
         <div class="nav-circle">RK</div>
@@ -276,7 +285,10 @@ footer {
     </div>
 </nav>
 
+<!-- HERO -->
 <header>
+
+<h1 id="typing"></h1>
 
 <section class="banner">
   <div class="banner-content">
@@ -288,26 +300,101 @@ footer {
   <div class="hud"></div>
 </section>
 
+<div class="diagram">
+    <div class="circle"></div>
+    <div class="center-text">Software<br>Automation<br>Engineer</div>
+
+    <div class="step selenium">Selenium</div>
+    <div class="step testng">TestNG</div>
+    <div class="step manual">Java</div>
+    <div class="step building">Python</div>
+    <div class="step testing">Testing</div>
+    <div class="step deployment">Manual</div>
+</div>
+
 </header>
+
+<!-- SKILLS -->
+<section id="skills">
+    <h2>Skills</h2>
+    <div class="flex">
+        <div class="card">Java</div>
+        <div class="card">Python</div>
+        <div class="card">Selenium</div>
+        <div class="card">TestNG</div>
+        <div class="card">API Testing</div>
+        <div class="card">STLC</div>
+        <div class="card">DLC</div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="flex">
+
+        <div class="card">
+            <h3 style="color:#38bdf8;">Selenium WebDriver</h3>
+            <p>Built automation using Java, Selenium, TestNG and Page Object Model.</p>
+            <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn">🚀 GitHub Repo</a>
+        </div>
+
+        <div class="card">
+            <h3 style="color:#38bdf8;">Automation Framework</h3>
+            <p>Automated APIs using RestAssured with validation and reporting.</p>
+            <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" class="btn">🚀 GitHub Repo</a>
+        </div>
+
+        <div class="card">
+            <h3 style="color:#38bdf8;">Cucumber Framework</h3>
+            <p>BDD automation using Cucumber with Selenium and TestNG integration.</p>
+            <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" class="btn">🚀 GitHub Repo</a>
+        </div>
+
+        <div class="card">
+            <h3 style="color:#38bdf8;">Python-Code</h3>
+            <p>Python basic and OOPs concepts</p>
+            <a href="https://github.com/rames-qa/Python-codes" target="_blank" class="btn">🚀 GitHub Repo</a>
+        </div>
+
+        <div class="card">
+            <h3 style="color:#38bdf8;">Python-Selenium</h3>
+            <p>Automation using Python with Selenium.</p>
+            <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" class="btn">🚀 GitHub Repo</a>
+        </div>
+
+        <div class="card">
+            <h3 style="color:#38bdf8;">Java-OOPs Concepts</h3>
+            <p>Java Programming with OOP Concepts.</p>
+            <a href="https://github.com/rames-qa/Java-Code.git" target="_blank" class="btn">🚀 GitHub Repo</a>
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2>Contact</h2>
+    <p>📞 9632758871</p>
+    <p>📧 rameshkumar93.68@gmail.com</p>
+    <p>📍 Bangalore, Karnataka, India</p>
+    <p>
+        <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh Kumar.K (CV).pdf" download class="btn">
+        📄 Download Resume
+        </a>
+
+        <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb"
+        class="btn-linkedin" target="_blank">
+        🔗 LinkedIn Profile
+        </a>
+    </p>
+</section>
 
 <footer>
 © 2026 Ramesh Kumar K
 </footer>
 
-<script>
-const text = "Hi, I'm Ramesh Kumar ";
-let i = 0;
 
-function typing() {
-    if (i < text.length) {
-        document.getElementById("typing").textContent += text.charAt(i);
-        i++;
-        setTimeout(typing, 100);
-    }
-}
-
-typing();
-</script>
 
 </body>
 </html>
