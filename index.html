@@ -206,6 +206,28 @@ footer {
 <!-- HERO -->
 <header>
     <h1 id="typing"></h1>
+    <style>
+.banner{min-height:300px;display:flex;align-items:center;justify-content:space-between;padding:40px 60px;background:radial-gradient(circle at right,#0d2c5a,#022b1a);position:relative;overflow:hidden}
+.banner:before{content:"";position:absolute;width:200%;height:200%;background:repeating-linear-gradient(0deg,rgba(0,255,255,.05)0 1px,transparent 1px 40px);animation:move 30s linear infinite}
+@keyframes move{to{transform:translateY(-200px)}}
+.banner-content{z-index:2;max-width:600px;color:#fff}
+.banner-content h1{font-size:40px;margin:0 0 10px}
+.banner-content h2{font-size:20px;color:#00e5ff;margin:0 0 10px}
+.banner-content p{font-size:14px;margin:0}
+.hud{width:130px;height:130px;border-radius:50%;border:2px solid #00e5ff;box-shadow:0 0 20px #00e5ff;animation:spin 10s linear infinite;position:relative;z-index:2}
+.hud:before{content:"";position:absolute;inset:20px;border:2px dashed #00e5ff;border-radius:50%}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+
+<section class="banner">
+  <div class="banner-content">
+    <h1>RAMESH KUMAR K</h1>
+    <h2>SOFTWARE AUTOMATION ENGINEER</h2>
+    <p>4.7+ Years | Quality Driven | Automation Enthusiast</p>
+    <p>Java | Python | Selenium | TestNG | API | CI/CD</p>
+  </div>
+  <div class="hud"></div>
+</section>
     <p class="title">SOFTWARE AUTOMATION ENGINEER</p>
     <p> 4.7 Years Experience| Java | Python | Selenium | TestNG | API | STLC | CI/CD</p>
 
@@ -298,29 +320,6 @@ footer {
 <footer>
 © 2026 Ramesh Kumar K
 </footer>
-
-<style>
-.banner{min-height:300px;display:flex;align-items:center;justify-content:space-between;padding:40px 60px;background:radial-gradient(circle at right,#0d2c5a,#022b1a);position:relative;overflow:hidden}
-.banner:before{content:"";position:absolute;width:200%;height:200%;background:repeating-linear-gradient(0deg,rgba(0,255,255,.05)0 1px,transparent 1px 40px);animation:move 30s linear infinite}
-@keyframes move{to{transform:translateY(-200px)}}
-.banner-content{z-index:2;max-width:600px;color:#fff}
-.banner-content h1{font-size:40px;margin:0 0 10px}
-.banner-content h2{font-size:20px;color:#00e5ff;margin:0 0 10px}
-.banner-content p{font-size:14px;margin:0}
-.hud{width:130px;height:130px;border-radius:50%;border:2px solid #00e5ff;box-shadow:0 0 20px #00e5ff;animation:spin 10s linear infinite;position:relative;z-index:2}
-.hud:before{content:"";position:absolute;inset:20px;border:2px dashed #00e5ff;border-radius:50%}
-@keyframes spin{to{transform:rotate(360deg)}}
-</style>
-
-<section class="banner">
-  <div class="banner-content">
-    <h1>RAMESH KUMAR K</h1>
-    <h2>SOFTWARE AUTOMATION ENGINEER</h2>
-    <p>4.7+ Years | Quality Driven | Automation Enthusiast</p>
-    <p>Java | Python | Selenium | TestNG | API | CI/CD</p>
-  </div>
-  <div class="hud"></div>
-</section>
 
     }
 }
