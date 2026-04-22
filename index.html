@@ -1,16 +1,80 @@
-/* ===== COMPACT PREMIUM HEADER ===== */
-.banner {
-    height: 260px;
-    position: relative;
-    background: linear-gradient(135deg, #020617, #0f172a);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 60px;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ramesh Kumar K | Automation Engineer</title>
+
+<style>
+
+/* ===== GLOBAL ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* subtle grid */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: #0a0f1f;
+    color: white;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: rgba(0,0,0,0.8);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-circle {
+    background:#ffff;
+    color: black;
+    padding: 10px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.profile-text {
+    color: #00e5ff;
+    font-weight: 600;
+}
+
+.nav-links a {
+    color: #00e5ff;
+    margin-left: 20px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: Cyan A400;
+}
+
+/* ===== ULTRA BANNER ===== */
+.banner {
+    height: 300px;
+    position: relative;
+    background: radial-gradient(circle at right, #0d2c5a, #022b1a);
+    overflow: hidden;
+}
+
+/* GRID ANIMATION */
 .banner::before {
     content: "";
     position: absolute;
@@ -18,144 +82,235 @@
     height: 200%;
     background: repeating-linear-gradient(
         0deg,
-        rgba(0,255,255,0.04) 0px,
-        rgba(0,255,255,0.04) 1px,
+        rgba(0,255,255,0.05) 0px,
+        rgba(0,255,255,0.05) 1px,
         transparent 1px,
-        transparent 50px
+        transparent 40px
     );
-    animation: moveGrid 25s linear infinite;
+    animation: moveGrid 30s linear infinite;
 }
 
-/* LEFT CONTENT */
-.banner-left {
-    z-index: 2;
-    max-width: 650px;
+@keyframes moveGrid {
+    from { transform: translateY(0); }
+    to { transform: translateY(-200px); }
 }
 
-.banner-left h1 {
-    font-size: 32px;
-    font-weight: 700;
+/* LEFT TEXT */
+.banner-content {
+    position: absolute;
+    left: 60px;
+    top: 70px;
+    z-index:2;
 }
 
-.banner-left h2 {
-    color: #38bdf8;
-    font-size: 16px;
-    margin-top: 5px;
-    letter-spacing: 2px;
+.banner-content h1 {
+    font-size: 40px;
 }
 
-/* INFO ROW */
-.info-row {
+.banner-content h2 {
+    color: #00e5ff;
     margin-top: 10px;
-    font-size: 13px;
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    opacity: 0.85;
 }
 
-/* TAGLINE */
-.tagline {
-    margin-top: 8px;
-    font-size: 13px;
-    opacity: 0.7;
+.banner-content p {
+    margin-top: 10px;
+    font-size: 14px;
 }
 
-/* SKILLS ROW */
-.skill-row {
-    margin-top: 15px;
-    display: flex;
-    gap: 25px;
-    font-size: 12px;
-}
-
-.skill-row span {
-    color: #38bdf8;
-}
-
-/* RIGHT SIDE (HUD) */
-.banner-right {
-    position: relative;
-    z-index: 2;
-}
-
+/* HUD */
 .hud {
-    width: 90px;
-    height: 90px;
+    position: absolute;
+    right: 150px;
+    top: 80px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
-    border: 2px solid #38bdf8;
-    box-shadow: 0 0 15px #38bdf8;
-    animation: rotate 12s linear infinite;
+    border: 2px solid #00e5ff;
+    box-shadow: 0 0 20px #00e5ff;
+    animation: rotate 10s linear infinite;
 }
 
 .hud::before {
     content: "";
     position: absolute;
-    inset: 15px;
-    border: 2px dashed #38bdf8;
+    inset: 20px;
+    border: 2px dashed #00e5ff;
     border-radius: 50%;
 }
 
-/* CONTACT */
-.contact {
-    position: absolute;
-    bottom: 10px;
-    right: 60px;
-    font-size: 12px;
-    text-align: right;
-    opacity: 0.85;
-}
-
-.contact span {
-    display: block;
-}
-
-/* ANIMATIONS */
-@keyframes moveGrid {
-    to { transform: translateY(-200px); }
-}
-
-
-<section class="banner">
-
-    <!-- LEFT -->
-    <div class="banner-left">
-        <h1>RAMESH KUMAR K</h1>
-        <h2>SOFTWARE AUTOMATION ENGINEER</h2>
-
-        <div class="info-row">
-            <span>4.7+ Years Experience</span>
-            <span>Quality Driven</span>
-            <span>Automation Enthusiast</span>
-        </div>
-
-        <div class="tagline">
-            Building Reliable Automation | Ensuring Quality | Delivering Excellence
-        </div>
-
-        <div class="skill-row">
-            <span>Java</span>
-            <span>Python</span>
-            <span>Selenium</span>
-            <span>TestNG</span>
-            <span>API Testing</span>
-            <span>CI/CD</span>
-        </div>
-    </div>
-
-    <!-- RIGHT -->
-    <div class="banner-right">
-        <div class="hud"></div>
-    </div>
-
-    <!-- CONTACT -->
-    <div class="contact">
-        <span>Bangalore, India</span>
-        <span>+91 9632758871</span>
-        <span>rameshkumar93.68@gmail.com</span>
-    </div>
-
-</section>
 @keyframes rotate {
     to { transform: rotate(360deg); }
 }
+
+/* ===== HERO ===== */
+header {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+#typing {
+    font-size: 2rem;
+    color: #00e5ff;
+}
+
+/* ===== SKILLS ===== */
+section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 10px;
+    width: 220px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px #00e5ff;
+}
+
+/* ===== BUTTON ===== */
+.btn {
+    background: #00e5ff;
+    color: black;
+    padding: 8px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #000;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-left">
+        <div class="nav-circle">RK</div>
+        <div class="profile-text">Software Automation Engineer</div>
+    </div>
+
+    <div class="nav-links">
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<!-- BANNER -->
+<section class="banner">
+    <div class="banner-content">
+        <h1>RAMESH KUMAR K</h1>
+        <h2>SOFTWARE AUTOMATION ENGINEER</h2>
+        <p>4.7+ Years | Quality Driven | Automation Enthusiast</p>
+        <p>Java | Python | Selenium | TestNG | API | CI/CD</p>
+    </div>
+    <div class="hud"></div>
+</section>
+
+<!-- HERO -->
+<header>
+    <h1 id="typing"></h1>
+   
+</header>
+
+<!-- SKILLS -->
+<section id="skills">
+    <h2>Skills</h2>
+    <div class="flex">
+        <div class="card">Java</div>
+        <div class="card">Python</div>
+        <div class="card">Selenium</div>
+        <div class="card">TestNG</div>
+        <div class="card">API Testing</div>
+        <div class="card">CI/CD</div>
+        <div class="card">STLC</div>
+       <div class="card">SDLC</div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="flex">
+
+       
+        <div class="card">
+            <h3 style="color:#38bdf8;">Selenium WebDriver</h3>
+            <p>Built automation using Java, Selenium and Page Object Model.</p>
+            <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn">🚀 GitHub Repo</a>
+        </div>
+
+        <div class="card">  
+            <h3 style="color:#38bdf8;">Automation Framework</h3>
+            <p>Automated APIs using RestAssured with validation and reporting.</p>
+            <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" class="btn">🚀 GitHub Repo</a>
+        </div>
+
+        <div class="card">  
+            <h3 style="color:#38bdf8;">Cucumber Framework</h3>
+            <p>BDD automation using Cucumber with Selenium and TestNG integration.</p>
+            <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" class="btn">🚀 GitHub Repo</a>
+        </div>
+
+        <div class="card">  
+            <h3 style="color:#38bdf8;">Python-Code</h3>
+            <p>Python basic and OOPs concepts</p>
+            <a href="https://github.com/rames-qa/Python-codes" target="_blank" class="btn">🚀 GitHub Repo</a>
+        </div>
+
+        <div class="card">  
+            <h3 style="color:#38bdf8;">Python-Selenium</h3>
+            <p>Automation using Python with Selenium.</p>
+            <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" class="btn">🚀 GitHub Repo</a>
+        </div>
+
+
+     
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2>Contact</h2>
+    <p>📞 9632758871</p>
+    <p>📧 rameshkumar93.68@gmail.com</p>
+    <p>📍 Bangalore, Karnataka, India</p>
+</section>
+
+<footer>
+© 2026 Ramesh Kumar K
+</footer>
+zsaq
+
+function typing() {
+    if (i < text.length) {
+        document.getElementById("typing").textContent += text.charAt(i);
+        i++;
+        setTimeout(typing, 60);
+    }
+}
+typing();
+</script>
+
+</body>
+</html>
