@@ -1,296 +1,161 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramesh Kumar K | Automation Engineer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #38bdf8;
-            --bg-dark: #020617;
-            --bg-light: #0f172a;
-            --text-light: #ffffff;
-            --text-muted: #94a3b8;
-            --card-bg: rgba(255, 255, 255, 0.05);
-        }
+/* ===== COMPACT PREMIUM HEADER ===== */
+.banner {
+    height: 260px;
+    position: relative;
+    background: linear-gradient(135deg, #020617, #0f172a);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: "Segoe UI", Roboto, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+/* subtle grid */
+.banner::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0,255,255,0.04) 0px,
+        rgba(0,255,255,0.04) 1px,
+        transparent 1px,
+        transparent 50px
+    );
+    animation: moveGrid 25s linear infinite;
+}
 
-        /* --- NAVBAR --- */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 10%;
-            background: rgba(2, 6, 23, 0.95);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(56, 189, 248, 0.1);
-        }
-        .nav-circle {
-            background: var(--primary);
-            color: #000;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        .nav-left { display: flex; align-items: center; }
-        .nav-links a {
-            color: var(--text-muted);
-            margin-left: 25px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-        .nav-links a:hover { color: var(--primary); }
+/* LEFT CONTENT */
+.banner-left {
+    z-index: 2;
+    max-width: 650px;
+}
 
-        /* --- BANNER --- */
-        .banner {
-            min-height: 300px;
-            background: radial-gradient(circle at top right, #0c2144, var(--bg-dark));
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 40px 10%;
-        }
-        .banner-left h1 { font-size: 2.5rem; letter-spacing: 1px; }
-        .banner-left h2 {
-            font-size: 1rem;
-            color: var(--primary);
-            letter-spacing: 4px;
-            margin-bottom: 15px;
-        }
-        .stats span { margin-right: 15px; font-size: 0.85rem; color: var(--text-muted); }
-        .stats i { color: var(--primary); margin-right: 5px; }
+.banner-left h1 {
+    font-size: 32px;
+    font-weight: 700;
+}
 
-        /* HUD ANIMATION */
-        .hud-container { position: relative; }
-        .hud {
-            width: 120px;
-            height: 120px;
-            border: 2px solid rgba(56, 189, 248, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: rotate 10s linear infinite;
-        }
-        .hud i { font-size: 2rem; color: var(--primary); animation: counter-rotate 10s linear infinite; }
-        
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes counter-rotate { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+.banner-left h2 {
+    color: #38bdf8;
+    font-size: 16px;
+    margin-top: 5px;
+    letter-spacing: 2px;
+}
 
-        /* --- DIAGRAM SECTION --- */
-        .diagram-box {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            margin: 50px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .circle-orbit {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 1px dashed var(--text-muted);
-            border-radius: 50%;
-        }
-        .step {
-            position: absolute;
-            background: var(--bg-light);
-            border: 1px solid var(--primary);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            white-space: nowrap;
-        }
-        /* Specific Positions */
-        .s-1 { top: -10px; } .s-2 { right: -30px; top: 80px; } .s-3 { right: -30px; bottom: 80px; }
-        .s-4 { bottom: -10px; } .s-5 { left: -30px; bottom: 80px; } .s-6 { left: -30px; top: 80px; }
+/* INFO ROW */
+.info-row {
+    margin-top: 10px;
+    font-size: 13px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    opacity: 0.85;
+}
 
-        /* --- CARDS & PROJECTS --- */
-        section { padding: 80px 10%; max-width: 1200px; margin: auto; }
-        .section-title { margin-bottom: 40px; font-size: 2rem; position: relative; display: inline-block; }
-        .section-title::after {
-            content: ''; width: 50%; height: 3px; background: var(--primary);
-            position: absolute; bottom: -10px; left: 0;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        .card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: 0.4s;
-            text-align: left;
-        }
-        .card:hover {
-            background: rgba(56, 189, 248, 0.05);
-            border-color: var(--primary);
-            transform: translateY(-10px);
-        }
-        .btn {
-            display: inline-block;
-            margin-top: 15px;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
+/* TAGLINE */
+.tagline {
+    margin-top: 8px;
+    font-size: 13px;
+    opacity: 0.7;
+}
 
-        footer { padding: 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); }
+/* SKILLS ROW */
+.skill-row {
+    margin-top: 15px;
+    display: flex;
+    gap: 25px;
+    font-size: 12px;
+}
 
-        @media (max-width: 768px) {
-            .banner { flex-direction: column; text-align: center; gap: 30px; }
-            nav { padding: 15px 5%; }
-        }
-    </style>
-</head>
-<body>
+.skill-row span {
+    color: #38bdf8;
+}
 
-<nav>
-    <div class="nav-left">
-        <div class="nav-circle">RK</div>
-        <span style="font-weight: bold; letter-spacing: 1px;">RAMESH KUMAR K</span>
-    </div>
-    <div class="nav-links">
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-    </div>
-</nav>
+/* RIGHT SIDE (HUD) */
+.banner-right {
+    position: relative;
+    z-index: 2;
+}
+
+.hud {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid #38bdf8;
+    box-shadow: 0 0 15px #38bdf8;
+    animation: rotate 12s linear infinite;
+}
+
+.hud::before {
+    content: "";
+    position: absolute;
+    inset: 15px;
+    border: 2px dashed #38bdf8;
+    border-radius: 50%;
+}
+
+/* CONTACT */
+.contact {
+    position: absolute;
+    bottom: 10px;
+    right: 60px;
+    font-size: 12px;
+    text-align: right;
+    opacity: 0.85;
+}
+
+.contact span {
+    display: block;
+}
+
+/* ANIMATIONS */
+@keyframes moveGrid {
+    to { transform: translateY(-200px); }
+}
+
 
 <section class="banner">
+
+    <!-- LEFT -->
     <div class="banner-left">
+        <h1>RAMESH KUMAR K</h1>
         <h2>SOFTWARE AUTOMATION ENGINEER</h2>
-        <h1><span id="typing"></span></h1>
-        <div class="stats">
-            <span><i class="fas fa-history"></i> 4.7+ Years</span>
-            <span><i class="fas fa-check-circle"></i> QA Specialist</span>
-            <span><i class="fas fa-code-branch"></i> CI/CD Expert</span>
+
+        <div class="info-row">
+            <span>4.7+ Years Experience</span>
+            <span>Quality Driven</span>
+            <span>Automation Enthusiast</span>
+        </div>
+
+        <div class="tagline">
+            Building Reliable Automation | Ensuring Quality | Delivering Excellence
+        </div>
+
+        <div class="skill-row">
+            <span>Java</span>
+            <span>Python</span>
+            <span>Selenium</span>
+            <span>TestNG</span>
+            <span>API Testing</span>
+            <span>CI/CD</span>
         </div>
     </div>
-    <div class="hud-container">
+
+    <!-- RIGHT -->
+    <div class="banner-right">
         <div class="hud"></div>
-        <div style="position: absolute; top:50%; left:50%; transform: translate(-50%, -50%);">
-            <i class="fas fa-robot" style="font-size: 2rem; color: var(--primary);"></i>
-        </div>
     </div>
-</section>
 
-<section id="skills">
-    <h2 class="section-title">Core Expertise</h2>
-    <div class="diagram-box">
-        <div class="circle-orbit"></div>
-        <div style="text-align: center; z-index: 2;">
-            <strong style="color: var(--primary);">Automation</strong><br>Lifecycle
-        </div>
-        <div class="step s-1">Selenium WebDriver</div>
-        <div class="step s-2">TestNG Framework</div>
-        <div class="step s-3">Java Development</div>
-        <div class="step s-4">Python Scripting</div>
-        <div class="step s-5">API Testing</div>
-        <div class="step s-6">Manual QA</div>
+    <!-- CONTACT -->
+    <div class="contact">
+        <span>Bangalore, India</span>
+        <span>+91 9632758871</span>
+        <span>rameshkumar93.68@gmail.com</span>
     </div>
+
 </section>
-
-<section id="projects">
-    <h2 class="section-title">Featured Projects</h2>
-    <div class="grid">
-        <div class="card">
-            <i class="fas fa-vial" style="color: var(--primary); font-size: 1.5rem; margin-bottom: 15px;"></i>
-            <h3>Selenium WebDriver</h3>
-            <p>End-to-end web automation using POM (Page Object Model) and TestNG.</p>
-            <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn">View Source →</a>
-        </div>
-        <div class="card">
-            <i class="fas fa-leaf" style="color: #4ade80; font-size: 1.5rem; margin-bottom: 15px;"></i>
-            <h3>Cucumber BDD</h3>
-            <p>Behavior Driven Development framework for readable and scalable test cases.</p>
-            <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" class="btn">View Source →</a>
-        </div>
-        <div class="card">
-            <i class="fab fa-python" style="color: #fbbf24; font-size: 1.5rem; margin-bottom: 15px;"></i>
-            <h3>Python-Selenium</h3>
-            <p>Robust automation suite leveraging Python and PyTest for high-speed execution.</p>
-            <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" class="btn">View Source →</a>
-        </div>
-    </div>
-</section>
-
-<section id="contact" style="text-align: center;">
-    <h2 class="section-title">Get In Touch</h2>
-    <div style="margin-top: 20px;">
-        <p><i class="fas fa-phone"></i> +91 9632758871</p>
-        <p><i class="fas fa-envelope"></i> rameshkumar93.68@gmail.com</p>
-        <p><i class="fas fa-map-marker-alt"></i> Bangalore, India</p>
-    </div>
-</section>
-
-<footer>
-    <p>© 2026 Ramesh Kumar K | Built with ❤️ for Quality Assurance</p>
-</footer>
-
-<script>
-    const textArray = ["Ramesh Kumar K", "Automation Engineer", "QA Specialist"];
-    let part = 0;
-    let partIndex = 0;
-    let intervalVal;
-    const element = document.getElementById("typing");
-
-    function type() { 
-        let text =  textArray[part].substring(0, partIndex + 1);
-        element.innerHTML = text;
-        partIndex++;
-
-        if(text === textArray[part]) {
-            clearInterval(intervalVal);
-            setTimeout(function() {
-                intervalVal = setInterval(backspace, 50);
-            }, 1000);
-        }
-    }
-
-    function backspace() {
-        let text =  textArray[part].substring(0, partIndex - 1);
-        element.innerHTML = text;
-        partIndex--;
-
-        if(text === '') {
-            clearInterval(intervalVal);
-            part = (part + 1) % textArray.length;
-            partIndex = 0;
-            setTimeout(function() {
-                intervalVal = setInterval(type, 100);
-            }, 200);
-        }
-    }
-
-    intervalVal = setInterval(type, 100);
-</script>
-
-</body>
-</html>
+@keyframes rotate {
+    to { transform: rotate(360deg); }
+}
