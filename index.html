@@ -84,7 +84,7 @@ header {
 .circle {
     width: 120%;
     height: 120%;
-    border: 3px dotted #aaa;
+    border: 3px dotted
     border-radius: 75%;
 }
 
@@ -243,6 +243,24 @@ footer {
 
 @keyframes spin {
     to { transform: rotate(360deg); }
+}.diagram {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #38bdf8;
+    box-shadow: 0 0 15px rgba(56,189,248,0.5);
 }
 
 /* MOBILE */
@@ -310,28 +328,32 @@ footer {
     </section>
 
     <div class="diagram">
-        <div class="circle"></div>
 
-        <div class="center-text">
-            <a href="https://github.com/rames-qa/Rameshkumar-K" target="_blank">
-                <img 
-                    src="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Profilepic%20(1)-modified%20(1).png"
-                    class="profile-img"
-                    alt="Profile Picture">
-            </a>
-            <div style="font-size:12px; margin-top:6px; color:white;">
-                View Profile on GitHub
-            </div>
+    <div class="center-text">
+        <a href="https://github.com/rames-qa/Rameshkumar-K" target="_blank">
+            <img 
+                src="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Profilepic%20(1)-modified%20(1).png"
+                class="profile-img"
+                alt="Profile Picture">
+        </a>
+
+        <div style="font-size:12px; margin-top:6px; color:white;">
         </div>
+    </div>
 
-     <div class="step selenium">Selenium</div>
-    <div class="step python">Python</div>
-    <div class="step manual">Java</div>
-    <div class="step testing">Testing</div>
-    <div class="step deployment">Manual</div>
-    <div class="step building">WebDriver</div>
+</div>
+
+        <div class="step selenium">Selenium</div>
+        <div class="step python">Python</div>
+        <div class="step manual">Java</div>
+        <div class="step testing">Testing</div>
+        <div class="step deployment">Manual</div>
+        <div class="step building">WebDriver</div>
     </div>
 </header>
+
+</body>
+</html>
 
 <!-- SKILLS -->
 <section id="skills">
