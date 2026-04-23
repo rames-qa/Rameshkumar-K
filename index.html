@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ramesh Kumar K | Automation Engineer</title>
+
 <style>
 /* GLOBAL */
 body {
@@ -12,6 +13,7 @@ body {
     background: linear-gradient(135deg, #0f172a, #1e3a8a);
     color: white;
 }
+
 /* NAVBAR */
 nav {
     display: flex;
@@ -23,11 +25,13 @@ nav {
     top: 0;
     flex-wrap: wrap;
 }
+
 .nav-left {
     display: flex;
     align-items: center;
     gap: 10px;
 }
+
 .nav-circle {
     background: white;
     color: #1e3a8a;
@@ -35,33 +39,40 @@ nav {
     border-radius: 50%;
     font-weight: bold;
 }
+
 .profile-text {
     color: #38bdf8;
     font-weight: 600;
 }
+
 .nav-links {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
+
 .nav-links a {
     color: #38bdf8;
     margin: 5px 10px;
     text-decoration: none;
     transition: 0.3s;
 }
+
 .nav-links a:hover {
     color: white;
 }
+
 /* HERO */
 header {
     text-align: center;
     padding: 60px 20px;
 }
+
 #typing {
     font-size: 2.2rem;
     margin: 15px 0;
 }
+
 /* DIAGRAM */
 .diagram {
     position: relative;
@@ -69,20 +80,23 @@ header {
     height: 300px;
     margin: 30px auto;
 }
+
 .circle {
     width: 130%;
     height: 130%;
     border: 3px dotted #aaa;
     border-radius: 75%;
 }
+
 .center-text {
     position: absolute;
     top: 75%;
     left: 75%;
     transform: translate(-75%, -75%);
-    font-weight: 1000;
+    font-weight: 600;
     text-align: center;
 }
+
 .step {
     position: absolute;
     background: #1e7f3f;
@@ -90,13 +104,15 @@ header {
     border-radius: 20px;
     font-size: 12px;
 }
+
 /* Positions */
-.selenium { top: -10px; left: 50%; transform: translateX(-75%); }
+.selenium { top: -10px; left: 75%; transform: translateX(-75%); }
 .python { top: 60px; right: -30px; }
 .manual { bottom: 80px; right: -30px; }
 .testing { bottom: 80px; left: -30px; }
 .deployment { top: 60px; left: -30px; }
-.building { bottom: -10px; left: 50%; transform: translateX(-75%); }
+.building { bottom: -10px; left: 75%; transform: translateX(-75%); }
+
 /* BUTTONS */
 .btn, .btn-linkedin {
     padding: 10px 20px;
@@ -106,21 +122,26 @@ header {
     display: inline-block;
     transition: 0.3s;
 }
+
 .btn {
     background: #38bdf8;
     color: black;
 }
+
 .btn:hover {
     background: white;
 }
+
 .btn-linkedin {
     background: #38bdf8;
     color: black;
 }
+
 .btn-linkedin:hover {
     background: #004182;
     color: white;
 }
+
 /* SECTIONS */
 section {
     padding: 50px 20px;
@@ -128,12 +149,14 @@ section {
     margin: auto;
     text-align: center;
 }
+
 .flex {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
 }
+
 .card {
     background: rgba(255,255,255,0.08);
     padding: 20px;
@@ -141,15 +164,18 @@ section {
     width: 220px;
     transition: 0.3s;
 }
+
 .card:hover {
     transform: translateY(-5px);
 }
+
 /* FOOTER */
 footer {
     text-align: center;
     padding: 20px;
     background: rgba(0,0,0,0.5);
 }
+
 /* BANNER */
 .banner {
     min-height: 100px;
@@ -162,6 +188,7 @@ footer {
     overflow: hidden;
     flex-wrap: wrap;
 }
+
 .banner:before {
     content: "";
     position: absolute;
@@ -170,25 +197,31 @@ footer {
     background: repeating-linear-gradient(0deg,rgba(0,255,255,.05)0 1px,transparent 1px 40px);
     animation: move 30s linear infinite;
 }
+
 @keyframes move {
     to { transform: translateY(-200px); }
 }
+
 .banner-content {
     z-index: 2;
     max-width: 600px;
 }
+
 .banner-content h1 {
     font-size: 40px;
     margin: 0 0 10px;
 }
+
 .banner-content h2 {
     font-size: 20px;
     color: #00e5ff;
     margin: 0 0 10px;
 }
+
 .banner-content p {
     font-size: 14px;
 }
+
 .hud {
     width: 130px;
     height: 130px;
@@ -199,6 +232,7 @@ footer {
     position: relative;
     z-index: 2;
 }
+
 .hud:before {
     content: "";
     position: absolute;
@@ -206,9 +240,11 @@ footer {
     border: 2px dashed #00e5ff;
     border-radius: 50%;
 }
+
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
+
 /* MOBILE */
 @media (max-width: 600px) {
     nav {
@@ -216,29 +252,36 @@ footer {
         gap: 10px;
         padding: 10px;
     }
+
     .banner {
         flex-direction: column;
         text-align: center;
         padding: 20px;
     }
+
     .banner-content h1 {
         font-size: 28px;
     }
+
     .diagram {
         width: 220px;
         height: 220px;
     }
+
     .step {
         font-size: 10px;
         padding: 5px 8px;
     }
+
     .hud {
         margin-top: 20px;
     }
 }
 </style>
 </head>
+
 <body>
+
 <!-- NAV -->
 <nav>
     <div class="nav-left">
@@ -251,40 +294,45 @@ footer {
         <a href="#contact">Contact</a>
     </div>
 </nav>
+
 <!-- HERO -->
 <header>
-<h1 id="typing"></h1>
-<section class="banner">
-  <div class="banner-content">
-    <h1>RAMESH KUMAR K</h1>
-    <h2>SOFTWARE AUTOMATION ENGINEER</h2>
-    <p>4.7+ Years | Quality Driven | Automation Enthusiast</p>
-    <p>Java | Python | Selenium | TestNG | STLC | API | CI/CD</p>
-  </div>
-  <div class="hud"></div>
-</section>
-<div class="diagram">
-    <div class="circle"></div>
-    <div class="center-text">
-    <a href="https://github.com/rames-qa/Rameshkumar-K" target="_blank">
-    <img 
-      src="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Profilepic%20(1)-modified%20(1).png"
-      class="profile-img"
-      alt="Profile Picture">
-  </a>
-  <div style="font-size:12px; margin-top:6px; color:white;">
-    View Profile on GitHub
-  </div>
-</div>
-</a></div>
-<div class="step selenium">Selenium</div>
-<div class="step python">Python</div>
-<div class="step manual">Java</div>
-<div class="step testing">Testing</div>
-<div class="step deployment">Manual</div>
-<div class="step building">WebDriver</div>
-</div>
+    <h1 id="typing"></h1>
+
+    <section class="banner">
+        <div class="banner-content">
+            <h1>RAMESH KUMAR K</h1>
+            <h2>SOFTWARE AUTOMATION ENGINEER</h2>
+            <p>4.7+ Years | Quality Driven | Automation Enthusiast</p>
+            <p>Java | Python | Selenium | TestNG | STLC | API | CI/CD</p>
+        </div>
+        <div class="hud"></div>
+    </section>
+
+    <div class="diagram">
+        <div class="circle"></div>
+
+        <div class="center-text">
+            <a href="https://github.com/rames-qa/Rameshkumar-K" target="_blank">
+                <img 
+                    src="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Profilepic%20(1)-modified%20(1).png"
+                    class="profile-img"
+                    alt="Profile Picture">
+            </a>
+            <div style="font-size:12px; margin-top:6px; color:white;">
+                View Profile on GitHub
+            </div>
+        </div>
+
+        <div class="step selenium">Selenium</div>
+        <div class="step python">Python</div>
+        <div class="step manual">Java</div>
+        <div class="step testing">Testing</div>
+        <div class="step deployment">Manual</div>
+        <div class="step building">WebDriver</div>
+    </div>
 </header>
+
 <!-- SKILLS -->
 <section id="skills">
     <h2>Skills</h2>
@@ -298,8 +346,8 @@ footer {
         <div class="card">DLC</div>
     </div>
 </section>
-<!-- PROJECTS -->
 
+<!-- PROJECTS -->
 <section id="projects">
     <h2>Projects</h2>
     <div class="flex">
@@ -308,26 +356,31 @@ footer {
             <p>Built automation using Java, Selenium, TestNG and Page Object Model.</p>
             <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn">🚀 GitHub Repo</a>
         </div>
+
         <div class="card">
             <h3 style="color:#38bdf8;">Automation Framework</h3>
             <p>Automated APIs using RestAssured with validation and reporting.</p>
             <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" class="btn">🚀 GitHub Repo</a>
         </div>
+
         <div class="card">
             <h3 style="color:#38bdf8;">Cucumber Framework</h3>
             <p>BDD automation using Cucumber with Selenium and TestNG integration.</p>
             <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" class="btn">🚀 GitHub Repo</a>
         </div>
+
         <div class="card">
             <h3 style="color:#38bdf8;">Python-Code</h3>
             <p>Python basic and OOPs concepts</p>
             <a href="https://github.com/rames-qa/Python-codes" target="_blank" class="btn">🚀 GitHub Repo</a>
         </div>
+
         <div class="card">
             <h3 style="color:#38bdf8;">Python-Selenium</h3>
             <p>Automation using Python with Selenium.</p>
             <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" class="btn">🚀 GitHub Repo</a>
         </div>
+
         <div class="card">
             <h3 style="color:#38bdf8;">Java-OOPs Concepts</h3>
             <p>Java Programming with OOP Concepts.</p>
@@ -335,29 +388,29 @@ footer {
         </div>
     </div>
 </section>
+
 <!-- CONTACT -->
 <section id="contact">
     <h2>Contact</h2>
     <p>📞 9632758871</p>
     <p>📧 rameshkumar93.68@gmail.com</p>
     <p>📍 Bangalore, Karnataka, India</p>
+
     <p>
         <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar.K%20(CV).pdf" download class="btn">
-        📄 Download Resume
+            📄 Download Resume
         </a>
+
         <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb"
-        class="btn-linkedin" target="_blank">
-        🔗 LinkedIn Profile
+           class="btn-linkedin" target="_blank">
+            🔗 LinkedIn Profile
         </a>
     </p>
 </section>
+
 <footer>
-© 2026 Ramesh Kumar K
+    © 2026 Ramesh Kumar K
 </footer>
 
-
-
 </body>
-
 </html>
-
