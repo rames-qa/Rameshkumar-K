@@ -71,7 +71,6 @@ nav {
     overflow: hidden;
 }
 
-/* Restored Moving Grid Data */
 .banner:before {
     content: "";
     position: absolute;
@@ -118,7 +117,7 @@ nav {
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* DIAGRAM - FIXED VISIBILITY */
+/* DIAGRAM */
 .diagram-container {
     position: relative;
     width: 300px;
@@ -155,6 +154,7 @@ nav {
     font-size: 12px;
     color: white;
     z-index: 6;
+    white-space: nowrap;
 }
 
 /* Positions */
@@ -179,6 +179,20 @@ section { padding: 50px 20px; max-width: 1000px; margin: auto; text-align: cente
 .btn-linkedin { background: #38bdf8; color: black; }
 
 footer { text-align: center; padding: 20px; background: rgba(0,0,0,0.5); }
+
+/* MOBILE RESPONSIVE VERSION */
+@media (max-width: 768px) {
+    nav { padding: 15px 20px; flex-direction: column; gap: 10px; }
+    .banner { flex-direction: column; text-align: center; padding: 40px 20px; }
+    .banner-content { text-align: center; margin-bottom: 20px; }
+    .banner-content h1 { font-size: 28px; }
+    .hud { width: 100px; height: 100px; }
+    .diagram-container { width: 220px; height: 220px; }
+    .profile-img { width: 90px; height: 90px; }
+    .step { font-size: 10px; padding: 5px 10px; }
+    .python, .manual { right: -10px; }
+    .testing, .deployment { left: -10px; }
+}
 </style>
 </head>
 
