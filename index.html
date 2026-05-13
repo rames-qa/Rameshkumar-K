@@ -59,162 +59,279 @@ nav {
 
 .nav-links a:hover { color: white; }
 
-/* BANNER WITH GRID ANIMATION */
-.banner {
-    min-height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 40px 60px;
-    background: radial-gradient(circle at right,#0d2c5a,#022b1a);
-    position: relative;
-    overflow: hidden;
-}
-
-.banner:before {
-    content: "";
-    position: absolute;
-    width: 400%;
-    height: 400%;
-    background: repeating-linear-gradient(0deg,rgba(0,255,255,.05) 0 1px,transparent 1px 40px);
-    animation: move 30s linear infinite;
-    top: 0;
-    left: 0;
-}
-
-@keyframes move {
-    to { transform: translateY(-200px); }
-}
-
-.banner-content {
-    z-index: 2;
-    text-align: left;
-}
-
-.banner-content h1 { font-size: 40px; margin: 0; }
-.banner-content h2 { font-size: 20px; color: #00e5ff; margin: 10px 0; }
-.banner-content p { font-size: 14px; margin: 5px 0; }
-
-/* =========================
-   HUD CONTAINER
-========================= */
-.hud{
-    width:190px;
-    height:190px;
-    position:relative;
+/* =========================================
+   FUTURISTIC BANNER
+========================================= */
+.banner{
+    min-height:260px;
     display:flex;
-    justify-content:center;
     align-items:center;
-    z-index:2;
-}
+    justify-content:space-between;
 
-/* =========================
-   FLOWER BLOOM EFFECT
-========================= */
-.hud::before{
-    content:"";
-    position:absolute;
-    width:100%;
-    height:100%;
-    border-radius:50%;
+    padding:60px 70px;
+
+    position:relative;
+    overflow:hidden;
 
     background:
-    radial-gradient(circle,#ff1744 18%,transparent 22%) 50% 0/20px 20px no-repeat,
-    radial-gradient(circle,#ff6d00 18%,transparent 22%) 85% 15%/20px 20px no-repeat,
-    radial-gradient(circle,#ffd600 18%,transparent 22%) 100% 50%/20px 20px no-repeat,
-    radial-gradient(circle,#00e676 18%,transparent 22%) 85% 85%/20px 20px no-repeat,
-    radial-gradient(circle,#00b0ff 18%,transparent 22%) 50% 100%/20px 20px no-repeat,
-    radial-gradient(circle,#651fff 18%,transparent 22%) 15% 85%/20px 20px no-repeat,
-    radial-gradient(circle,#d500f9 18%,transparent 22%) 0% 50%/20px 20px no-repeat,
-    radial-gradient(circle,#ff9100 18%,transparent 22%) 15% 15%/20px 20px no-repeat;
+    radial-gradient(circle at top left,#132f63 0%,transparent 30%),
+    radial-gradient(circle at bottom right,#001f3f 0%,transparent 35%),
+    linear-gradient(135deg,#050816,#0b1633,#071b2d);
 
-    animation:bloom 3.5s ease-in-out infinite;
-
-    filter:
-    drop-shadow(0 0 12px rgba(0,229,255,.45))
-    drop-shadow(0 0 25px rgba(255,255,255,.12));
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-/* =========================
-   INNER ROTATING CIRCLE
-========================= */
-.hud::after{
+/* MOVING GRID */
+.banner::before{
     content:"";
     position:absolute;
-    inset:38px;
+    inset:-200%;
 
-    border:2px dashed rgba(0,229,255,.45);
-    border-radius:50%;
+    background:
+    linear-gradient(rgba(0,229,255,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,.08) 1px, transparent 1px);
 
-    box-shadow:
-    0 0 12px rgba(0,229,255,.35),
-    inset 0 0 12px rgba(0,229,255,.18);
+    background-size:50px 50px;
 
-    animation:rotate 10s linear infinite;
+    transform:perspective(500px) rotateX(75deg);
+
+    animation:gridMove 20s linear infinite;
+
+    opacity:.35;
 }
 
-/* =========================
-   SAE TEXT
-========================= */
-.hud span{
-    font-size:36px;
-    font-weight:700;
-    color:#ffffff;
-    letter-spacing:5px;
-    z-index:3;
+/* GLOW EFFECT */
+.banner::after{
+    content:"";
+    position:absolute;
 
-    text-shadow:
-    0 0 10px #00e5ff,
-    0 0 20px rgba(0,229,255,.9),
-    0 0 40px rgba(0,229,255,.5);
+    width:500px;
+    height:500px;
+
+    background:
+    radial-gradient(circle,
+    rgba(0,229,255,.22),
+    transparent 70%);
+
+    top:-150px;
+    right:-100px;
+
+    animation:pulseGlow 6s ease-in-out infinite;
 }
 
-/* =========================
-   FLOWER BLOOM
-========================= */
-@keyframes bloom{
+/* GRID ANIMATION */
+@keyframes gridMove{
+    to{
+        transform:
+        perspective(500px)
+        rotateX(75deg)
+        translateY(50px);
+    }
+}
 
-    0%{
-        transform:scale(.82) rotate(0deg);
-        opacity:.65;
+/* GLOW PULSE */
+@keyframes pulseGlow{
+
+    0%,100%{
+        opacity:.45;
+        transform:scale(1);
     }
 
     50%{
-        transform:scale(1.15) rotate(180deg);
-        opacity:1;
-    }
-
-    100%{
-        transform:scale(.82) rotate(360deg);
-        opacity:.65;
+        opacity:.8;
+        transform:scale(1.15);
     }
 }
 
-/* =========================
-   ROTATE
-========================= */
-@keyframes rotate{
+/* =========================================
+   TEXT AREA
+========================================= */
+.banner-content{
+    z-index:2;
+    max-width:650px;
+}
+
+.banner-content h1{
+    font-size:52px;
+    margin:0;
+
+    font-weight:800;
+    letter-spacing:3px;
+
+    color:#ffffff;
+
+    text-shadow:
+    0 0 10px rgba(255,255,255,.2),
+    0 0 25px rgba(0,229,255,.3);
+}
+
+.banner-content h2{
+    margin-top:15px;
+    margin-bottom:15px;
+
+    font-size:22px;
+    font-weight:600;
+
+    color:#00e5ff;
+
+    letter-spacing:2px;
+
+    text-shadow:
+    0 0 15px rgba(0,229,255,.5);
+}
+
+.banner-content p{
+    font-size:15px;
+    color:rgba(255,255,255,.82);
+
+    margin:8px 0;
+
+    letter-spacing:.8px;
+}
+
+/* =========================================
+   SAE HUD
+========================================= */
+.hud{
+    width:220px;
+    height:220px;
+
+    position:relative;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:2;
+}
+
+/* OUTER BLOOM */
+.hud::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    border-radius:50%;
+
+    background:
+    conic-gradient(
+    from 0deg,
+    #00e5ff,
+    #00ff88,
+    #ffe600,
+    #ff006a,
+    #7a5cff,
+    #00e5ff);
+
+    filter:
+    blur(18px)
+    brightness(1.2);
+
+    opacity:.9;
+
+    animation:
+    hudRotate 10s linear infinite,
+    hudPulse 4s ease-in-out infinite;
+}
+
+/* INNER GLASS CIRCLE */
+.hud::after{
+    content:"";
+    position:absolute;
+
+    inset:25px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.04);
+
+    border:
+    1px solid rgba(255,255,255,.12);
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+    inset 0 0 25px rgba(255,255,255,.05),
+    0 0 25px rgba(0,229,255,.25);
+}
+
+/* SAE TEXT */
+.hud span{
+    position:relative;
+    z-index:5;
+
+    font-size:42px;
+    font-weight:800;
+
+    letter-spacing:6px;
+
+    color:#ffffff;
+
+    text-shadow:
+    0 0 10px #00e5ff,
+    0 0 20px #00e5ff,
+    0 0 45px rgba(0,229,255,.9);
+}
+
+/* ROTATION */
+@keyframes hudRotate{
     to{
         transform:rotate(360deg);
     }
 }
-/* Outer circle rotates */
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
+
+/* PULSE */
+@keyframes hudPulse{
+
+    0%,100%{
+        transform:scale(.92);
+    }
+
+    50%{
+        transform:scale(1.08);
     }
 }
 
-/* Text stays upright */
-@keyframes counterSpin{
-    to{
-        transform:rotate(-360deg);
+/* =========================================
+   MOBILE VERSION
+========================================= */
+@media (max-width:768px){
+
+    .banner{
+        flex-direction:column;
+        text-align:center;
+        padding:45px 20px;
     }
-}
-/* keep text straight */
-@keyframes counterSpin{
-    to{
-        transform:rotate(-360deg);
+
+    .banner-content{
+        margin-bottom:30px;
+    }
+
+    .banner-content h1{
+        font-size:34px;
+    }
+
+    .banner-content h2{
+        font-size:18px;
+    }
+
+    .banner-content p{
+        font-size:13px;
+    }
+
+    .hud{
+        width:160px;
+        height:160px;
+    }
+
+    .hud span{
+        font-size:28px;
+        letter-spacing:4px;
+    }
+
+    .hud::after{
+        inset:18px;
     }
 }
 /* DIAGRAM */
