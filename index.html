@@ -217,171 +217,53 @@ nav {
         transform:rotate(-360deg);
     }
 }
-/* DIAGRAM CONTAINER */
-.diagram-container{
-    position:relative;
-    width:320px;
-    height:320px;
-    margin:50px auto;
-    animation:rotateOrbit 20s linear infinite;
+/* DIAGRAM */
+.diagram-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 50px auto;
 }
 
-/* PROFILE IMAGE */
-.profile-img{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    object-fit:cover;
-    border:3px solid #38bdf8;
-    z-index:5;
+.circle-dotted {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px dotted #aaa;
+    border-radius: 50%;
 }
 
-/* SKILL TAGS */
-.step{
-    position:absolute;
-    top:50%;
-    left:50%;
-
-    background:rgba(0,0,0,.7);
-    border:1px solid rgba(56,189,248,.4);
-
-    padding:8px 14px;
-    border-radius:30px;
-
-    font-size:12px;
-    color:white;
-
-    backdrop-filter:blur(8px);
-
-    box-shadow:
-    0 0 10px rgba(0,229,255,.25);
-
-    white-space:nowrap;
-
-    animation:counterRotate 20s linear infinite;
+.profile-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #38bdf8;
+    z-index: 5;
 }
 
-/* POSITIONS AROUND CIRCLE */
-.selenium{
-    transform:
-    rotate(0deg)
-    translate(150px)
-    rotate(0deg);
+.step {
+    position: absolute;
+    background: #1e7f3f;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: white;
+    z-index: 6;
+    white-space: nowrap;
 }
 
-.python{
-    transform:
-    rotate(60deg)
-    translate(150px)
-    rotate(-60deg);
-}
-
-.manual{
-    transform:
-    rotate(120deg)
-    translate(150px)
-    rotate(-120deg);
-}
-
-.testing{
-    transform:
-    rotate(180deg)
-    translate(150px)
-    rotate(-180deg);
-}
-
-.deployment{
-    transform:
-    rotate(240deg)
-    translate(150px)
-    rotate(-240deg);
-}
-
-.building{
-    transform:
-    rotate(300deg)
-    translate(150px)
-    rotate(-300deg);
-}
-
-/* OUTER ROTATION */
-@keyframes rotateOrbit{
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-/* KEEP TEXT STRAIGHT */
-@keyframes counterRotate{
-    to{
-        transform:rotate(-360deg);
-    }
-}
-
-/* MOBILE VERSION */
-@media (max-width:768px){
-
-    .diagram-container{
-        width:240px;
-        height:240px;
-    }
-
-    .profile-img{
-        width:90px;
-        height:90px;
-    }
-
-    .step{
-        font-size:10px;
-        padding:5px 10px;
-    }
-
-    .selenium{
-        transform:
-        rotate(0deg)
-        translate(110px)
-        rotate(0deg);
-    }
-
-    .python{
-        transform:
-        rotate(60deg)
-        translate(110px)
-        rotate(-60deg);
-    }
-
-    .manual{
-        transform:
-        rotate(120deg)
-        translate(110px)
-        rotate(-120deg);
-    }
-
-    .testing{
-        transform:
-        rotate(180deg)
-        translate(110px)
-        rotate(-180deg);
-    }
-
-    .deployment{
-        transform:
-        rotate(240deg)
-        translate(110px)
-        rotate(-240deg);
-    }
-
-    .building{
-        transform:
-        rotate(300deg)
-        translate(110px)
-        rotate(-300deg);
-    }
-}
+/* Positions */
+.selenium { top: -10px; left: 50%; transform: translateX(-50%); }
+.python { top: 60px; right: -30px; }
+.manual { bottom: 80px; right: -30px; }
+.testing { bottom: 80px; left: -30px; }
+.deployment { top: 60px; left: -30px; }
+.building { bottom: -10px; left: 50%; transform: translateX(-50%); }
 
 /* SECTIONS & CARDS */
 section { padding: 50px 20px; max-width: 1000px; margin: auto; text-align: center; }
