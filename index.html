@@ -95,56 +95,82 @@ nav {
 .banner-content h2 { font-size: 20px; color: #00e5ff; margin: 10px 0; }
 .banner-content p { font-size: 14px; margin: 5px 0; }
 
-/* HUD Circle */
+/* HUD Container */
 .hud{
-    width:160px;
-    height:160px;
-    border-radius:50%;
-    border:3px solid #00e5ff;
-    box-shadow:0 0 20px #00e5ff,
-               inset 0 0 20px rgba(0,229,255,.3);
+    width:180px;
+    height:180px;
     position:relative;
     display:flex;
     justify-content:center;
     align-items:center;
-    animation:spin 10s linear infinite;
 }
 
-/* Inner dashed ring */
+/* Flower Blowing Animation */
 .hud::before{
     content:"";
     position:absolute;
-    inset:18px;
-    border:3px dashed #00e5ff;
+    width:100%;
+    height:100%;
     border-radius:50%;
-    opacity:.8;
+
+    background:
+    radial-gradient(circle,#ff5f6d 20%,transparent 22%) 50% 0/18px 18px no-repeat,
+    radial-gradient(circle,#ff7b54 20%,transparent 22%) 85% 15%/18px 18px no-repeat,
+    radial-gradient(circle,#ffd56b 20%,transparent 22%) 100% 50%/18px 18px no-repeat,
+    radial-gradient(circle,#90f1ef 20%,transparent 22%) 85% 85%/18px 18px no-repeat,
+    radial-gradient(circle,#4d96ff 20%,transparent 22%) 50% 100%/18px 18px no-repeat,
+    radial-gradient(circle,#9d4edd 20%,transparent 22%) 15% 85%/18px 18px no-repeat,
+    radial-gradient(circle,#f72585 20%,transparent 22%) 0% 50%/18px 18px no-repeat,
+    radial-gradient(circle,#ffb26b 20%,transparent 22%) 15% 15%/18px 18px no-repeat;
+
+    animation:bloom 3s ease-in-out infinite;
+    filter:drop-shadow(0 0 12px rgba(255,255,255,.4));
 }
 
-/* Small rotating dot */
+/* Inner Circle */
 .hud::after{
     content:"";
     position:absolute;
-    width:12px;
-    height:12px;
-    background:#00e5ff;
+    inset:35px;
+    border:2px dashed rgba(255,255,255,.4);
     border-radius:50%;
-    top:8px;
-    left:50%;
-    transform:translateX(-50%);
-    box-shadow:0 0 15px #00e5ff;
+    animation:rotate 12s linear infinite;
 }
 
-/* SAE text */
+/* SAE Text */
 .hud span{
     font-size:34px;
     font-weight:bold;
     color:white;
-    letter-spacing:3px;
-    text-shadow:0 0 15px #00e5ff;
-    animation:counterSpin 10s linear infinite;
+    letter-spacing:4px;
     z-index:2;
+    text-shadow:0 0 20px #00e5ff;
 }
 
+/* Bloom Animation */
+@keyframes bloom{
+    0%{
+        transform:scale(.85) rotate(0deg);
+        opacity:.7;
+    }
+
+    50%{
+        transform:scale(1.12) rotate(180deg);
+        opacity:1;
+    }
+
+    100%{
+        transform:scale(.85) rotate(360deg);
+        opacity:.7;
+    }
+}
+
+/* Rotation */
+@keyframes rotate{
+    to{
+        transform:rotate(360deg);
+    }
+}
 /* Outer circle rotates */
 @keyframes spin{
     to{
@@ -270,9 +296,9 @@ footer { text-align: center; padding: 20px; background: rgba(0,0,0,0.5); }
         <p>Java | Python | Selenium | TestNG | API | CI/CD</p>
     </div>
 
-    <div class="hud">
-        <span>SAE</span>
-    </div>
+   <div class="hud">
+    <span>SAE</span>
+  </div>
 </section>
     
 <div class="diagram-container">
