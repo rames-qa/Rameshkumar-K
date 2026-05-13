@@ -95,17 +95,22 @@ nav {
 .banner-content h2 { font-size: 20px; color: #00e5ff; margin: 10px 0; }
 .banner-content p { font-size: 14px; margin: 5px 0; }
 
-/* HUD Container */
+/* =========================
+   HUD CONTAINER
+========================= */
 .hud{
-    width:180px;
-    height:180px;
+    width:190px;
+    height:190px;
     position:relative;
     display:flex;
     justify-content:center;
     align-items:center;
+    z-index:2;
 }
 
-/* Flower Blowing Animation */
+/* =========================
+   FLOWER BLOOM EFFECT
+========================= */
 .hud::before{
     content:"";
     position:absolute;
@@ -114,58 +119,80 @@ nav {
     border-radius:50%;
 
     background:
-    radial-gradient(circle,#ff5f6d 20%,transparent 22%) 50% 0/18px 18px no-repeat,
-    radial-gradient(circle,#ff7b54 20%,transparent 22%) 85% 15%/18px 18px no-repeat,
-    radial-gradient(circle,#ffd56b 20%,transparent 22%) 100% 50%/18px 18px no-repeat,
-    radial-gradient(circle,#90f1ef 20%,transparent 22%) 85% 85%/18px 18px no-repeat,
-    radial-gradient(circle,#4d96ff 20%,transparent 22%) 50% 100%/18px 18px no-repeat,
-    radial-gradient(circle,#9d4edd 20%,transparent 22%) 15% 85%/18px 18px no-repeat,
-    radial-gradient(circle,#f72585 20%,transparent 22%) 0% 50%/18px 18px no-repeat,
-    radial-gradient(circle,#ffb26b 20%,transparent 22%) 15% 15%/18px 18px no-repeat;
+    radial-gradient(circle,#ff1744 18%,transparent 22%) 50% 0/20px 20px no-repeat,
+    radial-gradient(circle,#ff6d00 18%,transparent 22%) 85% 15%/20px 20px no-repeat,
+    radial-gradient(circle,#ffd600 18%,transparent 22%) 100% 50%/20px 20px no-repeat,
+    radial-gradient(circle,#00e676 18%,transparent 22%) 85% 85%/20px 20px no-repeat,
+    radial-gradient(circle,#00b0ff 18%,transparent 22%) 50% 100%/20px 20px no-repeat,
+    radial-gradient(circle,#651fff 18%,transparent 22%) 15% 85%/20px 20px no-repeat,
+    radial-gradient(circle,#d500f9 18%,transparent 22%) 0% 50%/20px 20px no-repeat,
+    radial-gradient(circle,#ff9100 18%,transparent 22%) 15% 15%/20px 20px no-repeat;
 
-    animation:bloom 3s ease-in-out infinite;
-    filter:drop-shadow(0 0 12px rgba(255,255,255,.4));
+    animation:bloom 3.5s ease-in-out infinite;
+
+    filter:
+    drop-shadow(0 0 12px rgba(0,229,255,.45))
+    drop-shadow(0 0 25px rgba(255,255,255,.12));
 }
 
-/* Inner Circle */
+/* =========================
+   INNER ROTATING CIRCLE
+========================= */
 .hud::after{
     content:"";
     position:absolute;
-    inset:35px;
-    border:2px dashed rgba(255,255,255,.4);
+    inset:38px;
+
+    border:2px dashed rgba(0,229,255,.45);
     border-radius:50%;
-    animation:rotate 12s linear infinite;
+
+    box-shadow:
+    0 0 12px rgba(0,229,255,.35),
+    inset 0 0 12px rgba(0,229,255,.18);
+
+    animation:rotate 10s linear infinite;
 }
 
-/* SAE Text */
+/* =========================
+   SAE TEXT
+========================= */
 .hud span{
-    font-size:34px;
-    font-weight:bold;
-    color:white;
-    letter-spacing:4px;
-    z-index:2;
-    text-shadow:0 0 20px #00e5ff;
+    font-size:36px;
+    font-weight:700;
+    color:#ffffff;
+    letter-spacing:5px;
+    z-index:3;
+
+    text-shadow:
+    0 0 10px #00e5ff,
+    0 0 20px rgba(0,229,255,.9),
+    0 0 40px rgba(0,229,255,.5);
 }
 
-/* Bloom Animation */
+/* =========================
+   FLOWER BLOOM
+========================= */
 @keyframes bloom{
+
     0%{
-        transform:scale(.85) rotate(0deg);
-        opacity:.7;
+        transform:scale(.82) rotate(0deg);
+        opacity:.65;
     }
 
     50%{
-        transform:scale(1.12) rotate(180deg);
+        transform:scale(1.15) rotate(180deg);
         opacity:1;
     }
 
     100%{
-        transform:scale(.85) rotate(360deg);
-        opacity:.7;
+        transform:scale(.82) rotate(360deg);
+        opacity:.65;
     }
 }
 
-/* Rotation */
+/* =========================
+   ROTATE
+========================= */
 @keyframes rotate{
     to{
         transform:rotate(360deg);
@@ -184,9 +211,6 @@ nav {
         transform:rotate(-360deg);
     }
 }
-
-
-
 /* keep text straight */
 @keyframes counterSpin{
     to{
