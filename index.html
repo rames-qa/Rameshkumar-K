@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Ramesh Kumar K | Automation Engineer</title>
 
 <style>
+
 /* GLOBAL */
 body {
     margin: 0;
@@ -57,33 +60,41 @@ nav {
     transition: 0.3s;
 }
 
-.nav-links a:hover { color: white; }
+.nav-links a:hover {
+    color: white;
+}
 
-/* BANNER WITH GRID ANIMATION */
+/* BANNER */
 .banner {
     min-height: 150px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 40px 60px;
-    background: radial-gradient(circle at right,#0d2c5a,#022b1a);
+    background: radial-gradient(circle at right, #0d2c5a, #022b1a);
     position: relative;
     overflow: hidden;
 }
 
-.banner:before {
+.banner::before {
     content: "";
     position: absolute;
     width: 400%;
     height: 400%;
-    background: repeating-linear-gradient(0deg,rgba(0,255,255,.05) 0 1px,transparent 1px 40px);
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0,255,255,.05) 0 1px,
+        transparent 1px 40px
+    );
     animation: move 30s linear infinite;
     top: 0;
     left: 0;
 }
 
 @keyframes move {
-    to { transform: translateY(-200px); }
+    to {
+        transform: translateY(-200px);
+    }
 }
 
 .banner-content {
@@ -91,80 +102,79 @@ nav {
     text-align: left;
 }
 
-.banner-content h1 { font-size: 40px; margin: 0; }
-.banner-content h2 { font-size: 20px; color: #00e5ff; margin: 10px 0; }
-.banner-content p { font-size: 14px; margin: 5px 0; }
-
-/* HUD Circle */
-.hud{
-    width:160px;
-    height:160px;
-    border-radius:50%;
-    border:3px solid #00e5ff;
-    box-shadow:0 0 20px #00e5ff,
-               inset 0 0 20px rgba(0,229,255,.3);
-    position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    animation:spin 10s linear infinite;
+.banner-content h1 {
+    font-size: 40px;
+    margin: 0;
 }
 
-/* Inner dashed ring */
-.hud::before{
-    content:"";
-    position:absolute;
-    inset:18px;
-    border:3px dashed #00e5ff;
-    border-radius:50%;
-    opacity:.8;
+.banner-content h2 {
+    font-size: 20px;
+    color: #00e5ff;
+    margin: 10px 0;
 }
 
-/* Small rotating dot */
-.hud::after{
-    content:"";
-    position:absolute;
-    width:12px;
-    height:12px;
-    background:#00e5ff;
-    border-radius:50%;
-    top:8px;
-    left:50%;
-    transform:translateX(-50%);
-    box-shadow:0 0 15px #00e5ff;
+.banner-content p {
+    font-size: 14px;
+    margin: 5px 0;
 }
 
-/* SAE text */
-.hud span{
-    font-size:34px;
-    font-weight:bold;
-    color:white;
-    letter-spacing:3px;
-    text-shadow:0 0 15px #00e5ff;
-    animation:counterSpin 10s linear infinite;
-    z-index:2;
+/* HUD */
+.hud {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 3px solid #00e5ff;
+    box-shadow:
+        0 0 20px #00e5ff,
+        inset 0 0 20px rgba(0,229,255,.3);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: spin 10s linear infinite;
 }
 
-/* Outer circle rotates */
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
+.hud::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 3px dashed #00e5ff;
+    border-radius: 50%;
+    opacity: .8;
+}
+
+.hud::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #00e5ff;
+    border-radius: 50%;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 15px #00e5ff;
+}
+
+.hud span {
+    font-size: 34px;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px #00e5ff;
+    animation: counterSpin 10s linear infinite;
+    z-index: 2;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
     }
 }
 
-/* Text stays upright */
-@keyframes counterSpin{
-    to{
-        transform:rotate(-360deg);
-    }
-}
-
-
-
-/* keep text straight */
-@keyframes counterSpin{
-    to{
-        transform:rotate(-360deg);
+@keyframes counterSpin {
+    to {
+        transform: rotate(-360deg);
     }
 }
 
@@ -208,80 +218,205 @@ nav {
     white-space: nowrap;
 }
 
-/* Positions */
-.selenium { top: -10px; left: 50%; transform: translateX(-50%); }
-.python { top: 60px; right: -30px; }
-.manual { bottom: 80px; right: -30px; }
-.testing { bottom: 80px; left: -30px; }
-.deployment { top: 60px; left: -30px; }
-.building { bottom: -10px; left: 50%; transform: translateX(-50%); }
-
-/* SECTIONS & CARDS */
-section { padding: 50px 20px; max-width: 1000px; margin: auto; text-align: center; }
-.flex { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
-.card { background: rgba(255,255,255,0.08); padding: 20px; border-radius: 10px; width: 220px; transition: 0.3s; }
-.card:hover { transform: translateY(-5px); }
-
-.btn, .btn-linkedin {
-    padding: 10px 20px; border-radius: 6px; text-decoration: none;
-    margin: 10px; display: inline-block; transition: 0.3s; font-weight: bold;
+/* STEP POSITIONS */
+.selenium {
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
 }
-.btn { background: #38bdf8; color: black; }
-.btn-linkedin { background: #38bdf8; color: black; }
 
-footer { text-align: center; padding: 20px; background: rgba(0,0,0,0.5); }
+.python {
+    top: 60px;
+    right: -30px;
+}
 
-/* MOBILE RESPONSIVE VERSION */
+.manual {
+    bottom: 80px;
+    right: -30px;
+}
+
+.testing {
+    bottom: 80px;
+    left: -30px;
+}
+
+.deployment {
+    top: 60px;
+    left: -30px;
+}
+
+.building {
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* SECTIONS */
+section {
+    padding: 50px 20px;
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    background: rgba(255,255,255,0.08);
+    padding: 20px;
+    border-radius: 10px;
+    width: 220px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.btn,
+.btn-linkedin {
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin: 10px;
+    display: inline-block;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.btn {
+    background: #38bdf8;
+    color: black;
+}
+
+.btn-linkedin {
+    background: #38bdf8;
+    color: black;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.5);
+}
+
+/* MOBILE */
 @media (max-width: 768px) {
-    nav { padding: 15px 20px; flex-direction: column; gap: 10px; }
-    .banner { flex-direction: column; text-align: center; padding: 40px 20px; }
-    .banner-content { text-align: center; margin-bottom: 20px; }
-    .banner-content h1 { font-size: 28px; }
-    .hud { width: 100px; height: 100px; }
-    .diagram-container { width: 220px; height: 220px; }
-    .profile-img { width: 90px; height: 90px; }
-    .step { font-size: 10px; padding: 5px 10px; }
-    .python, .manual { right: -10px; }
-    .testing, .deployment { left: -10px; }
+
+    nav {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .banner-content {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .banner-content h1 {
+        font-size: 28px;
+    }
+
+    .hud {
+        width: 100px;
+        height: 100px;
+    }
+
+    .diagram-container {
+        width: 220px;
+        height: 220px;
+    }
+
+    .profile-img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .step {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+
+    .python,
+    .manual {
+        right: -10px;
+    }
+
+    .testing,
+    .deployment {
+        left: -10px;
+    }
 }
+
 </style>
 </head>
 
 <body>
 
 <nav>
+
     <div class="nav-left">
         <div class="nav-circle">RK</div>
-        <div class="profile-text">Software Automation Engineer</div>
+        <div class="profile-text">
+            Software Automation Engineer
+        </div>
     </div>
+
     <div class="nav-links">
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
     </div>
+
 </nav>
 
 <header>
+
 <section class="banner">
+
     <div class="banner-content">
         <h1>RAMESH KUMAR K</h1>
         <h2>SOFTWARE AUTOMATION ENGINEER</h2>
-        <p>5.9+ Years | Quality Driven | Automation Enthusiast</p>
-        <p>Java | Python | Selenium | TestNG | API | CI/CD</p>
+
+        <p>
+            5.9+ Years | Quality Driven | Automation Enthusiast
+        </p>
+
+        <p>
+            Java | Python | Selenium | TestNG | API | CI/CD
+        </p>
     </div>
 
-   <div class="hud">
-    <span>SAE</span>
-  </div>
+    <div class="hud">
+        <span>SAE</span>
+    </div>
+
 </section>
-    
+
 <div class="diagram-container">
+
     <div class="circle-dotted"></div>
 
-    <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb/" target="_blank">
-        <img src="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/dp.png"
-             class="profile-img"
-             alt="Profile Picture">
+    <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb/"
+       target="_blank">
+
+        <img
+            src="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/dp.png"
+            class="profile-img"
+            alt="Profile Picture">
+
     </a>
 
     <div class="step selenium">Selenium</div>
@@ -290,11 +425,15 @@ footer { text-align: center; padding: 20px; background: rgba(0,0,0,0.5); }
     <div class="step testing">Testing</div>
     <div class="step deployment">Manual</div>
     <div class="step building">WebDriver</div>
+
 </div>
+
 </header>
 
 <section id="skills">
+
     <h2>Skills</h2>
+
     <div class="flex">
         <div class="card">Java</div>
         <div class="card">Python</div>
@@ -304,98 +443,157 @@ footer { text-align: center; padding: 20px; background: rgba(0,0,0,0.5); }
         <div class="card">STLC</div>
         <div class="card">SDLC</div>
     </div>
+
 </section>
+
 <section id="tools">
-<h2>Tools & Platforms</h2>
-<div class="flex">
-<div class="card">Git / GitHub</div>
-<div class="card">Jenkins</div>
-<div class="card">Maven</div>
-<div class="card">Postman</div>
-<div class="card">JIRA</div>
-<div class="card">MySQL</div>
-</div>
+
+    <h2>Tools & Platforms</h2>
+
+    <div class="flex">
+        <div class="card">Git / GitHub</div>
+        <div class="card">Jenkins</div>
+        <div class="card">Maven</div>
+        <div class="card">Postman</div>
+        <div class="card">JIRA</div>
+        <div class="card">MySQL</div>
+    </div>
+
 </section>
 
 <section id="projects">
+
     <h2>Projects</h2>
+
     <div class="flex">
+
         <div class="card">
             <h3 style="color:#38bdf8;">Selenium WebDriver</h3>
-            <p>Built automation using Java, Selenium, TestNG and Page Object Model.</p>
-            <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn">🚀 GitHub Repo</a>
+            <p>
+                Built automation using Java, Selenium,
+                TestNG and Page Object Model.
+            </p>
+
+            <a href="https://github.com/rames-qa/Selenium-Feb"
+               target="_blank"
+               class="btn">
+               🚀 GitHub Repo
+            </a>
         </div>
+
         <div class="card">
             <h3 style="color:#38bdf8;">Automation Framework</h3>
-            <p>Automated Data-Driven and Hybrid Framework with Validation and Reporting.</p>
-            <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" class="btn">🚀 GitHub Repo</a>
+
+            <p>
+                Automated Data-Driven and Hybrid Framework
+                with Validation and Reporting.
+            </p>
+
+            <a href="https://github.com/rames-qa/com.selenium.java"
+               target="_blank"
+               class="btn">
+               🚀 GitHub Repo
+            </a>
         </div>
+
         <div class="card">
             <h3 style="color:#38bdf8;">Cucumber Framework</h3>
-            <p>BDD automation using Cucumber with Selenium and TestNG integration.</p>
-            <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" class="btn">🚀 GitHub Repo</a>
+
+            <p>
+                BDD automation using Cucumber with Selenium
+                and TestNG integration.
+            </p>
+
+            <a href="https://github.com/rames-qa/Cucumber-BDD"
+               target="_blank"
+               class="btn">
+               🚀 GitHub Repo
+            </a>
         </div>
+
         <div class="card">
             <h3 style="color:#38bdf8;">Python-Code</h3>
-            <p>Python basic and OOPs concepts</p>
-            <a href="https://github.com/rames-qa/Python-codes" target="_blank" class="btn">🚀 GitHub Repo</a>
+
+            <p>
+                Python basic and OOPs concepts
+            </p>
+
+            <a href="https://github.com/rames-qa/Python-codes"
+               target="_blank"
+               class="btn">
+               🚀 GitHub Repo
+            </a>
         </div>
+
         <div class="card">
             <h3 style="color:#38bdf8;">Python-Selenium</h3>
-            <p>Automation using Python with Selenium.</p>
-            <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" class="btn">🚀 GitHub Repo</a>
+
+            <p>
+                Automation using Python with Selenium.
+            </p>
+
+            <a href="https://github.com/rames-qa/Python-Selenium"
+               target="_blank"
+               class="btn">
+               🚀 GitHub Repo
+            </a>
         </div>
-     <div class="card">
-    <h3 style="color:#38bdf8;">Java-OOPs Concepts</h3>
-    <p>Java Programming with OOP Concepts.</p>
-    <a href="https://github.com/rames-qa/Java-Code.git" target="_blank" class="btn">
-        🚀 GitHub Repo
-    </a>
-</div>
-<section id="projects">
 
-    <div class="projects-container">
-
-        <!-- Smart Health Monitoring Platform -->
         <div class="card">
 
-            <h3 class="card-title">
+            <h3 style="color:#38bdf8;">
+                Java-OOPs Concepts
+            </h3>
+
+            <p>
+                Java Programming with OOP Concepts.
+            </p>
+
+            <a href="https://github.com/rames-qa/Java-Code.git"
+               target="_blank"
+               class="btn">
+               🚀 GitHub Repo
+            </a>
+
+        </div>
+
+        <div class="card">
+
+            <h3 style="color:#38bdf8;">
                 🏥 Smart Health Monitoring Platform
             </h3>
 
-            <p class="card-text">
-                Smart Health Monitoring Platform for elderly care with
-                emergency alerts, doctor connectivity,
+            <p>
+                Smart Health Monitoring Platform for elderly care
+                with emergency alerts, doctor connectivity,
                 AI-powered monitoring, and real-time healthcare tracking features.
             </p>
 
             <a href="https://rames-qa.github.io/Smart-Health-Monitoring-Platform/"
                target="_blank"
                class="btn">
-                🚀 Live Demo
+               🚀 Live Demo
             </a>
 
         </div>
 
-        <!-- Cognitive AI Platform -->
         <div class="card">
 
-            <h3 class="card-title">
+            <h3 style="color:#38bdf8;">
                 🧠 Future Generation Cognitive Artificial Intelligence
             </h3>
 
-            <p class="card-text">
-                Powered by Cognitive AI Voice technology, the platform uses
-                live neural intelligence, emotional AI processing,
-                real-time analytics, and intelligent automation
-                to deliver futuristic AI interactions,
-                cognitive reasoning, and advanced human-like communication systems.
+            <p>
+                Powered by Cognitive AI Voice technology,
+                the platform uses live neural intelligence,
+                emotional AI processing, real-time analytics,
+                and intelligent automation.
             </p>
 
             <a href="https://rames-qa.github.io/Cognitive-AI/"
                target="_blank"
                class="btn">
-                🚀 Launch Live Demo
+               🚀 Launch Live Demo
             </a>
 
         </div>
@@ -403,27 +601,40 @@ footer { text-align: center; padding: 20px; background: rgba(0,0,0,0.5); }
     </div>
 
 </section>
+
 <section id="contact">
+
     <h2>Contact</h2>
-    <p>📞Available on request</p>
+
+    <p>📞 Available on request</p>
     <p>📧 rameshkumar93.68@gmail.com</p>
     <p>📍 Bangalore, Karnataka, India</p>
-   <p>
-   <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/rameshKumar.pdf"
-   download="Rameshkumar.K.pdf"
-   class="btn">
-   📄 Download Resume
-</a>
 
-    <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb"
-       class="btn-linkedin"
-       target="_blank">
-       🔗 LinkedIn Profile
-    </a>
-</p>
+    <p>
+
+        <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/rameshKumar.pdf"
+           download="Rameshkumar.K.pdf"
+           class="btn">
+
+           📄 Download Resume
+
+        </a>
+
+        <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb"
+           class="btn-linkedin"
+           target="_blank">
+
+           🔗 LinkedIn Profile
+
+        </a>
+
+    </p>
+
 </section>
 
-<footer>© 2026 Ramesh Kumar K</footer>
+<footer>
+    © 2026 Ramesh Kumar K
+</footer>
 
 </body>
 </html>
