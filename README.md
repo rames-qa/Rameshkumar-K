@@ -1,4 +1,4 @@
-# Hi there! I'm Ramesh Kumar K 
+# Hi  I'm Ramesh Kumar K 
 
 
 ### 🚀 Software Automation Engineer | 5.9+ Years of Experience
