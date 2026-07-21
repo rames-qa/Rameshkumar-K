@@ -5,110 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ramesh Kumar K | Automation Engineer</title>
     <style>
-           1. GLOBAL STYLES
+        /* GLOBAL */
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #0f172a, #1e3a8a);
-            color: #ffffff;
+            color: white;
             overflow-x: hidden;
         }
-
-           2. NAVIGATION BAR
+        
+        /* NAVBAR */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 40px;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0,0,0,0.7);
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(8px);
         }
 
         .nav-left {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .nav-circle {
-            background: #ffffff;
+            background: white;
             color: #1e3a8a;
+            padding: 10px;
             border-radius: 50%;
             font-weight: bold;
-            width: 35px;
-            height: 35px;
+            width: 25px;
+            height: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
         }
 
         .profile-text {
             color: #38bdf8;
             font-weight: 600;
-            font-size: 15px;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 15px;
         }
 
         .nav-links a {
             color: #38bdf8;
+            margin: 5px 10px;
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.3s ease;
+            transition: 0.3s;
         }
 
         .nav-links a:hover {
-            color: #ffffff;
-            text-decoration: underline;
+            color: white;
         }
 
-        /* Theme Toggle Styling */
-        .theme-toggle {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-left: 1px solid rgba(255, 255, 255, 0.2);
-            padding-left: 15px;
-        }
-
-        .theme-btn {
-            background: transparent;
-            border: none;
-            color: #38bdf8;
-            cursor: pointer;
-            padding: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: color 0.3s ease, background-color 0.3s ease;
-        }
-
-        .theme-btn:hover {
-            color: #ffffff;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .icon {
-            width: 18px;
-            height: 18px;
-        }
-
-           3. HERO BANNER & HUD
+        /* BANNER */
         .banner {
             min-height: 150px;
             display: flex;
@@ -127,7 +80,7 @@
             height: 400%;
             background: repeating-linear-gradient(
                 0deg,
-                rgba(0, 255, 255, 0.05) 0 1px,
+                rgba(0,255,255,.05) 0 1px,
                 transparent 1px 40px
             );
             animation: move 30s linear infinite;
@@ -149,28 +102,28 @@
         .banner-content h1 {
             font-size: 40px;
             margin: 0;
-            letter-spacing: 1px;
         }
 
         .banner-content h2 {
             font-size: 20px;
             color: #00e5ff;
             margin: 10px 0;
-            letter-spacing: 0.5px;
         }
 
         .banner-content p {
             font-size: 14px;
             margin: 5px 0;
-            color: #e2e8f0;
         }
 
+        /* HUD */
         .hud {
             width: 160px;
             height: 160px;
             border-radius: 50%;
             border: 3px solid #00e5ff;
-            box-shadow: 0 0 20px #00e5ff, inset 0 0 20px rgba(0, 229, 255, 0.3);
+            box-shadow:
+                0 0 20px #00e5ff,
+                inset 0 0 20px rgba(0,229,255,.3);
             position: relative;
             display: flex;
             justify-content: center;
@@ -184,7 +137,7 @@
             inset: 18px;
             border: 3px dashed #00e5ff;
             border-radius: 50%;
-            opacity: 0.8;
+            opacity: .8;
         }
 
         .hud::after {
@@ -203,7 +156,7 @@
         .hud span {
             font-size: 34px;
             font-weight: bold;
-            color: #ffffff;
+            color: white;
             letter-spacing: 3px;
             text-shadow: 0 0 15px #00e5ff;
             animation: counterSpin 10s linear infinite;
@@ -222,7 +175,7 @@
             }
         }
 
-           4. SKILL ORBIT DIAGRAM
+        /* DIAGRAM */
         .diagram-container {
             position: relative;
             width: 300px;
@@ -234,7 +187,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            border: 2px dotted #aaaaaa;
+            border: 2px dotted #aaa;
             border-radius: 50%;
         }
 
@@ -257,11 +210,12 @@
             padding: 8px 12px;
             border-radius: 20px;
             font-size: 12px;
-            color: #ffffff;
+            color: white;
             z-index: 6;
             white-space: nowrap;
         }
 
+        /* STEP POSITIONS */
         .selenium {
             top: -10px;
             left: 50%;
@@ -294,31 +248,12 @@
             transform: translateX(-50%);
         }
 
-           5. CONTENT SECTIONS & CARDS
+        /* SECTIONS */
         section {
             padding: 50px 20px;
             max-width: 1200px;
             margin: auto;
             text-align: center;
-        }
-
-        section h2 {
-            font-size: 28px;
-            margin-bottom: 30px;
-            color: #ffffff;
-            position: relative;
-            display: inline-block;
-        }
-
-        section h2::after {
-            content: "";
-            position: absolute;
-            width: 50%;
-            height: 3px;
-            background: #38bdf8;
-            bottom: -8px;
-            left: 25%;
-            border-radius: 2px;
         }
 
         .flex {
@@ -329,90 +264,61 @@
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255,255,255,0.08);
             padding: 20px;
             border-radius: 10px;
             width: 280px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.3s ease, background 0.3s ease;
-            box-sizing: border-box;
+            transition: 0.3s;
         }
 
-        #skills .card, 
-        #tools .card {
+        /* Skill cards layout spacing variant */
+        #skills .card, #tools .card {
             width: 180px;
             justify-content: center;
-            font-weight: 600;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.12);
         }
 
-        .card h3 {
-            margin-top: 0;
-            font-size: 18px;
-        }
-
-        .card p {
-            font-size: 13px;
-            color: #cbd5e1;
-            line-height: 1.5;
-        }
-
-        /* Buttons */
         .btn,
         .btn-linkedin {
             padding: 10px 20px;
             border-radius: 6px;
             text-decoration: none;
-            margin-top: 15px;
+            margin-top: auto;
             display: inline-block;
-            transition: background 0.3s ease, transform 0.2s ease;
+            transition: 0.3s;
             font-weight: bold;
             font-size: 14px;
+        }
+
+        .btn {
             background: #38bdf8;
-            color: #000000;
+            color: black;
         }
 
         .btn-linkedin {
+            background: #38bdf8;
+            color: black;
             margin: 10px;
         }
 
-        .btn:hover,
-        .btn-linkedin:hover {
-            background: #7dd3fc;
-            transform: scale(1.02);
-        }
-
-           6. FOOTER
         footer {
             text-align: center;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            font-size: 14px;
-            color: #94a3b8;
+            background: rgba(0,0,0,0.5);
         }
 
-           7. MEDIA QUERIES (RESPONSIVE DESIGN)
+        /* MOBILE */
         @media (max-width: 768px) {
             nav {
                 padding: 15px 20px;
                 flex-direction: column;
-                gap: 15px;
-            }
-
-            .nav-right {
-                flex-direction: column;
                 gap: 10px;
-            }
-
-            .theme-toggle {
-                border-left: none;
-                padding-left: 0;
             }
 
             .banner {
@@ -460,55 +366,30 @@
             .deployment {
                 left: -10px;
             }
-
+            
             .card {
                 width: 100%;
             }
         }
     </style>
 </head>
+
 <body>
 
-    <!-- NAVIGATION BAR -->
     <nav>
         <div class="nav-left">
             <div class="nav-circle">RK</div>
             <div class="profile-text">Software Automation Engineer</div>
         </div>
-
-        <div class="nav-right">
-            <div class="nav-links">
-                <a href="#skills">Skills</a>
-                <a href="#projects">Programming Languages</a>
-                <a href="#demo-projects">Demo Projects</a>
-                <a href="#contact">Contact</a>
-            </div>
-
-            <!-- Theme Switcher -->
-            <div class="theme-toggle">
-                <button aria-label="Light mode" class="theme-btn">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-                <button aria-label="Dark mode" class="theme-btn">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </button>
-            </div>
+        <!-- Fully updated navigation bar linking directly to all sections -->
+        <div class="nav-links">
+            <a href="#skills">Skills</a>
+            <a href="#projects">Programming Languages</a>
+            <a href="#demo-projects">Demo Projects</a>
+            <a href="#contact">Contact</a>
         </div>
     </nav>
 
-    <!-- HEADER / HERO BANNER -->
     <header>
         <div class="banner">
             <div class="banner-content">
@@ -516,7 +397,7 @@
                 <h2>SOFTWARE AUTOMATION ENGINEER</h2>
                 <p>5.9+ Years of Experience | Software Automation Engineer</p>
                 <p>Java | Python | Selenium WebDriver | API Testing | TestNG | Jenkins CI/CD | Azure DevOps</p>
-                <p>AI-Assisted Test Automation | Generative AI | SQL | System Validation &amp; Verification | Git/GitHub</p>
+                <p>AI-Assisted Test Automation | Generative AI | SQL | System Validation & Verification | Git/GitHub</p>
             </div>
             <div class="hud">
                 <span>SAE</span>
@@ -525,7 +406,7 @@
 
         <div class="diagram-container">
             <div class="circle-dotted"></div>
-            <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb/" target="_blank">
                 <img src="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/dp.png" class="profile-img" alt="Profile Picture">
             </a>
             <div class="step selenium">Selenium</div>
@@ -537,7 +418,6 @@
         </div>
     </header>
 
-    <!-- SKILLS SECTION -->
     <section id="skills">
         <h2>Skills</h2>
         <div class="flex">
@@ -551,9 +431,8 @@
         </div>
     </section>
 
-    <!-- TOOLS SECTION -->
     <section id="tools">
-        <h2>Tools &amp; Platforms</h2>
+        <h2>Tools & Platforms</h2>
         <div class="flex">
             <div class="card">Git / GitHub</div>
             <div class="card">Jenkins</div>
@@ -565,49 +444,47 @@
         </div>
     </section>
 
-    <!-- PROGRAMMING LANGUAGES & FRAMEWORKS -->
     <section id="projects">
         <h2>Programming Languages</h2>
         <div class="flex">
             <div class="card">
                 <h3 style="color:#38bdf8;">Selenium WebDriver</h3>
                 <p>Built automation using Java, Selenium, TestNG and Page Object Model.</p>
-                <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" rel="noopener noreferrer" class="btn">🚀 GitHub Selenium WebDriver</a>
+                <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn">🚀 GitHub Selenium WebDriver</a>
             </div>
 
             <div class="card">
                 <h3 style="color:#38bdf8;">Automation Framework</h3>
                 <p>Automated Data-Driven and Hybrid Framework with Validation and Reporting.</p>
-                <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" rel="noopener noreferrer" class="btn">🚀 GitHub Automation Framework</a>
+                <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" class="btn">🚀 GitHub Automation Framework</a>
             </div>
 
             <div class="card">
                 <h3 style="color:#38bdf8;">Cucumber BDD Framework</h3>
                 <p>BDD automation using Cucumber with Selenium and TestNG integration.</p>
-                <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" rel="noopener noreferrer" class="btn">🚀 GitHub Cucumber BDD Framework</a>
+                <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" class="btn">🚀 GitHub Cucumber BDD Framework</a>
             </div>
 
             <div class="card">
                 <h3 style="color:#38bdf8;">Python-Code</h3>
                 <p>Python basic and OOPs concepts</p>
-                <a href="https://github.com/rames-qa/Python-codes" target="_blank" rel="noopener noreferrer" class="btn">🚀 GitHub Python-Code</a>
+                <a href="https://github.com/rames-qa/Python-codes" target="_blank" class="btn">🚀 GitHub Python-Code</a>
             </div>
 
             <div class="card">
                 <h3 style="color:#38bdf8;">Python-Selenium</h3>
                 <p>Automation using Python with Selenium.</p>
-                <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" rel="noopener noreferrer" class="btn">🚀 GitHub Python-Selenium</a>
+                <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" class="btn">🚀 GitHub Python-Selenium</a>
             </div>
 
             <div class="card">
                 <h3 style="color:#38bdf8;">Java-OOPs Concepts</h3>
                 <p>Java Programming with OOP Concepts.</p>
-                <a href="https://github.com/rames-qa/Java-Code.git" target="_blank" rel="noopener noreferrer" class="btn">🚀 GitHub Java(OOP) Concepts</a>
+                <a href="https://github.com/rames-qa/Java-Code.git" target="_blank" class="btn">🚀 GitHub Java(OOP) Concepts</a>
             </div>
         </div>
     </section>
 
-    <!-- DEMO PROJECTS SECTION -->
     <section id="demo-projects">
         <h2>Demo Projects</h2>
         <div class="flex">
@@ -624,32 +501,30 @@
             </div>
 
             <div class="card">
-                <h3 style="color:#38bdf8;">🧠 AI-Driven Elderly Health, Cognitive Ability &amp; Mental Wellness Assessment</h3>
+                <h3 style="color:#38bdf8;">🧠 AI-Driven Elderly Health, Cognitive Ability & Mental Wellness Assessment</h3>
                 <p>Created an AI-powered platform to assess elderly health, cognition, and mental wellness, enabling early risk detection and personalized healthcare recommendations.</p>
                 <a href="https://rames-qa.github.io/Physiological-and-Mental-Health-Assessment-of-Elderly-Indians/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
             </div>
 
             <div class="card">
-                <h3 style="color:#38bdf8;">📊 Quality Analysis &amp; Metrics Automation Dashboard</h3>
+                <h3 style="color:#38bdf8;">📊 Quality Analysis & Metrics Automation Dashboard</h3>
                 <p>A centralized operational intelligence dashboard engineered to aggregate, synthesize, and visualize cross-functional performance metrics and real-time project analytics through a high-fidelity, adaptive user interface.</p>
                 <a href="https://rames-qa.github.io/Dashboard/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Dashboard</a>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT SECTION -->
     <section id="contact">
         <h2>Contact</h2>
         <p>📞 Available on request</p>
         <p>📧 rameshkumar93.68@gmail.com</p>
         <p>📍 Bangalore, Karnataka, India</p>
         <p>
-            <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar..K.pdf" download="Ramesh_CV.pdf" target="_blank" rel="noopener noreferrer" class="btn">📄 Download Resume</a>
-            <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" class="btn-linkedin" target="_blank" rel="noopener noreferrer">🔗 LinkedIn Profile</a>
+            <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar..K.pdf" download="Ramesh_CV.pdf" target="_blank" class="btn">📄 Download Resume</a>
+            <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" class="btn-linkedin" target="_blank">🔗 LinkedIn Profile</a>
         </p>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         © 2026 Ramesh Kumar K
     </footer>
