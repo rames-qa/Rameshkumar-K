@@ -5,13 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ramesh Kumar K | Automation Engineer</title>
     <style>
+        /* CSS VARIABLES FOR THEMING */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a, #1e3a8a);
+            --text-color: #ffffff;
+            --nav-bg: rgba(0,0,0,0.7);
+            --card-bg: rgba(255,255,255,0.08);
+            --accent-color: #38bdf8;
+            --banner-bg: radial-gradient(circle at right, #0d2c5a, #022b1a);
+            --footer-bg: rgba(0,0,0,0.5);
+        }
+
+        /* LIGHT MODE OVERRIDES */
+        body.light-mode {
+            --bg-gradient: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            --text-color: #0f172a;
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --card-bg: rgba(0, 0, 0, 0.05);
+            --accent-color: #0284c7;
+            --banner-bg: radial-gradient(circle at right, #e0f2fe, #bae6fd);
+            --footer-bg: rgba(0,0,0,0.05);
+        }
+
         /* GLOBAL */
         body {
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #0f172a, #1e3a8a);
-            color: white;
+            background: var(--bg-gradient);
+            color: var(--text-color);
             overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
         }
         
         /* NAVBAR */
@@ -20,10 +43,11 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 40px;
-            background: rgba(0,0,0,0.7);
+            background: var(--nav-bg);
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(8px);
         }
 
         .nav-left {
@@ -33,7 +57,7 @@
         }
 
         .nav-circle {
-            background: white;
+            background: var(--text-color);
             color: #1e3a8a;
             padding: 10px;
             border-radius: 50%;
@@ -46,19 +70,58 @@
         }
 
         .profile-text {
-            color: #38bdf8;
+            color: var(--accent-color);
             font-weight: 600;
         }
 
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
         .nav-links a {
-            color: #38bdf8;
+            color: var(--accent-color);
             margin: 5px 10px;
             text-decoration: none;
             transition: 0.3s;
         }
 
         .nav-links a:hover {
-            color: white;
+            color: var(--text-color);
+        }
+
+        /* THEME TOGGLE STYLES */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 4px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .theme-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .theme-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .icon {
+            width: 18px;
+            height: 18px;
         }
 
         /* BANNER */
@@ -68,7 +131,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 40px 60px;
-            background: radial-gradient(circle at right, #0d2c5a, #022b1a);
+            background: var(--banner-bg);
             position: relative;
             overflow: hidden;
         }
@@ -156,7 +219,7 @@
         .hud span {
             font-size: 34px;
             font-weight: bold;
-            color: white;
+            color: var(--text-color);
             letter-spacing: 3px;
             text-shadow: 0 0 15px #00e5ff;
             animation: counterSpin 10s linear infinite;
@@ -200,7 +263,7 @@
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #38bdf8;
+            border: 3px solid var(--accent-color);
             z-index: 5;
         }
 
@@ -264,7 +327,7 @@
         }
 
         .card {
-            background: rgba(255,255,255,0.08);
+            background: var(--card-bg);
             padding: 20px;
             border-radius: 10px;
             width: 280px;
@@ -272,9 +335,9 @@
             flex-direction: column;
             justify-content: space-between;
             transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* Skill cards layout spacing variant */
         #skills .card, #tools .card {
             width: 180px;
             justify-content: center;
@@ -297,12 +360,12 @@
         }
 
         .btn {
-            background: #38bdf8;
+            background: var(--accent-color);
             color: black;
         }
 
         .btn-linkedin {
-            background: #38bdf8;
+            background: var(--accent-color);
             color: black;
             margin: 10px;
         }
@@ -310,13 +373,18 @@
         footer {
             text-align: center;
             padding: 20px;
-            background: rgba(0,0,0,0.5);
+            background: var(--footer-bg);
         }
 
         /* MOBILE */
         @media (max-width: 768px) {
             nav {
                 padding: 15px 20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-right {
                 flex-direction: column;
                 gap: 10px;
             }
@@ -381,12 +449,38 @@
             <div class="nav-circle">RK</div>
             <div class="profile-text">Software Automation Engineer</div>
         </div>
-        <!-- Fully updated navigation bar linking directly to all sections -->
-        <div class="nav-links">
-            <a href="#skills">Skills</a>
-            <a href="#projects">Programming Languages</a>
-            <a href="#demo-projects">Demo Projects</a>
-            <a href="#contact">Contact</a>
+        
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="#skills">Skills</a>
+                <a href="#projects">Programming Languages</a>
+                <a href="#demo-projects">Demo Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+            <!-- Dark / Light Theme Toggle Icons -->
+            <div class="theme-toggle">
+                <button aria-label="Light mode" class="theme-btn" id="light-btn">
+                    <!-- Sun icon -->
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <button aria-label="Dark mode" class="theme-btn" id="dark-btn">
+                    <!-- Moon icon -->
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -448,37 +542,37 @@
         <h2>Programming Languages</h2>
         <div class="flex">
             <div class="card">
-                <h3 style="color:#38bdf8;">Selenium WebDriver</h3>
+                <h3 style="color:var(--accent-color);">Selenium WebDriver</h3>
                 <p>Built automation using Java, Selenium, TestNG and Page Object Model.</p>
                 <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn">🚀 GitHub Selenium WebDriver</a>
             </div>
 
             <div class="card">
-                <h3 style="color:#38bdf8;">Automation Framework</h3>
+                <h3 style="color:var(--accent-color);">Automation Framework</h3>
                 <p>Automated Data-Driven and Hybrid Framework with Validation and Reporting.</p>
                 <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" class="btn">🚀 GitHub Automation Framework</a>
             </div>
 
             <div class="card">
-                <h3 style="color:#38bdf8;">Cucumber BDD Framework</h3>
+                <h3 style="color:var(--accent-color);">Cucumber BDD Framework</h3>
                 <p>BDD automation using Cucumber with Selenium and TestNG integration.</p>
                 <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" class="btn">🚀 GitHub Cucumber BDD Framework</a>
             </div>
 
             <div class="card">
-                <h3 style="color:#38bdf8;">Python-Code</h3>
+                <h3 style="color:var(--accent-color);">Python-Code</h3>
                 <p>Python basic and OOPs concepts</p>
                 <a href="https://github.com/rames-qa/Python-codes" target="_blank" class="btn">🚀 GitHub Python-Code</a>
             </div>
 
             <div class="card">
-                <h3 style="color:#38bdf8;">Python-Selenium</h3>
+                <h3 style="color:var(--accent-color);">Python-Selenium</h3>
                 <p>Automation using Python with Selenium.</p>
                 <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" class="btn">🚀 GitHub Python-Selenium</a>
             </div>
 
             <div class="card">
-                <h3 style="color:#38bdf8;">Java-OOPs Concepts</h3>
+                <h3 style="color:var(--accent-color);">Java-OOPs Concepts</h3>
                 <p>Java Programming with OOP Concepts.</p>
                 <a href="https://github.com/rames-qa/Java-Code.git" target="_blank" class="btn">🚀 GitHub Java(OOP) Concepts</a>
             </div>
@@ -489,25 +583,25 @@
         <h2>Demo Projects</h2>
         <div class="flex">
             <div class="card">
-                <h3 style="color:#38bdf8;">🏥 Smart Health Monitoring Platform</h3>
+                <h3 style="color:var(--accent-color);">🏥 Smart Health Monitoring Platform</h3>
                 <p>Smart Health Monitoring Platform for elderly care with emergency alerts, doctor connectivity, AI-powered monitoring, and real-time healthcare tracking features.</p>
                 <a href="https://rames-qa.github.io/Smart-Health-Monitoring-Platform/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
             </div>
 
             <div class="card">
-                <h3 style="color:#38bdf8;">🗣️ Cognitive Speech AI</h3>
+                <h3 style="color:var(--accent-color);">🗣️ Cognitive Speech AI</h3>
                 <p>Cognitive Speech AI technology, the platform uses live neural intelligence, emotional AI processing, real-time analytics, and intelligent automation.</p>
                 <a href="https://rames-qa.github.io/Cognitive-Speech-AI" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
             </div>
 
             <div class="card">
-                <h3 style="color:#38bdf8;">🧠 AI-Driven Elderly Health, Cognitive Ability & Mental Wellness Assessment</h3>
+                <h3 style="color:var(--accent-color);">🧠 AI-Driven Elderly Health, Cognitive Ability & Mental Wellness Assessment</h3>
                 <p>Created an AI-powered platform to assess elderly health, cognition, and mental wellness, enabling early risk detection and personalized healthcare recommendations.</p>
                 <a href="https://rames-qa.github.io/Physiological-and-Mental-Health-Assessment-of-Elderly-Indians/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
             </div>
 
             <div class="card">
-                <h3 style="color:#38bdf8;">📊 Quality Analysis & Metrics Automation Dashboard</h3>
+                <h3 style="color:var(--accent-color);">📊 Quality Analysis & Metrics Automation Dashboard</h3>
                 <p>A centralized operational intelligence dashboard engineered to aggregate, synthesize, and visualize cross-functional performance metrics and real-time project analytics through a high-fidelity, adaptive user interface.</p>
                 <a href="https://rames-qa.github.io/Dashboard/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Dashboard</a>
             </div>
@@ -528,6 +622,20 @@
     <footer>
         © 2026 Ramesh Kumar K
     </footer>
+
+    <!-- JavaScript for Theme Switching -->
+    <script>
+        const lightBtn = document.getElementById('light-btn');
+        const darkBtn = document.getElementById('dark-btn');
+
+        lightBtn.addEventListener('click', () => {
+            document.body.classList.add('light-mode');
+        });
+
+        darkBtn.addEventListener('click', () => {
+            document.body.classList.remove('light-mode');
+        });
+    </script>
 
 </body>
 </html>
