@@ -53,7 +53,7 @@
         .nav-left {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
 
         .nav-circle {
@@ -67,21 +67,27 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
-.profile-text {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--accent-color);
-}
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-.company-text {
-    font-size: 16px;
-    margin-top: 5px;
-}
+        .company-text {
+            font-size: 14px;
+            color: var(--text-color);
+            line-height: 1.2;
+        }
 
-
-
+        .profile-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--accent-color);
+            line-height: 1.2;
+        }
         
         .nav-right {
             display: flex;
@@ -91,7 +97,7 @@
 
         .nav-links a {
             color: var(--accent-color);
-            margin: 5px 10px;
+            margin: 0 10px;
             text-decoration: none;
             transition: 0.3s;
         }
@@ -390,7 +396,12 @@
             nav {
                 padding: 15px 20px;
                 flex-direction: column;
-                gap: 10px;
+                gap: 15px;
+            }
+
+            .nav-left {
+                flex-direction: row;
+                text-align: left;
             }
 
             .nav-right {
@@ -456,10 +467,11 @@
     <nav>
         <div class="nav-left">
             <div class="nav-circle">RK</div>
-           <div class="profile-container">
-    <div class="company-text">Aspire NXT Private Limited</div>
-    <div class="profile-text">Software Testing Engineer</div>
-</div>
+            <div class="profile-container">
+                <div class="company-text">Aspire NXT Private Limited</div>
+                <div class="profile-text">Software Testing Engineer</div>
+            </div>
+        </div>
         
         <div class="nav-right">
             <div class="nav-links">
@@ -587,13 +599,14 @@
                 <p>Java Programming with OOP Concepts.</p>
                 <a href="https://github.com/rames-qa/Java-Code.git" target="_blank" class="btn">🚀 GitHub Java(OOP) Concepts</a>
             </div>
+
             <div class="card">
-    <h3 style="color:var(--accent-color);">Python Automation</h3>
-    <p>Python programming examples and automation projects showcasing core Python concepts, scripting, and practical implementations.</p>
-    <a href="https://rames-qa.github.io/PythonAutomation/" target="_blank" class="btn">
-        🐍 View Python Automation
-    </a>
-</div>
+                <h3 style="color:var(--accent-color);">Python Automation</h3>
+                <p>Python programming examples and automation projects showcasing core Python concepts, scripting, and practical implementations.</p>
+                <a href="https://rames-qa.github.io/PythonAutomation/" target="_blank" class="btn">
+                    🐍 View Python Automation
+                </a>
+            </div>
         </div>
     </section>
 
