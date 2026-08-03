@@ -59,4 +59,4 @@ I am a quality-driven and automation-focused engineer specializing in designing,
 * 📞 *Contact number available upon request*
 
 ---
-<p align="center">© 2026 Ramesh Kumar K • Quality Driven • Automation Enthusiast</p>
+<p align="center">© 2026 Ramesh Kumar K • Quality Driven • Automation Enthusiast • Software Testing Engineer </p>
