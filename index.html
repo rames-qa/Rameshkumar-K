@@ -3,51 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramesh Kumar K | Automation Engineer</title>
+    <title>Ramesh Kumar K | Software Automation Engineer</title>
+    
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* CSS VARIABLES FOR THEMING */
+        /* CSS VARIABLES & THEMING */
         :root {
-            --bg-gradient: linear-gradient(135deg, #0f172a, #1e3a8a);
-            --text-color: #ffffff;
-            --nav-bg: rgba(0,0,0,0.7);
-            --card-bg: rgba(255,255,255,0.08);
-            --accent-color: #38bdf8;
-            --banner-bg: radial-gradient(circle at right, #0d2c5a, #022b1a);
-            --footer-bg: rgba(0,0,0,0.5);
+            --bg-gradient: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #0f172a 100%);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --nav-bg: rgba(15, 23, 42, 0.75);
+            --card-bg: rgba(30, 41, 59, 0.5);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --accent-cyan: #38bdf8;
+            --accent-green: #10b981;
+            --accent-glow: rgba(56, 189, 248, 0.25);
+            --banner-bg: radial-gradient(circle at 80% 20%, #1e293b, #0f172a);
+            --footer-bg: #090d16;
+            --badge-bg: rgba(56, 189, 248, 0.12);
         }
 
-        /* LIGHT MODE OVERRIDES */
         body.light-mode {
-            --bg-gradient: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-            --text-color: #0f172a;
+            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            --text-main: #0f172a;
+            --text-muted: #475569;
             --nav-bg: rgba(255, 255, 255, 0.85);
-            --card-bg: rgba(0, 0, 0, 0.05);
-            --accent-color: #0284c7;
-            --banner-bg: radial-gradient(circle at right, #e0f2fe, #bae6fd);
-            --footer-bg: rgba(0,0,0,0.05);
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --card-border: rgba(0, 0, 0, 0.08);
+            --accent-cyan: #0284c7;
+            --accent-green: #059669;
+            --accent-glow: rgba(2, 132, 199, 0.15);
+            --banner-bg: radial-gradient(circle at 80% 20%, #e0f2fe, #f0f9ff);
+            --footer-bg: #e2e8f0;
+            --badge-bg: rgba(2, 132, 199, 0.1);
         }
 
-        /* GLOBAL */
+        /* GLOBAL STYLES */
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--bg-gradient);
-            color: var(--text-color);
+            color: var(--text-main);
             overflow-x: hidden;
-            transition: background 0.3s ease, color 0.3s ease;
+            transition: background 0.4s ease, color 0.4s ease;
         }
-        
+
         /* NAVBAR */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 40px;
+            padding: 16px 40px;
             background: var(--nav-bg);
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
         }
 
         .nav-left {
@@ -57,215 +77,189 @@
         }
 
         .nav-circle {
-            background: var(--text-color);
-            color: #1e3a8a;
-            padding: 10px;
-            border-radius: 50%;
-            font-weight: bold;
-            width: 25px;
-            height: 25px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
+            color: #ffffff;
+            font-weight: 700;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
+            box-shadow: 0 4px 12px var(--accent-glow);
         }
 
-        .profile-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        .profile-container .company-text {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-cyan);
+            font-weight: 600;
         }
 
-      .company-text {
-    font-size: 18px;
-    color: var(--accent-color); 
-    line-height: 1.2;
-}
+        .profile-container .profile-text {
+            font-size: 16px;
+            font-weight: 700;
+        }
 
-.profile-text {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--accent-color);
-    line-height: 1.2;
-}
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 25px;
         }
 
         .nav-links a {
-            color: var(--accent-color);
-            margin: 0 10px;
+            color: var(--text-muted);
+            margin: 0 12px;
             text-decoration: none;
-            transition: 0.3s;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
         }
 
         .nav-links a:hover {
-            color: var(--text-color);
+            color: var(--accent-cyan);
         }
 
-        /* THEME TOGGLE STYLES */
         .theme-toggle {
             display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.1);
+            background: var(--card-bg);
             padding: 4px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 30px;
+            border: 1px solid var(--card-border);
         }
 
         .theme-btn {
             background: transparent;
             border: none;
             cursor: pointer;
-            padding: 6px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-color);
-            transition: background 0.3s, color 0.3s;
+            padding: 8px 12px;
+            border-radius: 20px;
+            color: var(--text-muted);
+            transition: all 0.3s;
         }
 
-        .theme-btn:hover {
-            background: rgba(255,255,255,0.2);
+        .theme-btn.active {
+            background: var(--accent-cyan);
+            color: #ffffff;
         }
 
-        .icon {
-            width: 18px;
-            height: 18px;
+        /* MOBILE MENU TOGGLE */
+        .mobile-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            font-size: 22px;
+            cursor: pointer;
         }
 
-        /* BANNER */
+        /* HERO BANNER */
+        header {
+            position: relative;
+            padding: 60px 40px;
+            background: var(--banner-bg);
+            border-bottom: 1px solid var(--card-border);
+        }
+
         .banner {
-            min-height: 150px;
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 40px 60px;
-            background: var(--banner-bg);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .banner::before {
-            content: "";
-            position: absolute;
-            width: 400%;
-            height: 400%;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0,255,255,.05) 0 1px,
-                transparent 1px 40px
-            );
-            animation: move 30s linear infinite;
-            top: 0;
-            left: 0;
-        }
-
-        @keyframes move {
-            to {
-                transform: translateY(-200px);
-            }
-        }
-
-        .banner-content {
-            z-index: 2;
-            text-align: left;
+            gap: 40px;
         }
 
         .banner-content h1 {
-            font-size: 40px;
-            margin: 0;
+            font-size: 48px;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            letter-spacing: -1px;
         }
 
-        .banner-content h2 {
-            font-size: 20px;
-            color: #00e5ff;
-            margin: 10px 0;
+        .typing-container {
+            font-family: 'Fira Code', monospace;
+            font-size: 22px;
+            color: var(--accent-cyan);
+            min-height: 36px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
         }
 
-        .banner-content p {
-            font-size: 14px;
-            margin: 5px 0;
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 22px;
+            background-color: var(--accent-cyan);
+            margin-left: 5px;
+            animation: blink 0.8s infinite;
         }
 
-        /* HUD */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .banner-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: var(--badge-bg);
+            color: var(--accent-cyan);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        /* HUD RADAR */
         .hud {
-            width: 160px;
-            height: 160px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            border: 3px solid #00e5ff;
-            box-shadow:
-                0 0 20px #00e5ff,
-                inset 0 0 20px rgba(0,229,255,.3);
+            border: 2px solid var(--accent-cyan);
+            box-shadow: 0 0 25px var(--accent-glow);
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: spin 10s linear infinite;
-        }
-
-        .hud::before {
-            content: "";
-            position: absolute;
-            inset: 18px;
-            border: 3px dashed #00e5ff;
-            border-radius: 50%;
-            opacity: .8;
-        }
-
-        .hud::after {
-            content: "";
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: #00e5ff;
-            border-radius: 50%;
-            top: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 15px #00e5ff;
+            animation: spin 12s linear infinite;
+            flex-shrink: 0;
         }
 
         .hud span {
-            font-size: 34px;
-            font-weight: bold;
-            color: var(--text-color);
-            letter-spacing: 3px;
-            text-shadow: 0 0 15px #00e5ff;
-            animation: counterSpin 10s linear infinite;
-            z-index: 2;
+            font-family: 'Fira Code', monospace;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-main);
+            animation: counterSpin 12s linear infinite;
         }
 
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes counterSpin { to { transform: rotate(-360deg); } }
 
-        @keyframes counterSpin {
-            to {
-                transform: rotate(-360deg);
-            }
-        }
-
-        /* DIAGRAM */
+        /* DIAGRAM HUD */
         .diagram-container {
             position: relative;
-            width: 300px;
-            height: 300px;
-            margin: 50px auto;
+            width: 280px;
+            height: 280px;
+            margin: 40px auto 0 auto;
         }
 
         .circle-dotted {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 2px dotted #aaa;
+            inset: 0;
+            border: 2px dashed var(--accent-cyan);
             border-radius: 50%;
+            opacity: 0.4;
+            animation: spin 30s linear infinite;
         }
 
         .profile-img {
@@ -273,248 +267,212 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--accent-color);
-            z-index: 5;
+            border: 4px solid var(--accent-cyan);
+            box-shadow: 0 0 20px var(--accent-glow);
         }
 
         .step {
             position: absolute;
-            background: #1e7f3f;
-            padding: 8px 12px;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+            border: 1px solid var(--accent-green);
+            padding: 6px 14px;
             border-radius: 20px;
             font-size: 12px;
-            color: white;
-            z-index: 6;
+            font-weight: 600;
             white-space: nowrap;
+            backdrop-filter: blur(4px);
         }
 
-        /* STEP POSITIONS */
-        .selenium {
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .python {
-            top: 60px;
-            right: -30px;
-        }
-
-        .manual {
-            bottom: 80px;
-            right: -30px;
-        }
-
-        .testing {
-            bottom: 80px;
-            left: -30px;
-        }
-
-        .deployment {
-            top: 60px;
-            left: -30px;
-        }
-
-        .building {
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+        .selenium { top: -10px; left: 50%; transform: translateX(-50%); }
+        .python { top: 50px; right: -20px; }
+        .manual { bottom: 60px; right: -20px; }
+        .testing { bottom: 60px; left: -20px; }
+        .deployment { top: 50px; left: -20px; }
+        .building { bottom: -10px; left: 50%; transform: translateX(-50%); }
 
         /* SECTIONS */
         section {
-            padding: 50px 20px;
+            padding: 60px 20px;
             max-width: 1200px;
             margin: auto;
-            text-align: center;
         }
 
-        .flex {
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .filter-tabs {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent-cyan);
+            color: #ffffff;
+            border-color: var(--accent-cyan);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 20px;
         }
 
         .card {
             background: var(--card-bg);
-            padding: 20px;
-            border-radius: 10px;
-            width: 280px;
+            border: 1px solid var(--card-border);
+            padding: 24px;
+            border-radius: 16px;
+            backdrop-filter: blur(8px);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: 0.3s;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        #skills .card, #tools .card {
-            width: 180px;
-            justify-content: center;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 30px var(--accent-glow);
         }
 
-        .btn,
-        .btn-linkedin {
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            margin-top: auto;
-            display: inline-block;
-            transition: 0.3s;
-            font-weight: bold;
+        .card h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            color: var(--accent-cyan);
+        }
+
+        .card p {
+            color: var(--text-muted);
             font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
         .btn {
-            background: var(--accent-color);
-            color: black;
+            background: var(--accent-cyan);
+            color: #ffffff;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.3s ease;
         }
 
-        .btn-linkedin {
-            background: var(--accent-color);
-            color: black;
-            margin: 10px;
+        .btn:hover {
+            opacity: 0.9;
         }
 
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 30px;
             background: var(--footer-bg);
+            color: var(--text-muted);
+            font-size: 14px;
+            border-top: 1px solid var(--card-border);
         }
 
-        /* MOBILE */
-        @media (max-width: 768px) {
-            nav {
-                padding: 15px 20px;
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 868px) {
+            nav { padding: 16px 20px; }
+            .mobile-toggle { display: block; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--nav-bg);
                 flex-direction: column;
-                gap: 15px;
+                padding: 20px;
+                border-bottom: 1px solid var(--card-border);
             }
-
-            .nav-left {
-                flex-direction: row;
-                text-align: left;
-            }
-
-            .nav-right {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .banner {
-                flex-direction: column;
-                text-align: center;
-                padding: 40px 20px;
-                gap: 20px;
-            }
-
-            .banner-content {
-                text-align: center;
-                margin-bottom: 20px;
-            }
-
-            .banner-content h1 {
-                font-size: 28px;
-            }
-
-            .hud {
-                width: 100px;
-                height: 100px;
-            }
-
-            .diagram-container {
-                width: 220px;
-                height: 220px;
-            }
-
-            .profile-img {
-                width: 90px;
-                height: 90px;
-            }
-
-            .step {
-                font-size: 10px;
-                padding: 5px 10px;
-            }
-
-            .python,
-            .manual {
-                right: -10px;
-            }
-
-            .testing,
-            .deployment {
-                left: -10px;
-            }
-            
-            .card {
-                width: 100%;
-            }
+            .nav-links.active { display: flex; }
+            .nav-links a { margin: 10px 0; }
+            .banner { flex-direction: column; text-align: center; }
+            .banner-content h1 { font-size: 32px; }
+            .typing-container { justify-content: center; }
+            .banner-tags { justify-content: center; }
         }
     </style>
 </head>
-
 <body>
 
+    <!-- NAVBAR -->
     <nav>
         <div class="nav-left">
             <div class="nav-circle">RK</div>
             <div class="profile-container">
                 <div class="company-text">Aspire NXT Private Limited</div>
-                <div class="profile-text">Software Testing Engineer</div>
+                <div class="profile-text">Ramesh Kumar K</div>
             </div>
         </div>
+
+        <button class="mobile-toggle" id="menu-toggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
         
         <div class="nav-right">
-            <div class="nav-links">
+            <div class="nav-links" id="nav-links">
                 <a href="#skills">Skills</a>
-                <a href="#projects">Programming Languages</a>
-                <a href="#demo-projects">Demo Projects</a>
+                <a href="#projects">Languages</a>
+                <a href="#demo-projects">Demo Apps</a>
                 <a href="#contact">Contact</a>
             </div>
 
-            <!-- Dark / Light Theme Toggle Icons -->
             <div class="theme-toggle">
-                <button aria-label="Light mode" class="theme-btn" id="light-btn">
-                    <!-- Sun icon -->
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-                <button aria-label="Dark mode" class="theme-btn" id="dark-btn">
-                    <!-- Moon icon -->
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </button>
+                <button aria-label="Dark mode" class="theme-btn active" id="dark-btn"><i class="fa-solid fa-moon"></i></button>
+                <button aria-label="Light mode" class="theme-btn" id="light-btn"><i class="fa-solid fa-sun"></i></button>
             </div>
         </div>
     </nav>
 
+    <!-- HEADER / BANNER -->
     <header>
         <div class="banner">
             <div class="banner-content">
                 <h1>RAMESH KUMAR K</h1>
-                <h2>SOFTWARE AUTOMATION TESTING ENGINEER</h2>
-                <p>6.1+ Years of Experience | Software Automation Engineer</p>
-                <p>Java | Python | Selenium WebDriver | API Testing | TestNG | Jenkins CI/CD | Azure DevOps</p>
-                <p>AI-Assisted Test Automation | Generative AI | SQL | System Validation & Verification | Git/GitHub</p>
+                <div class="typing-container">
+                    <span id="typing-text"></span><span class="cursor"></span>
+                </div>
+                <p style="color: var(--text-muted); font-size: 15px;">6.1+ Years of Industry Experience in Test Automation, System Validation & Verification</p>
+                <div class="banner-tags">
+                    <span class="tag">Java</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Selenium</span>
+                    <span class="tag">API Testing</span>
+                    <span class="tag">TestNG</span>
+                    <span class="tag">Jenkins CI/CD</span>
+                    <span class="tag">Azure DevOps</span>
+                </div>
             </div>
+
             <div class="hud">
                 <span>SAE</span>
             </div>
@@ -534,147 +492,188 @@
         </div>
     </header>
 
+    <!-- SKILLS SECTION -->
     <section id="skills">
-        <h2>Skills</h2>
-        <div class="flex">
-            <div class="card">Java</div>
-            <div class="card">Python</div>
-            <div class="card">Selenium</div>
-            <div class="card">TestNG</div>
-            <div class="card">API Testing</div>
-            <div class="card">STLC</div>
-            <div class="card">SDLC</div>
+        <h2 class="section-title">Skills & Technologies</h2>
+        <div class="filter-tabs">
+            <button class="filter-btn active" onclick="filterSkills('all')">All</button>
+            <button class="filter-btn" onclick="filterSkills('automation')">Automation</button>
+            <button class="filter-btn" onclick="filterSkills('devops')">DevOps & Tools</button>
+        </div>
+
+        <div class="grid" id="skills-grid">
+            <div class="card skill-item" data-category="automation">
+                <h3><i class="fa-brands fa-java"></i> Java Automation</h3>
+                <p>Enterprise framework design with TestNG, Page Object Model, and Maven execution.</p>
+            </div>
+            <div class="card skill-item" data-category="automation">
+                <h3><i class="fa-brands fa-python"></i> Python Testing</h3>
+                <p>PyTest scripting, Selenium bindings, and modular test suite architecture.</p>
+            </div>
+            <div class="card skill-item" data-category="automation">
+                <h3><i class="fa-solid fa-code-branch"></i> API Testing</h3>
+                <p>RESTful service validation using Postman, RestAssured, and JSON schema checks.</p>
+            </div>
+            <div class="card skill-item" data-category="devops">
+                <h3><i class="fa-brands fa-jenkins"></i> CI/CD Integration</h3>
+                <p>Continuous test execution pipelines with Jenkins, GitHub Actions, and Azure DevOps.</p>
+            </div>
         </div>
     </section>
 
-    <section id="tools">
-        <h2>Tools & Platforms</h2>
-        <div class="flex">
-            <div class="card">Git / GitHub</div>
-            <div class="card">Jenkins</div>
-            <div class="card">Maven</div>
-            <div class="card">Postman</div>
-            <div class="card">JIRA</div>
-            <div class="card">HTML</div>
-            <div class="card">MySQL</div>
-        </div>
-    </section>
-
+    <!-- PROGRAMMING LANGUAGES & FRAMEWORKS SECTION -->
     <section id="projects">
-        <h2>Programming Languages</h2>
-        <div class="flex">
+        <h2 class="section-title">Repositories & Frameworks</h2>
+        <div class="grid">
             <div class="card">
-                <h3 style="color:var(--accent-color);">Selenium WebDriver</h3>
-                <p>Built automation using Java, Selenium, TestNG and Page Object Model.</p>
-                <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn">🚀 GitHub Selenium WebDriver</a>
+                <h3>Selenium WebDriver</h3>
+                <p>Built end-to-end web test suites using Java, Selenium, TestNG, and POM design patterns.</p>
+                <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn"><i class="fa-brands fa-github"></i> Repository</a>
             </div>
-
             <div class="card">
-                <h3 style="color:var(--accent-color);">Automation Framework</h3>
-                <p>Automated Data-Driven and Hybrid Framework with Validation and Reporting.</p>
-                <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" class="btn">🚀 GitHub Automation Framework</a>
+                <h3>Hybrid Framework</h3>
+                <p>Data-driven automation engine featuring automated Excel logging and HTML ExtentReports.</p>
+                <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" class="btn"><i class="fa-brands fa-github"></i> Repository</a>
             </div>
-
             <div class="card">
-                <h3 style="color:var(--accent-color);">Cucumber BDD Framework</h3>
-                <p>BDD automation using Cucumber with Selenium and TestNG integration.</p>
-                <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" class="btn">🚀 GitHub Cucumber BDD Framework</a>
+                <h3>Cucumber BDD Framework</h3>
+                <p>Behavior-Driven Development suite written with Cucumber feature files and TestNG adapters.</p>
+                <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" class="btn"><i class="fa-brands fa-github"></i> Repository</a>
             </div>
-
             <div class="card">
-                <h3 style="color:var(--accent-color);">Python-Code</h3>
-                <p>Python basic and OOPs concepts</p>
-                <a href="https://github.com/rames-qa/Python-codes" target="_blank" class="btn">🚀 GitHub Python-Code</a>
-            </div>
-
-            <div class="card">
-                <h3 style="color:var(--accent-color);">Python-Selenium</h3>
-                <p>Automation using Python with Selenium.</p>
-                <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" class="btn">🚀 GitHub Python-Selenium</a>
-            </div>
-
-            <div class="card">
-                <h3 style="color:var(--accent-color);">Java-OOPs Concepts</h3>
-                <p>Java Programming with OOP Concepts.</p>
-                <a href="https://github.com/rames-qa/Java-Code.git" target="_blank" class="btn">🚀 GitHub Java(OOP) Concepts</a>
-            </div>
-
-            <div class="card">
-                <h3 style="color:var(--accent-color);">Python Automation</h3>
-                <p>Python programming examples and automation projects showcasing core Python concepts, scripting, and practical implementations.</p>
-                <a href="https://rames-qa.github.io/PythonAutomation/" target="_blank" class="btn">
-                    🐍 View Python Automation
-                </a>
+                <h3>Python Automation</h3>
+                <p>Modular Python scripting showcase containing object-oriented design and web scrapers.</p>
+                <a href="https://github.com/rames-qa/Python-codes" target="_blank" class="btn"><i class="fa-brands fa-github"></i> Repository</a>
             </div>
         </div>
     </section>
 
+    <!-- DEMO PROJECTS SECTION -->
     <section id="demo-projects">
-        <h2>Demo Projects</h2>
-        <div class="flex">
+        <h2 class="section-title">Live Demo Applications</h2>
+        <div class="grid">
             <div class="card">
-                <h3 style="color:var(--accent-color);">🏥 Smart Health Monitoring Platform</h3>
-                <p>Smart Health Monitoring Platform for elderly care with emergency alerts, doctor connectivity, AI-powered monitoring, and real-time healthcare tracking features.</p>
-                <a href="https://rames-qa.github.io/Smart-Health-Monitoring-Platform/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
+                <h3>🏥 Smart Health Monitoring</h3>
+                <p>Elderly care platform with real-time vitals tracking, alert triggers, and medical dashboards.</p>
+                <a href="https://rames-qa.github.io/Smart-Health-Monitoring-Platform/" target="_blank" class="btn"><i class="fa-solid fa-rocket"></i> Launch Demo</a>
             </div>
-
             <div class="card">
-                <h3 style="color:var(--accent-color);">🗣️ Cognitive Speech AI</h3>
-                <p>Cognitive Speech AI technology, the platform uses live neural intelligence, emotional AI processing, real-time analytics, and intelligent automation.</p>
-                <a href="https://rames-qa.github.io/Cognitive-Speech-AI" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
+                <h3>🗣️ Cognitive Speech AI</h3>
+                <p>Neural intelligence interface featuring voice recognition algorithms and emotion telemetry.</p>
+                <a href="https://rames-qa.github.io/Cognitive-Speech-AI" target="_blank" class="btn"><i class="fa-solid fa-rocket"></i> Launch Demo</a>
             </div>
-
             <div class="card">
-                <h3 style="color:var(--accent-color);">🧠 AI-Driven Elderly Health, Cognitive Ability & Mental Wellness Assessment</h3>
-                <p>Created an AI-powered platform to assess elderly health, cognition, and mental wellness, enabling early risk detection and personalized healthcare recommendations.</p>
-                <a href="https://rames-qa.github.io/Physiological-and-Mental-Health-Assessment-of-Elderly-Indians/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
-            </div>
-
-            <div class="card">
-                <h3 style="color:var(--accent-color);">📊 Quality Analysis & Metrics Automation Dashboard</h3>
-                <p>A centralized operational intelligence dashboard engineered to aggregate, synthesize, and visualize cross-functional performance metrics and real-time project analytics through a high-fidelity, adaptive user interface.</p>
-                <a href="https://rames-qa.github.io/Dashboard/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Dashboard</a>
+                <h3>📊 Quality Metrics Dashboard</h3>
+                <p>Centralized QA analytics dashboard visualizing regression test health and defect density metrics.</p>
+                <a href="https://rames-qa.github.io/Dashboard/" target="_blank" class="btn"><i class="fa-solid fa-chart-line"></i> Launch Dashboard</a>
             </div>
         </div>
     </section>
 
+    <!-- CONTACT SECTION -->
     <section id="contact">
-        <h2>Contact</h2>
-        <p>📞 Available on request</p>
-        <p>📧 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rameshkumar93.68@gmail.com" target="_blank" style="color: var(--accent-color); text-decoration: none; font-weight: bold;">rameshkumar93.68@gmail.com</a></p>
-        <p>📍 Bangalore, Karnataka, India</p>
-        <p>
-<a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf"
-   download="Ramesh_Kumar_K_Resume.pdf"
-   class="btn">
-   📄 Download Resume
-</a>
-
-    <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb"
-       target="_blank"
-       class="btn-linkedin">
-       🔗 LinkedIn Profile
-    </a>
-</p>
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="card" style="max-width: 600px; margin: 0 auto; text-align: center;">
+            <p><i class="fa-solid fa-location-dot" style="color: var(--accent-cyan);"></i> Bengaluru, Karnataka, India</p>
+            <p><i class="fa-solid fa-envelope" style="color: var(--accent-cyan);"></i> rameshkumar93.68@gmail.com</p>
+            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
+                <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf" download class="btn"><i class="fa-solid fa-file-arrow-down"></i> Resume</a>
+                <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" target="_blank" class="btn" style="background: #0077b5;"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </div>
     </section>
 
     <footer>
-        © 2026 Ramesh Kumar K
+        © 2026 Ramesh Kumar K | Built for Performance & Automation Excellence
     </footer>
 
-    <!-- JavaScript for Theme Switching -->
+    <!-- INTERACTIVE JAVASCRIPT -->
     <script>
-        const lightBtn = document.getElementById('light-btn');
+        // MULTILINE TYPEWRITER EFFECT
+        const typingText = document.getElementById("typing-text");
+        const roles = [
+            "SOFTWARE AUTOMATION TESTING ENGINEER",
+            "SDET & TEST ARCHITECT",
+            "CI/CD & DEVOPS PIPELINE ENGINEER"
+        ];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeLoop() {
+            const currentRole = roles[roleIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 40 : 80;
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                typeSpeed = 2000; // Pause at end of word
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeLoop, typeSpeed);
+        }
+        document.addEventListener("DOMContentLoaded", typeLoop);
+
+        // DARK / LIGHT THEME TOGGLE WITH LOCALSTORAGE
         const darkBtn = document.getElementById('dark-btn');
+        const lightBtn = document.getElementById('light-btn');
+
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            lightBtn.classList.add('active');
+            darkBtn.classList.remove('active');
+        }
 
         lightBtn.addEventListener('click', () => {
             document.body.classList.add('light-mode');
+            lightBtn.classList.add('active');
+            darkBtn.classList.remove('active');
+            localStorage.setItem('theme', 'light');
         });
 
         darkBtn.addEventListener('click', () => {
             document.body.classList.remove('light-mode');
+            darkBtn.classList.add('active');
+            lightBtn.classList.remove('active');
+            localStorage.setItem('theme', 'dark');
         });
-    </script>
 
+        // MOBILE NAVIGATION MENU TOGGLE
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // SKILL FILTERING LOGIC
+        function filterSkills(category) {
+            const items = document.querySelectorAll('.skill-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
