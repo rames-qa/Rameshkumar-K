@@ -76,18 +76,19 @@
             justify-content: center;
         }
 
-      .company-text {
-    font-size: 18px;
-    color: var(--accent-color); 
-    line-height: 1.2;
-}
+        .company-text {
+            font-size: 18px;
+            color: var(--accent-color); 
+            line-height: 1.2;
+        }
 
-.profile-text {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--accent-color);
-    line-height: 1.2;
-}
+        .profile-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--accent-color);
+            line-height: 1.2;
+        }
+
         .nav-right {
             display: flex;
             align-items: center;
@@ -185,6 +186,7 @@
             font-size: 20px;
             color: #00e5ff;
             margin: 10px 0;
+            min-height: 24px;
         }
 
         .banner-content p {
@@ -206,6 +208,8 @@
             justify-content: center;
             align-items: center;
             animation: spin 10s linear infinite;
+            flex-shrink: 0;
+            z-index: 2;
         }
 
         .hud::before {
@@ -510,7 +514,22 @@
         <div class="banner">
             <div class="banner-content">
                 <h1>RAMESH KUMAR K</h1>
-                <h2>SOFTWARE AUTOMATION TESTING ENGINEER</h2>
+                <h2 id="typing-heading"></h2>
+                <script>
+                  (function() {
+                    const text = "SOFTWARE AUTOMATION TESTING ENGINEER";
+                    let i = 0;
+                    const speed = 70;
+                    function type() {
+                      if (i < text.length) {
+                        document.getElementById("typing-heading").textContent += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                      }
+                    }
+                    type();
+                  })();
+                </script>
                 <p>6.1+ Years of Experience | Software Automation Engineer</p>
                 <p>Java | Python | Selenium WebDriver | API Testing | TestNG | Jenkins CI/CD | Azure DevOps</p>
                 <p>AI-Assisted Test Automation | Generative AI | SQL | System Validation & Verification | Git/GitHub</p>
@@ -644,18 +663,13 @@
         <p>📧 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rameshkumar93.68@gmail.com" target="_blank" style="color: var(--accent-color); text-decoration: none; font-weight: bold;">rameshkumar93.68@gmail.com</a></p>
         <p>📍 Bangalore, Karnataka, India</p>
         <p>
-<a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf"
-   download="Ramesh_Kumar_K_Resume.pdf"
-   class="btn">
-   📄 Download Resume
-</a>
-
-    <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb"
-       target="_blank"
-       class="btn-linkedin">
-       🔗 LinkedIn Profile
-    </a>
-</p>
+            <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf" download="Ramesh_Kumar_K_Resume.pdf" class="btn">
+                📄 Download Resume
+            </a>
+            <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" target="_blank" class="btn-linkedin">
+                🔗 LinkedIn Profile
+            </a>
+        </p>
     </section>
 
     <footer>
@@ -667,12 +681,19 @@
         const lightBtn = document.getElementById('light-btn');
         const darkBtn = document.getElementById('dark-btn');
 
+        // Check stored theme on load
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+
         lightBtn.addEventListener('click', () => {
             document.body.classList.add('light-mode');
+            localStorage.setItem('theme', 'light');
         });
 
         darkBtn.addEventListener('click', () => {
             document.body.classList.remove('light-mode');
+            localStorage.setItem('theme', 'dark');
         });
     </script>
 
