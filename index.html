@@ -3,740 +3,325 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramesh Kumar K | Automation Engineer</title>
+    <title>Prof. K. Jayaraman - Profile Resume</title>
+    <!-- html2pdf.js CDN for one-click PDF downloading -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
-        /* CSS VARIABLES FOR THEMING */
         :root {
-            --bg-gradient: linear-gradient(135deg, #0f172a, #1e3a8a);
-            --text-color: #ffffff;
-            --nav-bg: rgba(0,0,0,0.7);
-            --card-bg: rgba(255,255,255,0.08);
-            --accent-color: #38bdf8;
-            --banner-bg: radial-gradient(circle at right, #0d2c5a, #022b1a);
-            --footer-bg: rgba(0,0,0,0.5);
+            --primary-color: #1a365d;
+            --accent-color: #0d9488;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-muted: #64748b;
         }
 
-        /* LIGHT MODE OVERRIDES */
-        body.light-mode {
-            --bg-gradient: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-            --text-color: #0f172a;
-            --nav-bg: rgba(255, 255, 255, 0.85);
-            --card-bg: rgba(0, 0, 0, 0.05);
-            --accent-color: #0284c7;
-            --banner-bg: radial-gradient(circle at right, #e0f2fe, #bae6fd);
-            --footer-bg: rgba(0,0,0,0.05);
+        @page {
+            size: A4;
+            margin: 0;
         }
 
-        /* GLOBAL */
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: var(--bg-gradient);
-            color: var(--text-color);
-            overflow-x: hidden;
-            transition: background 0.3s ease, color 0.3s ease;
+            padding: 20px 0 40px 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
-        
-        /* NAVBAR */
-        nav {
+
+        /* Action Bar for Download Options */
+        .action-bar {
+            max-width: 800px;
+            margin: 0 auto 20px auto;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 40px;
-            background: var(--nav-bg);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(8px);
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .nav-circle {
-            background: var(--text-color);
-            color: #1e3a8a;
-            padding: 10px;
-            border-radius: 50%;
-            font-weight: bold;
-            width: 25px;
-            height: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .profile-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-      .company-text {
-    font-size: 18px;
-    color: var(--accent-color); 
-    line-height: 1.2;
-}
-
-.profile-text {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--accent-color);
-    line-height: 1.2;
-}
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            color: var(--accent-color);
-            margin: 0 10px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-color);
-        }
-
-        /* THEME TOGGLE STYLES */
-        .theme-toggle {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.1);
-            padding: 4px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .theme-btn {
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 6px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-color);
-            transition: background 0.3s, color 0.3s;
-        }
-
-        .theme-btn:hover {
-            background: rgba(255,255,255,0.2);
-        }
-
-        .icon {
-            width: 18px;
-            height: 18px;
-        }
-
-        /* BANNER */
-        .banner {
-            min-height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 40px 60px;
-            background: var(--banner-bg);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .banner::before {
-            content: "";
-            position: absolute;
-            width: 400%;
-            height: 400%;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0,255,255,.05) 0 1px,
-                transparent 1px 40px
-            );
-            animation: move 30s linear infinite;
-            top: 0;
-            left: 0;
-        }
-
-        @keyframes move {
-            to {
-                transform: translateY(-200px);
-            }
-        }
-
-        .banner-content {
-            z-index: 2;
-            text-align: left;
-        }
-
-        .banner-content h1 {
-            font-size: 40px;
-            margin: 0;
-        }
-
-        .banner-content h2 {
-            font-size: 20px;
-            color: #00e5ff;
-            margin: 10px 0;
-            min-height: 28px;
-            display: flex;
-            align-items: center;
-        }
-
-        /* BLINKING CURSOR FOR TYPEWRITER */
-        .cursor {
-            display: inline-block;
-            width: 2px;
-            height: 20px;
-            background-color: #00e5ff;
-            margin-left: 4px;
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .banner-content p {
-            font-size: 14px;
-            margin: 5px 0;
-        }
-
-        /* HUD */
-        .hud {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            border: 3px solid #00e5ff;
-            box-shadow:
-                0 0 20px #00e5ff,
-                inset 0 0 20px rgba(0,229,255,.3);
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: spin 10s linear infinite;
-        }
-
-        .hud::before {
-            content: "";
-            position: absolute;
-            inset: 18px;
-            border: 3px dashed #00e5ff;
-            border-radius: 50%;
-            opacity: .8;
-        }
-
-        .hud::after {
-            content: "";
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: #00e5ff;
-            border-radius: 50%;
-            top: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 15px #00e5ff;
-        }
-
-        .hud span {
-            font-size: 34px;
-            font-weight: bold;
-            color: var(--text-color);
-            letter-spacing: 3px;
-            text-shadow: 0 0 15px #00e5ff;
-            animation: counterSpin 10s linear infinite;
-            z-index: 2;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes counterSpin {
-            to {
-                transform: rotate(-360deg);
-            }
-        }
-
-        /* DIAGRAM */
-        .diagram-container {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            margin: 50px auto;
-        }
-
-        .circle-dotted {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 2px dotted #aaa;
-            border-radius: 50%;
-        }
-
-        .profile-img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--accent-color);
-            z-index: 5;
-        }
-
-        .step {
-            position: absolute;
-            background: #1e7f3f;
-            padding: 8px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            color: white;
-            z-index: 6;
-            white-space: nowrap;
-        }
-
-        /* STEP POSITIONS */
-        .selenium {
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .python {
-            top: 60px;
-            right: -30px;
-        }
-
-        .manual {
-            bottom: 80px;
-            right: -30px;
-        }
-
-        .testing {
-            bottom: 80px;
-            left: -30px;
-        }
-
-        .deployment {
-            top: 60px;
-            left: -30px;
-        }
-
-        .building {
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* SECTIONS */
-        section {
-            padding: 50px 20px;
-            max-width: 1200px;
-            margin: auto;
-            text-align: center;
-        }
-
-        .flex {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 10px;
-            width: 280px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: 0.3s;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        #skills .card, #tools .card {
-            width: 180px;
-            justify-content: center;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .btn,
-        .btn-linkedin {
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            margin-top: auto;
-            display: inline-block;
-            transition: 0.3s;
-            font-weight: bold;
-            font-size: 14px;
+            justify-content: flex-end;
+            gap: 12px;
+            padding: 0 10px;
         }
 
         .btn {
-            background: var(--accent-color);
-            color: black;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            padding: 10px 18px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            transition: background-color 0.2s ease, transform 0.1s ease;
         }
 
-        .btn-linkedin {
-            background: var(--accent-color);
-            color: black;
-            margin: 10px;
+        .btn-accent {
+            background-color: var(--accent-color);
         }
 
-        footer {
+        .btn:hover {
+            opacity: 0.95;
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px;
             text-align: center;
-            padding: 20px;
-            background: var(--footer-bg);
         }
 
-        /* MOBILE */
-        @media (max-width: 768px) {
-            nav {
-                padding: 15px 20px;
-                flex-direction: column;
-                gap: 15px;
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ffffff;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .header h1 {
+            margin: 0 0 6px 0;
+            font-size: 2rem;
+        }
+
+        .header p {
+            margin: 0;
+            font-size: 1rem;
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+
+        .header .subtitle {
+            margin-top: 6px;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+            page-break-inside: avoid;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 4px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .grid-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding-left: 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        .grid-list li {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border-left: 4px solid var(--accent-color);
+            font-size: 0.92rem;
+        }
+
+        ul.standard-list {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        ul.standard-list li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: #f1f5f9;
+            padding: 15px 20px;
+            border-radius: 6px;
+        }
+
+        .contact-item {
+            flex: 1;
+            min-width: 180px;
+            font-size: 0.9rem;
+        }
+
+        .contact-item strong {
+            display: block;
+            color: var(--primary-color);
+            margin-bottom: 2px;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* Print / PDF Specific Overrides */
+        @media print {
+            body {
+                background: none;
+                padding: 0;
             }
 
-            .nav-left {
-                flex-direction: row;
-                text-align: left;
+            .action-bar {
+                display: none !important;
             }
 
-            .nav-right {
-                flex-direction: column;
-                gap: 10px;
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+                width: 100%;
+                max-width: 100%;
             }
 
-            .banner {
-                flex-direction: column;
-                text-align: center;
-                padding: 40px 20px;
-                gap: 20px;
+            .header {
+                padding: 25px;
             }
 
-            .banner-content {
-                text-align: center;
+            .content {
+                padding: 25px 30px;
+            }
+
+            .section {
                 margin-bottom: 20px;
             }
 
-            .banner-content h1 {
-                font-size: 28px;
-            }
-
-            .hud {
-                width: 100px;
-                height: 100px;
-            }
-
-            .diagram-container {
-                width: 220px;
-                height: 220px;
-            }
-
-            .profile-img {
-                width: 90px;
-                height: 90px;
-            }
-
-            .step {
-                font-size: 10px;
-                padding: 5px 10px;
-            }
-
-            .python,
-            .manual {
-                right: -10px;
-            }
-
-            .testing,
-            .deployment {
-                left: -10px;
-            }
-            
-            .card {
-                width: 100%;
+            a {
+                color: var(--primary-color);
             }
         }
     </style>
 </head>
-
 <body>
 
-    <nav>
-        <div class="nav-left">
-            <div class="nav-circle">RK</div>
-            <div class="profile-container">
-                <div class="company-text">Aspire NXT Private Limited</div>
-                <div class="profile-text">Software Testing Engineer</div>
-            </div>
-        </div>
-        
-        <div class="nav-right">
-            <div class="nav-links">
-                <a href="#skills">Skills</a>
-                <a href="#projects">Programming Languages</a>
-                <a href="#demo-projects">Demo Projects</a>
-                <a href="#contact">Contact</a>
-            </div>
+<!-- Download / Print Option Buttons -->
+<div class="action-bar">
+    <button class="btn btn-accent" onclick="downloadPDF()">
+        📥 Download PDF
+    </button>
+    <button class="btn" onclick="window.print()">
+        🖨️ Print Resume
+    </button>
+</div>
 
-            <!-- Dark / Light Theme Toggle Icons -->
-            <div class="theme-toggle">
-                <button aria-label="Light mode" class="theme-btn" id="light-btn">
-                    <!-- Sun icon -->
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-                <button aria-label="Dark mode" class="theme-btn" id="dark-btn">
-                    <!-- Moon icon -->
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </nav>
+<!-- Main Resume Container -->
+<div class="container" id="resume">
+    <div class="header">
+        <img class="profile-img" src="https://raw.githubusercontent.com/rames-qa/Prof.-Jayaraman-K---Profile/main/Picture1.jpg" alt="Prof. K. Jayaraman">
+        <h1>Prof. K. Jayaraman (Prof KJ)</h1>
+        <p>Chief Architect – "Learn by Doing" Practices | Trident Technologies Limited, New Delhi</p>
+        <div class="subtitle">Academic Evangelist | Former Defense & Space Scientist | Systems Engineering Leader</div>
+    </div>
 
-    <header>
-        <div class="banner">
-            <div class="banner-content">
-                <h1>RAMESH KUMAR K</h1>
-                <h2>
-                    <span id="typing-heading"></span><span class="cursor"></span>
-                </h2>
-                <script>
-                  (function() {
-                    const titles = [
-      "SOFTWARE AUTOMATION ENGINEER",
-      "JAVA & PYTHON SELENIUM WEBDRIVER AUTOMATION",
-      "AI-POWERED QA & TEST AUTOMATION",
-      "REST API & SYSTEM V&V ENGINEER",
-      "CI/CD PIPELINE & DEVOPS QA"
-    ];
-                    let titleIndex = 0;
-                    let charIndex = 0;
-                    let isDeleting = false;
-                    const typingElement = document.getElementById("typing-heading");
-
-                    function typeLoop() {
-                      const currentTitle = titles[titleIndex];
-                      
-                      if (isDeleting) {
-                        typingElement.textContent = currentTitle.substring(0, charIndex - 1);
-                        charIndex--;
-                      } else {
-                        typingElement.textContent = currentTitle.substring(0, charIndex + 1);
-                        charIndex++;
-                      }
-
-                      let delay = isDeleting ? 40 : 70;
-
-                      if (!isDeleting && charIndex === currentTitle.length) {
-                        delay = 2000;
-                        isDeleting = true;
-                      } else if (isDeleting && charIndex === 0) {
-                        isDeleting = false;
-                        titleIndex = (titleIndex + 1) % titles.length;
-                        delay = 500;
-                      }
-
-                      setTimeout(typeLoop, delay);
-                    }
-
-                    document.addEventListener("DOMContentLoaded", typeLoop);
-                  })();
-                </script>
-                <p>6.1+ Years of Experience | Software Automation Engineer</p>
-                <p>Java | Python | Selenium WebDriver | API Testing | TestNG | Jenkins CI/CD | Azure DevOps</p>
-                <p>AI-Assisted Test Automation | Generative AI | SQL | System Validation & Verification | Git/GitHub</p>
-            </div>
-            <div class="hud">
-                <span>SAE</span>
-            </div>
+    <div class="content">
+        <div class="section">
+            <h2 class="section-title">Current Role & Overview</h2>
+            <ul class="standard-list">
+                <li><strong>Current Designation:</strong> Chief Architect – "Learn by Doing" Practices, Trident Technologies Limited, New Delhi.</li>
+                <li><strong>Academia & Industry Experience:</strong> 30+ years spanning Research, Academia, Industry, and Business.</li>
+                <li><strong>Defense & Space R&D:</strong> ~10 years of service as a Former Scientist at ISRO and DRDO.</li>
+                <li><strong>Industry Leadership:</strong> ~15 years in private industries, including roles as Academic Program Manager at National Instruments (NI) and Chief Architect at Trident Techlabs.</li>
+                <li><strong>Education:</strong> Graduated and Post Graduated from BITS, Pilani (1967 / 1969).</li>
+            </ul>
         </div>
 
-        <div class="diagram-container">
-            <div class="circle-dotted"></div>
-            <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb/" target="_blank">
-                <img src="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/dp.png" class="profile-img" alt="Profile Picture">
-            </a>
-            <div class="step selenium">Selenium</div>
-            <div class="step python">Python</div>
-            <div class="step manual">Java</div>
-            <div class="step testing">Testing</div>
-            <div class="step deployment">Manual</div>
-            <div class="step building">WebDriver</div>
+        <div class="section">
+            <h2 class="section-title">Major Professional Pursuits</h2>
+            <ul class="standard-list">
+                <li>Transforming Engineering Degree Holders into Engineers through "Learn By Doing" (LeaD) practices.</li>
+                <li>Systems Approach to Solutions Engineering and Closed Loop Teaching/Learning Processes.</li>
+                <li>Competency Development Programs for Diploma, Degree, PG, and Doctoral scholars.</li>
+            </ul>
         </div>
-    </header>
 
-    <section id="skills">
-        <h2>Skills</h2>
-        <div class="flex">
-            <div class="card">Java</div>
-            <div class="card">Python</div>
-            <div class="card">Selenium</div>
-            <div class="card">TestNG</div>
-            <div class="card">API Testing</div>
-            <div class="card">STLC</div>
-            <div class="card">SDLC</div>
+        <div class="section">
+            <h2 class="section-title">Domain Expertise</h2>
+            <ul class="grid-list">
+                <li>Systems Approach to Solutions Engineering</li>
+                <li>Automation Engineering</li>
+                <li>Embedded Solutions Engineering</li>
+                <li>IIoT & Industry 4.0 / 5.0</li>
+                <li>Cyber-Physical Systems (CPS)</li>
+                <li>Wired & Wireless Protocols</li>
+            </ul>
         </div>
-    </section>
 
-    <section id="tools">
-        <h2>Tools & Platforms</h2>
-        <div class="flex">
-            <div class="card">Git / GitHub</div>
-            <div class="card">Jenkins</div>
-            <div class="card">Maven</div>
-            <div class="card">Postman</div>
-            <div class="card">JIRA</div>
-            <div class="card">HTML</div>
-            <div class="card">MySQL</div>
+        <div class="section">
+            <h2 class="section-title">Services for Academic Institutions</h2>
+            <ul class="standard-list">
+                <li><strong>Laboratory Reorientation:</strong> Modernizing existing lab sessions to make learners industry-ready.</li>
+                <li><strong>Employability & Mentoring:</strong> Preparing students for core company interviews and handholding them through internships and academic projects.</li>
+                <li><strong>Faculty & Student Development:</strong> Conceptualizing and delivering SDPs and FDPs across institutions.</li>
+            </ul>
         </div>
-    </section>
 
-    <section id="projects">
-        <h2>Programming Languages</h2>
-        <div class="flex">
-            <div class="card">
-                <h3 style="color:var(--accent-color);">Selenium WebDriver</h3>
-                <p>Built automation using Java, Selenium, TestNG and Page Object Model.</p>
-                <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn">🚀 GitHub Selenium WebDriver</a>
-            </div>
-
-            <div class="card">
-                <h3 style="color:var(--accent-color);">Automation Framework</h3>
-                <p>Automated Data-Driven and Hybrid Framework with Validation and Reporting.</p>
-                <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" class="btn">🚀 GitHub Automation Framework</a>
-            </div>
-
-            <div class="card">
-                <h3 style="color:var(--accent-color);">Cucumber BDD Framework</h3>
-                <p>BDD automation using Cucumber with Selenium and TestNG integration.</p>
-                <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" class="btn">🚀 GitHub Cucumber BDD Framework</a>
-            </div>
-
-            <div class="card">
-                <h3 style="color:var(--accent-color);">Python-Code</h3>
-                <p>Python basic and OOPs concepts</p>
-                <a href="https://github.com/rames-qa/Python-codes" target="_blank" class="btn">🚀 GitHub Python-Code</a>
-            </div>
-
-            <div class="card">
-                <h3 style="color:var(--accent-color);">Python-Selenium</h3>
-                <p>Automation using Python with Selenium.</p>
-                <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" class="btn">🚀 GitHub Python-Selenium</a>
-            </div>
-
-            <div class="card">
-                <h3 style="color:var(--accent-color);">Java-OOPs Concepts</h3>
-                <p>Java Programming with OOP Concepts.</p>
-                <a href="https://github.com/rames-qa/Java-Code.git" target="_blank" class="btn">🚀 GitHub Java(OOP) Concepts</a>
-            </div>
-
-            <div class="card">
-                <h3 style="color:var(--accent-color);">Python Automation</h3>
-                <p>Python programming examples and automation projects showcasing core Python concepts, scripting, and practical implementations.</p>
-                <a href="https://rames-qa.github.io/PythonAutomation/" target="_blank" class="btn">
-                    🐍 View Python Automation
-                </a>
+        <div class="section">
+            <h2 class="section-title">Contact Information</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>Location</strong>
+                    Bengaluru, India
+                </div>
+                <div class="contact-item">
+                    <strong>Email</strong>
+                    <a href="mailto:kjicet@gmail.com">kjicet@gmail.com</a><br>
+                    <a href="mailto:prokj@tridenttechlabs.com">prokj@tridenttechlabs.com</a>
+                </div>
+                <div class="contact-item">
+                    <strong>Phone</strong>
+                    +91 94490 50624
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 
-    <section id="demo-projects">
-        <h2>Demo Projects</h2>
-        <div class="flex">
-            <div class="card">
-                <h3 style="color:var(--accent-color);">🏥 Smart Health Monitoring Platform</h3>
-                <p>Smart Health Monitoring Platform for elderly care with emergency alerts, doctor connectivity, AI-powered monitoring, and real-time healthcare tracking features.</p>
-                <a href="https://rames-qa.github.io/Smart-Health-Monitoring-Platform/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
-            </div>
+<script>
+    function downloadPDF() {
+        const element = document.getElementById('resume');
+        const opt = {
+            margin:       0,
+            filename:     'Prof_K_Jayaraman_Resume.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2, useCORS: true },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
 
-            <div class="card">
-                <h3 style="color:var(--accent-color);">🗣️ Cognitive Speech AI</h3>
-                <p>Cognitive Speech AI technology, the platform uses live neural intelligence, emotional AI processing, real-time analytics, and intelligent automation.</p>
-                <a href="https://rames-qa.github.io/Cognitive-Speech-AI" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
-            </div>
-
-            <div class="card">
-                <h3 style="color:var(--accent-color);">🧠 AI-Driven Elderly Health, Cognitive Ability & Mental Wellness Assessment</h3>
-                <p>Created an AI-powered platform to assess elderly health, cognition, and mental wellness, enabling early risk detection and personalized healthcare recommendations.</p>
-                <a href="https://rames-qa.github.io/Physiological-and-Mental-Health-Assessment-of-Elderly-Indians/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
-            </div>
-
-            <div class="card">
-                <h3 style="color:var(--accent-color);">📊 Quality Analysis & Metrics Automation Dashboard</h3>
-                <p>A centralized operational intelligence dashboard engineered to aggregate, synthesize, and visualize cross-functional performance metrics and real-time project analytics through a high-fidelity, adaptive user interface.</p>
-                <a href="https://rames-qa.github.io/Dashboard/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Dashboard</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>📞 Available on request</p>
-        <p>📧 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rameshkumar93.68@gmail.com" target="_blank" style="color: var(--accent-color); text-decoration: none; font-weight: bold;">rameshkumar93.68@gmail.com</a></p>
-        <p>📍 Bangalore, Karnataka, India</p>
-        <p>
-<a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf"
-   download="Ramesh_Kumar_K_Resume.pdf"
-   class="btn">
-   📄 Download Resume
-</a>
-
-    <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb"
-       target="_blank"
-       class="btn-linkedin">
-       🔗 LinkedIn Profile
-    </a>
-</p>
-    </section>
-
-    <footer>
-        © 2026 Ramesh Kumar K
-    </footer>
-
-    <!-- JavaScript for Theme Switching -->
-    <script>
-        const lightBtn = document.getElementById('light-btn');
-        const darkBtn = document.getElementById('dark-btn');
-
-        lightBtn.addEventListener('click', () => {
-            document.body.classList.add('light-mode');
-        });
-
-        darkBtn.addEventListener('click', () => {
-            document.body.classList.remove('light-mode');
-        });
-    </script>
+        // Generate and save PDF directly
+        html2pdf().set(opt).from(element).save();
+    }
+</script>
 
 </body>
 </html>
