@@ -38,16 +38,19 @@ I am a quality-driven and automation-focused engineer specializing in designing,
 
 ---
 
-##  Innovative Demo Projects
+## Innovative Demo Projects
 
-###  HealthTech & AI Solutions
-* **[Smart Health Monitoring Platform](https://rames-qa.github.io/Smart-Health-Monitoring-Platform/)** — An elderly care ecosystem featuring real-time vital tracking, automated emergency alerts, doctor connectivity, and AI-powered health monitoring.
-* **[Cognitive Speech AI](https://rames-qa.github.io/Cognitive-Speech-AI)** — An advanced interaction platform powered by live neural intelligence, emotional AI processing, real-time analytics, and intelligent automation workflows.
-* **[AI-Driven Elderly Wellness Assessment](https://rames-qa.github.io/Physiological-and-Mental-Health-Assessment-of-Elderly-Indians/)** — A predictive platform built to evaluate cognitive capabilities and mental health, enabling early risk detection and personalized care pathways.
+### HealthTech & AI Solutions
+- **[Smart Health Monitoring Platform](https://rames-qa.github.io/Smart-Health-Monitoring-Platform/)** — An elderly care ecosystem featuring real-time vital tracking, automated emergency alerts, doctor connectivity, and AI-powered health monitoring.
+- **[Cognitive Speech AI](https://rames-qa.github.io/Cognitive-Speech-AI)** — An advanced interaction platform powered by live neural intelligence, emotional AI processing, real-time analytics, and intelligent automation workflows.
+- **[AI-Driven Elderly Health, Cognitive Ability & Mental Wellness Assessment](https://rames-qa.github.io/Physiological-and-Mental-Health-Assessment-of-Elderly-Indians/)** — A predictive platform built to evaluate elderly health, cognition, and mental wellness, enabling early risk detection and personalized care pathways.
 
-###  Operational Analytics
-* **[Quality Analysis & Metrics Automation Dashboard](https://rames-qa.github.io/Dashboard/)** — A centralized operational intelligence dashboard engineered to aggregate, synthesize, and visualize cross-functional testing performance metrics via an adaptive UI.
-
+### Automation, Intelligence & Analytics
+- **[AI Vector Automation Hub](https://rames-qa.github.io/AI-Vector-Automation-Hub/)** — An advanced AI-powered test automation framework integrating vector store embeddings, semantic search evaluation, and intelligent test orchestration.
+- **[Chatbot QA & AI Eval Engine](https://rames-qa.github.io/Automation-Framework-Hub/)** — A centralized automation testing framework designed to manage, execute, and analyze automated testing projects with integrated reporting and quality insights.
+- **[Amazon Voice Automation & Testing Framework](https://rames-qa.github.io/Amazon-Automation-Testing-Framework/)** — An AI-powered multi-platform voice automation framework featuring real-time speech recognition, intelligent NLP-based intent detection, fuzzy matching, and dynamic application routing across Amazon, Flipkart, Meesho, Zomato, and Swiggy.
+- **[Excel Sheet Reader Dashboard](https://rames-qa.github.io/Excel-Sheet-Reader-Dashboard/)** — An interactive web-based analytics dashboard engineered to parse, process, and visualize data directly from Excel spreadsheets in real time.
+- **[Live Weather Forecast Application](https://rames-qa.github.io/Weather-Forecast-/)** — A dynamic web application delivering real-time weather tracking, extended daily forecasts, temperature trends, and environmental metrics through responsive API integration.
 ---
 
 ##  Let's Connect!
