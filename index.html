@@ -11,7 +11,7 @@
             --text-color: #ffffff;
             --muted-text: rgba(255, 255, 255, 0.78);
             --nav-bg: rgba(0,0,0,0.7);
-            --sidebar-bg: rgba(9, 14, 30, 0.92);
+            --sidebar-bg: rgba(9, 14, 30, 0.94);
             --card-bg: rgba(255,255,255,0.08);
             --card-hover-bg: rgba(255,255,255,0.13);
             --border-color: rgba(255, 255, 255, 0.12);
@@ -19,7 +19,7 @@
             --accent-soft: rgba(56, 189, 248, 0.16);
             --banner-bg: radial-gradient(circle at right, #0d2c5a, #022b1a);
             --footer-bg: rgba(0,0,0,0.5);
-            --sidebar-width: 285px;
+            --sidebar-width: 290px;
         }
 
         /* LIGHT MODE OVERRIDES */
@@ -28,7 +28,7 @@
             --text-color: #0f172a;
             --muted-text: rgba(15, 23, 42, 0.75);
             --nav-bg: rgba(255, 255, 255, 0.88);
-            --sidebar-bg: rgba(255, 255, 255, 0.95);
+            --sidebar-bg: rgba(255, 255, 255, 0.96);
             --card-bg: rgba(0, 0, 0, 0.05);
             --card-hover-bg: rgba(255, 255, 255, 0.92);
             --border-color: rgba(15, 23, 42, 0.12);
@@ -134,6 +134,33 @@
             text-transform: uppercase;
             color: var(--muted-text);
             margin: 16px 10px 8px;
+        }
+
+        .sidebar-home-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            margin-bottom: 6px;
+            border-radius: 10px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 600;
+            border: 1px solid transparent;
+            transition: all 0.22s ease;
+        }
+
+        .sidebar-home-link:hover {
+            background: var(--accent-soft);
+            color: var(--accent-color);
+        }
+
+        .sidebar-home-link.active {
+            background: var(--accent-color);
+            color: #0f172a;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
         }
 
         .sidebar-menu {
@@ -684,59 +711,146 @@
             transform: translateX(-50%);
         }
 
-        /* TOPIC DETAIL BANNER (shown when a specific subtopic/topic page view is active) */
-        .topic-focus-bar {
+        /* DEDICATED TOPIC / SUBTOPIC PAGE VIEW */
+        #dedicated-page-view {
             display: none;
-            max-width: 1124px;
-            margin: 22px auto 0;
-            padding: 14px 20px;
-            border-radius: 12px;
-            background: var(--accent-soft);
-            border: 1px solid rgba(56, 189, 248, 0.35);
+            max-width: 1120px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 36px 28px 56px;
+            animation: fadeInView 0.25s ease;
+        }
+
+        #dedicated-page-view.active {
+            display: block;
+        }
+
+        @keyframes fadeInView {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-topbar {
+            display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 12px;
             flex-wrap: wrap;
+            margin-bottom: 24px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .topic-focus-bar.visible {
-            display: flex;
-        }
-
-        .topic-focus-info {
+        .breadcrumb-trail {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 13.5px;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--muted-text);
             flex-wrap: wrap;
         }
 
-        .topic-focus-badge {
+        .breadcrumb-trail span.current-crumb {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .home-back-btn {
             background: var(--accent-color);
             color: #0f172a;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
             font-weight: 700;
-            font-size: 11px;
-            text-transform: uppercase;
-            padding: 3px 9px;
-            border-radius: 999px;
-            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease;
         }
 
-        .topic-reset-btn {
+        .home-back-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.08);
+        }
+
+        .dedicated-hero-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 12.5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 26px;
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
         }
 
-        .topic-reset-btn:hover {
-            border-color: var(--accent-color);
+        .dedicated-hero-card h1 {
+            margin: 8px 0 10px;
+            font-size: 30px;
             color: var(--accent-color);
+        }
+
+        .dedicated-hero-card p.lead-desc {
+            margin: 0 0 18px;
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--muted-text);
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        .detail-box {
+            background: var(--accent-soft);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: left;
+        }
+
+        .detail-box h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: var(--accent-color);
+        }
+
+        .detail-box ul {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .code-snippet-box {
+            margin-top: 18px;
+            background: rgba(2, 6, 23, 0.72);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 18px;
+            text-align: left;
+            overflow-x: auto;
+        }
+
+        body.light-mode .code-snippet-box {
+            background: rgba(15, 23, 42, 0.06);
+        }
+
+        .code-snippet-box pre {
+            margin: 0;
+            font-family: Consolas, Monaco, 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.55;
+            color: var(--text-color);
+            white-space: pre-wrap;
+        }
+
+        .dedicated-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
         }
 
         /* SECTIONS */
@@ -787,13 +901,6 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
             border: 1px solid var(--border-color);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
-        }
-
-        .card.highlighted-card {
-            border-color: var(--accent-color);
-            background: var(--card-hover-bg);
-            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.35), 0 14px 30px rgba(2, 132, 199, 0.28);
-            transform: translateY(-4px);
         }
 
         .card h3 {
@@ -888,7 +995,7 @@
 
         /* CONTACT CARD ENHANCEMENT */
         .contact-card {
-            max-width: 680px;
+            max-width: 720px;
             margin: 0 auto;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -912,6 +1019,16 @@
             padding: 12px 18px;
             font-size: 14px;
             font-weight: 500;
+        }
+
+        .contact-item a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
         }
 
         .contact-actions {
@@ -1030,7 +1147,8 @@
                 left: -10px;
             }
 
-            section {
+            section,
+            #dedicated-page-view {
                 padding: 36px 16px;
             }
 
@@ -1054,7 +1172,7 @@
     <aside class="sidebar" id="sidebar" aria-label="Portfolio Sidebar Navigation">
         <div>
             <div class="sidebar-header">
-                <a href="#top" class="sidebar-brand" data-topic-key="overview">
+                <a href="#home" class="sidebar-brand" data-page-key="home">
                     <div class="nav-circle">RK</div>
                     <div class="sidebar-brand-info">
                         <span class="sidebar-brand-name">Ramesh Kumar K</span>
@@ -1064,12 +1182,17 @@
                 <button type="button" class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close sidebar">&times;</button>
             </div>
 
-            <div class="sidebar-label">Portfolio Navigation</div>
+            <div class="sidebar-label">Navigation</div>
+            <a href="#home" class="sidebar-home-link active" data-page-key="home">
+                <span>🏠</span>
+                <span>Home</span>
+            </a>
+
             <ul class="sidebar-menu" id="sidebar-menu">
                 <!-- 1. Skills -->
                 <li class="sidebar-group" data-group="skills">
                     <div class="sidebar-group-header">
-                        <a href="#skills" class="sidebar-topic-link" data-topic-key="skills">
+                        <a href="#page/skills" class="sidebar-topic-link" data-page-key="skills">
                             <span class="nav-icon">⚡</span>
                             <span class="sidebar-topic-text">Skills</span>
                         </a>
@@ -1080,13 +1203,13 @@
                     <div class="submenu-collapse">
                         <div class="submenu-inner">
                             <ul class="submenu-list">
-                                <li><a href="#skill-java" data-topic-key="skill-java">Java</a></li>
-                                <li><a href="#skill-python" data-topic-key="skill-python">Python</a></li>
-                                <li><a href="#skill-selenium" data-topic-key="skill-selenium">Selenium</a></li>
-                                <li><a href="#skill-testng" data-topic-key="skill-testng">TestNG</a></li>
-                                <li><a href="#skill-api-testing" data-topic-key="skill-api-testing">API Testing</a></li>
-                                <li><a href="#skill-stlc" data-topic-key="skill-stlc">STLC</a></li>
-                                <li><a href="#skill-sdlc" data-topic-key="skill-sdlc">SDLC</a></li>
+                                <li><a href="#page/skill-java" data-page-key="skill-java">Java</a></li>
+                                <li><a href="#page/skill-python" data-page-key="skill-python">Python</a></li>
+                                <li><a href="#page/skill-selenium" data-page-key="skill-selenium">Selenium</a></li>
+                                <li><a href="#page/skill-testng" data-page-key="skill-testng">TestNG</a></li>
+                                <li><a href="#page/skill-api-testing" data-page-key="skill-api-testing">API Testing</a></li>
+                                <li><a href="#page/skill-stlc" data-page-key="skill-stlc">STLC</a></li>
+                                <li><a href="#page/skill-sdlc" data-page-key="skill-sdlc">SDLC</a></li>
                             </ul>
                         </div>
                     </div>
@@ -1095,7 +1218,7 @@
                 <!-- 2. Tools & Platforms -->
                 <li class="sidebar-group" data-group="tools">
                     <div class="sidebar-group-header">
-                        <a href="#tools" class="sidebar-topic-link" data-topic-key="tools">
+                        <a href="#page/tools" class="sidebar-topic-link" data-page-key="tools">
                             <span class="nav-icon">🛠️</span>
                             <span class="sidebar-topic-text">Tools &amp; Platforms</span>
                         </a>
@@ -1106,13 +1229,13 @@
                     <div class="submenu-collapse">
                         <div class="submenu-inner">
                             <ul class="submenu-list">
-                                <li><a href="#tool-git-github" data-topic-key="tool-git-github">Git/GitHub</a></li>
-                                <li><a href="#tool-jenkins" data-topic-key="tool-jenkins">Jenkins</a></li>
-                                <li><a href="#tool-maven" data-topic-key="tool-maven">Maven</a></li>
-                                <li><a href="#tool-postman" data-topic-key="tool-postman">Postman</a></li>
-                                <li><a href="#tool-jira" data-topic-key="tool-jira">JIRA</a></li>
-                                <li><a href="#tool-html" data-topic-key="tool-html">HTML</a></li>
-                                <li><a href="#tool-mysql" data-topic-key="tool-mysql">MySQL</a></li>
+                                <li><a href="#page/tool-git-github" data-page-key="tool-git-github">Git/GitHub</a></li>
+                                <li><a href="#page/tool-jenkins" data-page-key="tool-jenkins">Jenkins</a></li>
+                                <li><a href="#page/tool-maven" data-page-key="tool-maven">Maven</a></li>
+                                <li><a href="#page/tool-postman" data-page-key="tool-postman">Postman</a></li>
+                                <li><a href="#page/tool-jira" data-page-key="tool-jira">JIRA</a></li>
+                                <li><a href="#page/tool-html" data-page-key="tool-html">HTML</a></li>
+                                <li><a href="#page/tool-mysql" data-page-key="tool-mysql">MySQL</a></li>
                             </ul>
                         </div>
                     </div>
@@ -1121,7 +1244,7 @@
                 <!-- 3. Programming Languages -->
                 <li class="sidebar-group" data-group="prog-langs">
                     <div class="sidebar-group-header">
-                        <a href="#projects" class="sidebar-topic-link" data-topic-key="prog-langs">
+                        <a href="#page/programming-languages" class="sidebar-topic-link" data-page-key="programming-languages">
                             <span class="nav-icon">💻</span>
                             <span class="sidebar-topic-text">Programming Languages</span>
                         </a>
@@ -1132,8 +1255,8 @@
                     <div class="submenu-collapse">
                         <div class="submenu-inner">
                             <ul class="submenu-list">
-                                <li><a href="#lang-java" data-topic-key="lang-java">Java</a></li>
-                                <li><a href="#lang-python" data-topic-key="lang-python">Python</a></li>
+                                <li><a href="#page/lang-java" data-page-key="lang-java">Java</a></li>
+                                <li><a href="#page/lang-python" data-page-key="lang-python">Python</a></li>
                             </ul>
                         </div>
                     </div>
@@ -1142,7 +1265,7 @@
                 <!-- 4. Automation Projects -->
                 <li class="sidebar-group" data-group="auto-projects">
                     <div class="sidebar-group-header">
-                        <a href="#projects" class="sidebar-topic-link" data-topic-key="auto-projects">
+                        <a href="#page/automation-projects" class="sidebar-topic-link" data-page-key="automation-projects">
                             <span class="nav-icon">🤖</span>
                             <span class="sidebar-topic-text">Automation Projects</span>
                         </a>
@@ -1153,12 +1276,12 @@
                     <div class="submenu-collapse">
                         <div class="submenu-inner">
                             <ul class="submenu-list">
-                                <li><a href="#auto-selenium-webdriver" data-topic-key="auto-selenium-webdriver">Selenium WebDriver (GitHub) <span class="ext-badge">↗</span></a></li>
-                                <li><a href="#auto-hybrid-framework" data-topic-key="auto-hybrid-framework">Automation Framework (GitHub) <span class="ext-badge">↗</span></a></li>
-                                <li><a href="#auto-cucumber-bdd" data-topic-key="auto-cucumber-bdd">Cucumber BDD Framework (GitHub) <span class="ext-badge">↗</span></a></li>
-                                <li><a href="#auto-python-code" data-topic-key="auto-python-code">Python-Code (GitHub) <span class="ext-badge">↗</span></a></li>
-                                <li><a href="#auto-python-selenium" data-topic-key="auto-python-selenium">Python-Selenium (GitHub) <span class="ext-badge">↗</span></a></li>
-                                <li><a href="#auto-java-oops" data-topic-key="auto-java-oops">Java-OOPs Concepts (GitHub) <span class="ext-badge">↗</span></a></li>
+                                <li><a href="#page/auto-selenium-webdriver" data-page-key="auto-selenium-webdriver">Selenium WebDriver</a></li>
+                                <li><a href="#page/auto-hybrid-framework" data-page-key="auto-hybrid-framework">Automation Framework</a></li>
+                                <li><a href="#page/auto-cucumber-bdd" data-page-key="auto-cucumber-bdd">Cucumber BDD Framework</a></li>
+                                <li><a href="#page/auto-python-code" data-page-key="auto-python-code">Python-Code</a></li>
+                                <li><a href="#page/auto-python-selenium" data-page-key="auto-python-selenium">Python-Selenium</a></li>
+                                <li><a href="#page/auto-java-oops" data-page-key="auto-java-oops">Java-OOPs Concepts</a></li>
                             </ul>
                         </div>
                     </div>
@@ -1167,7 +1290,7 @@
                 <!-- 5. Python Automation -->
                 <li class="sidebar-group" data-group="python-auto">
                     <div class="sidebar-group-header">
-                        <a href="#python-automation" class="sidebar-topic-link" data-topic-key="python-auto">
+                        <a href="#page/python-automation" class="sidebar-topic-link" data-page-key="python-automation">
                             <span class="nav-icon">🐍</span>
                             <span class="sidebar-topic-text">Python Automation</span>
                         </a>
@@ -1178,8 +1301,8 @@
                     <div class="submenu-collapse">
                         <div class="submenu-inner">
                             <ul class="submenu-list">
-                                <li><a href="#py-examples" data-topic-key="py-examples">Python Examples</a></li>
-                                <li><a href="#py-automation-projects" data-topic-key="py-automation-projects">Python Automation Projects</a></li>
+                                <li><a href="#page/py-examples" data-page-key="py-examples">Python Examples</a></li>
+                                <li><a href="#page/py-automation-projects" data-page-key="py-automation-projects">Python Automation Projects</a></li>
                             </ul>
                         </div>
                     </div>
@@ -1188,7 +1311,7 @@
                 <!-- 6. Demo Projects -->
                 <li class="sidebar-group" data-group="demo-proj">
                     <div class="sidebar-group-header">
-                        <a href="#demo-projects" class="sidebar-topic-link" data-topic-key="demo-proj">
+                        <a href="#page/demo-projects" class="sidebar-topic-link" data-page-key="demo-proj">
                             <span class="nav-icon">🚀</span>
                             <span class="sidebar-topic-text">Demo Projects</span>
                         </a>
@@ -1199,15 +1322,15 @@
                     <div class="submenu-collapse">
                         <div class="submenu-inner">
                             <ul class="submenu-list">
-                                <li><a href="#demo-1" data-topic-key="demo-1">Smart Health Monitoring Platform</a></li>
-                                <li><a href="#demo-2" data-topic-key="demo-2">Cognitive Speech AI</a></li>
-                                <li><a href="#demo-3" data-topic-key="demo-3">AI-Driven Elderly Health &amp; Wellness</a></li>
-                                <li><a href="#demo-4" data-topic-key="demo-4">Live Weather Forecast Application</a></li>
-                                <li><a href="#demo-5" data-topic-key="demo-5">Excel Sheet Reader Dashboard</a></li>
-                                <li><a href="#demo-6" data-topic-key="demo-6">AI Vector Automation Hub</a></li>
-                                <li><a href="#demo-7" data-topic-key="demo-7">Chatbot QA &amp; AI Eval Engine</a></li>
-                                <li><a href="#demo-8" data-topic-key="demo-8">Multi-Env Config &amp; Credential Mgmt</a></li>
-                                <li><a href="#demo-9" data-topic-key="demo-9">Omni-Voice E-Commerce Automation</a></li>
+                                <li><a href="#page/demo-1" data-page-key="demo-1">Smart Health Monitoring Platform</a></li>
+                                <li><a href="#page/demo-2" data-page-key="demo-2">Cognitive Speech AI</a></li>
+                                <li><a href="#page/demo-3" data-page-key="demo-3">AI-Driven Elderly Health &amp; Wellness</a></li>
+                                <li><a href="#page/demo-4" data-page-key="demo-4">Live Weather Forecast Application</a></li>
+                                <li><a href="#page/demo-5" data-page-key="demo-5">Excel Sheet Reader Dashboard</a></li>
+                                <li><a href="#page/demo-6" data-page-key="demo-6">AI Vector Automation Hub</a></li>
+                                <li><a href="#page/demo-7" data-page-key="demo-7">Chatbot QA &amp; AI Eval Engine</a></li>
+                                <li><a href="#page/demo-8" data-page-key="demo-8">Multi-Env Config &amp; Credential Mgmt</a></li>
+                                <li><a href="#page/demo-9" data-page-key="demo-9">Omni-Voice E-Commerce Automation</a></li>
                             </ul>
                         </div>
                     </div>
@@ -1216,7 +1339,7 @@
                 <!-- 7. Contact -->
                 <li class="sidebar-group" data-group="contact-grp">
                     <div class="sidebar-group-header">
-                        <a href="#contact" class="sidebar-topic-link" data-topic-key="contact-grp">
+                        <a href="#page/contact" class="sidebar-topic-link" data-page-key="contact">
                             <span class="nav-icon">📬</span>
                             <span class="sidebar-topic-text">Contact</span>
                         </a>
@@ -1227,9 +1350,9 @@
                     <div class="submenu-collapse">
                         <div class="submenu-inner">
                             <ul class="submenu-list">
-                                <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=rameshkumar93.68@gmail.com" target="_blank" rel="noopener noreferrer" data-topic-key="contact-email">Email <span class="ext-badge">↗</span></a></li>
-                                <li><a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" target="_blank" rel="noopener noreferrer" data-topic-key="contact-linkedin">LinkedIn <span class="ext-badge">↗</span></a></li>
-                                <li><a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf" download="Ramesh_Kumar_K_Resume.pdf" data-topic-key="contact-resume">Download Resume <span class="ext-badge">↓</span></a></li>
+                                <li><a href="#page/contact-email" data-page-key="contact-email">Email</a></li>
+                                <li><a href="#page/contact-linkedin" data-page-key="contact-linkedin">LinkedIn</a></li>
+                                <li><a href="#page/contact-resume" data-page-key="contact-resume">Download Resume</a></li>
                             </ul>
                         </div>
                     </div>
@@ -1290,328 +1413,319 @@
             </div>
         </nav>
 
-        <header>
-            <div class="banner">
-                <div class="banner-content">
-                    <h1>RAMESH KUMAR K</h1>
-                    <h2>
-                        <span id="typing-heading"></span><span class="cursor"></span>
-                    </h2>
-                    <script>
-                      (function() {
-                        const titles = [
-                          "SOFTWARE TESTING AUTOMATION ENGINEER",
-                          "JAVA & PYTHON SELENIUM WEBDRIVER AUTOMATION",
-                          "AI-POWERED QA & TEST AUTOMATION",
-                          "REST API & SYSTEM V&V ENGINEER",
-                          "CI/CD PIPELINE & DEVOPS QA"
-                        ];
-                        let titleIndex = 0;
-                        let charIndex = 0;
-                        let isDeleting = false;
-                        const typingElement = document.getElementById("typing-heading");
+        <!-- Dedicated Subtopic / Topic Webpage View -->
+        <main id="dedicated-page-view" aria-live="polite"></main>
 
-                        function typeLoop() {
-                          const currentTitle = titles[titleIndex];
-                          
-                          if (isDeleting) {
-                            typingElement.textContent = currentTitle.substring(0, charIndex - 1);
-                            charIndex--;
-                          } else {
-                            typingElement.textContent = currentTitle.substring(0, charIndex + 1);
-                            charIndex++;
-                          }
+        <!-- Main Home Portfolio View -->
+        <div id="home-portfolio-view">
+            <header>
+                <div class="banner">
+                    <div class="banner-content">
+                        <h1>RAMESH KUMAR K</h1>
+                        <h2>
+                            <span id="typing-heading"></span><span class="cursor"></span>
+                        </h2>
+                        <script>
+                          (function() {
+                            const titles = [
+                              "SOFTWARE TESTING AUTOMATION ENGINEER",
+                              "JAVA & PYTHON SELENIUM WEBDRIVER AUTOMATION",
+                              "AI-POWERED QA & TEST AUTOMATION",
+                              "REST API & SYSTEM V&V ENGINEER",
+                              "CI/CD PIPELINE & DEVOPS QA"
+                            ];
+                            let titleIndex = 0;
+                            let charIndex = 0;
+                            let isDeleting = false;
+                            const typingElement = document.getElementById("typing-heading");
 
-                          let delay = isDeleting ? 40 : 70;
+                            function typeLoop() {
+                              const currentTitle = titles[titleIndex];
+                              
+                              if (isDeleting) {
+                                typingElement.textContent = currentTitle.substring(0, charIndex - 1);
+                                charIndex--;
+                              } else {
+                                typingElement.textContent = currentTitle.substring(0, charIndex + 1);
+                                charIndex++;
+                              }
 
-                          if (!isDeleting && charIndex === currentTitle.length) {
-                            delay = 2000;
-                            isDeleting = true;
-                          } else if (isDeleting && charIndex === 0) {
-                            isDeleting = false;
-                            titleIndex = (titleIndex + 1) % titles.length;
-                            delay = 500;
-                          }
+                              let delay = isDeleting ? 40 : 70;
 
-                          setTimeout(typeLoop, delay);
-                        }
+                              if (!isDeleting && charIndex === currentTitle.length) {
+                                delay = 2000;
+                                isDeleting = true;
+                              } else if (isDeleting && charIndex === 0) {
+                                isDeleting = false;
+                                titleIndex = (titleIndex + 1) % titles.length;
+                                delay = 500;
+                              }
 
-                        document.addEventListener("DOMContentLoaded", typeLoop);
-                      })();
-                    </script>
-                    <p>6.3+ Years of Experience | Software Testing Automation Engineer</p>
-                    <p>Java | Python | Selenium WebDriver | API Testing | TestNG | Jenkins CI/CD | Azure DevOps</p>
-                    <p>AI-Assisted Test Automation | Generative AI | SQL | System Validation & Verification | Git/GitHub</p>
+                              setTimeout(typeLoop, delay);
+                            }
+
+                            document.addEventListener("DOMContentLoaded", typeLoop);
+                          })();
+                        </script>
+                        <p>6.3+ Years of Experience | Software Testing Automation Engineer</p>
+                        <p>Java | Python | Selenium WebDriver | API Testing | TestNG | Jenkins CI/CD | Azure DevOps</p>
+                        <p>AI-Assisted Test Automation | Generative AI | SQL | System Validation & Verification | Git/GitHub</p>
+                    </div>
+                    <div class="hud">
+                        <span>STE</span>
+                    </div>
                 </div>
-                <div class="hud">
-                    <span>STE</span>
+
+                <div class="diagram-container">
+                    <div class="circle-dotted"></div>
+                    <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb/" target="_blank">
+                        <img src="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/dp.png" class="profile-img" alt="Profile Picture">
+                    </a>
+                    <div class="step selenium">Selenium</div>
+                    <div class="step manual">Java</div>
+                    <div class="step python">Python</div>
+                    <div class="step testing">Testing</div>
+                    <div class="step deployment">Manual</div>
+                    <div class="step building">WebDriver</div>
                 </div>
-            </div>
+            </header>
 
-            <div class="diagram-container">
-                <div class="circle-dotted"></div>
-                <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb/" target="_blank">
-                    <img src="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/dp.png" class="profile-img" alt="Profile Picture">
-                </a>
-                <div class="step selenium">Selenium</div>
-                <div class="step manual">Java</div>
-                <div class="step python">Python</div>
-                <div class="step testing">Testing</div>
-                <div class="step deployment">Manual</div>
-                <div class="step building">WebDriver</div>
-            </div>
-        </header>
+            <section id="skills">
+                <div class="section-header">
+                    <h2>⚡ Skills</h2>
+                    <p class="section-subtitle">Core QA engineering, test automation frameworks, and software lifecycle expertise</p>
+                </div>
+                <div class="flex">
+                    <div class="card"><span class="badge-icon">☕</span><span>Java</span></div>
+                    <div class="card"><span class="badge-icon">🐍</span><span>Python</span></div>
+                    <div class="card"><span class="badge-icon">🌐</span><span>Selenium</span></div>
+                    <div class="card"><span class="badge-icon">🧪</span><span>TestNG</span></div>
+                    <div class="card"><span class="badge-icon">🔌</span><span>API Testing</span></div>
+                    <div class="card"><span class="badge-icon">📋</span><span>STLC</span></div>
+                    <div class="card"><span class="badge-icon">🔄</span><span>SDLC</span></div>
+                </div>
+            </section>
 
-        <!-- Active Subtopic Indicator Bar -->
-        <div class="topic-focus-bar" id="topic-focus-bar" role="region" aria-label="Selected Topic Indicator">
-            <div class="topic-focus-info">
-                <span class="topic-focus-badge" id="topic-focus-group">Topic</span>
-                <strong id="topic-focus-title"></strong>
-                <span id="topic-focus-desc" style="color: var(--muted-text);"></span>
-            </div>
-            <button type="button" class="topic-reset-btn" id="topic-reset-btn">Show All Items</button>
+            <section id="tools">
+                <div class="section-header">
+                    <h2>🛠️ Tools &amp; Platforms</h2>
+                    <p class="section-subtitle">Version control, CI/CD orchestration, build management, API validation, and databases</p>
+                </div>
+                <div class="flex">
+                    <div class="card"><span class="badge-icon">🌿</span><span>Git</span></div>
+                    <div class="card"><span class="badge-icon">🐙</span><span>GitHub</span></div>
+                    <div class="card"><span class="badge-icon">⚙️</span><span>Jenkins</span></div>
+                    <div class="card"><span class="badge-icon">📦</span><span>Maven</span></div>
+                    <div class="card"><span class="badge-icon">🚀</span><span>Postman</span></div>
+                    <div class="card"><span class="badge-icon">📌</span><span>JIRA</span></div>
+                    <div class="card"><span class="badge-icon">🧱</span><span>HTML</span></div>
+                    <div class="card"><span class="badge-icon">🗄️</span><span>MySQL</span></div>
+                </div>
+            </section>
+
+            <section id="projects">
+                <div class="section-header">
+                    <h2>💻 Programming Languages &amp; Automation Projects</h2>
+                    <p class="section-subtitle">Java, Python, Selenium WebDriver, Cucumber BDD, and object-oriented automation repositories</p>
+                </div>
+                <div class="flex">
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Java</span><span class="tag-pill">Selenium</span><span class="tag-pill">TestNG</span></div>
+                            <h3 style="color:var(--accent-color);">Selenium WebDriver</h3>
+                            <p>Built automation using Java, Selenium, TestNG and Page Object Model.</p>
+                        </div>
+                        <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn">🚀 GitHub Selenium WebDriver</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Hybrid</span><span class="tag-pill">Data-Driven</span></div>
+                            <h3 style="color:var(--accent-color);">Automation Framework</h3>
+                            <p>Automated Data-Driven and Hybrid Framework with Validation and Reporting.</p>
+                        </div>
+                        <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" class="btn">🚀 GitHub Automation Framework</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Cucumber</span><span class="tag-pill">BDD</span></div>
+                            <h3 style="color:var(--accent-color);">Cucumber BDD Framework</h3>
+                            <p>BDD automation using Cucumber with Selenium and TestNG integration.</p>
+                        </div>
+                        <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" class="btn">🚀 GitHub Cucumber BDD Framework</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">OOP</span></div>
+                            <h3 style="color:var(--accent-color);">Python-Code</h3>
+                            <p>Python basic and OOPs concepts</p>
+                        </div>
+                        <a href="https://github.com/rames-qa/Python-codes" target="_blank" class="btn">🚀 GitHub Python-Code</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">Selenium</span></div>
+                            <h3 style="color:var(--accent-color);">Python-Selenium</h3>
+                            <p>Automation using Python with Selenium.</p>
+                        </div>
+                        <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" class="btn">🚀 GitHub Python-Selenium</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Java</span><span class="tag-pill">OOPs</span></div>
+                            <h3 style="color:var(--accent-color);">Java-OOPs Concepts</h3>
+                            <p>Java Programming with OOP Concepts.</p>
+                        </div>
+                        <a href="https://github.com/rames-qa/Java-Code.git" target="_blank" class="btn">🚀 GitHub Java(OOP) Concepts</a>
+                    </div>
+
+                    <div class="card" id="python-automation">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">Scripting</span></div>
+                            <h3 style="color:var(--accent-color);">Python Automation</h3>
+                            <p>Python programming examples and automation projects showcasing core Python concepts, scripting, and practical implementations.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/PythonAutomation/" target="_blank" class="btn">
+                            🐍 View Python Automation
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="demo-projects">
+                <div class="section-header">
+                    <h2>🚀 Demo Projects</h2>
+                    <p class="section-subtitle">Live interactive applications, AI-powered evaluation hubs, and automation dashboards</p>
+                </div>
+                <div class="flex">
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Healthcare AI</span><span class="tag-pill">Live Demo</span></div>
+                            <h3 style="color:var(--accent-color);">🏥 Smart Health Monitoring Platform</h3>
+                            <p>Smart Health Monitoring Platform for elderly care with emergency alerts, doctor connectivity, AI-powered monitoring, and real-time healthcare tracking features.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Smart-Health-Monitoring-Platform/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Speech AI</span><span class="tag-pill">Live Demo</span></div>
+                            <h3 style="color:var(--accent-color);">🗣️ Cognitive Speech AI</h3>
+                            <p>Cognitive Speech AI technology, the platform uses live neural intelligence, emotional AI processing, real-time analytics, and intelligent automation.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Cognitive-Speech-AI" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Mental Wellness</span><span class="tag-pill">Live Demo</span></div>
+                            <h3 style="color:var(--accent-color);">🧠 AI-Driven Elderly Health, Cognitive Ability & Mental Wellness Assessment</h3>
+                            <p>Created an AI-powered platform to assess elderly health, cognition, and mental wellness, enabling early risk detection and personalized healthcare recommendations.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Physiological-and-Mental-Health-Assessment-of-Elderly-Indians/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">REST API</span><span class="tag-pill">Live Demo</span></div>
+                            <h3 style="color:var(--accent-color);">🌤️ Live Weather Forecast Application</h3>
+                            <p>A dynamic web application delivering real-time weather tracking, extended daily forecasts, temperature trends, and environmental metrics through responsive API integration.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Weather-Forecast-/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Analytics</span><span class="tag-pill">Live Demo</span></div>
+                            <h3 style="color:var(--accent-color);">📈 Excel Sheet Reader Dashboard</h3>
+                            <p>An interactive web-based analytics dashboard engineered to parse, process, and visualize data directly from Excel spreadsheets in real time.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Excel-Sheet-Reader-Dashboard/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Vector AI</span><span class="tag-pill">Live Demo</span></div>
+                            <h3 style="color:var(--accent-color);">🤖 AI Vector Automation Hub</h3>
+                            <p>An advanced AI-powered test automation framework integrating vector store embeddings, semantic search evaluation, and intelligent test orchestration.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/AI-Vector-Automation-Hub/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">QA Eval</span><span class="tag-pill">Live Demo</span></div>
+                            <h3 style="color:var(--accent-color);">🤖CHATBOT QA & AI EVAL ENGINE </h3>
+                            <p>A centralized automation testing framework designed to manage, execute, and analyze automated testing projects with integrated reporting and quality insights.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Automation-Framework-Hub/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">CI/CD</span><span class="tag-pill">Security</span></div>
+                            <h3 style="color: var(--accent-color);">🔐 Multi-Environment Configuration &amp; Secure Credential Management</h3>
+                            <p>A modular Python API test automation framework designed to manage multiple environments, securely handle credentials, centralize configuration, and integrate automated API testing with GitHub Actions CI/CD. </p>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://rames-qa.github.io/Multi-Environment-Configuration-Secure-Credential-Management/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Voice AI</span><span class="tag-pill">NLP</span></div>
+                            <h3 style="color:var(--accent-color);">🛒 Omni-Voice:E-Commerce Automation & Testing Framework</h3>
+                            <p>An AI-powered multi-platform voice automation framework featuring real-time speech recognition, intelligent NLP-based intent detection, fuzzy matching, and dynamic application routing across Amazon,
+                                Flipkart, Meesho, Zomato, and Swiggy. </p>
+                        </div>
+                        <a href="https://rames-qa.github.io/-Omni-Voice-E-Commerce-Automation-Testing-Framework/"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn">
+                            🚀 Demo Project</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact">
+                <div class="section-header">
+                    <h2>📬 Contact</h2>
+                    <p class="section-subtitle">Let's connect for QA Automation, SDET, and AI-Assisted Testing opportunities</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-grid">
+                        <div class="contact-item">📞 Phone: <a href="tel:+919368000000">Available on request</a></div>
+                        <div class="contact-item">📧 Email: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rameshkumar93.68@gmail.com" target="_blank">rameshkumar93.68@gmail.com</a></div>
+                        <div class="contact-item">📍 Location: Bangalore, Karnataka, India</div>
+                    </div>
+                    <div class="contact-actions">
+                        <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf"
+                           download="Ramesh_Kumar_K_Resume.pdf"
+                           class="btn">
+                           📄 Download Resume
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb"
+                           target="_blank"
+                           class="btn-linkedin">
+                           🔗 LinkedIn Profile
+                        </a>
+                    </div>
+                </div>
+            </section>
         </div>
-
-        <section id="skills">
-            <div class="section-header">
-                <h2>⚡ Skills</h2>
-                <p class="section-subtitle">Core QA engineering, test automation frameworks, and software lifecycle expertise</p>
-            </div>
-            <div class="flex">
-                <div class="card" data-topic="skill-java"><span class="badge-icon">☕</span><span>Java</span></div>
-                <div class="card" data-topic="skill-python"><span class="badge-icon">🐍</span><span>Python</span></div>
-                <div class="card" data-topic="skill-selenium"><span class="badge-icon">🌐</span><span>Selenium</span></div>
-                <div class="card" data-topic="skill-testng"><span class="badge-icon">🧪</span><span>TestNG</span></div>
-                <div class="card" data-topic="skill-api-testing"><span class="badge-icon">🔌</span><span>API Testing</span></div>
-                <div class="card" data-topic="skill-stlc"><span class="badge-icon">📋</span><span>STLC</span></div>
-                <div class="card" data-topic="skill-sdlc"><span class="badge-icon">🔄</span><span>SDLC</span></div>
-            </div>
-        </section>
-
-        <section id="tools">
-            <div class="section-header">
-                <h2>🛠️ Tools &amp; Platforms</h2>
-                <p class="section-subtitle">Version control, CI/CD orchestration, build management, API validation, and databases</p>
-            </div>
-            <div class="flex">
-                <div class="card" data-topic="tool-git-github"><span class="badge-icon">🌿</span><span>Git</span></div>
-                <div class="card" data-topic="tool-git-github"><span class="badge-icon">🐙</span><span>GitHub</span></div>
-                <div class="card" data-topic="tool-jenkins"><span class="badge-icon">⚙️</span><span>Jenkins</span></div>
-                <div class="card" data-topic="tool-maven"><span class="badge-icon">📦</span><span>Maven</span></div>
-                <div class="card" data-topic="tool-postman"><span class="badge-icon">🚀</span><span>Postman</span></div>
-                <div class="card" data-topic="tool-jira"><span class="badge-icon">📌</span><span>JIRA</span></div>
-                <div class="card" data-topic="tool-html"><span class="badge-icon">🧱</span><span>HTML</span></div>
-                <div class="card" data-topic="tool-mysql"><span class="badge-icon">🗄️</span><span>MySQL</span></div>
-            </div>
-        </section>
-
-        <section id="projects">
-            <div class="section-header">
-                <h2>💻 Programming Languages &amp; Automation Projects</h2>
-                <p class="section-subtitle">Java, Python, Selenium WebDriver, Cucumber BDD, and object-oriented automation repositories</p>
-            </div>
-            <div class="flex">
-                <div class="card" data-topic="auto-selenium-webdriver" data-lang="java">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Java</span><span class="tag-pill">Selenium</span><span class="tag-pill">TestNG</span></div>
-                        <h3 style="color:var(--accent-color);">Selenium WebDriver</h3>
-                        <p>Built automation using Java, Selenium, TestNG and Page Object Model.</p>
-                    </div>
-                    <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn">🚀 GitHub Selenium WebDriver</a>
-                </div>
-
-                <div class="card" data-topic="auto-hybrid-framework" data-lang="java">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Hybrid</span><span class="tag-pill">Data-Driven</span></div>
-                        <h3 style="color:var(--accent-color);">Automation Framework</h3>
-                        <p>Automated Data-Driven and Hybrid Framework with Validation and Reporting.</p>
-                    </div>
-                    <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" class="btn">🚀 GitHub Automation Framework</a>
-                </div>
-
-                <div class="card" data-topic="auto-cucumber-bdd" data-lang="java">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Cucumber</span><span class="tag-pill">BDD</span></div>
-                        <h3 style="color:var(--accent-color);">Cucumber BDD Framework</h3>
-                        <p>BDD automation using Cucumber with Selenium and TestNG integration.</p>
-                    </div>
-                    <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" class="btn">🚀 GitHub Cucumber BDD Framework</a>
-                </div>
-
-                <div class="card" data-topic="auto-python-code" data-lang="python">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">OOP</span></div>
-                        <h3 style="color:var(--accent-color);">Python-Code</h3>
-                        <p>Python basic and OOPs concepts</p>
-                    </div>
-                    <a href="https://github.com/rames-qa/Python-codes" target="_blank" class="btn">🚀 GitHub Python-Code</a>
-                </div>
-
-                <div class="card" data-topic="auto-python-selenium" data-lang="python">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">Selenium</span></div>
-                        <h3 style="color:var(--accent-color);">Python-Selenium</h3>
-                        <p>Automation using Python with Selenium.</p>
-                    </div>
-                    <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" class="btn">🚀 GitHub Python-Selenium</a>
-                </div>
-
-                <div class="card" data-topic="auto-java-oops" data-lang="java">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Java</span><span class="tag-pill">OOPs</span></div>
-                        <h3 style="color:var(--accent-color);">Java-OOPs Concepts</h3>
-                        <p>Java Programming with OOP Concepts.</p>
-                    </div>
-                    <a href="https://github.com/rames-qa/Java-Code.git" target="_blank" class="btn">🚀 GitHub Java(OOP) Concepts</a>
-                </div>
-
-                <div class="card" id="python-automation" data-topic="py-automation-projects" data-lang="python">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">Scripting</span></div>
-                        <h3 style="color:var(--accent-color);">Python Automation</h3>
-                        <p>Python programming examples and automation projects showcasing core Python concepts, scripting, and practical implementations.</p>
-                    </div>
-                    <a href="https://rames-qa.github.io/PythonAutomation/" target="_blank" class="btn">
-                        🐍 View Python Automation
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="demo-projects">
-            <div class="section-header">
-                <h2>🚀 Demo Projects</h2>
-                <p class="section-subtitle">Live interactive applications, AI-powered evaluation hubs, and automation dashboards</p>
-            </div>
-            <div class="flex">
-                <div class="card" data-topic="demo-1">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Healthcare AI</span><span class="tag-pill">Live Demo</span></div>
-                        <h3 style="color:var(--accent-color);">🏥 Smart Health Monitoring Platform</h3>
-                        <p>Smart Health Monitoring Platform for elderly care with emergency alerts, doctor connectivity, AI-powered monitoring, and real-time healthcare tracking features.</p>
-                    </div>
-                    <a href="https://rames-qa.github.io/Smart-Health-Monitoring-Platform/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
-                </div>
-
-                <div class="card" data-topic="demo-2">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Speech AI</span><span class="tag-pill">Live Demo</span></div>
-                        <h3 style="color:var(--accent-color);">🗣️ Cognitive Speech AI</h3>
-                        <p>Cognitive Speech AI technology, the platform uses live neural intelligence, emotional AI processing, real-time analytics, and intelligent automation.</p>
-                    </div>
-                    <a href="https://rames-qa.github.io/Cognitive-Speech-AI" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
-                </div>
-
-                <div class="card" data-topic="demo-3">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Mental Wellness</span><span class="tag-pill">Live Demo</span></div>
-                        <h3 style="color:var(--accent-color);">🧠 AI-Driven Elderly Health, Cognitive Ability & Mental Wellness Assessment</h3>
-                        <p>Created an AI-powered platform to assess elderly health, cognition, and mental wellness, enabling early risk detection and personalized healthcare recommendations.</p>
-                    </div>
-                    <a href="https://rames-qa.github.io/Physiological-and-Mental-Health-Assessment-of-Elderly-Indians/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
-                </div>
-
-                <div class="card" data-topic="demo-4">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">REST API</span><span class="tag-pill">Live Demo</span></div>
-                        <h3 style="color:var(--accent-color);">🌤️ Live Weather Forecast Application</h3>
-                        <p>A dynamic web application delivering real-time weather tracking, extended daily forecasts, temperature trends, and environmental metrics through responsive API integration.</p>
-                    </div>
-                    <a href="https://rames-qa.github.io/Weather-Forecast-/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
-                </div>
-
-                <div class="card" data-topic="demo-5">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Analytics</span><span class="tag-pill">Live Demo</span></div>
-                        <h3 style="color:var(--accent-color);">📈 Excel Sheet Reader Dashboard</h3>
-                        <p>An interactive web-based analytics dashboard engineered to parse, process, and visualize data directly from Excel spreadsheets in real time.</p>
-                    </div>
-                    <a href="https://rames-qa.github.io/Excel-Sheet-Reader-Dashboard/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
-                </div>
-
-                <div class="card" data-topic="demo-6">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Vector AI</span><span class="tag-pill">Live Demo</span></div>
-                        <h3 style="color:var(--accent-color);">🤖 AI Vector Automation Hub</h3>
-                        <p>An advanced AI-powered test automation framework integrating vector store embeddings, semantic search evaluation, and intelligent test orchestration.</p>
-                    </div>
-                    <a href="https://rames-qa.github.io/AI-Vector-Automation-Hub/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
-                </div>
-
-                <div class="card" data-topic="demo-7">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">QA Eval</span><span class="tag-pill">Live Demo</span></div>
-                        <h3 style="color:var(--accent-color);">🤖CHATBOT QA & AI EVAL ENGINE </h3>
-                        <p>A centralized automation testing framework designed to manage, execute, and analyze automated testing projects with integrated reporting and quality insights.</p>
-                    </div>
-                    <a href="https://rames-qa.github.io/Automation-Framework-Hub/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
-                </div>
-
-                <div class="card" data-topic="demo-8">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">CI/CD</span><span class="tag-pill">Security</span></div>
-                        <h3 style="color: var(--accent-color);">🔐 Multi-Environment Configuration &amp; Secure Credential Management</h3>
-                        <p>A modular Python API test automation framework designed to manage multiple environments, securely handle credentials, centralize configuration, and integrate automated API testing with GitHub Actions CI/CD. </p>
-                    </div>
-                    <div class="card-actions">
-                        <a href="https://rames-qa.github.io/Multi-Environment-Configuration-Secure-Credential-Management/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
-                    </div>
-                </div>
-
-                <div class="card" data-topic="demo-9">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Voice AI</span><span class="tag-pill">NLP</span></div>
-                        <h3 style="color:var(--accent-color);">🛒 Omni-Voice:E-Commerce Automation & Testing Framework</h3>
-                        <p>An AI-powered multi-platform voice automation framework featuring real-time speech recognition, intelligent NLP-based intent detection, fuzzy matching, and dynamic application routing across Amazon,
-                            Flipkart, Meesho, Zomato, and Swiggy. </p>
-                    </div>
-                    <a href="https://rames-qa.github.io/-Omni-Voice-E-Commerce-Automation-Testing-Framework/"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="btn">
-                        🚀 Demo Project</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <div class="section-header">
-                <h2>📬 Contact</h2>
-                <p class="section-subtitle">Let's connect for QA Automation, SDET, and AI-Assisted Testing opportunities</p>
-            </div>
-            <div class="contact-card">
-                <div class="contact-grid">
-                    <div class="contact-item">
-              📞 Phone:
-                <a href="tel:+919632758871"
-                style="color: var(--accent-color); text-decoration: none; font-weight: bold;">
-               </a>
-                    </div>
-                    <div class="contact-item">📧 Email: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rameshkumar93.68@gmail.com" target="_blank" style="color: var(--accent-color); text-decoration: none; font-weight: bold;">rameshkumar93.68@gmail.com</a></div>
-                    <div class="contact-item">📍 Location: Bangalore, Karnataka, India</div>
-                </div>
-                <div class="contact-actions">
-                    <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf"
-                       download="Ramesh_Kumar_K_Resume.pdf"
-                       class="btn">
-                       📄 Download Resume
-                    </a>
-
-                    <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb"
-                       target="_blank"
-                       class="btn-linkedin">
-                       🔗 LinkedIn Profile
-                    </a>
-                </div>
-            </div>
-        </section>
 
         <footer>
             © 2026 Ramesh Kumar K
         </footer>
     </div>
 
-    <!-- JavaScript for Theme Switching, Expandable Sidebar Dropdowns & Topic Navigation -->
+    <!-- JavaScript for Theme Switching, Expandable Sidebar Dropdowns & Dedicated Topic Views -->
     <script>
         const lightBtn = document.getElementById('light-btn');
         const darkBtn = document.getElementById('dark-btn');
@@ -1652,7 +1766,7 @@
             sidebarOverlay.addEventListener('click', closeSidebar);
         }
 
-        // Independent Dropdown Arrow Toggle
+        // Independent Dropdown Arrow Toggle (Expand / Collapse without navigating away)
         const arrowButtons = document.querySelectorAll('.dropdown-arrow-btn');
         arrowButtons.forEach((btn) => {
             btn.addEventListener('click', (e) => {
@@ -1665,185 +1779,1322 @@
             });
         });
 
-        // Topic / Subtopic Metadata & Selection State
-        const topicFocusBar = document.getElementById('topic-focus-bar');
-        const topicFocusGroup = document.getElementById('topic-focus-group');
-        const topicFocusTitle = document.getElementById('topic-focus-title');
-        const topicFocusDesc = document.getElementById('topic-focus-desc');
-        const topicResetBtn = document.getElementById('topic-reset-btn');
-        const allCards = document.querySelectorAll('.card');
-        const allSidebarLinks = document.querySelectorAll('#sidebar-menu a, .sidebar-brand');
+        // Dedicated Topic / Subtopic Pages Data Model
+        const pageData = {
+            'skills': {
+                group: 'Skills',
+                parentGroup: 'skills',
+                title: '⚡ Core QA & Automation Skills',
+                description: 'Comprehensive expertise across Java, Python, Selenium WebDriver, TestNG, REST API Testing, STLC, and SDLC for enterprise software quality assurance.',
+                items: [
+                    { label: 'Java', actionPage: 'skill-java' },
+                    { label: 'Python', actionPage: 'skill-python' },
+                    { label: 'Selenium', actionPage: 'skill-selenium' },
+                    { label: 'TestNG', actionPage: 'skill-testng' },
+                    { label: 'API Testing', actionPage: 'skill-api-testing' },
+                    { label: 'STLC', actionPage: 'skill-stlc' },
+                    { label: 'SDLC', actionPage: 'skill-sdlc' }
+                ],
+                boxes: [
+                    {
+                        heading: 'Automation & Programming',
+                        points: [
+                            'Java & Python test automation development',
+                            'Selenium WebDriver UI & cross-browser automation',
+                            'TestNG test suites, assertions & parallel execution'
+                        ]
+                    },
+                    {
+                        heading: 'Validation & Lifecycle',
+                        points: [
+                            'REST API functional & contract testing',
+                            'End-to-end Software Testing Life Cycle (STLC)',
+                            'Agile & iterative SDLC quality governance'
+                        ]
+                    }
+                ]
+            },
+            'skill-java': {
+                group: 'Skills',
+                parentGroup: 'skills',
+                title: '☕ Java for Test Automation',
+                description: 'Developing scalable UI test automation frameworks, Page Object Models, data-driven utilities, and Cucumber BDD suites in Java.',
+                boxes: [
+                    {
+                        heading: 'Key Capabilities',
+                        points: [
+                            'Object-Oriented design with classes, inheritance, polymorphism & encapsulation',
+                            'Collections, exception handling & file/Excel data providers',
+                            'Integration with Selenium WebDriver, TestNG, Maven & Cucumber'
+                        ]
+                    },
+                    {
+                        heading: 'Related Repositories',
+                        points: [
+                            'Selenium WebDriver (Selenium-Feb)',
+                            'Automation Framework (com.selenium.java)',
+                            'Cucumber BDD Framework (Cucumber-BDD)'
+                        ]
+                    }
+                ],
+                code: `// Sample TestNG + Selenium Page Object verification pattern\n@Test(groups = {"smoke", "regression"})\npublic void verifyLoginFlow() {\n    LoginPage loginPage = new LoginPage(driver);\n    DashboardPage dashboard = loginPage.loginAs("qa_user", "SecurePass123");\n    Assert.assertTrue(dashboard.isHeaderDisplayed(), "Dashboard should load after login");\n}`,
+                links: [
+                    { text: '🚀 GitHub Selenium WebDriver', href: 'https://github.com/rames-qa/Selenium-Feb', external: true },
+                    { text: '🚀 GitHub Java(OOP) Concepts', href: 'https://github.com/rames-qa/Java-Code.git', external: true }
+                ]
+            },
+            'skill-python': {
+                group: 'Skills',
+                parentGroup: 'skills',
+                title: '🐍 Python for QA & Automation',
+                description: 'Writing modular Python scripts, Selenium WebDriver tests, API validation helpers, and AI/automation workflows.',
+                boxes: [
+                    {
+                        heading: 'Key Capabilities',
+                        points: [
+                            'Core Python scripting, data structures, decorators & OOPs',
+                            'Python Selenium browser automation & test helpers',
+                            'Environment configuration, data processing & automation utilities'
+                        ]
+                    },
+                    {
+                        heading: 'Related Resources',
+                        points: [
+                            'Python-Code repository (Python-codes)',
+                            'Python-Selenium repository (Python-Selenium)',
+                            'Python Automation portal'
+                        ]
+                    }
+                ],
+                code: `# Sample Python automation check helper\ndef validate_response_status(status_code: int, expected: int = 200) -> bool:\n    if status_code != expected:\n        raise AssertionError(f"Expected status {expected}, got {status_code}")\n    return True`,
+                links: [
+                    { text: '🐍 View Python Automation', href: 'https://rames-qa.github.io/PythonAutomation/', external: true },
+                    { text: '🚀 GitHub Python-Selenium', href: 'https://github.com/rames-qa/Python-Selenium', external: true }
+                ]
+            },
+            'skill-selenium': {
+                group: 'Skills',
+                parentGroup: 'skills',
+                title: '🌐 Selenium WebDriver',
+                description: 'Automating web applications across browsers with resilient locator strategies, explicit waits, Page Object Model, and structured reporting.',
+                boxes: [
+                    {
+                        heading: 'Core Automation Practices',
+                        points: [
+                            'Page Object Model (POM) & reusable component wrappers',
+                            'Synchronization with explicit waits & dynamic element handling',
+                            'Multi-suite regression execution & failure screenshot capture'
+                        ]
+                    },
+                    {
+                        heading: 'Cross-Language Usage',
+                        points: [
+                            'Java + Selenium WebDriver + TestNG / Cucumber',
+                            'Python + Selenium automation scripts and frameworks',
+                            'CI/CD execution via Jenkins and GitHub workflows'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '🚀 GitHub Selenium WebDriver', href: 'https://github.com/rames-qa/Selenium-Feb', external: true },
+                    { text: '🚀 GitHub Python-Selenium', href: 'https://github.com/rames-qa/Python-Selenium', external: true }
+                ]
+            },
+            'skill-testng': {
+                group: 'Skills',
+                parentGroup: 'skills',
+                title: '🧪 TestNG Framework',
+                description: 'Organizing test execution lifecycles, parameterized test data, group/priority filtering, parallel execution, and execution reports with TestNG.',
+                boxes: [
+                    {
+                        heading: 'Framework Features Used',
+                        points: [
+                            '@BeforeSuite, @BeforeMethod, @Test, @AfterMethod annotations',
+                            'DataProvider & XML suite parameterization across environments',
+                            'Assertions, retry/reporting hooks & Maven surefire integration'
+                        ]
+                    },
+                    {
+                        heading: 'Quality Benefits',
+                        points: [
+                            'Clear separation of smoke, sanity, and regression suites',
+                            'Repeatable automated feedback on every build',
+                            'Seamless reporting for stakeholders and QA leads'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '🚀 GitHub Automation Framework', href: 'https://github.com/rames-qa/com.selenium.java', external: true },
+                    { text: '🚀 GitHub Cucumber BDD Framework', href: 'https://github.com/rames-qa/Cucumber-BDD', external: true }
+                ]
+            },
+            'skill-api-testing': {
+                group: 'Skills',
+                parentGroup: 'skills',
+                title: '🔌 API Testing',
+                description: 'Validating REST API endpoints, HTTP status codes, JSON payloads, authentication headers, error responses, and multi-environment configurations.',
+                boxes: [
+                    {
+                        heading: 'API Verification Scope',
+                        points: [
+                            'GET, POST, PUT, PATCH, and DELETE endpoint validation',
+                            'Schema, field-level data integrity, and negative/boundary testing',
+                            'Environment-specific base URLs and secure token/credential handling'
+                        ]
+                    },
+                    {
+                        heading: 'Tools & Frameworks',
+                        points: [
+                            'Postman collections & environment workflows',
+                            'Python API automation with multi-environment configuration',
+                            'CI/CD automated regression checks'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '💻 Multi-Environment Config & Secure Credential Demo', href: 'https://rames-qa.github.io/Multi-Environment-Configuration-Secure-Credential-Management/', external: true }
+                ]
+            },
+            'skill-stlc': {
+                group: 'Skills',
+                parentGroup: 'skills',
+                title: '📋 Software Testing Life Cycle (STLC)',
+                description: 'Structured execution of every STLC stage from requirement traceability and test planning to test execution, defect triage, and release sign-off.',
+                boxes: [
+                    {
+                        heading: 'STLC Phases Covered',
+                        points: [
+                            'Requirement analysis & testability review',
+                            'Test planning, test case authoring & traceability matrix (RTM)',
+                            'Test environment setup, test execution & defect lifecycle tracking'
+                        ]
+                    },
+                    {
+                        heading: 'Automation & V&V Alignment',
+                        points: [
+                            'Identifying high-ROI regression candidates for automation',
+                            'System Validation & Verification (V&V) across releases',
+                            'Test closure metrics, root-cause analysis & sign-off'
+                        ]
+                    }
+                ]
+            },
+            'skill-sdlc': {
+                group: 'Skills',
+                parentGroup: 'skills',
+                title: '🔄 Software Development Life Cycle (SDLC)',
+                description: 'Collaborating across the full SDLC—from planning and architecture to implementation, CI/CD integration, release validation, and production support.',
+                boxes: [
+                    {
+                        heading: 'Lifecycle Integration',
+                        points: [
+                            'Shift-left quality practices during feature planning & sprint reviews',
+                            'Pull request verification, build gates & regression automation',
+                            'Release readiness validation & post-release monitoring'
+                        ]
+                    },
+                    {
+                        heading: 'Engineering Experience',
+                        points: [
+                            '6.3+ years of Software Testing Automation experience',
+                            'Experience with CI/CD pipelines, Git/GitHub & Azure DevOps',
+                            'AI-assisted test automation & quality evaluation workflows'
+                        ]
+                    }
+                ]
+            },
 
-        const topicInfoMap = {
-            'skill-java': { group: 'Skills', title: 'Java', desc: 'Object-oriented programming and test automation development in Java.', sectionId: 'skills' },
-            'skill-python': { group: 'Skills', title: 'Python', desc: 'Scripting, automation tooling, and test framework development in Python.', sectionId: 'skills' },
-            'skill-selenium': { group: 'Skills', title: 'Selenium', desc: 'Selenium WebDriver browser automation and cross-browser testing.', sectionId: 'skills' },
-            'skill-testng': { group: 'Skills', title: 'TestNG', desc: 'Test execution orchestration, assertions, parallel suites, and reporting.', sectionId: 'skills' },
-            'skill-api-testing': { group: 'Skills', title: 'API Testing', desc: 'REST API validation, status/schema assertions, and automated endpoint testing.', sectionId: 'skills' },
-            'skill-stlc': { group: 'Skills', title: 'STLC', desc: 'Software Testing Life Cycle planning, test design, execution, and defect tracking.', sectionId: 'skills' },
-            'skill-sdlc': { group: 'Skills', title: 'SDLC', desc: 'Software Development Life Cycle workflows, releases, and quality gates.', sectionId: 'skills' },
+            'tools': {
+                group: 'Tools & Platforms',
+                parentGroup: 'tools',
+                title: '🛠️ Tools & Platforms',
+                description: 'Daily engineering toolkit spanning Git/GitHub, Jenkins, Maven, Postman, JIRA, HTML, and MySQL for version control, CI/CD, API testing, and database checks.',
+                items: [
+                    { label: 'Git/GitHub', actionPage: 'tool-git-github' },
+                    { label: 'Jenkins', actionPage: 'tool-jenkins' },
+                    { label: 'Maven', actionPage: 'tool-maven' },
+                    { label: 'Postman', actionPage: 'tool-postman' },
+                    { label: 'JIRA', actionPage: 'tool-jira' },
+                    { label: 'HTML', actionPage: 'tool-html' },
+                    { label: 'MySQL', actionPage: 'tool-mysql' }
+                ],
+                boxes: [
+                    {
+                        heading: 'Build, Source & CI/CD',
+                        points: [
+                            'Git & GitHub branching, PRs & repository management',
+                            'Jenkins automated build & test pipeline execution',
+                            'Maven dependency & lifecycle management'
+                        ]
+                    },
+                    {
+                        heading: 'API, Tracking, Markup & DB',
+                        points: [
+                            'Postman API request & collection testing',
+                            'JIRA bug tracking, sprint boards & defect workflows',
+                            'HTML inspection/reporting & MySQL database validation'
+                        ]
+                    }
+                ]
+            },
+            'tool-git-github': {
+                group: 'Tools & Platforms',
+                parentGroup: 'tools',
+                title: '🌿🐙 Git / GitHub',
+                description: 'Version control, branch workflows, code reviews, repository hosting, and GitHub-hosted automation/demo projects using Git and GitHub.',
+                boxes: [
+                    {
+                        heading: 'Git & GitHub Workflows',
+                        points: [
+                            'Clone, commit, branch, merge, rebase & tag management',
+                            'Feature/bugfix branching & pull request reviews',
+                            'Hosting automation frameworks & GitHub Pages demos'
+                        ]
+                    },
+                    {
+                        heading: 'Best Practices',
+                        points: [
+                            'Keeping credentials/secrets out of version control',
+                            'Clean commit history & modular repository structure',
+                            'CI/CD triggers on repository events'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '🚀 GitHub Selenium WebDriver', href: 'https://github.com/rames-qa/Selenium-Feb', external: true },
+                    { text: '🚀 GitHub Automation Framework', href: 'https://github.com/rames-qa/com.selenium.java', external: true }
+                ]
+            },
+            'tool-jenkins': {
+                group: 'Tools & Platforms',
+                parentGroup: 'tools',
+                title: '⚙️ Jenkins CI/CD',
+                description: 'Configuring and running automated test jobs, build pipelines, scheduled regressions, and artifact/console log inspection in Jenkins.',
+                boxes: [
+                    {
+                        heading: 'CI/CD Pipeline Usage',
+                        points: [
+                            'Automated execution of test suites on builds and schedules',
+                            'Parameterized job runs across target environments',
+                            'Fast feedback loops for development and QA teams'
+                        ]
+                    },
+                    {
+                        heading: 'Release Reliability',
+                        points: [
+                            'Consistent test runs in clean build environments',
+                            'Traceable build history and failure diagnostics',
+                            'Integration with source repositories and build tools'
+                        ]
+                    }
+                ]
+            },
+            'tool-maven': {
+                group: 'Tools & Platforms',
+                parentGroup: 'tools',
+                title: '📦 Apache Maven',
+                description: 'Managing Java project dependencies, build lifecycles, plugins, and TestNG/Cucumber test execution via Maven (`pom.xml`).',
+                boxes: [
+                    {
+                        heading: 'Maven Capabilities',
+                        points: [
+                            'Centralized dependency resolution in pom.xml',
+                            'Lifecycle phases: clean, compile, test, package',
+                            'Running specific test suites, profiles, and properties from CLI'
+                        ]
+                    },
+                    {
+                        heading: 'CI/CD Advantage',
+                        points: [
+                            'Standardized builds across local machines and CI servers',
+                            'Easy profile switching for test environments and suites'
+                        ]
+                    }
+                ]
+            },
+            'tool-postman': {
+                group: 'Tools & Platforms',
+                parentGroup: 'tools',
+                title: '🚀 Postman',
+                description: 'Designing, organizing, and executing REST API requests, collections, environments, and response validations in Postman.',
+                boxes: [
+                    {
+                        heading: 'API Testing with Postman',
+                        points: [
+                            'Organizing endpoints into structured collections and folders',
+                            'Managing environment variables, headers, auth & payloads',
+                            'Validating status codes, response times, and JSON bodies'
+                        ]
+                    },
+                    {
+                        heading: 'Team Collaboration',
+                        points: [
+                            'Reproducing backend issues with exact request snapshots',
+                            'Verifying API contracts alongside UI/automation tests'
+                        ]
+                    }
+                ]
+            },
+            'tool-jira': {
+                group: 'Tools & Platforms',
+                parentGroup: 'tools',
+                title: '📌 JIRA',
+                description: 'Tracking defects, user stories, sprint tasks, reproduction steps, severity/priority, and release status in JIRA.',
+                boxes: [
+                    {
+                        heading: 'Defect & Agile Workflow',
+                        points: [
+                            'Logging clear bugs with steps to reproduce, expected vs. actual results & logs',
+                            'Tracking issues through Open, In Progress, Retest & Closed states',
+                            'Collaborating in Agile sprints, standups & defect triage'
+                        ]
+                    },
+                    {
+                        heading: 'Release Visibility',
+                        points: [
+                            'Monitoring open blockers prior to release sign-off',
+                            'Linking test verification status to stories and requirements'
+                        ]
+                    }
+                ]
+            },
+            'tool-html': {
+                group: 'Tools & Platforms',
+                parentGroup: 'tools',
+                title: '🧱 HTML',
+                description: 'Working with HTML DOM structure for reliable web locators, inspecting UI elements, and building/viewing HTML test reports and web dashboards.',
+                boxes: [
+                    {
+                        heading: 'QA & Web Applications',
+                        points: [
+                            'Inspecting DOM hierarchy, attributes, IDs, classes & XPath/CSS selectors',
+                            'Reviewing HTML execution reports and web UI layouts',
+                            'Building clean, responsive HTML/CSS/JS interfaces and dashboards'
+                        ]
+                    },
+                    {
+                        heading: 'UI Reliability',
+                        points: [
+                            'Understanding dynamic DOM updates and asynchronous elements',
+                            'Verifying semantic structure and accessibility/layout consistency'
+                        ]
+                    }
+                ]
+            },
+            'tool-mysql': {
+                group: 'Tools & Platforms',
+                parentGroup: 'tools',
+                title: '🗄️ MySQL',
+                description: 'Writing SQL queries, joins, aggregations, and data integrity checks in MySQL to validate backend persistence and test data.',
+                boxes: [
+                    {
+                        heading: 'Database Testing & SQL',
+                        points: [
+                            'SELECT, WHERE, JOIN, GROUP BY, ORDER BY & aggregate queries',
+                            'Validating UI/API actions against persisted database records',
+                            'Preparing and verifying test datasets across environments'
+                        ]
+                    },
+                    {
+                        heading: 'Data Integrity',
+                        points: [
+                            'Checking referential consistency, constraints & edge-case records',
+                            'Investigating data anomalies during defect root-cause analysis'
+                        ]
+                    }
+                ]
+            },
 
-            'tool-git-github': { group: 'Tools & Platforms', title: 'Git/GitHub', desc: 'Source control, branching, pull requests, and repository hosting.', sectionId: 'tools' },
-            'tool-jenkins': { group: 'Tools & Platforms', title: 'Jenkins', desc: 'Automated CI/CD pipelines and scheduled test suite execution.', sectionId: 'tools' },
-            'tool-maven': { group: 'Tools & Platforms', title: 'Maven', desc: 'Dependency management, build lifecycle, and test runner configuration.', sectionId: 'tools' },
-            'tool-postman': { group: 'Tools & Platforms', title: 'Postman', desc: 'API collections, environment variables, and request/response verification.', sectionId: 'tools' },
-            'tool-jira': { group: 'Tools & Platforms', title: 'JIRA', desc: 'Issue tracking, sprint workflows, user stories, and bug reporting.', sectionId: 'tools' },
-            'tool-html': { group: 'Tools & Platforms', title: 'HTML', desc: 'Markup structure, test reporting views, and web UI inspection.', sectionId: 'tools' },
-            'tool-mysql': { group: 'Tools & Platforms', title: 'MySQL', desc: 'Relational database queries and backend data validation with SQL.', sectionId: 'tools' },
+            'programming-languages': {
+                group: 'Programming Languages',
+                parentGroup: 'prog-langs',
+                title: '💻 Programming Languages',
+                description: 'Explore dedicated pages for Java and Python covering core concepts, object-oriented programming, and test automation implementations.',
+                items: [
+                    { label: 'Java', actionPage: 'lang-java' },
+                    { label: 'Python', actionPage: 'lang-python' }
+                ],
+                boxes: [
+                    {
+                        heading: 'Java Track',
+                        points: [
+                            'Java OOPs concepts & automation repositories',
+                            'Selenium WebDriver, Hybrid/Data-Driven & Cucumber BDD frameworks'
+                        ]
+                    },
+                    {
+                        heading: 'Python Track',
+                        points: [
+                            'Python basics, OOPs & automation scripts',
+                            'Python-Selenium & Python Automation projects'
+                        ]
+                    }
+                ]
+            },
+            'lang-java': {
+                group: 'Programming Languages',
+                parentGroup: 'prog-langs',
+                title: '☕ Java — Concepts & Automation Examples',
+                description: 'Java programming fundamentals, OOP principles (Encapsulation, Inheritance, Polymorphism, Abstraction), collections, and Selenium/TestNG/Cucumber automation.',
+                boxes: [
+                    {
+                        heading: 'Core Java & OOPs Concepts',
+                        points: [
+                            'Classes, objects, constructors, `this`/`super` & access modifiers',
+                            'Inheritance, method overloading/overriding, interfaces & abstract classes',
+                            'Exception handling (`try-catch-finally`, custom exceptions) & Collections'
+                        ]
+                    },
+                    {
+                        heading: 'Java Automation Examples',
+                        points: [
+                            'Page Object Model (POM) classes with reusable WebDriver actions',
+                            'Data-driven test execution & BDD step definitions',
+                            'GitHub repositories: Selenium-Feb, com.selenium.java, Cucumber-BDD, Java-Code'
+                        ]
+                    }
+                ],
+                code: `// Java OOP + Automation Example\npublic abstract class BasePage {\n    protected WebDriver driver;\n    public BasePage(WebDriver driver) {\n        this.driver = driver;\n    }\n}\n\npublic class SearchPage extends BasePage {\n    public SearchPage(WebDriver driver) { super(driver); }\n    public void searchFor(String query) {\n        driver.findElement(By.name("q")).sendKeys(query);\n    }\n}`,
+                links: [
+                    { text: '🚀 GitHub Java(OOP) Concepts', href: 'https://github.com/rames-qa/Java-Code.git', external: true },
+                    { text: '🚀 GitHub Selenium WebDriver', href: 'https://github.com/rames-qa/Selenium-Feb', external: true },
+                    { text: '🚀 GitHub Automation Framework', href: 'https://github.com/rames-qa/com.selenium.java', external: true },
+                    { text: '🚀 GitHub Cucumber BDD Framework', href: 'https://github.com/rames-qa/Cucumber-BDD', external: true }
+                ]
+            },
+            'lang-python': {
+                group: 'Programming Languages',
+                parentGroup: 'prog-langs',
+                title: '🐍 Python — Concepts & Automation Examples',
+                description: 'Python fundamentals, OOPs, modular scripting, Selenium browser automation, and practical Python automation examples and projects.',
+                boxes: [
+                    {
+                        heading: 'Core Python & OOPs Concepts',
+                        points: [
+                            'Variables, lists, tuples, dictionaries, sets & comprehensions',
+                            'Functions, modules, virtual environments & error handling',
+                            'Classes, inheritance, encapsulation & reusable helper utilities'
+                        ]
+                    },
+                    {
+                        heading: 'Python Automation Examples',
+                        points: [
+                            'Automated browser checks with Python & Selenium WebDriver',
+                            'Scripting for test data handling, validation & workflow automation',
+                            'Repositories & portal: Python-codes, Python-Selenium & PythonAutomation'
+                        ]
+                    }
+                ],
+                code: `# Python OOP + Automation Helper Example\nclass TestRunner:\n    def __init__(self, env: str):\n        self.env = env\n\n    def log_step(self, step_name: str) -> str:\n        return f"[{self.env.upper()}] Executing step: {step_name}"`,
+                links: [
+                    { text: '🚀 GitHub Python-Code', href: 'https://github.com/rames-qa/Python-codes', external: true },
+                    { text: '🚀 GitHub Python-Selenium', href: 'https://github.com/rames-qa/Python-Selenium', external: true },
+                    { text: '🐍 View Python Automation', href: 'https://rames-qa.github.io/PythonAutomation/', external: true }
+                ]
+            },
 
-            'lang-java': { group: 'Programming Languages', title: 'Java', desc: 'Java automation repositories including Selenium WebDriver, Hybrid/Data-Driven Framework, Cucumber BDD, and Java OOPs.', sectionId: 'projects', langFilter: 'java' },
-            'lang-python': { group: 'Programming Languages', title: 'Python', desc: 'Python automation repositories including Python-Code, Python-Selenium, and Python Automation.', sectionId: 'projects', langFilter: 'python' },
+            'automation-projects': {
+                group: 'Automation Projects',
+                parentGroup: 'auto-projects',
+                title: '🤖 Automation Projects & Frameworks',
+                description: 'All test automation frameworks, OOP codebases, and Selenium repositories with descriptions and direct GitHub repository links.',
+                items: [
+                    { label: 'Selenium WebDriver', actionPage: 'auto-selenium-webdriver' },
+                    { label: 'Automation Framework', actionPage: 'auto-hybrid-framework' },
+                    { label: 'Cucumber BDD Framework', actionPage: 'auto-cucumber-bdd' },
+                    { label: 'Python-Code', actionPage: 'auto-python-code' },
+                    { label: 'Python-Selenium', actionPage: 'auto-python-selenium' },
+                    { label: 'Java-OOPs Concepts', actionPage: 'auto-java-oops' }
+                ],
+                boxes: [
+                    {
+                        heading: 'Java & BDD Frameworks',
+                        points: [
+                            'Selenium WebDriver (Java, Selenium, TestNG & Page Object Model)',
+                            'Automation Framework (Data-Driven and Hybrid Framework with Validation and Reporting)',
+                            'Cucumber BDD Framework (BDD automation using Cucumber with Selenium and TestNG integration)'
+                        ]
+                    },
+                    {
+                        heading: 'Python & OOP Repositories',
+                        points: [
+                            'Python-Code (Python basic and OOPs concepts)',
+                            'Python-Selenium (Automation using Python with Selenium)',
+                            'Java-OOPs Concepts (Java Programming with OOP Concepts)'
+                        ]
+                    }
+                ]
+            },
+            'auto-selenium-webdriver': {
+                group: 'Automation Projects',
+                parentGroup: 'auto-projects',
+                title: '🤖 Selenium WebDriver',
+                description: 'Built automation using Java, Selenium, TestNG and Page Object Model.',
+                boxes: [
+                    {
+                        heading: 'Framework Architecture',
+                        points: [
+                            'Built with Java, Selenium WebDriver, and TestNG',
+                            'Structured using Page Object Model (POM) for maintainability',
+                            'Separates page locators/actions from test assertions'
+                        ]
+                    },
+                    {
+                        heading: 'Repository Details',
+                        points: [
+                            'GitHub Repository: https://github.com/rames-qa/Selenium-Feb',
+                            'Focuses on clean UI test automation and TestNG execution'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '🚀 GitHub Selenium WebDriver', href: 'https://github.com/rames-qa/Selenium-Feb', external: true }
+                ]
+            },
+            'auto-hybrid-framework': {
+                group: 'Automation Projects',
+                parentGroup: 'auto-projects',
+                title: '🤖 Automation Framework',
+                description: 'Automated Data-Driven and Hybrid Framework with Validation and Reporting.',
+                boxes: [
+                    {
+                        heading: 'Key Capabilities',
+                        points: [
+                            'Combines data-driven test inputs with modular hybrid framework design',
+                            'Includes structured test assertions, validations, and execution reporting',
+                            'Designed for reusable test components and scalable regression runs'
+                        ]
+                    },
+                    {
+                        heading: 'Repository Details',
+                        points: [
+                            'GitHub Repository: https://github.com/rames-qa/com.selenium.java',
+                            'Java-based automation framework with reporting support'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '🚀 GitHub Automation Framework', href: 'https://github.com/rames-qa/com.selenium.java', external: true }
+                ]
+            },
+            'auto-cucumber-bdd': {
+                group: 'Automation Projects',
+                parentGroup: 'auto-projects',
+                title: '🤖 Cucumber BDD Framework',
+                description: 'BDD automation using Cucumber with Selenium and TestNG integration.',
+                boxes: [
+                    {
+                        heading: 'BDD & Test Execution',
+                        points: [
+                            'Behavior-Driven Development (BDD) scenarios written in Gherkin',
+                            'Integrated with Selenium WebDriver for browser automation',
+                            'Paired with TestNG for test runner orchestration and reporting'
+                        ]
+                    },
+                    {
+                        heading: 'Repository Details',
+                        points: [
+                            'GitHub Repository: https://github.com/rames-qa/Cucumber-BDD',
+                            'Bridges readable business scenarios with automated step definitions'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '🚀 GitHub Cucumber BDD Framework', href: 'https://github.com/rames-qa/Cucumber-BDD', external: true }
+                ]
+            },
+            'auto-python-code': {
+                group: 'Automation Projects',
+                parentGroup: 'auto-projects',
+                title: '🤖 Python-Code',
+                description: 'Python basic and OOPs concepts',
+                boxes: [
+                    {
+                        heading: 'Repository Contents',
+                        points: [
+                            'Covers foundational Python programming syntax and constructs',
+                            'Demonstrates Object-Oriented Programming (OOPs) concepts in Python',
+                            'Serves as a reference for clean, modular Python code'
+                        ]
+                    },
+                    {
+                        heading: 'Repository Details',
+                        points: [
+                            'GitHub Repository: https://github.com/rames-qa/Python-codes',
+                            'Core Python & OOPs learning and reference scripts'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '🚀 GitHub Python-Code', href: 'https://github.com/rames-qa/Python-codes', external: true }
+                ]
+            },
+            'auto-python-selenium': {
+                group: 'Automation Projects',
+                parentGroup: 'auto-projects',
+                title: '🤖 Python-Selenium',
+                description: 'Automation using Python with Selenium.',
+                boxes: [
+                    {
+                        heading: 'Automation Focus',
+                        points: [
+                            'Automates web browser workflows using Python and Selenium',
+                            'Demonstrates element interaction, navigation, and test scripting',
+                            'Lightweight, readable Python automation structure'
+                        ]
+                    },
+                    {
+                        heading: 'Repository Details',
+                        points: [
+                            'GitHub Repository: https://github.com/rames-qa/Python-Selenium',
+                            'Python + Selenium WebDriver automation examples'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '🚀 GitHub Python-Selenium', href: 'https://github.com/rames-qa/Python-Selenium', external: true }
+                ]
+            },
+            'auto-java-oops': {
+                group: 'Automation Projects',
+                parentGroup: 'auto-projects',
+                title: '🤖 Java-OOPs Concepts',
+                description: 'Java Programming with OOP Concepts.',
+                boxes: [
+                    {
+                        heading: 'OOPs Pillars & Practice',
+                        points: [
+                            'Encapsulation, inheritance, polymorphism, and abstraction in Java',
+                            'Practical code examples supporting strong object-oriented design',
+                            'Builds a solid foundation for Java test automation frameworks'
+                        ]
+                    },
+                    {
+                        heading: 'Repository Details',
+                        points: [
+                            'GitHub Repository: https://github.com/rames-qa/Java-Code.git',
+                            'Java OOPs programming implementations'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '🚀 GitHub Java(OOP) Concepts', href: 'https://github.com/rames-qa/Java-Code.git', external: true }
+                ]
+            },
 
-            'auto-selenium-webdriver': { group: 'Automation Projects', title: 'Selenium WebDriver', desc: 'Built automation using Java, Selenium, TestNG and Page Object Model.', sectionId: 'projects' },
-            'auto-hybrid-framework': { group: 'Automation Projects', title: 'Automation Framework', desc: 'Automated Data-Driven and Hybrid Framework with Validation and Reporting.', sectionId: 'projects' },
-            'auto-cucumber-bdd': { group: 'Automation Projects', title: 'Cucumber BDD Framework', desc: 'BDD automation using Cucumber with Selenium and TestNG integration.', sectionId: 'projects' },
-            'auto-python-code': { group: 'Automation Projects', title: 'Python-Code', desc: 'Python basic and OOPs concepts.', sectionId: 'projects' },
-            'auto-python-selenium': { group: 'Automation Projects', title: 'Python-Selenium', desc: 'Automation using Python with Selenium.', sectionId: 'projects' },
-            'auto-java-oops': { group: 'Automation Projects', title: 'Java-OOPs Concepts', desc: 'Java Programming with OOP Concepts.', sectionId: 'projects' },
+            'python-automation': {
+                group: 'Python Automation',
+                parentGroup: 'python-auto',
+                title: '🐍 Python Automation',
+                description: 'Python programming examples and automation projects showcasing core Python concepts, scripting, and practical implementations.',
+                items: [
+                    { label: 'Python Examples', actionPage: 'py-examples' },
+                    { label: 'Python Automation Projects', actionPage: 'py-automation-projects' }
+                ],
+                boxes: [
+                    {
+                        heading: 'Python Examples',
+                        points: [
+                            'Core Python programming examples and OOPs concepts (Python-codes)',
+                            'Browser automation scripts using Python & Selenium (Python-Selenium)'
+                        ]
+                    },
+                    {
+                        heading: 'Python Automation Projects',
+                        points: [
+                            'Python programming examples and automation projects showcasing core Python concepts, scripting, and practical implementations',
+                            'Interactive web showcase at https://rames-qa.github.io/PythonAutomation/'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '🐍 View Python Automation', href: 'https://rames-qa.github.io/PythonAutomation/', external: true },
+                    { text: '🚀 GitHub Python-Code', href: 'https://github.com/rames-qa/Python-codes', external: true },
+                    { text: '🚀 GitHub Python-Selenium', href: 'https://github.com/rames-qa/Python-Selenium', external: true }
+                ]
+            },
+            'py-examples': {
+                group: 'Python Automation',
+                parentGroup: 'python-auto',
+                title: '🐍 Python Examples',
+                description: 'Hands-on Python programming examples covering core language features, OOPs concepts, and Python-Selenium automation scripts.',
+                boxes: [
+                    {
+                        heading: 'Code & Scripting Examples',
+                        points: [
+                            'Python basic and OOPs concepts (Python-codes)',
+                            'Automation using Python with Selenium (Python-Selenium)'
+                        ]
+                    },
+                    {
+                        heading: 'Practical Application',
+                        points: [
+                            'Reusable functions, classes, and structured test/automation scripts',
+                            'Quick reference for Python syntax and automation patterns'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '🚀 GitHub Python-Code', href: 'https://github.com/rames-qa/Python-codes', external: true },
+                    { text: '🚀 GitHub Python-Selenium', href: 'https://github.com/rames-qa/Python-Selenium', external: true }
+                ]
+            },
+            'py-automation-projects': {
+                group: 'Python Automation',
+                parentGroup: 'python-auto',
+                title: '🐍 Python Automation Projects',
+                description: 'Python programming examples and automation projects showcasing core Python concepts, scripting, and practical implementations.',
+                boxes: [
+                    {
+                        heading: 'Project Highlights',
+                        points: [
+                            'Showcases core Python concepts, scripting, and practical implementations',
+                            'Accessible online via the Python Automation project showcase'
+                        ]
+                    },
+                    {
+                        heading: 'Related Python Repositories',
+                        points: [
+                            'Python-Selenium for browser test automation',
+                            'Python-Code for core Python & OOPs examples'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '🐍 View Python Automation', href: 'https://rames-qa.github.io/PythonAutomation/', external: true },
+                    { text: '🚀 GitHub Python-Selenium', href: 'https://github.com/rames-qa/Python-Selenium', external: true }
+                ]
+            },
 
-            'py-examples': { group: 'Python Automation', title: 'Python Examples', desc: 'Python programming examples, core syntax, and OOPs implementations.', sectionId: 'projects', topicKey: 'auto-python-code' },
-            'py-automation-projects': { group: 'Python Automation', title: 'Python Automation Projects', desc: 'Python programming examples and automation projects showcasing core Python concepts, scripting, and practical implementations.', sectionId: 'projects', topicKey: 'py-automation-projects' },
+            'demo-projects': {
+                group: 'Demo Projects',
+                parentGroup: 'demo-proj',
+                title: '🚀 Demo Projects Showcase',
+                description: 'All nine live interactive demo projects spanning Healthcare AI, Cognitive Speech AI, REST APIs, Excel Analytics, Vector AI, QA Eval, CI/CD Security, and Voice Automation.',
+                items: [
+                    { label: 'Smart Health Monitoring Platform', actionPage: 'demo-1' },
+                    { label: 'Cognitive Speech AI', actionPage: 'demo-2' },
+                    { label: 'AI-Driven Elderly Health & Wellness', actionPage: 'demo-3' },
+                    { label: 'Live Weather Forecast Application', actionPage: 'demo-4' },
+                    { label: 'Excel Sheet Reader Dashboard', actionPage: 'demo-5' },
+                    { label: 'AI Vector Automation Hub', actionPage: 'demo-6' },
+                    { label: 'Chatbot QA & AI Eval Engine', actionPage: 'demo-7' },
+                    { label: 'Multi-Env Config & Credential Mgmt', actionPage: 'demo-8' },
+                    { label: 'Omni-Voice E-Commerce Automation', actionPage: 'demo-9' }
+                ],
+                boxes: [
+                    {
+                        heading: 'AI, Healthcare & Voice Demos',
+                        points: [
+                            'Smart Health Monitoring Platform',
+                            'Cognitive Speech AI',
+                            'AI-Driven Elderly Health, Cognitive Ability & Mental Wellness Assessment',
+                            'AI Vector Automation Hub',
+                            'Omni-Voice:E-Commerce Automation & Testing Framework'
+                        ]
+                    },
+                    {
+                        heading: 'QA, Data, API & CI/CD Demos',
+                        points: [
+                            'Live Weather Forecast Application',
+                            'Excel Sheet Reader Dashboard',
+                            'CHATBOT QA & AI EVAL ENGINE',
+                            'Multi-Environment Configuration & Secure Credential Management'
+                        ]
+                    }
+                ]
+            },
+            'demo-1': {
+                group: 'Demo Projects',
+                parentGroup: 'demo-proj',
+                title: '🏥 Smart Health Monitoring Platform',
+                description: 'Smart Health Monitoring Platform for elderly care with emergency alerts, doctor connectivity, AI-powered monitoring, and real-time healthcare tracking features.',
+                boxes: [
+                    {
+                        heading: 'Key Features',
+                        points: [
+                            'Designed for elderly care with emergency alerts and doctor connectivity',
+                            'AI-powered monitoring and real-time healthcare tracking features'
+                        ]
+                    },
+                    {
+                        heading: 'Live Deployment',
+                        points: [
+                            'Hosted on GitHub Pages for interactive exploration',
+                            'URL: https://rames-qa.github.io/Smart-Health-Monitoring-Platform/'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '🚀 Demo Project', href: 'https://rames-qa.github.io/Smart-Health-Monitoring-Platform/', external: true }
+                ]
+            },
+            'demo-2': {
+                group: 'Demo Projects',
+                parentGroup: 'demo-proj',
+                title: '🗣️ Cognitive Speech AI',
+                description: 'Cognitive Speech AI technology, the platform uses live neural intelligence, emotional AI processing, real-time analytics, and intelligent automation.',
+                boxes: [
+                    {
+                        heading: 'Key Features',
+                        points: [
+                            'Live neural intelligence and emotional AI processing',
+                            'Real-time analytics and intelligent automation'
+                        ]
+                    },
+                    {
+                        heading: 'Live Deployment',
+                        points: [
+                            'Interactive web demo available online',
+                            'URL: https://rames-qa.github.io/Cognitive-Speech-AI'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '🚀 Demo Project', href: 'https://rames-qa.github.io/Cognitive-Speech-AI', external: true }
+                ]
+            },
+            'demo-3': {
+                group: 'Demo Projects',
+                parentGroup: 'demo-proj',
+                title: '🧠 AI-Driven Elderly Health, Cognitive Ability & Mental Wellness Assessment',
+                description: 'Created an AI-powered platform to assess elderly health, cognition, and mental wellness, enabling early risk detection and personalized healthcare recommendations.',
+                boxes: [
+                    {
+                        heading: 'Key Features',
+                        points: [
+                            'Assesses elderly health, cognitive ability, and mental wellness',
+                            'Enables early risk detection and personalized healthcare recommendations'
+                        ]
+                    },
+                    {
+                        heading: 'Live Deployment',
+                        points: [
+                            'Interactive assessment demo hosted on GitHub Pages',
+                            'URL: https://rames-qa.github.io/Physiological-and-Mental-Health-Assessment-of-Elderly-Indians/'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '🚀 Demo Project', href: 'https://rames-qa.github.io/Physiological-and-Mental-Health-Assessment-of-Elderly-Indians/', external: true }
+                ]
+            },
+            'demo-4': {
+                group: 'Demo Projects',
+                parentGroup: 'demo-proj',
+                title: '🌤️ Live Weather Forecast Application',
+                description: 'A dynamic web application delivering real-time weather tracking, extended daily forecasts, temperature trends, and environmental metrics through responsive API integration.',
+                boxes: [
+                    {
+                        heading: 'Key Features',
+                        points: [
+                            'Real-time weather tracking and extended daily forecasts',
+                            'Temperature trends and environmental metrics via responsive API integration'
+                        ]
+                    },
+                    {
+                        heading: 'Live Deployment',
+                        points: [
+                            'Live web forecast application',
+                            'URL: https://rames-qa.github.io/Weather-Forecast-/'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '💻 Demo Project', href: 'https://rames-qa.github.io/Weather-Forecast-/', external: true }
+                ]
+            },
+            'demo-5': {
+                group: 'Demo Projects',
+                parentGroup: 'demo-proj',
+                title: '📈 Excel Sheet Reader Dashboard',
+                description: 'An interactive web-based analytics dashboard engineered to parse, process, and visualize data directly from Excel spreadsheets in real time.',
+                boxes: [
+                    {
+                        heading: 'Key Features',
+                        points: [
+                            'Parses and processes Excel spreadsheet data in real time',
+                            'Interactive web-based visual analytics dashboard'
+                        ]
+                    },
+                    {
+                        heading: 'Live Deployment',
+                        points: [
+                            'Interactive analytics dashboard demo',
+                            'URL: https://rames-qa.github.io/Excel-Sheet-Reader-Dashboard/'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '💻 Demo Project', href: 'https://rames-qa.github.io/Excel-Sheet-Reader-Dashboard/', external: true }
+                ]
+            },
+            'demo-6': {
+                group: 'Demo Projects',
+                parentGroup: 'demo-proj',
+                title: '🤖 AI Vector Automation Hub',
+                description: 'An advanced AI-powered test automation framework integrating vector store embeddings, semantic search evaluation, and intelligent test orchestration.',
+                boxes: [
+                    {
+                        heading: 'Key Features',
+                        points: [
+                            'Integrates vector store embeddings and semantic search evaluation',
+                            'Provides intelligent test orchestration for AI-powered QA'
+                        ]
+                    },
+                    {
+                        heading: 'Live Deployment',
+                        points: [
+                            'AI Vector Automation Hub web demo',
+                            'URL: https://rames-qa.github.io/AI-Vector-Automation-Hub/'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '🚀 Demo Project', href: 'https://rames-qa.github.io/AI-Vector-Automation-Hub/', external: true }
+                ]
+            },
+            'demo-7': {
+                group: 'Demo Projects',
+                parentGroup: 'demo-proj',
+                title: '🤖CHATBOT QA & AI EVAL ENGINE',
+                description: 'A centralized automation testing framework designed to manage, execute, and analyze automated testing projects with integrated reporting and quality insights.',
+                boxes: [
+                    {
+                        heading: 'Key Features',
+                        points: [
+                            'Centralized automation testing framework for managing and executing test projects',
+                            'Integrated reporting and quality insights for chatbot QA & AI evaluation'
+                        ]
+                    },
+                    {
+                        heading: 'Live Deployment',
+                        points: [
+                            'Interactive evaluation framework demo',
+                            'URL: https://rames-qa.github.io/Automation-Framework-Hub/'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '💻 Demo Project', href: 'https://rames-qa.github.io/Automation-Framework-Hub/', external: true }
+                ]
+            },
+            'demo-8': {
+                group: 'Demo Projects',
+                parentGroup: 'demo-proj',
+                title: '🔐 Multi-Environment Configuration & Secure Credential Management',
+                description: 'A modular Python API test automation framework designed to manage multiple environments, securely handle credentials, centralize configuration, and integrate automated API testing with GitHub Actions CI/CD.',
+                boxes: [
+                    {
+                        heading: 'Key Features',
+                        points: [
+                            'Manages multiple environments and centralizes configuration securely',
+                            'Handles credentials safely and integrates API test automation with GitHub Actions CI/CD'
+                        ]
+                    },
+                    {
+                        heading: 'Live Deployment',
+                        points: [
+                            'Interactive framework showcase',
+                            'URL: https://rames-qa.github.io/Multi-Environment-Configuration-Secure-Credential-Management/'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '💻 Demo Project', href: 'https://rames-qa.github.io/Multi-Environment-Configuration-Secure-Credential-Management/', external: true }
+                ]
+            },
+            'demo-9': {
+                group: 'Demo Projects',
+                parentGroup: 'demo-proj',
+                title: '🛒 Omni-Voice:E-Commerce Automation & Testing Framework',
+                description: 'An AI-powered multi-platform voice automation framework featuring real-time speech recognition, intelligent NLP-based intent detection, fuzzy matching, and dynamic application routing across Amazon, Flipkart, Meesho, Zomato, and Swiggy.',
+                boxes: [
+                    {
+                        heading: 'Key Features',
+                        points: [
+                            'Real-time speech recognition, NLP-based intent detection, and fuzzy matching',
+                            'Dynamic application routing across Amazon, Flipkart, Meesho, Zomato, and Swiggy'
+                        ]
+                    },
+                    {
+                        heading: 'Live Deployment',
+                        points: [
+                            'Omni-Voice framework demo',
+                            'URL: https://rames-qa.github.io/-Omni-Voice-E-Commerce-Automation-Testing-Framework/'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '🚀 Demo Project', href: 'https://rames-qa.github.io/-Omni-Voice-E-Commerce-Automation-Testing-Framework/', external: true }
+                ]
+            },
 
-            'demo-1': { group: 'Demo Projects', title: 'Smart Health Monitoring Platform', desc: 'Smart Health Monitoring Platform for elderly care with emergency alerts, doctor connectivity, AI-powered monitoring, and real-time healthcare tracking features.', sectionId: 'demo-projects' },
-            'demo-2': { group: 'Demo Projects', title: 'Cognitive Speech AI', desc: 'Cognitive Speech AI technology, the platform uses live neural intelligence, emotional AI processing, real-time analytics, and intelligent automation.', sectionId: 'demo-projects' },
-            'demo-3': { group: 'Demo Projects', title: 'AI-Driven Elderly Health, Cognitive Ability & Mental Wellness Assessment', desc: 'Created an AI-powered platform to assess elderly health, cognition, and mental wellness, enabling early risk detection and personalized healthcare recommendations.', sectionId: 'demo-projects' },
-            'demo-4': { group: 'Demo Projects', title: 'Live Weather Forecast Application', desc: 'A dynamic web application delivering real-time weather tracking, extended daily forecasts, temperature trends, and environmental metrics through responsive API integration.', sectionId: 'demo-projects' },
-            'demo-5': { group: 'Demo Projects', title: 'Excel Sheet Reader Dashboard', desc: 'An interactive web-based analytics dashboard engineered to parse, process, and visualize data directly from Excel spreadsheets in real time.', sectionId: 'demo-projects' },
-            'demo-6': { group: 'Demo Projects', title: 'AI Vector Automation Hub', desc: 'An advanced AI-powered test automation framework integrating vector store embeddings, semantic search evaluation, and intelligent test orchestration.', sectionId: 'demo-projects' },
-            'demo-7': { group: 'Demo Projects', title: 'CHATBOT QA & AI EVAL ENGINE', desc: 'A centralized automation testing framework designed to manage, execute, and analyze automated testing projects with integrated reporting and quality insights.', sectionId: 'demo-projects' },
-            'demo-8': { group: 'Demo Projects', title: 'Multi-Environment Configuration & Secure Credential Management', desc: 'A modular Python API test automation framework designed to manage multiple environments, securely handle credentials, centralize configuration, and integrate automated API testing with GitHub Actions CI/CD.', sectionId: 'demo-projects' },
-            'demo-9': { group: 'Demo Projects', title: 'Omni-Voice: E-Commerce Automation & Testing Framework', desc: 'An AI-powered multi-platform voice automation framework featuring real-time speech recognition, intelligent NLP-based intent detection, fuzzy matching, and dynamic application routing across Amazon, Flipkart, Meesho, Zomato, and Swiggy.', sectionId: 'demo-projects' }
+            'contact': {
+                group: 'Contact',
+                parentGroup: 'contact-grp',
+                title: '📬 Contact Ramesh Kumar K',
+                description: 'Get in touch regarding Software Testing Automation Engineer, QA Automation, SDET, and AI-Assisted Testing roles.',
+                boxes: [
+                    {
+                        heading: 'Direct Contact Information',
+                        points: [
+                            'Phone: Available on request',
+                            'Email: rameshkumar93.68@gmail.com',
+                            'Location: Bangalore, Karnataka, India'
+                        ]
+                    },
+                    {
+                        heading: 'Resume & Profiles',
+                        points: [
+                            'Downloadable PDF Resume (Ramesh_Kumar_K_Resume.pdf)',
+                            'LinkedIn Profile: ramesh-kumar-k-2a3b7b1bb'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '📧 Send Email via Gmail', href: 'https://mail.google.com/mail/?view=cm&fs=1&to=rameshkumar93.68@gmail.com', external: true },
+                    { text: '🔗 LinkedIn Profile', href: 'https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb', external: true },
+                    { text: '📄 Download Resume', href: 'https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf', download: 'Ramesh_Kumar_K_Resume.pdf' }
+                ]
+            },
+            'contact-email': {
+                group: 'Contact',
+                parentGroup: 'contact-grp',
+                title: '📧 Email Contact',
+                description: 'Reach out directly via email at rameshkumar93.68@gmail.com for automation engineering opportunities and collaborations.',
+                boxes: [
+                    {
+                        heading: 'Email Details',
+                        points: [
+                            'Email Address: rameshkumar93.68@gmail.com',
+                            'Location: Bangalore, Karnataka, India',
+                            'Phone: Available on request'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '📧 Compose in Gmail', href: 'https://mail.google.com/mail/?view=cm&fs=1&to=rameshkumar93.68@gmail.com', external: true },
+                    { text: '✉️ Open Mail Client', href: 'mailto:rameshkumar93.68@gmail.com' }
+                ]
+            },
+            'contact-linkedin': {
+                group: 'Contact',
+                parentGroup: 'contact-grp',
+                title: '🔗 LinkedIn Profile',
+                description: 'Connect with Ramesh Kumar K on LinkedIn to view professional background, automation experience, and career updates.',
+                boxes: [
+                    {
+                        heading: 'Profile Overview',
+                        points: [
+                            'Role: Software Testing Automation Engineer (6.3+ Years of Experience)',
+                            'LinkedIn: https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb',
+                            'Location: Bangalore, Karnataka, India'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '🔗 Open LinkedIn Profile', href: 'https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb', external: true }
+                ]
+            },
+            'contact-resume': {
+                group: 'Contact',
+                parentGroup: 'contact-grp',
+                title: '📄 Download Resume',
+                description: 'Download Ramesh Kumar K’s resume PDF detailing 6.3+ years of experience in Java, Python, Selenium WebDriver, API Testing, TestNG, Jenkins CI/CD, Azure DevOps, and AI-Assisted Test Automation.',
+                boxes: [
+                    {
+                        heading: 'Resume Summary',
+                        points: [
+                            'File: Ramesh_Kumar_K_Resume.pdf',
+                            'Core Stack: Java, Python, Selenium WebDriver, API Testing, TestNG, Jenkins CI/CD, Azure DevOps, SQL, Git/GitHub'
+                        ]
+                    }
+                ],
+                links: [
+                    { text: '📄 Download Resume (PDF)', href: 'https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf', download: 'Ramesh_Kumar_K_Resume.pdf' }
+                ]
+            }
         };
 
-        function clearActiveHighlights() {
-            allSidebarLinks.forEach((lnk) => lnk.classList.remove('active'));
+        const homeView = document.getElementById('home-portfolio-view');
+        const dedicatedView = document.getElementById('dedicated-page-view');
+        const homeLink = document.querySelector('.sidebar-home-link');
+        const allNavLinks = document.querySelectorAll('#sidebar-menu a, .sidebar-brand, .sidebar-home-link');
+
+        function highlightSidebarItem(key, parentGroupName) {
+            allNavLinks.forEach((lnk) => lnk.classList.remove('active'));
             document.querySelectorAll('.sidebar-group-header').forEach((hdr) => hdr.classList.remove('active-parent'));
-            allCards.forEach((c) => c.classList.remove('highlighted-card'));
-        }
 
-        function resetTopicFocus() {
-            clearActiveHighlights();
-            topicFocusBar.classList.remove('visible');
-        }
+            if (key === 'home') {
+                if (homeLink) homeLink.classList.add('active');
+                return;
+            }
 
-        if (topicResetBtn) {
-            topicResetBtn.addEventListener('click', resetTopicFocus);
-        }
+            const matchedLinks = document.querySelectorAll(`[data-page-key="${key}"]`);
+            matchedLinks.forEach((lnk) => {
+                if (!lnk.classList.contains('sidebar-brand')) {
+                    lnk.classList.add('active');
+                }
+                const group = lnk.closest('.sidebar-group');
+                if (group) {
+                    group.classList.add('expanded');
+                    const arrow = group.querySelector('.dropdown-arrow-btn');
+                    if (arrow) arrow.setAttribute('aria-expanded', 'true');
+                    const header = group.querySelector('.sidebar-group-header');
+                    if (header) header.classList.add('active-parent');
+                }
+            });
 
-        function activateSubtopic(key, linkEl) {
-            const info = topicInfoMap[key];
-            if (!info) return;
-
-            clearActiveHighlights();
-            if (linkEl) {
-                linkEl.classList.add('active');
-                const parentGroup = linkEl.closest('.sidebar-group');
+            if (parentGroupName) {
+                const parentGroup = document.querySelector(`.sidebar-group[data-group="${parentGroupName}"]`);
                 if (parentGroup) {
                     parentGroup.classList.add('expanded');
                     const arrow = parentGroup.querySelector('.dropdown-arrow-btn');
                     if (arrow) arrow.setAttribute('aria-expanded', 'true');
-                    const parentHeader = parentGroup.querySelector('.sidebar-group-header');
-                    if (parentHeader) parentHeader.classList.add('active-parent');
+                    const header = parentGroup.querySelector('.sidebar-group-header');
+                    if (header) header.classList.add('active-parent');
                 }
-            }
-
-            topicFocusGroup.textContent = info.group;
-            topicFocusTitle.textContent = info.title;
-            topicFocusDesc.textContent = info.desc;
-            topicFocusBar.classList.add('visible');
-
-            let targetCard = null;
-            if (info.langFilter) {
-                allCards.forEach((card) => {
-                    if (card.getAttribute('data-lang') === info.langFilter) {
-                        card.classList.add('highlighted-card');
-                        if (!targetCard) targetCard = card;
-                    }
-                });
-            } else {
-                const matchKey = info.topicKey || key;
-                allCards.forEach((card) => {
-                    if (card.getAttribute('data-topic') === matchKey) {
-                        card.classList.add('highlighted-card');
-                        if (!targetCard) targetCard = card;
-                    }
-                });
-            }
-
-            const scrollDest = targetCard || document.getElementById(info.sectionId);
-            if (scrollDest) {
-                scrollDest.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }
 
-        // Handle Sidebar Link Clicks
-        document.querySelectorAll('#sidebar-menu a').forEach((link) => {
+        function renderDedicatedPage(key) {
+            const data = pageData[key];
+            if (!data) {
+                showHomeView(true);
+                return;
+            }
+
+            homeView.style.display = 'none';
+            dedicatedView.classList.add('active');
+
+            let itemsHtml = '';
+            if (data.items && data.items.length > 0) {
+                const buttons = data.items.map((it) =>
+                    `<button type="button" class="home-back-btn" style="background: var(--accent-soft); color: var(--accent-color); border: 1px solid rgba(56,189,248,0.35);" onclick="navigateToPage('${it.actionPage}')">${it.label} →</button>`
+                ).join('');
+                itemsHtml = `<div class="dedicated-actions" style="margin-top: 14px; margin-bottom: 6px;">${buttons}</div>`;
+            }
+
+            let boxesHtml = '';
+            if (data.boxes && data.boxes.length > 0) {
+                boxesHtml = `<div class="highlights-grid">` + data.boxes.map((box) => `
+                    <div class="detail-box">
+                        <h3>${box.heading}</h3>
+                        <ul>${box.points.map((pt) => `<li>${pt}</li>`).join('')}</ul>
+                    </div>
+                `).join('') + `</div>`;
+            }
+
+            let codeHtml = '';
+            if (data.code) {
+                codeHtml = `<div class="code-snippet-box"><pre><code>${data.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre></div>`;
+            }
+
+            let linksHtml = '';
+            if (data.links && data.links.length > 0) {
+                linksHtml = `<div class="dedicated-actions">` + data.links.map((lnk) => {
+                    const targetAttr = lnk.external ? ' target="_blank" rel="noopener noreferrer"' : '';
+                    const dlAttr = lnk.download ? ` download="${lnk.download}"` : '';
+                    return `<a href="${lnk.href}" class="btn"${targetAttr}${dlAttr}>${lnk.text}</a>`;
+                }).join('') + `</div>`;
+            }
+
+            dedicatedView.innerHTML = `
+                <div class="page-topbar">
+                    <div class="breadcrumb-trail">
+                        <span>Home</span>
+                        <span>/</span>
+                        <span>${data.group}</span>
+                        <span>/</span>
+                        <span class="current-crumb">${data.title.replace(/^[^\w\s]+\s*/, '')}</span>
+                    </div>
+                    <button type="button" class="home-back-btn" id="back-to-home-btn">🏠 Back to Home</button>
+                </div>
+                <article class="dedicated-hero-card">
+                    <span class="tag-pill">${data.group}</span>
+                    <h1>${data.title}</h1>
+                    <p class="lead-desc">${data.description}</p>
+                    ${itemsHtml}
+                    ${boxesHtml}
+                    ${codeHtml}
+                    ${linksHtml}
+                </article>
+            `;
+
+            const backBtn = document.getElementById('back-to-home-btn');
+            if (backBtn) {
+                backBtn.addEventListener('click', () => showHomeView(true));
+            }
+
+            highlightSidebarItem(key, data.parentGroup);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showHomeView(updateHash) {
+            dedicatedView.classList.remove('active');
+            dedicatedView.innerHTML = '';
+            homeView.style.display = 'block';
+            highlightSidebarItem('home', null);
+            if (updateHash && window.location.hash !== '#home') {
+                history.pushState({ page: 'home' }, '', '#home');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.navigateToPage = function(key) {
+            if (!key || key === 'home') {
+                showHomeView(true);
+                return;
+            }
+            if (pageData[key]) {
+                history.pushState({ page: key }, '', '#page/' + key);
+                renderDedicatedPage(key);
+            }
+        };
+
+        // Attach Click Listeners to Sidebar Navigation Links
+        allNavLinks.forEach((link) => {
             link.addEventListener('click', (e) => {
-                const key = link.getAttribute('data-topic-key');
-                const href = link.getAttribute('href') || '';
-
-                // Let external / download links open normally while highlighting
-                if (href.startsWith('http') || link.hasAttribute('download')) {
-                    clearActiveHighlights();
-                    link.classList.add('active');
-                    if (window.innerWidth <= 1024) closeSidebar();
-                    return;
+                const key = link.getAttribute('data-page-key');
+                if (!key) return;
+                e.preventDefault();
+                if (key === 'home') {
+                    showHomeView(true);
+                } else if (pageData[key]) {
+                    window.navigateToPage(key);
                 }
-
-                if (topicInfoMap[key]) {
-                    e.preventDefault();
-                    activateSubtopic(key, link);
-                } else {
-                    clearActiveHighlights();
-                    link.classList.add('active');
-                    const parentGroup = link.closest('.sidebar-group');
-                    if (parentGroup) {
-                        const isExpanded = parentGroup.classList.toggle('expanded');
-                        const arrow = parentGroup.querySelector('.dropdown-arrow-btn');
-                        if (arrow) arrow.setAttribute('aria-expanded', String(isExpanded));
-                    }
-                    topicFocusBar.classList.remove('visible');
-                }
-
                 if (window.innerWidth <= 1024) {
                     closeSidebar();
                 }
             });
         });
 
-        const brandLink = document.querySelector('.sidebar-brand');
-        if (brandLink) {
-            brandLink.addEventListener('click', () => {
-                resetTopicFocus();
-                if (window.innerWidth <= 1024) closeSidebar();
-            });
-        }
-
-        // Scroll Spy for Main Sections
-        const observedSections = document.querySelectorAll('section[id]');
-        window.addEventListener('scroll', () => {
-            if (topicFocusBar.classList.contains('visible')) return;
-            let currentId = '';
-            const scrollPos = window.scrollY + 140;
-
-            observedSections.forEach((sec) => {
-                const top = sec.getBoundingClientRect().top + window.scrollY;
-                if (scrollPos >= top) {
-                    currentId = sec.getAttribute('id');
+        // Support Browser Back/Forward & Direct Hash URLs
+        window.addEventListener('popstate', () => {
+            const hash = window.location.hash || '';
+            if (hash.startsWith('#page/')) {
+                const key = hash.replace('#page/', '').trim();
+                if (pageData[key]) {
+                    renderDedicatedPage(key);
+                    return;
                 }
-            });
-
-            if (currentId) {
-                document.querySelectorAll('#sidebar-menu > li > .sidebar-group-header > a').forEach((link) => {
-                    const href = link.getAttribute('href');
-                    if (href === '#' + currentId) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
-                });
             }
+            showHomeView(false);
         });
+
+        // Initial Route Check on Page Load
+        (function initRoute() {
+            const hash = window.location.hash || '';
+            if (hash.startsWith('#page/')) {
+                const key = hash.replace('#page/', '').trim();
+                if (pageData[key]) {
+                    renderDedicatedPage(key);
+                    return;
+                }
+            }
+            showHomeView(false);
+        })();
     </script>
 </body>
 </html>
