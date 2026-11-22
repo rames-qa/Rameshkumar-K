@@ -11,7 +11,7 @@
             --text-color: #ffffff;
             --muted-text: rgba(255, 255, 255, 0.78);
             --nav-bg: rgba(0,0,0,0.7);
-            --sidebar-bg: rgba(9, 14, 30, 0.88);
+            --sidebar-bg: rgba(9, 14, 30, 0.92);
             --card-bg: rgba(255,255,255,0.08);
             --card-hover-bg: rgba(255,255,255,0.13);
             --border-color: rgba(255, 255, 255, 0.12);
@@ -19,7 +19,7 @@
             --accent-soft: rgba(56, 189, 248, 0.16);
             --banner-bg: radial-gradient(circle at right, #0d2c5a, #022b1a);
             --footer-bg: rgba(0,0,0,0.5);
-            --sidebar-width: 270px;
+            --sidebar-width: 285px;
         }
 
         /* LIGHT MODE OVERRIDES */
@@ -27,8 +27,8 @@
             --bg-gradient: linear-gradient(135deg, #f0f9ff, #e0f2fe);
             --text-color: #0f172a;
             --muted-text: rgba(15, 23, 42, 0.75);
-            --nav-bg: rgba(255, 255, 255, 0.85);
-            --sidebar-bg: rgba(255, 255, 255, 0.92);
+            --nav-bg: rgba(255, 255, 255, 0.88);
+            --sidebar-bg: rgba(255, 255, 255, 0.95);
             --card-bg: rgba(0, 0, 0, 0.05);
             --card-hover-bg: rgba(255, 255, 255, 0.92);
             --border-color: rgba(15, 23, 42, 0.12);
@@ -70,9 +70,11 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 22px 16px;
+            padding: 20px 14px;
             transition: transform 0.3s ease, background 0.3s ease;
             overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(56, 189, 248, 0.35) transparent;
         }
 
         .sidebar-header {
@@ -131,7 +133,7 @@
             letter-spacing: 1.2px;
             text-transform: uppercase;
             color: var(--muted-text);
-            margin: 18px 10px 8px;
+            margin: 16px 10px 8px;
         }
 
         .sidebar-menu {
@@ -140,45 +142,164 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 4px;
         }
 
-        .sidebar-menu a {
+        .sidebar-group {
+            border-radius: 10px;
+            transition: background 0.2s ease;
+        }
+
+        .sidebar-group-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            border-radius: 10px;
+            transition: background 0.22s ease, color 0.22s ease;
+        }
+
+        .sidebar-group-header:hover {
+            background: var(--accent-soft);
+        }
+
+        .sidebar-topic-link {
+            flex: 1;
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 10px 12px;
-            border-radius: 10px;
+            padding: 9px 10px;
+            border-radius: 10px 0 0 10px;
             color: var(--text-color);
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            border: 1px solid transparent;
-            transition: all 0.25s ease;
+            font-size: 13.5px;
+            font-weight: 600;
+            transition: color 0.22s ease;
+            min-width: 0;
         }
 
-        .sidebar-menu a .nav-icon {
-            width: 22px;
+        .sidebar-topic-link:hover {
+            color: var(--accent-color);
+        }
+
+        .sidebar-topic-link.active,
+        .sidebar-group-header.active-parent .sidebar-topic-link {
+            color: var(--accent-color);
+        }
+
+        .sidebar-group-header.active-parent {
+            background: var(--accent-soft);
+            border: 1px solid rgba(56, 189, 248, 0.28);
+        }
+
+        .sidebar-topic-link .nav-icon {
+            width: 20px;
             text-align: center;
             font-size: 15px;
             flex-shrink: 0;
         }
 
-        .sidebar-menu a:hover {
-            background: var(--accent-soft);
+        .sidebar-topic-text {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .dropdown-arrow-btn {
+            background: transparent;
+            border: none;
+            color: var(--muted-text);
+            width: 30px;
+            height: 32px;
+            margin-right: 4px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s ease, color 0.2s ease;
+        }
+
+        .dropdown-arrow-btn:hover {
+            background: rgba(56, 189, 248, 0.18);
             color: var(--accent-color);
+        }
+
+        .dropdown-arrow-btn svg {
+            width: 15px;
+            height: 15px;
+            transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sidebar-group.expanded .dropdown-arrow-btn svg {
+            transform: rotate(180deg);
+            color: var(--accent-color);
+        }
+
+        /* Smooth CSS Grid Accordion Submenu */
+        .submenu-collapse {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.32s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.28s ease;
+            opacity: 0;
+        }
+
+        .sidebar-group.expanded .submenu-collapse {
+            grid-template-rows: 1fr;
+            opacity: 1;
+        }
+
+        .submenu-inner {
+            overflow: hidden;
+        }
+
+        .submenu-list {
+            list-style: none;
+            margin: 4px 0 6px 14px;
+            padding: 0 0 0 10px;
+            border-left: 1.5px solid rgba(56, 189, 248, 0.28);
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .submenu-list a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            padding: 6px 9px;
+            border-radius: 7px;
+            color: var(--muted-text);
+            text-decoration: none;
+            font-size: 12.5px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            line-height: 1.3;
+        }
+
+        .submenu-list a:hover {
+            background: var(--accent-soft);
+            color: var(--text-color);
             transform: translateX(3px);
         }
 
-        .sidebar-menu a.active {
+        .submenu-list a.active {
             background: var(--accent-color);
             color: #0f172a;
             font-weight: 700;
-            box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);
+            box-shadow: 0 3px 10px rgba(56, 189, 248, 0.3);
+        }
+
+        .ext-badge {
+            font-size: 10px;
+            opacity: 0.75;
+            flex-shrink: 0;
         }
 
         .sidebar-footer {
-            margin-top: 20px;
+            margin-top: 18px;
             padding-top: 14px;
             border-top: 1px solid var(--border-color);
             display: flex;
@@ -226,12 +347,12 @@
             transition: margin-left 0.3s ease;
         }
 
-        /* NAVBAR */
+        /* TOP BAR (Brand + Theme Toggle only; no duplicate nav links) */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 40px;
+            padding: 14px 36px;
             background: var(--nav-bg);
             position: sticky;
             top: 0;
@@ -243,7 +364,7 @@
         .nav-left {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 14px;
         }
 
         .sidebar-toggle-btn {
@@ -301,27 +422,7 @@
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 20px;
-        }
-
-        .nav-links {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .nav-links a {
-            color: var(--accent-color);
-            margin: 0 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-color);
+            gap: 16px;
         }
 
         /* THEME TOGGLE STYLES */
@@ -583,6 +684,61 @@
             transform: translateX(-50%);
         }
 
+        /* TOPIC DETAIL BANNER (shown when a specific subtopic/topic page view is active) */
+        .topic-focus-bar {
+            display: none;
+            max-width: 1124px;
+            margin: 22px auto 0;
+            padding: 14px 20px;
+            border-radius: 12px;
+            background: var(--accent-soft);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .topic-focus-bar.visible {
+            display: flex;
+        }
+
+        .topic-focus-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13.5px;
+            flex-wrap: wrap;
+        }
+
+        .topic-focus-badge {
+            background: var(--accent-color);
+            color: #0f172a;
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 999px;
+            letter-spacing: 0.5px;
+        }
+
+        .topic-reset-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .topic-reset-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
         /* SECTIONS */
         section {
             padding: 46px 28px;
@@ -631,6 +787,13 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
             border: 1px solid var(--border-color);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
+        }
+
+        .card.highlighted-card {
+            border-color: var(--accent-color);
+            background: var(--card-hover-bg);
+            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.35), 0 14px 30px rgba(2, 132, 199, 0.28);
+            transform: translateY(-4px);
         }
 
         .card h3 {
@@ -799,25 +962,17 @@
         /* MOBILE */
         @media (max-width: 768px) {
             nav {
-                padding: 15px 20px;
-                flex-direction: column;
-                gap: 15px;
+                padding: 14px 20px;
             }
 
             .nav-left {
                 flex-direction: row;
                 text-align: left;
-                width: 100%;
-                justify-content: space-between;
+                gap: 12px;
             }
 
-            .nav-right {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .nav-links {
-                justify-content: center;
+            .profile-text {
+                font-size: 15px;
             }
 
             .banner {
@@ -895,11 +1050,11 @@
     <!-- Mobile / Tablet Sidebar Backdrop -->
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
-    <!-- Fixed Sidebar Navigation -->
+    <!-- Fixed Sidebar Navigation with Expandable Dropdowns -->
     <aside class="sidebar" id="sidebar" aria-label="Portfolio Sidebar Navigation">
         <div>
             <div class="sidebar-header">
-                <a href="#top" class="sidebar-brand">
+                <a href="#top" class="sidebar-brand" data-topic-key="overview">
                     <div class="nav-circle">RK</div>
                     <div class="sidebar-brand-info">
                         <span class="sidebar-brand-name">Ramesh Kumar K</span>
@@ -909,15 +1064,176 @@
                 <button type="button" class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close sidebar">&times;</button>
             </div>
 
-            <div class="sidebar-label">Portfolio Sections</div>
+            <div class="sidebar-label">Portfolio Navigation</div>
             <ul class="sidebar-menu" id="sidebar-menu">
-                <li><a href="#skills"><span class="nav-icon">⚡</span><span>Skills</span></a></li>
-                <li><a href="#tools"><span class="nav-icon">🛠️</span><span>Tools &amp; Platforms</span></a></li>
-                <li><a href="#projects"><span class="nav-icon">💻</span><span>Programming Languages</span></a></li>
-                <li><a href="#projects"><span class="nav-icon">🤖</span><span>Automation Projects</span></a></li>
-                <li><a href="#python-automation"><span class="nav-icon">🐍</span><span>Python Automation</span></a></li>
-                <li><a href="#demo-projects"><span class="nav-icon">🚀</span><span>Demo Projects</span></a></li>
-                <li><a href="#contact"><span class="nav-icon">📬</span><span>Contact</span></a></li>
+                <!-- 1. Skills -->
+                <li class="sidebar-group" data-group="skills">
+                    <div class="sidebar-group-header">
+                        <a href="#skills" class="sidebar-topic-link" data-topic-key="skills">
+                            <span class="nav-icon">⚡</span>
+                            <span class="sidebar-topic-text">Skills</span>
+                        </a>
+                        <button type="button" class="dropdown-arrow-btn" aria-expanded="false" aria-label="Toggle Skills submenu">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                    </div>
+                    <div class="submenu-collapse">
+                        <div class="submenu-inner">
+                            <ul class="submenu-list">
+                                <li><a href="#skill-java" data-topic-key="skill-java">Java</a></li>
+                                <li><a href="#skill-python" data-topic-key="skill-python">Python</a></li>
+                                <li><a href="#skill-selenium" data-topic-key="skill-selenium">Selenium</a></li>
+                                <li><a href="#skill-testng" data-topic-key="skill-testng">TestNG</a></li>
+                                <li><a href="#skill-api-testing" data-topic-key="skill-api-testing">API Testing</a></li>
+                                <li><a href="#skill-stlc" data-topic-key="skill-stlc">STLC</a></li>
+                                <li><a href="#skill-sdlc" data-topic-key="skill-sdlc">SDLC</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 2. Tools & Platforms -->
+                <li class="sidebar-group" data-group="tools">
+                    <div class="sidebar-group-header">
+                        <a href="#tools" class="sidebar-topic-link" data-topic-key="tools">
+                            <span class="nav-icon">🛠️</span>
+                            <span class="sidebar-topic-text">Tools &amp; Platforms</span>
+                        </a>
+                        <button type="button" class="dropdown-arrow-btn" aria-expanded="false" aria-label="Toggle Tools & Platforms submenu">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                    </div>
+                    <div class="submenu-collapse">
+                        <div class="submenu-inner">
+                            <ul class="submenu-list">
+                                <li><a href="#tool-git-github" data-topic-key="tool-git-github">Git/GitHub</a></li>
+                                <li><a href="#tool-jenkins" data-topic-key="tool-jenkins">Jenkins</a></li>
+                                <li><a href="#tool-maven" data-topic-key="tool-maven">Maven</a></li>
+                                <li><a href="#tool-postman" data-topic-key="tool-postman">Postman</a></li>
+                                <li><a href="#tool-jira" data-topic-key="tool-jira">JIRA</a></li>
+                                <li><a href="#tool-html" data-topic-key="tool-html">HTML</a></li>
+                                <li><a href="#tool-mysql" data-topic-key="tool-mysql">MySQL</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 3. Programming Languages -->
+                <li class="sidebar-group" data-group="prog-langs">
+                    <div class="sidebar-group-header">
+                        <a href="#projects" class="sidebar-topic-link" data-topic-key="prog-langs">
+                            <span class="nav-icon">💻</span>
+                            <span class="sidebar-topic-text">Programming Languages</span>
+                        </a>
+                        <button type="button" class="dropdown-arrow-btn" aria-expanded="false" aria-label="Toggle Programming Languages submenu">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                    </div>
+                    <div class="submenu-collapse">
+                        <div class="submenu-inner">
+                            <ul class="submenu-list">
+                                <li><a href="#lang-java" data-topic-key="lang-java">Java</a></li>
+                                <li><a href="#lang-python" data-topic-key="lang-python">Python</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 4. Automation Projects -->
+                <li class="sidebar-group" data-group="auto-projects">
+                    <div class="sidebar-group-header">
+                        <a href="#projects" class="sidebar-topic-link" data-topic-key="auto-projects">
+                            <span class="nav-icon">🤖</span>
+                            <span class="sidebar-topic-text">Automation Projects</span>
+                        </a>
+                        <button type="button" class="dropdown-arrow-btn" aria-expanded="false" aria-label="Toggle Automation Projects submenu">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                    </div>
+                    <div class="submenu-collapse">
+                        <div class="submenu-inner">
+                            <ul class="submenu-list">
+                                <li><a href="#auto-selenium-webdriver" data-topic-key="auto-selenium-webdriver">Selenium WebDriver (GitHub) <span class="ext-badge">↗</span></a></li>
+                                <li><a href="#auto-hybrid-framework" data-topic-key="auto-hybrid-framework">Automation Framework (GitHub) <span class="ext-badge">↗</span></a></li>
+                                <li><a href="#auto-cucumber-bdd" data-topic-key="auto-cucumber-bdd">Cucumber BDD Framework (GitHub) <span class="ext-badge">↗</span></a></li>
+                                <li><a href="#auto-python-code" data-topic-key="auto-python-code">Python-Code (GitHub) <span class="ext-badge">↗</span></a></li>
+                                <li><a href="#auto-python-selenium" data-topic-key="auto-python-selenium">Python-Selenium (GitHub) <span class="ext-badge">↗</span></a></li>
+                                <li><a href="#auto-java-oops" data-topic-key="auto-java-oops">Java-OOPs Concepts (GitHub) <span class="ext-badge">↗</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 5. Python Automation -->
+                <li class="sidebar-group" data-group="python-auto">
+                    <div class="sidebar-group-header">
+                        <a href="#python-automation" class="sidebar-topic-link" data-topic-key="python-auto">
+                            <span class="nav-icon">🐍</span>
+                            <span class="sidebar-topic-text">Python Automation</span>
+                        </a>
+                        <button type="button" class="dropdown-arrow-btn" aria-expanded="false" aria-label="Toggle Python Automation submenu">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                    </div>
+                    <div class="submenu-collapse">
+                        <div class="submenu-inner">
+                            <ul class="submenu-list">
+                                <li><a href="#py-examples" data-topic-key="py-examples">Python Examples</a></li>
+                                <li><a href="#py-automation-projects" data-topic-key="py-automation-projects">Python Automation Projects</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 6. Demo Projects -->
+                <li class="sidebar-group" data-group="demo-proj">
+                    <div class="sidebar-group-header">
+                        <a href="#demo-projects" class="sidebar-topic-link" data-topic-key="demo-proj">
+                            <span class="nav-icon">🚀</span>
+                            <span class="sidebar-topic-text">Demo Projects</span>
+                        </a>
+                        <button type="button" class="dropdown-arrow-btn" aria-expanded="false" aria-label="Toggle Demo Projects submenu">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                    </div>
+                    <div class="submenu-collapse">
+                        <div class="submenu-inner">
+                            <ul class="submenu-list">
+                                <li><a href="#demo-1" data-topic-key="demo-1">Smart Health Monitoring Platform</a></li>
+                                <li><a href="#demo-2" data-topic-key="demo-2">Cognitive Speech AI</a></li>
+                                <li><a href="#demo-3" data-topic-key="demo-3">AI-Driven Elderly Health &amp; Wellness</a></li>
+                                <li><a href="#demo-4" data-topic-key="demo-4">Live Weather Forecast Application</a></li>
+                                <li><a href="#demo-5" data-topic-key="demo-5">Excel Sheet Reader Dashboard</a></li>
+                                <li><a href="#demo-6" data-topic-key="demo-6">AI Vector Automation Hub</a></li>
+                                <li><a href="#demo-7" data-topic-key="demo-7">Chatbot QA &amp; AI Eval Engine</a></li>
+                                <li><a href="#demo-8" data-topic-key="demo-8">Multi-Env Config &amp; Credential Mgmt</a></li>
+                                <li><a href="#demo-9" data-topic-key="demo-9">Omni-Voice E-Commerce Automation</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 7. Contact -->
+                <li class="sidebar-group" data-group="contact-grp">
+                    <div class="sidebar-group-header">
+                        <a href="#contact" class="sidebar-topic-link" data-topic-key="contact-grp">
+                            <span class="nav-icon">📬</span>
+                            <span class="sidebar-topic-text">Contact</span>
+                        </a>
+                        <button type="button" class="dropdown-arrow-btn" aria-expanded="false" aria-label="Toggle Contact submenu">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                    </div>
+                    <div class="submenu-collapse">
+                        <div class="submenu-inner">
+                            <ul class="submenu-list">
+                                <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=rameshkumar93.68@gmail.com" target="_blank" rel="noopener noreferrer" data-topic-key="contact-email">Email <span class="ext-badge">↗</span></a></li>
+                                <li><a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" target="_blank" rel="noopener noreferrer" data-topic-key="contact-linkedin">LinkedIn <span class="ext-badge">↗</span></a></li>
+                                <li><a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf" download="Ramesh_Kumar_K_Resume.pdf" data-topic-key="contact-resume">Download Resume <span class="ext-badge">↓</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
 
@@ -948,15 +1264,6 @@
             </div>
             
             <div class="nav-right">
-                <div class="nav-links">
-                    <a href="#skills">Skills</a>
-                    <a href="#tools">Tools</a>
-                    <a href="#projects">Automation Projects</a>
-                    <a href="#python-automation">Python Automation</a>
-                    <a href="#demo-projects">Demo Projects</a>
-                    <a href="#contact">Contact</a>
-                </div>
-
                 <!-- Dark / Light Theme Toggle Icons -->
                 <div class="theme-toggle">
                     <button aria-label="Light mode" class="theme-btn" id="light-btn">
@@ -1055,19 +1362,29 @@
             </div>
         </header>
 
+        <!-- Active Subtopic Indicator Bar -->
+        <div class="topic-focus-bar" id="topic-focus-bar" role="region" aria-label="Selected Topic Indicator">
+            <div class="topic-focus-info">
+                <span class="topic-focus-badge" id="topic-focus-group">Topic</span>
+                <strong id="topic-focus-title"></strong>
+                <span id="topic-focus-desc" style="color: var(--muted-text);"></span>
+            </div>
+            <button type="button" class="topic-reset-btn" id="topic-reset-btn">Show All Items</button>
+        </div>
+
         <section id="skills">
             <div class="section-header">
                 <h2>⚡ Skills</h2>
                 <p class="section-subtitle">Core QA engineering, test automation frameworks, and software lifecycle expertise</p>
             </div>
             <div class="flex">
-                <div class="card"><span class="badge-icon">☕</span><span>Java</span></div>
-                <div class="card"><span class="badge-icon">🐍</span><span>Python</span></div>
-                <div class="card"><span class="badge-icon">🌐</span><span>Selenium</span></div>
-                <div class="card"><span class="badge-icon">🧪</span><span>TestNG</span></div>
-                <div class="card"><span class="badge-icon">🔌</span><span>API Testing</span></div>
-                <div class="card"><span class="badge-icon">📋</span><span>STLC</span></div>
-                <div class="card"><span class="badge-icon">🔄</span><span>SDLC</span></div>
+                <div class="card" data-topic="skill-java"><span class="badge-icon">☕</span><span>Java</span></div>
+                <div class="card" data-topic="skill-python"><span class="badge-icon">🐍</span><span>Python</span></div>
+                <div class="card" data-topic="skill-selenium"><span class="badge-icon">🌐</span><span>Selenium</span></div>
+                <div class="card" data-topic="skill-testng"><span class="badge-icon">🧪</span><span>TestNG</span></div>
+                <div class="card" data-topic="skill-api-testing"><span class="badge-icon">🔌</span><span>API Testing</span></div>
+                <div class="card" data-topic="skill-stlc"><span class="badge-icon">📋</span><span>STLC</span></div>
+                <div class="card" data-topic="skill-sdlc"><span class="badge-icon">🔄</span><span>SDLC</span></div>
             </div>
         </section>
 
@@ -1077,14 +1394,14 @@
                 <p class="section-subtitle">Version control, CI/CD orchestration, build management, API validation, and databases</p>
             </div>
             <div class="flex">
-                <div class="card"><span class="badge-icon">🌿</span><span>Git</span></div>
-                <div class="card"><span class="badge-icon">🐙</span><span>GitHub</span></div>
-                <div class="card"><span class="badge-icon">⚙️</span><span>Jenkins</span></div>
-                <div class="card"><span class="badge-icon">📦</span><span>Maven</span></div>
-                <div class="card"><span class="badge-icon">🚀</span><span>Postman</span></div>
-                <div class="card"><span class="badge-icon">📌</span><span>JIRA</span></div>
-                <div class="card"><span class="badge-icon">🧱</span><span>HTML</span></div>
-                <div class="card"><span class="badge-icon">🗄️</span><span>MySQL</span></div>
+                <div class="card" data-topic="tool-git-github"><span class="badge-icon">🌿</span><span>Git</span></div>
+                <div class="card" data-topic="tool-git-github"><span class="badge-icon">🐙</span><span>GitHub</span></div>
+                <div class="card" data-topic="tool-jenkins"><span class="badge-icon">⚙️</span><span>Jenkins</span></div>
+                <div class="card" data-topic="tool-maven"><span class="badge-icon">📦</span><span>Maven</span></div>
+                <div class="card" data-topic="tool-postman"><span class="badge-icon">🚀</span><span>Postman</span></div>
+                <div class="card" data-topic="tool-jira"><span class="badge-icon">📌</span><span>JIRA</span></div>
+                <div class="card" data-topic="tool-html"><span class="badge-icon">🧱</span><span>HTML</span></div>
+                <div class="card" data-topic="tool-mysql"><span class="badge-icon">🗄️</span><span>MySQL</span></div>
             </div>
         </section>
 
@@ -1094,7 +1411,7 @@
                 <p class="section-subtitle">Java, Python, Selenium WebDriver, Cucumber BDD, and object-oriented automation repositories</p>
             </div>
             <div class="flex">
-                <div class="card">
+                <div class="card" data-topic="auto-selenium-webdriver" data-lang="java">
                     <div>
                         <div class="card-badge-row"><span class="tag-pill">Java</span><span class="tag-pill">Selenium</span><span class="tag-pill">TestNG</span></div>
                         <h3 style="color:var(--accent-color);">Selenium WebDriver</h3>
@@ -1103,7 +1420,7 @@
                     <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn">🚀 GitHub Selenium WebDriver</a>
                 </div>
 
-                <div class="card">
+                <div class="card" data-topic="auto-hybrid-framework" data-lang="java">
                     <div>
                         <div class="card-badge-row"><span class="tag-pill">Hybrid</span><span class="tag-pill">Data-Driven</span></div>
                         <h3 style="color:var(--accent-color);">Automation Framework</h3>
@@ -1112,7 +1429,7 @@
                     <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" class="btn">🚀 GitHub Automation Framework</a>
                 </div>
 
-                <div class="card">
+                <div class="card" data-topic="auto-cucumber-bdd" data-lang="java">
                     <div>
                         <div class="card-badge-row"><span class="tag-pill">Cucumber</span><span class="tag-pill">BDD</span></div>
                         <h3 style="color:var(--accent-color);">Cucumber BDD Framework</h3>
@@ -1121,7 +1438,7 @@
                     <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" class="btn">🚀 GitHub Cucumber BDD Framework</a>
                 </div>
 
-                <div class="card">
+                <div class="card" data-topic="auto-python-code" data-lang="python">
                     <div>
                         <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">OOP</span></div>
                         <h3 style="color:var(--accent-color);">Python-Code</h3>
@@ -1130,7 +1447,7 @@
                     <a href="https://github.com/rames-qa/Python-codes" target="_blank" class="btn">🚀 GitHub Python-Code</a>
                 </div>
 
-                <div class="card">
+                <div class="card" data-topic="auto-python-selenium" data-lang="python">
                     <div>
                         <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">Selenium</span></div>
                         <h3 style="color:var(--accent-color);">Python-Selenium</h3>
@@ -1139,7 +1456,7 @@
                     <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" class="btn">🚀 GitHub Python-Selenium</a>
                 </div>
 
-                <div class="card">
+                <div class="card" data-topic="auto-java-oops" data-lang="java">
                     <div>
                         <div class="card-badge-row"><span class="tag-pill">Java</span><span class="tag-pill">OOPs</span></div>
                         <h3 style="color:var(--accent-color);">Java-OOPs Concepts</h3>
@@ -1148,7 +1465,7 @@
                     <a href="https://github.com/rames-qa/Java-Code.git" target="_blank" class="btn">🚀 GitHub Java(OOP) Concepts</a>
                 </div>
 
-                <div class="card" id="python-automation">
+                <div class="card" id="python-automation" data-topic="py-automation-projects" data-lang="python">
                     <div>
                         <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">Scripting</span></div>
                         <h3 style="color:var(--accent-color);">Python Automation</h3>
@@ -1167,7 +1484,7 @@
                 <p class="section-subtitle">Live interactive applications, AI-powered evaluation hubs, and automation dashboards</p>
             </div>
             <div class="flex">
-                <div class="card">
+                <div class="card" data-topic="demo-1">
                     <div>
                         <div class="card-badge-row"><span class="tag-pill">Healthcare AI</span><span class="tag-pill">Live Demo</span></div>
                         <h3 style="color:var(--accent-color);">🏥 Smart Health Monitoring Platform</h3>
@@ -1176,7 +1493,7 @@
                     <a href="https://rames-qa.github.io/Smart-Health-Monitoring-Platform/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
                 </div>
 
-                <div class="card">
+                <div class="card" data-topic="demo-2">
                     <div>
                         <div class="card-badge-row"><span class="tag-pill">Speech AI</span><span class="tag-pill">Live Demo</span></div>
                         <h3 style="color:var(--accent-color);">🗣️ Cognitive Speech AI</h3>
@@ -1185,7 +1502,7 @@
                     <a href="https://rames-qa.github.io/Cognitive-Speech-AI" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
                 </div>
 
-                <div class="card">
+                <div class="card" data-topic="demo-3">
                     <div>
                         <div class="card-badge-row"><span class="tag-pill">Mental Wellness</span><span class="tag-pill">Live Demo</span></div>
                         <h3 style="color:var(--accent-color);">🧠 AI-Driven Elderly Health, Cognitive Ability & Mental Wellness Assessment</h3>
@@ -1194,7 +1511,7 @@
                     <a href="https://rames-qa.github.io/Physiological-and-Mental-Health-Assessment-of-Elderly-Indians/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
                 </div>
 
-                <div class="card">
+                <div class="card" data-topic="demo-4">
                     <div>
                         <div class="card-badge-row"><span class="tag-pill">REST API</span><span class="tag-pill">Live Demo</span></div>
                         <h3 style="color:var(--accent-color);">🌤️ Live Weather Forecast Application</h3>
@@ -1203,7 +1520,7 @@
                     <a href="https://rames-qa.github.io/Weather-Forecast-/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
                 </div>
 
-                <div class="card">
+                <div class="card" data-topic="demo-5">
                     <div>
                         <div class="card-badge-row"><span class="tag-pill">Analytics</span><span class="tag-pill">Live Demo</span></div>
                         <h3 style="color:var(--accent-color);">📈 Excel Sheet Reader Dashboard</h3>
@@ -1212,7 +1529,7 @@
                     <a href="https://rames-qa.github.io/Excel-Sheet-Reader-Dashboard/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
                 </div>
 
-                <div class="card">
+                <div class="card" data-topic="demo-6">
                     <div>
                         <div class="card-badge-row"><span class="tag-pill">Vector AI</span><span class="tag-pill">Live Demo</span></div>
                         <h3 style="color:var(--accent-color);">🤖 AI Vector Automation Hub</h3>
@@ -1221,7 +1538,7 @@
                     <a href="https://rames-qa.github.io/AI-Vector-Automation-Hub/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
                 </div>
 
-                <div class="card">
+                <div class="card" data-topic="demo-7">
                     <div>
                         <div class="card-badge-row"><span class="tag-pill">QA Eval</span><span class="tag-pill">Live Demo</span></div>
                         <h3 style="color:var(--accent-color);">🤖CHATBOT QA & AI EVAL ENGINE </h3>
@@ -1230,7 +1547,7 @@
                     <a href="https://rames-qa.github.io/Automation-Framework-Hub/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
                 </div>
 
-                <div class="card">
+                <div class="card" data-topic="demo-8">
                     <div>
                         <div class="card-badge-row"><span class="tag-pill">CI/CD</span><span class="tag-pill">Security</span></div>
                         <h3 style="color: var(--accent-color);">🔐 Multi-Environment Configuration &amp; Secure Credential Management</h3>
@@ -1241,7 +1558,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card" data-topic="demo-9">
                     <div>
                         <div class="card-badge-row"><span class="tag-pill">Voice AI</span><span class="tag-pill">NLP</span></div>
                         <h3 style="color:var(--accent-color);">🛒 Omni-Voice:E-Commerce Automation & Testing Framework</h3>
@@ -1289,7 +1606,7 @@
         </footer>
     </div>
 
-    <!-- JavaScript for Theme Switching & Sidebar Navigation -->
+    <!-- JavaScript for Theme Switching, Expandable Sidebar Dropdowns & Topic Navigation -->
     <script>
         const lightBtn = document.getElementById('light-btn');
         const darkBtn = document.getElementById('dark-btn');
@@ -1302,12 +1619,11 @@
             document.body.classList.remove('light-mode');
         });
 
-        // Collapsible Sidebar & Active Section Highlighting
+        // Collapsible Sidebar Drawer (Mobile & Tablet)
         const sidebar = document.getElementById('sidebar');
         const sidebarOverlay = document.getElementById('sidebar-overlay');
         const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
         const sidebarCloseBtn = document.getElementById('sidebar-close-btn');
-        const sidebarLinks = document.querySelectorAll('#sidebar-menu a');
 
         function openSidebar() {
             sidebar.classList.add('open');
@@ -1331,18 +1647,177 @@
             sidebarOverlay.addEventListener('click', closeSidebar);
         }
 
-        sidebarLinks.forEach((link) => {
-            link.addEventListener('click', () => {
-                sidebarLinks.forEach((item) => item.classList.remove('active'));
-                link.classList.add('active');
+        // Independent Dropdown Arrow Toggle
+        const arrowButtons = document.querySelectorAll('.dropdown-arrow-btn');
+        arrowButtons.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const group = btn.closest('.sidebar-group');
+                if (!group) return;
+                const isExpanded = group.classList.toggle('expanded');
+                btn.setAttribute('aria-expanded', String(isExpanded));
+            });
+        });
+
+        // Topic / Subtopic Metadata & Selection State
+        const topicFocusBar = document.getElementById('topic-focus-bar');
+        const topicFocusGroup = document.getElementById('topic-focus-group');
+        const topicFocusTitle = document.getElementById('topic-focus-title');
+        const topicFocusDesc = document.getElementById('topic-focus-desc');
+        const topicResetBtn = document.getElementById('topic-reset-btn');
+        const allCards = document.querySelectorAll('.card');
+        const allSidebarLinks = document.querySelectorAll('#sidebar-menu a, .sidebar-brand');
+
+        const topicInfoMap = {
+            'skill-java': { group: 'Skills', title: 'Java', desc: 'Object-oriented programming and test automation development in Java.', sectionId: 'skills' },
+            'skill-python': { group: 'Skills', title: 'Python', desc: 'Scripting, automation tooling, and test framework development in Python.', sectionId: 'skills' },
+            'skill-selenium': { group: 'Skills', title: 'Selenium', desc: 'Selenium WebDriver browser automation and cross-browser testing.', sectionId: 'skills' },
+            'skill-testng': { group: 'Skills', title: 'TestNG', desc: 'Test execution orchestration, assertions, parallel suites, and reporting.', sectionId: 'skills' },
+            'skill-api-testing': { group: 'Skills', title: 'API Testing', desc: 'REST API validation, status/schema assertions, and automated endpoint testing.', sectionId: 'skills' },
+            'skill-stlc': { group: 'Skills', title: 'STLC', desc: 'Software Testing Life Cycle planning, test design, execution, and defect tracking.', sectionId: 'skills' },
+            'skill-sdlc': { group: 'Skills', title: 'SDLC', desc: 'Software Development Life Cycle workflows, releases, and quality gates.', sectionId: 'skills' },
+
+            'tool-git-github': { group: 'Tools & Platforms', title: 'Git/GitHub', desc: 'Source control, branching, pull requests, and repository hosting.', sectionId: 'tools' },
+            'tool-jenkins': { group: 'Tools & Platforms', title: 'Jenkins', desc: 'Automated CI/CD pipelines and scheduled test suite execution.', sectionId: 'tools' },
+            'tool-maven': { group: 'Tools & Platforms', title: 'Maven', desc: 'Dependency management, build lifecycle, and test runner configuration.', sectionId: 'tools' },
+            'tool-postman': { group: 'Tools & Platforms', title: 'Postman', desc: 'API collections, environment variables, and request/response verification.', sectionId: 'tools' },
+            'tool-jira': { group: 'Tools & Platforms', title: 'JIRA', desc: 'Issue tracking, sprint workflows, user stories, and bug reporting.', sectionId: 'tools' },
+            'tool-html': { group: 'Tools & Platforms', title: 'HTML', desc: 'Markup structure, test reporting views, and web UI inspection.', sectionId: 'tools' },
+            'tool-mysql': { group: 'Tools & Platforms', title: 'MySQL', desc: 'Relational database queries and backend data validation with SQL.', sectionId: 'tools' },
+
+            'lang-java': { group: 'Programming Languages', title: 'Java', desc: 'Java automation repositories including Selenium WebDriver, Hybrid/Data-Driven Framework, Cucumber BDD, and Java OOPs.', sectionId: 'projects', langFilter: 'java' },
+            'lang-python': { group: 'Programming Languages', title: 'Python', desc: 'Python automation repositories including Python-Code, Python-Selenium, and Python Automation.', sectionId: 'projects', langFilter: 'python' },
+
+            'auto-selenium-webdriver': { group: 'Automation Projects', title: 'Selenium WebDriver', desc: 'Built automation using Java, Selenium, TestNG and Page Object Model.', sectionId: 'projects' },
+            'auto-hybrid-framework': { group: 'Automation Projects', title: 'Automation Framework', desc: 'Automated Data-Driven and Hybrid Framework with Validation and Reporting.', sectionId: 'projects' },
+            'auto-cucumber-bdd': { group: 'Automation Projects', title: 'Cucumber BDD Framework', desc: 'BDD automation using Cucumber with Selenium and TestNG integration.', sectionId: 'projects' },
+            'auto-python-code': { group: 'Automation Projects', title: 'Python-Code', desc: 'Python basic and OOPs concepts.', sectionId: 'projects' },
+            'auto-python-selenium': { group: 'Automation Projects', title: 'Python-Selenium', desc: 'Automation using Python with Selenium.', sectionId: 'projects' },
+            'auto-java-oops': { group: 'Automation Projects', title: 'Java-OOPs Concepts', desc: 'Java Programming with OOP Concepts.', sectionId: 'projects' },
+
+            'py-examples': { group: 'Python Automation', title: 'Python Examples', desc: 'Python programming examples, core syntax, and OOPs implementations.', sectionId: 'projects', topicKey: 'auto-python-code' },
+            'py-automation-projects': { group: 'Python Automation', title: 'Python Automation Projects', desc: 'Python programming examples and automation projects showcasing core Python concepts, scripting, and practical implementations.', sectionId: 'projects', topicKey: 'py-automation-projects' },
+
+            'demo-1': { group: 'Demo Projects', title: 'Smart Health Monitoring Platform', desc: 'Smart Health Monitoring Platform for elderly care with emergency alerts, doctor connectivity, AI-powered monitoring, and real-time healthcare tracking features.', sectionId: 'demo-projects' },
+            'demo-2': { group: 'Demo Projects', title: 'Cognitive Speech AI', desc: 'Cognitive Speech AI technology, the platform uses live neural intelligence, emotional AI processing, real-time analytics, and intelligent automation.', sectionId: 'demo-projects' },
+            'demo-3': { group: 'Demo Projects', title: 'AI-Driven Elderly Health, Cognitive Ability & Mental Wellness Assessment', desc: 'Created an AI-powered platform to assess elderly health, cognition, and mental wellness, enabling early risk detection and personalized healthcare recommendations.', sectionId: 'demo-projects' },
+            'demo-4': { group: 'Demo Projects', title: 'Live Weather Forecast Application', desc: 'A dynamic web application delivering real-time weather tracking, extended daily forecasts, temperature trends, and environmental metrics through responsive API integration.', sectionId: 'demo-projects' },
+            'demo-5': { group: 'Demo Projects', title: 'Excel Sheet Reader Dashboard', desc: 'An interactive web-based analytics dashboard engineered to parse, process, and visualize data directly from Excel spreadsheets in real time.', sectionId: 'demo-projects' },
+            'demo-6': { group: 'Demo Projects', title: 'AI Vector Automation Hub', desc: 'An advanced AI-powered test automation framework integrating vector store embeddings, semantic search evaluation, and intelligent test orchestration.', sectionId: 'demo-projects' },
+            'demo-7': { group: 'Demo Projects', title: 'CHATBOT QA & AI EVAL ENGINE', desc: 'A centralized automation testing framework designed to manage, execute, and analyze automated testing projects with integrated reporting and quality insights.', sectionId: 'demo-projects' },
+            'demo-8': { group: 'Demo Projects', title: 'Multi-Environment Configuration & Secure Credential Management', desc: 'A modular Python API test automation framework designed to manage multiple environments, securely handle credentials, centralize configuration, and integrate automated API testing with GitHub Actions CI/CD.', sectionId: 'demo-projects' },
+            'demo-9': { group: 'Demo Projects', title: 'Omni-Voice: E-Commerce Automation & Testing Framework', desc: 'An AI-powered multi-platform voice automation framework featuring real-time speech recognition, intelligent NLP-based intent detection, fuzzy matching, and dynamic application routing across Amazon, Flipkart, Meesho, Zomato, and Swiggy.', sectionId: 'demo-projects' }
+        };
+
+        function clearActiveHighlights() {
+            allSidebarLinks.forEach((lnk) => lnk.classList.remove('active'));
+            document.querySelectorAll('.sidebar-group-header').forEach((hdr) => hdr.classList.remove('active-parent'));
+            allCards.forEach((c) => c.classList.remove('highlighted-card'));
+        }
+
+        function resetTopicFocus() {
+            clearActiveHighlights();
+            topicFocusBar.classList.remove('visible');
+        }
+
+        if (topicResetBtn) {
+            topicResetBtn.addEventListener('click', resetTopicFocus);
+        }
+
+        function activateSubtopic(key, linkEl) {
+            const info = topicInfoMap[key];
+            if (!info) return;
+
+            clearActiveHighlights();
+            if (linkEl) {
+                linkEl.classList.add('active');
+                const parentGroup = linkEl.closest('.sidebar-group');
+                if (parentGroup) {
+                    parentGroup.classList.add('expanded');
+                    const arrow = parentGroup.querySelector('.dropdown-arrow-btn');
+                    if (arrow) arrow.setAttribute('aria-expanded', 'true');
+                    const parentHeader = parentGroup.querySelector('.sidebar-group-header');
+                    if (parentHeader) parentHeader.classList.add('active-parent');
+                }
+            }
+
+            topicFocusGroup.textContent = info.group;
+            topicFocusTitle.textContent = info.title;
+            topicFocusDesc.textContent = info.desc;
+            topicFocusBar.classList.add('visible');
+
+            let targetCard = null;
+            if (info.langFilter) {
+                allCards.forEach((card) => {
+                    if (card.getAttribute('data-lang') === info.langFilter) {
+                        card.classList.add('highlighted-card');
+                        if (!targetCard) targetCard = card;
+                    }
+                });
+            } else {
+                const matchKey = info.topicKey || key;
+                allCards.forEach((card) => {
+                    if (card.getAttribute('data-topic') === matchKey) {
+                        card.classList.add('highlighted-card');
+                        if (!targetCard) targetCard = card;
+                    }
+                });
+            }
+
+            const scrollDest = targetCard || document.getElementById(info.sectionId);
+            if (scrollDest) {
+                scrollDest.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // Handle Sidebar Link Clicks
+        document.querySelectorAll('#sidebar-menu a').forEach((link) => {
+            link.addEventListener('click', (e) => {
+                const key = link.getAttribute('data-topic-key');
+                const href = link.getAttribute('href') || '';
+
+                // Let external / download links open normally while highlighting
+                if (href.startsWith('http') || link.hasAttribute('download')) {
+                    clearActiveHighlights();
+                    link.classList.add('active');
+                    if (window.innerWidth <= 1024) closeSidebar();
+                    return;
+                }
+
+                if (topicInfoMap[key]) {
+                    e.preventDefault();
+                    activateSubtopic(key, link);
+                } else {
+                    clearActiveHighlights();
+                    link.classList.add('active');
+                    const parentGroup = link.closest('.sidebar-group');
+                    if (parentGroup) {
+                        const isExpanded = parentGroup.classList.toggle('expanded');
+                        const arrow = parentGroup.querySelector('.dropdown-arrow-btn');
+                        if (arrow) arrow.setAttribute('aria-expanded', String(isExpanded));
+                    }
+                    topicFocusBar.classList.remove('visible');
+                }
+
                 if (window.innerWidth <= 1024) {
                     closeSidebar();
                 }
             });
         });
 
-        const observedSections = document.querySelectorAll('section[id], #python-automation');
+        const brandLink = document.querySelector('.sidebar-brand');
+        if (brandLink) {
+            brandLink.addEventListener('click', () => {
+                resetTopicFocus();
+                if (window.innerWidth <= 1024) closeSidebar();
+            });
+        }
+
+        // Scroll Spy for Main Sections
+        const observedSections = document.querySelectorAll('section[id]');
         window.addEventListener('scroll', () => {
+            if (topicFocusBar.classList.contains('visible')) return;
             let currentId = '';
             const scrollPos = window.scrollY + 140;
 
@@ -1354,11 +1829,11 @@
             });
 
             if (currentId) {
-                sidebarLinks.forEach((link) => {
+                document.querySelectorAll('#sidebar-menu > li > .sidebar-group-header > a').forEach((link) => {
                     const href = link.getAttribute('href');
                     if (href === '#' + currentId) {
                         link.classList.add('active');
-                    } else if (!(currentId === 'python-automation' && href === '#python-automation')) {
+                    } else {
                         link.classList.remove('active');
                     }
                 });
