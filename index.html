@@ -143,7 +143,7 @@
             gap: 6px;
         }
 
-        .sidebar-item {
+        .sidebar-item-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -152,7 +152,7 @@
             transition: all 0.25s ease;
         }
 
-        .sidebar-item a.sidebar-link {
+        .sidebar-item-row a.sidebar-link {
             flex: 1;
             display: flex;
             align-items: center;
@@ -166,14 +166,14 @@
             transition: all 0.25s ease;
         }
 
-        .sidebar-item a.sidebar-link .nav-icon {
+        .sidebar-item-row a.sidebar-link .nav-icon {
             width: 22px;
             text-align: center;
             font-size: 15px;
             flex-shrink: 0;
         }
 
-        .sidebar-arrow-btn {
+        .sidebar-dropdown-btn {
             background: transparent;
             border: none;
             color: var(--muted-text);
@@ -185,37 +185,37 @@
             transition: transform 0.25s ease, color 0.25s ease, background 0.25s ease;
         }
 
-        .sidebar-arrow-btn:hover {
+        .sidebar-dropdown-btn:hover {
             background: var(--accent-soft);
             color: var(--accent-color);
         }
 
-        .sidebar-arrow-btn.open {
+        .sidebar-dropdown-btn.expanded {
             transform: rotate(180deg);
             color: var(--accent-color);
         }
 
-        .sidebar-item:hover {
+        .sidebar-item-row:hover {
             background: var(--accent-soft);
         }
 
-        .sidebar-item:hover a.sidebar-link {
+        .sidebar-item-row:hover a.sidebar-link {
             color: var(--accent-color);
             transform: translateX(2px);
         }
 
-        .sidebar-item.active {
+        .sidebar-item-row.active {
             background: var(--accent-color);
             box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);
         }
 
-        .sidebar-item.active a.sidebar-link,
-        .sidebar-item.active .sidebar-arrow-btn {
+        .sidebar-item-row.active a.sidebar-link,
+        .sidebar-item-row.active .sidebar-dropdown-btn {
             color: #0f172a;
             font-weight: 700;
         }
 
-        .sidebar-subpanel {
+        .sidebar-dropdown-panel {
             display: none;
             margin: 4px 0 6px 14px;
             padding: 8px 10px;
@@ -226,17 +226,17 @@
             color: var(--muted-text);
         }
 
-        .sidebar-subpanel.open {
+        .sidebar-dropdown-panel.open {
             display: block;
-            animation: fadeSlideIn 0.22s ease;
+            animation: dropdownFade 0.2s ease;
         }
 
-        @keyframes fadeSlideIn {
+        @keyframes dropdownFade {
             from { opacity: 0; transform: translateY(-4px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .sidebar-subpanel-list {
+        .sidebar-dropdown-list {
             list-style: none;
             margin: 0;
             padding: 0;
@@ -245,16 +245,16 @@
             gap: 4px;
         }
 
-        .sidebar-subpanel-list a {
+        .sidebar-dropdown-list a {
             color: var(--text-color);
             text-decoration: none;
             display: block;
-            padding: 3px 4px;
+            padding: 4px 6px;
             border-radius: 5px;
             transition: background 0.2s ease, color 0.2s ease;
         }
 
-        .sidebar-subpanel-list a:hover {
+        .sidebar-dropdown-list a:hover {
             background: var(--accent-soft);
             color: var(--accent-color);
         }
@@ -386,33 +386,14 @@
             gap: 16px;
         }
 
-        .nav-links {
-            display: none;
-        }
-
-        .topic-mode-bar {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            color: var(--muted-text);
-        }
-
-        .show-all-btn {
-            background: var(--accent-soft);
-            color: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            border-radius: 8px;
-            padding: 6px 12px;
+        .active-view-badge {
             font-size: 12px;
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.25s ease;
-        }
-
-        .show-all-btn:hover {
-            background: var(--accent-color);
-            color: #0f172a;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent-color);
+            border: 1px solid var(--border-color);
         }
 
         /* THEME TOGGLE STYLES */
@@ -648,13 +629,13 @@
             transform: translateX(-50%);
         }
 
-        .manual {
-            bottom: 80px;
+        .python {
+            top: 60px;
             right: -30px;
         }
 
-        .python {
-            top: 60px;
+        .manual {
+            bottom: 80px;
             right: -30px;
         }
 
@@ -674,8 +655,9 @@
             transform: translateX(-50%);
         }
 
-        /* SECTIONS */
-        section {
+        /* INDEPENDENT WEBPAGE-STYLE TOPIC VIEWS */
+        .topic-view {
+            display: none;
             padding: 46px 28px;
             max-width: 1180px;
             width: 100%;
@@ -684,31 +666,18 @@
             scroll-margin-top: 76px;
         }
 
-        section.topic-hidden {
-            display: none;
+        .topic-view.active-view {
+            display: block;
+            animation: viewFadeIn 0.28s ease;
         }
 
-        section.topic-focused {
-            background: var(--card-bg);
-            border: 1px solid var(--accent-color);
-            border-radius: 18px;
-            margin-top: 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 14px 36px rgba(2, 132, 199, 0.22);
+        @keyframes viewFadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .section-header {
             margin-bottom: 28px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .section-title-row {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
         }
 
         .section-header h2 {
@@ -718,36 +687,6 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-        }
-
-        .section-down-btn {
-            background: var(--accent-soft);
-            color: var(--accent-color);
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            width: 34px;
-            height: 34px;
-            font-size: 16px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
-            margin-bottom: 8px;
-        }
-
-        .section-down-btn:hover {
-            background: var(--accent-color);
-            color: #0f172a;
-            transform: translateY(2px);
-        }
-
-        .section-down-btn.collapsed {
-            transform: rotate(-90deg);
-        }
-
-        .section-body.collapsed {
-            display: none;
         }
 
         .section-subtitle {
@@ -791,7 +730,7 @@
             margin-bottom: 18px;
         }
 
-        /* ATTRACTIVE SKILL & TOOL BADGE CARDS */
+        /* ATTRACTIVE SKILL, TOOL & LANGUAGE BADGE CARDS */
         #skills .card, #tools .card, #programming-languages .card {
             width: 175px;
             min-height: 82px;
@@ -1017,7 +956,7 @@
                 left: -10px;
             }
 
-            section {
+            .topic-view {
                 padding: 36px 16px;
             }
 
@@ -1037,11 +976,11 @@
     <!-- Mobile / Tablet Sidebar Backdrop -->
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
-    <!-- Fixed Sidebar Navigation -->
+    <!-- Fixed Sidebar Navigation (Single Primary Navigation Source) -->
     <aside class="sidebar" id="sidebar" aria-label="Portfolio Sidebar Navigation">
         <div>
             <div class="sidebar-header">
-                <a href="#top" class="sidebar-brand">
+                <a href="#skills" class="sidebar-brand" data-view="skills">
                     <div class="nav-circle">RK</div>
                     <div class="sidebar-brand-info">
                         <span class="sidebar-brand-name">Ramesh Kumar K</span>
@@ -1051,100 +990,100 @@
                 <button type="button" class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close sidebar">&times;</button>
             </div>
 
-            <div class="sidebar-label">Portfolio Sections</div>
+            <div class="sidebar-label">Portfolio Views</div>
             <ul class="sidebar-menu" id="sidebar-menu">
                 <li>
-                    <div class="sidebar-item active" data-topic="skills">
-                        <a href="#skills" class="sidebar-link" data-target="skills"><span class="nav-icon">⚡</span><span>Skills</span></a>
-                        <button type="button" class="sidebar-arrow-btn" data-panel="panel-skills" aria-label="Open Skills topics">⌄</button>
+                    <div class="sidebar-item-row active" data-view-item="skills">
+                        <a href="#skills" class="sidebar-link" data-view="skills"><span class="nav-icon">⚡</span><span>Skills</span></a>
+                        <button type="button" class="sidebar-dropdown-btn" data-dropdown="dd-skills" aria-expanded="false" aria-label="Toggle Skills dropdown">⌄</button>
                     </div>
-                    <div class="sidebar-subpanel" id="panel-skills">
-                        <ul class="sidebar-subpanel-list">
-                            <li><a href="#skills" data-target="skills">Java, Python, Selenium</a></li>
-                            <li><a href="#skills" data-target="skills">TestNG, API Testing</a></li>
-                            <li><a href="#skills" data-target="skills">STLC &amp; SDLC</a></li>
+                    <div class="sidebar-dropdown-panel" id="dd-skills">
+                        <ul class="sidebar-dropdown-list">
+                            <li><a href="#skills" data-view="skills">Java, Python, Selenium</a></li>
+                            <li><a href="#skills" data-view="skills">TestNG &amp; API Testing</a></li>
+                            <li><a href="#skills" data-view="skills">STLC &amp; SDLC</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li>
-                    <div class="sidebar-item" data-topic="tools">
-                        <a href="#tools" class="sidebar-link" data-target="tools"><span class="nav-icon">🛠️</span><span>Tools &amp; Platforms</span></a>
-                        <button type="button" class="sidebar-arrow-btn" data-panel="panel-tools" aria-label="Open Tools & Platforms topics">⌄</button>
+                    <div class="sidebar-item-row" data-view-item="tools">
+                        <a href="#tools" class="sidebar-link" data-view="tools"><span class="nav-icon">🛠️</span><span>Tools &amp; Platforms</span></a>
+                        <button type="button" class="sidebar-dropdown-btn" data-dropdown="dd-tools" aria-expanded="false" aria-label="Toggle Tools & Platforms dropdown">⌄</button>
                     </div>
-                    <div class="sidebar-subpanel" id="panel-tools">
-                        <ul class="sidebar-subpanel-list">
-                            <li><a href="#tools" data-target="tools">Git, GitHub, Jenkins, Maven</a></li>
-                            <li><a href="#tools" data-target="tools">Postman, JIRA, HTML, MySQL</a></li>
+                    <div class="sidebar-dropdown-panel" id="dd-tools">
+                        <ul class="sidebar-dropdown-list">
+                            <li><a href="#tools" data-view="tools">Git, GitHub, Jenkins, Maven</a></li>
+                            <li><a href="#tools" data-view="tools">Postman, JIRA, HTML, MySQL</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li>
-                    <div class="sidebar-item" data-topic="programming-languages">
-                        <a href="#programming-languages" class="sidebar-link" data-target="programming-languages"><span class="nav-icon">💻</span><span>Programming Languages</span></a>
-                        <button type="button" class="sidebar-arrow-btn" data-panel="panel-programming-languages" aria-label="Open Programming Languages topics">⌄</button>
+                    <div class="sidebar-item-row" data-view-item="programming-languages">
+                        <a href="#programming-languages" class="sidebar-link" data-view="programming-languages"><span class="nav-icon">💻</span><span>Programming Languages</span></a>
+                        <button type="button" class="sidebar-dropdown-btn" data-dropdown="dd-languages" aria-expanded="false" aria-label="Toggle Programming Languages dropdown">⌄</button>
                     </div>
-                    <div class="sidebar-subpanel" id="panel-programming-languages">
-                        <ul class="sidebar-subpanel-list">
-                            <li><a href="#programming-languages" data-target="programming-languages">Java &amp; OOPs</a></li>
-                            <li><a href="#programming-languages" data-target="programming-languages">Python &amp; Scripting</a></li>
-                            <li><a href="#programming-languages" data-target="programming-languages">SQL &amp; HTML</a></li>
+                    <div class="sidebar-dropdown-panel" id="dd-languages">
+                        <ul class="sidebar-dropdown-list">
+                            <li><a href="#programming-languages" data-view="programming-languages">Java &amp; OOPs</a></li>
+                            <li><a href="#programming-languages" data-view="programming-languages">Python &amp; Scripting</a></li>
+                            <li><a href="#programming-languages" data-view="programming-languages">MySQL &amp; HTML</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li>
-                    <div class="sidebar-item" data-topic="projects">
-                        <a href="#projects" class="sidebar-link" data-target="projects"><span class="nav-icon">🤖</span><span>Automation Projects</span></a>
-                        <button type="button" class="sidebar-arrow-btn" data-panel="panel-projects" aria-label="Open Automation Projects topics">⌄</button>
+                    <div class="sidebar-item-row" data-view-item="projects">
+                        <a href="#projects" class="sidebar-link" data-view="projects"><span class="nav-icon">🤖</span><span>Automation Projects</span></a>
+                        <button type="button" class="sidebar-dropdown-btn" data-dropdown="dd-projects" aria-expanded="false" aria-label="Toggle Automation Projects dropdown">⌄</button>
                     </div>
-                    <div class="sidebar-subpanel" id="panel-projects">
-                        <ul class="sidebar-subpanel-list">
-                            <li><a href="#projects" data-target="projects">Selenium WebDriver</a></li>
-                            <li><a href="#projects" data-target="projects">Automation Framework</a></li>
-                            <li><a href="#projects" data-target="projects">Cucumber BDD Framework</a></li>
-                            <li><a href="#projects" data-target="projects">Python-Code &amp; Python-Selenium</a></li>
-                            <li><a href="#projects" data-target="projects">Java-OOPs Concepts</a></li>
+                    <div class="sidebar-dropdown-panel" id="dd-projects">
+                        <ul class="sidebar-dropdown-list">
+                            <li><a href="#projects" data-view="projects">Selenium WebDriver</a></li>
+                            <li><a href="#projects" data-view="projects">Automation Framework</a></li>
+                            <li><a href="#projects" data-view="projects">Cucumber BDD Framework</a></li>
+                            <li><a href="#projects" data-view="projects">Python-Code &amp; Python-Selenium</a></li>
+                            <li><a href="#projects" data-view="projects">Java-OOPs Concepts</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li>
-                    <div class="sidebar-item" data-topic="python-automation">
-                        <a href="#python-automation" class="sidebar-link" data-target="python-automation"><span class="nav-icon">🐍</span><span>Python Automation</span></a>
-                        <button type="button" class="sidebar-arrow-btn" data-panel="panel-python-automation" aria-label="Open Python Automation topics">⌄</button>
+                    <div class="sidebar-item-row" data-view-item="python-automation">
+                        <a href="#python-automation" class="sidebar-link" data-view="python-automation"><span class="nav-icon">🐍</span><span>Python Automation</span></a>
+                        <button type="button" class="sidebar-dropdown-btn" data-dropdown="dd-python" aria-expanded="false" aria-label="Toggle Python Automation dropdown">⌄</button>
                     </div>
-                    <div class="sidebar-subpanel" id="panel-python-automation">
-                        <ul class="sidebar-subpanel-list">
-                            <li><a href="#python-automation" data-target="python-automation">Python Scripting &amp; Examples</a></li>
-                            <li><a href="https://rames-qa.github.io/PythonAutomation/" target="_blank" rel="noopener noreferrer">Launch Python Automation Hub</a></li>
+                    <div class="sidebar-dropdown-panel" id="dd-python">
+                        <ul class="sidebar-dropdown-list">
+                            <li><a href="#python-automation" data-view="python-automation">Python Scripting &amp; Examples</a></li>
+                            <li><a href="https://rames-qa.github.io/PythonAutomation/" target="_blank" rel="noopener noreferrer">Open Python Automation Hub</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li>
-                    <div class="sidebar-item" data-topic="demo-projects">
-                        <a href="#demo-projects" class="sidebar-link" data-target="demo-projects"><span class="nav-icon">🚀</span><span>Demo Projects</span></a>
-                        <button type="button" class="sidebar-arrow-btn" data-panel="panel-demo-projects" aria-label="Open Demo Projects topics">⌄</button>
+                    <div class="sidebar-item-row" data-view-item="demo-projects">
+                        <a href="#demo-projects" class="sidebar-link" data-view="demo-projects"><span class="nav-icon">🚀</span><span>Demo Projects</span></a>
+                        <button type="button" class="sidebar-dropdown-btn" data-dropdown="dd-demos" aria-expanded="false" aria-label="Toggle Demo Projects dropdown">⌄</button>
                     </div>
-                    <div class="sidebar-subpanel" id="panel-demo-projects">
-                        <ul class="sidebar-subpanel-list">
-                            <li><a href="#demo-projects" data-target="demo-projects">Healthcare &amp; Cognitive AI Demos</a></li>
-                            <li><a href="#demo-projects" data-target="demo-projects">Weather &amp; Excel Dashboard</a></li>
-                            <li><a href="#demo-projects" data-target="demo-projects">Vector Hub, Chatbot QA &amp; Omni-Voice</a></li>
+                    <div class="sidebar-dropdown-panel" id="dd-demos">
+                        <ul class="sidebar-dropdown-list">
+                            <li><a href="#demo-projects" data-view="demo-projects">Health &amp; Cognitive AI Demos</a></li>
+                            <li><a href="#demo-projects" data-view="demo-projects">Weather &amp; Excel Dashboard</a></li>
+                            <li><a href="#demo-projects" data-view="demo-projects">AI Vector Hub, QA Eval &amp; Omni-Voice</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li>
-                    <div class="sidebar-item" data-topic="contact">
-                        <a href="#contact" class="sidebar-link" data-target="contact"><span class="nav-icon">📬</span><span>Contact</span></a>
-                        <button type="button" class="sidebar-arrow-btn" data-panel="panel-contact" aria-label="Open Contact details">⌄</button>
+                    <div class="sidebar-item-row" data-view-item="contact">
+                        <a href="#contact" class="sidebar-link" data-view="contact"><span class="nav-icon">📬</span><span>Contact</span></a>
+                        <button type="button" class="sidebar-dropdown-btn" data-dropdown="dd-contact" aria-expanded="false" aria-label="Toggle Contact dropdown">⌄</button>
                     </div>
-                    <div class="sidebar-subpanel" id="panel-contact">
-                        <ul class="sidebar-subpanel-list">
-                            <li><a href="#contact" data-target="contact">Email &amp; Location (Bangalore)</a></li>
+                    <div class="sidebar-dropdown-panel" id="dd-contact">
+                        <ul class="sidebar-dropdown-list">
+                            <li><a href="#contact" data-view="contact">Email &amp; Location (Bangalore)</a></li>
                             <li><a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf" download="Ramesh_Kumar_K_Resume.pdf">Download Resume</a></li>
                             <li><a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></li>
                         </ul>
@@ -1180,18 +1119,7 @@
             </div>
             
             <div class="nav-right">
-                <div class="nav-links">
-                    <a href="#skills">Skills</a>
-                    <a href="#tools">Tools</a>
-                    <a href="#projects">Automation Projects</a>
-                    <a href="#python-automation">Python Automation</a>
-                    <a href="#demo-projects">Demo Projects</a>
-                    <a href="#contact">Contact</a>
-                </div>
-
-                <div class="topic-mode-bar">
-                    <button type="button" class="show-all-btn" id="show-all-topics-btn">Show All Topics</button>
-                </div>
+                <span class="active-view-badge" id="active-view-indicator">View: ⚡ Skills</span>
 
                 <!-- Dark / Light Theme Toggle Icons -->
                 <div class="theme-toggle">
@@ -1291,287 +1219,259 @@
             </div>
         </header>
 
-        <section id="skills">
+        <!-- VIEW 1: SKILLS -->
+        <section id="skills" class="topic-view active-view" data-view-name="⚡ Skills">
             <div class="section-header">
-                <div class="section-title-row">
-                    <h2>⚡ Skills</h2>
-                    <button type="button" class="section-down-btn" data-section-body="body-skills" aria-label="Toggle Skills content">⌄</button>
-                </div>
+                <h2>⚡ Skills</h2>
                 <p class="section-subtitle">Core QA engineering, test automation frameworks, and software lifecycle expertise</p>
             </div>
-            <div class="section-body" id="body-skills">
-                <div class="flex">
-                    <div class="card"><span class="badge-icon">☕</span><span>Java</span></div>
-                    <div class="card"><span class="badge-icon">🐍</span><span>Python</span></div>
-                    <div class="card"><span class="badge-icon">🌐</span><span>Selenium</span></div>
-                    <div class="card"><span class="badge-icon">🧪</span><span>TestNG</span></div>
-                    <div class="card"><span class="badge-icon">🔌</span><span>API Testing</span></div>
-                    <div class="card"><span class="badge-icon">📋</span><span>STLC</span></div>
-                    <div class="card"><span class="badge-icon">🔄</span><span>SDLC</span></div>
-                </div>
+            <div class="flex">
+                <div class="card"><span class="badge-icon">☕</span><span>Java</span></div>
+                <div class="card"><span class="badge-icon">🐍</span><span>Python</span></div>
+                <div class="card"><span class="badge-icon">🌐</span><span>Selenium</span></div>
+                <div class="card"><span class="badge-icon">🧪</span><span>TestNG</span></div>
+                <div class="card"><span class="badge-icon">🔌</span><span>API Testing</span></div>
+                <div class="card"><span class="badge-icon">📋</span><span>STLC</span></div>
+                <div class="card"><span class="badge-icon">🔄</span><span>SDLC</span></div>
             </div>
         </section>
 
-        <section id="tools">
+        <!-- VIEW 2: TOOLS & PLATFORMS -->
+        <section id="tools" class="topic-view" data-view-name="🛠️ Tools & Platforms">
             <div class="section-header">
-                <div class="section-title-row">
-                    <h2>🛠️ Tools &amp; Platforms</h2>
-                    <button type="button" class="section-down-btn" data-section-body="body-tools" aria-label="Toggle Tools & Platforms content">⌄</button>
-                </div>
+                <h2>🛠️ Tools &amp; Platforms</h2>
                 <p class="section-subtitle">Version control, CI/CD orchestration, build management, API validation, and databases</p>
             </div>
-            <div class="section-body" id="body-tools">
-                <div class="flex">
-                    <div class="card"><span class="badge-icon">🌿</span><span>Git</span></div>
-                    <div class="card"><span class="badge-icon">🐙</span><span>GitHub</span></div>
-                    <div class="card"><span class="badge-icon">⚙️</span><span>Jenkins</span></div>
-                    <div class="card"><span class="badge-icon">📦</span><span>Maven</span></div>
-                    <div class="card"><span class="badge-icon">🚀</span><span>Postman</span></div>
-                    <div class="card"><span class="badge-icon">📌</span><span>JIRA</span></div>
-                    <div class="card"><span class="badge-icon">🧱</span><span>HTML</span></div>
-                    <div class="card"><span class="badge-icon">🗄️</span><span>MySQL</span></div>
-                </div>
+            <div class="flex">
+                <div class="card"><span class="badge-icon">🌿</span><span>Git</span></div>
+                <div class="card"><span class="badge-icon">🐙</span><span>GitHub</span></div>
+                <div class="card"><span class="badge-icon">⚙️</span><span>Jenkins</span></div>
+                <div class="card"><span class="badge-icon">📦</span><span>Maven</span></div>
+                <div class="card"><span class="badge-icon">🚀</span><span>Postman</span></div>
+                <div class="card"><span class="badge-icon">📌</span><span>JIRA</span></div>
+                <div class="card"><span class="badge-icon">🧱</span><span>HTML</span></div>
+                <div class="card"><span class="badge-icon">🗄️</span><span>MySQL</span></div>
             </div>
         </section>
 
-        <section id="programming-languages">
+        <!-- VIEW 3: PROGRAMMING LANGUAGES -->
+        <section id="programming-languages" class="topic-view" data-view-name="💻 Programming Languages">
             <div class="section-header">
-                <div class="section-title-row">
-                    <h2>💻 Programming Languages</h2>
-                    <button type="button" class="section-down-btn" data-section-body="body-programming-languages" aria-label="Toggle Programming Languages content">⌄</button>
-                </div>
-                <p class="section-subtitle">Languages used for test automation frameworks, scripting, and data validation</p>
+                <h2>💻 Programming Languages</h2>
+                <p class="section-subtitle">Core programming and scripting languages for test automation, OOPs, and data validation</p>
             </div>
-            <div class="section-body" id="body-programming-languages">
-                <div class="flex">
-                    <div class="card"><span class="badge-icon">☕</span><span>Java (OOPs)</span></div>
-                    <div class="card"><span class="badge-icon">🐍</span><span>Python</span></div>
-                    <div class="card"><span class="badge-icon">🗄️</span><span>SQL / MySQL</span></div>
-                    <div class="card"><span class="badge-icon">🧱</span><span>HTML</span></div>
-                </div>
+            <div class="flex">
+                <div class="card"><span class="badge-icon">☕</span><span>Java (OOPs)</span></div>
+                <div class="card"><span class="badge-icon">🐍</span><span>Python</span></div>
+                <div class="card"><span class="badge-icon">🗄️</span><span>SQL / MySQL</span></div>
+                <div class="card"><span class="badge-icon">🧱</span><span>HTML</span></div>
             </div>
         </section>
 
-        <section id="projects">
+        <!-- VIEW 4: AUTOMATION PROJECTS -->
+        <section id="projects" class="topic-view" data-view-name="🤖 Automation Projects">
             <div class="section-header">
-                <div class="section-title-row">
-                    <h2>🤖 Automation Projects</h2>
-                    <button type="button" class="section-down-btn" data-section-body="body-projects" aria-label="Toggle Automation Projects content">⌄</button>
-                </div>
+                <h2>🤖 Automation Projects</h2>
                 <p class="section-subtitle">Java, Python, Selenium WebDriver, Cucumber BDD, and object-oriented automation repositories</p>
             </div>
-            <div class="section-body" id="body-projects">
-                <div class="flex">
-                    <div class="card">
-                        <div>
-                            <div class="card-badge-row"><span class="tag-pill">Java</span><span class="tag-pill">Selenium</span><span class="tag-pill">TestNG</span></div>
-                            <h3 style="color:var(--accent-color);">Selenium WebDriver</h3>
-                            <p>Built automation using Java, Selenium, TestNG and Page Object Model.</p>
-                        </div>
-                        <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn">🚀 GitHub Selenium WebDriver</a>
+            <div class="flex">
+                <div class="card">
+                    <div>
+                        <div class="card-badge-row"><span class="tag-pill">Java</span><span class="tag-pill">Selenium</span><span class="tag-pill">TestNG</span></div>
+                        <h3 style="color:var(--accent-color);">Selenium WebDriver</h3>
+                        <p>Built automation using Java, Selenium, TestNG and Page Object Model.</p>
                     </div>
+                    <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn">🚀 GitHub Selenium WebDriver</a>
+                </div>
 
-                    <div class="card">
-                        <div>
-                            <div class="card-badge-row"><span class="tag-pill">Hybrid</span><span class="tag-pill">Data-Driven</span></div>
-                            <h3 style="color:var(--accent-color);">Automation Framework</h3>
-                            <p>Automated Data-Driven and Hybrid Framework with Validation and Reporting.</p>
-                        </div>
-                        <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" class="btn">🚀 GitHub Automation Framework</a>
+                <div class="card">
+                    <div>
+                        <div class="card-badge-row"><span class="tag-pill">Hybrid</span><span class="tag-pill">Data-Driven</span></div>
+                        <h3 style="color:var(--accent-color);">Automation Framework</h3>
+                        <p>Automated Data-Driven and Hybrid Framework with Validation and Reporting.</p>
                     </div>
+                    <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" class="btn">🚀 GitHub Automation Framework</a>
+                </div>
 
-                    <div class="card">
-                        <div>
-                            <div class="card-badge-row"><span class="tag-pill">Cucumber</span><span class="tag-pill">BDD</span></div>
-                            <h3 style="color:var(--accent-color);">Cucumber BDD Framework</h3>
-                            <p>BDD automation using Cucumber with Selenium and TestNG integration.</p>
-                        </div>
-                        <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" class="btn">🚀 GitHub Cucumber BDD Framework</a>
+                <div class="card">
+                    <div>
+                        <div class="card-badge-row"><span class="tag-pill">Cucumber</span><span class="tag-pill">BDD</span></div>
+                        <h3 style="color:var(--accent-color);">Cucumber BDD Framework</h3>
+                        <p>BDD automation using Cucumber with Selenium and TestNG integration.</p>
                     </div>
+                    <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" class="btn">🚀 GitHub Cucumber BDD Framework</a>
+                </div>
 
-                    <div class="card">
-                        <div>
-                            <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">OOP</span></div>
-                            <h3 style="color:var(--accent-color);">Python-Code</h3>
-                            <p>Python basic and OOPs concepts</p>
-                        </div>
-                        <a href="https://github.com/rames-qa/Python-codes" target="_blank" class="btn">🚀 GitHub Python-Code</a>
+                <div class="card">
+                    <div>
+                        <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">OOP</span></div>
+                        <h3 style="color:var(--accent-color);">Python-Code</h3>
+                        <p>Python basic and OOPs concepts</p>
                     </div>
+                    <a href="https://github.com/rames-qa/Python-codes" target="_blank" class="btn">🚀 GitHub Python-Code</a>
+                </div>
 
-                    <div class="card">
-                        <div>
-                            <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">Selenium</span></div>
-                            <h3 style="color:var(--accent-color);">Python-Selenium</h3>
-                            <p>Automation using Python with Selenium.</p>
-                        </div>
-                        <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" class="btn">🚀 GitHub Python-Selenium</a>
+                <div class="card">
+                    <div>
+                        <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">Selenium</span></div>
+                        <h3 style="color:var(--accent-color);">Python-Selenium</h3>
+                        <p>Automation using Python with Selenium.</p>
                     </div>
+                    <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" class="btn">🚀 GitHub Python-Selenium</a>
+                </div>
 
-                    <div class="card">
-                        <div>
-                            <div class="card-badge-row"><span class="tag-pill">Java</span><span class="tag-pill">OOPs</span></div>
-                            <h3 style="color:var(--accent-color);">Java-OOPs Concepts</h3>
-                            <p>Java Programming with OOP Concepts.</p>
-                        </div>
-                        <a href="https://github.com/rames-qa/Java-Code.git" target="_blank" class="btn">🚀 GitHub Java(OOP) Concepts</a>
+                <div class="card">
+                    <div>
+                        <div class="card-badge-row"><span class="tag-pill">Java</span><span class="tag-pill">OOPs</span></div>
+                        <h3 style="color:var(--accent-color);">Java-OOPs Concepts</h3>
+                        <p>Java Programming with OOP Concepts.</p>
                     </div>
+                    <a href="https://github.com/rames-qa/Java-Code.git" target="_blank" class="btn">🚀 GitHub Java(OOP) Concepts</a>
                 </div>
             </div>
         </section>
 
-        <section id="python-automation">
+        <!-- VIEW 5: PYTHON AUTOMATION -->
+        <section id="python-automation" class="topic-view" data-view-name="🐍 Python Automation">
             <div class="section-header">
-                <div class="section-title-row">
-                    <h2>🐍 Python Automation</h2>
-                    <button type="button" class="section-down-btn" data-section-body="body-python-automation" aria-label="Toggle Python Automation content">⌄</button>
-                </div>
+                <h2>🐍 Python Automation</h2>
                 <p class="section-subtitle">Python programming examples, scripting, and practical automation implementations</p>
             </div>
-            <div class="section-body" id="body-python-automation">
-                <div class="flex">
-                    <div class="card">
-                        <div>
-                            <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">Scripting</span></div>
-                            <h3 style="color:var(--accent-color);">Python Automation</h3>
-                            <p>Python programming examples and automation projects showcasing core Python concepts, scripting, and practical implementations.</p>
-                        </div>
-                        <a href="https://rames-qa.github.io/PythonAutomation/" target="_blank" class="btn">
-                            🐍 View Python Automation
-                        </a>
+            <div class="flex">
+                <div class="card">
+                    <div>
+                        <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">Scripting</span></div>
+                        <h3 style="color:var(--accent-color);">Python Automation</h3>
+                        <p>Python programming examples and automation projects showcasing core Python concepts, scripting, and practical implementations.</p>
                     </div>
+                    <a href="https://rames-qa.github.io/PythonAutomation/" target="_blank" class="btn">
+                        🐍 View Python Automation
+                    </a>
                 </div>
             </div>
         </section>
 
-        <section id="demo-projects">
+        <!-- VIEW 6: DEMO PROJECTS -->
+        <section id="demo-projects" class="topic-view" data-view-name="🚀 Demo Projects">
             <div class="section-header">
-                <div class="section-title-row">
-                    <h2>🚀 Demo Projects</h2>
-                    <button type="button" class="section-down-btn" data-section-body="body-demo-projects" aria-label="Toggle Demo Projects content">⌄</button>
-                </div>
+                <h2>🚀 Demo Projects</h2>
                 <p class="section-subtitle">Live interactive applications, AI-powered evaluation hubs, and automation dashboards</p>
             </div>
-            <div class="section-body" id="body-demo-projects">
-                <div class="flex">
-                    <div class="card">
-                        <div>
-                            <div class="card-badge-row"><span class="tag-pill">Healthcare AI</span><span class="tag-pill">Live Demo</span></div>
-                            <h3 style="color:var(--accent-color);">🏥 Smart Health Monitoring Platform</h3>
-                            <p>Smart Health Monitoring Platform for elderly care with emergency alerts, doctor connectivity, AI-powered monitoring, and real-time healthcare tracking features.</p>
-                        </div>
-                        <a href="https://rames-qa.github.io/Smart-Health-Monitoring-Platform/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
+            <div class="flex">
+                <div class="card">
+                    <div>
+                        <div class="card-badge-row"><span class="tag-pill">Healthcare AI</span><span class="tag-pill">Live Demo</span></div>
+                        <h3 style="color:var(--accent-color);">🏥 Smart Health Monitoring Platform</h3>
+                        <p>Smart Health Monitoring Platform for elderly care with emergency alerts, doctor connectivity, AI-powered monitoring, and real-time healthcare tracking features.</p>
                     </div>
+                    <a href="https://rames-qa.github.io/Smart-Health-Monitoring-Platform/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
+                </div>
 
-                    <div class="card">
-                        <div>
-                            <div class="card-badge-row"><span class="tag-pill">Speech AI</span><span class="tag-pill">Live Demo</span></div>
-                            <h3 style="color:var(--accent-color);">🗣️ Cognitive Speech AI</h3>
-                            <p>Cognitive Speech AI technology, the platform uses live neural intelligence, emotional AI processing, real-time analytics, and intelligent automation.</p>
-                        </div>
-                        <a href="https://rames-qa.github.io/Cognitive-Speech-AI" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
+                <div class="card">
+                    <div>
+                        <div class="card-badge-row"><span class="tag-pill">Speech AI</span><span class="tag-pill">Live Demo</span></div>
+                        <h3 style="color:var(--accent-color);">🗣️ Cognitive Speech AI</h3>
+                        <p>Cognitive Speech AI technology, the platform uses live neural intelligence, emotional AI processing, real-time analytics, and intelligent automation.</p>
                     </div>
+                    <a href="https://rames-qa.github.io/Cognitive-Speech-AI" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
+                </div>
 
-                    <div class="card">
-                        <div>
-                            <div class="card-badge-row"><span class="tag-pill">Mental Wellness</span><span class="tag-pill">Live Demo</span></div>
-                            <h3 style="color:var(--accent-color);">🧠 AI-Driven Elderly Health, Cognitive Ability & Mental Wellness Assessment</h3>
-                            <p>Created an AI-powered platform to assess elderly health, cognition, and mental wellness, enabling early risk detection and personalized healthcare recommendations.</p>
-                        </div>
-                        <a href="https://rames-qa.github.io/Physiological-and-Mental-Health-Assessment-of-Elderly-Indians/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
+                <div class="card">
+                    <div>
+                        <div class="card-badge-row"><span class="tag-pill">Mental Wellness</span><span class="tag-pill">Live Demo</span></div>
+                        <h3 style="color:var(--accent-color);">🧠 AI-Driven Elderly Health, Cognitive Ability & Mental Wellness Assessment</h3>
+                        <p>Created an AI-powered platform to assess elderly health, cognition, and mental wellness, enabling early risk detection and personalized healthcare recommendations.</p>
                     </div>
+                    <a href="https://rames-qa.github.io/Physiological-and-Mental-Health-Assessment-of-Elderly-Indians/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
+                </div>
 
-                    <div class="card">
-                        <div>
-                            <div class="card-badge-row"><span class="tag-pill">REST API</span><span class="tag-pill">Live Demo</span></div>
-                            <h3 style="color:var(--accent-color);">🌤️ Live Weather Forecast Application</h3>
-                            <p>A dynamic web application delivering real-time weather tracking, extended daily forecasts, temperature trends, and environmental metrics through responsive API integration.</p>
-                        </div>
-                        <a href="https://rames-qa.github.io/Weather-Forecast-/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
+                <div class="card">
+                    <div>
+                        <div class="card-badge-row"><span class="tag-pill">REST API</span><span class="tag-pill">Live Demo</span></div>
+                        <h3 style="color:var(--accent-color);">🌤️ Live Weather Forecast Application</h3>
+                        <p>A dynamic web application delivering real-time weather tracking, extended daily forecasts, temperature trends, and environmental metrics through responsive API integration.</p>
                     </div>
+                    <a href="https://rames-qa.github.io/Weather-Forecast-/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
+                </div>
 
-                    <div class="card">
-                        <div>
-                            <div class="card-badge-row"><span class="tag-pill">Analytics</span><span class="tag-pill">Live Demo</span></div>
-                            <h3 style="color:var(--accent-color);">📈 Excel Sheet Reader Dashboard</h3>
-                            <p>An interactive web-based analytics dashboard engineered to parse, process, and visualize data directly from Excel spreadsheets in real time.</p>
-                        </div>
-                        <a href="https://rames-qa.github.io/Excel-Sheet-Reader-Dashboard/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
+                <div class="card">
+                    <div>
+                        <div class="card-badge-row"><span class="tag-pill">Analytics</span><span class="tag-pill">Live Demo</span></div>
+                        <h3 style="color:var(--accent-color);">📈 Excel Sheet Reader Dashboard</h3>
+                        <p>An interactive web-based analytics dashboard engineered to parse, process, and visualize data directly from Excel spreadsheets in real time.</p>
                     </div>
+                    <a href="https://rames-qa.github.io/Excel-Sheet-Reader-Dashboard/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
+                </div>
 
-                    <div class="card">
-                        <div>
-                            <div class="card-badge-row"><span class="tag-pill">Vector AI</span><span class="tag-pill">Live Demo</span></div>
-                            <h3 style="color:var(--accent-color);">🤖 AI Vector Automation Hub</h3>
-                            <p>An advanced AI-powered test automation framework integrating vector store embeddings, semantic search evaluation, and intelligent test orchestration.</p>
-                        </div>
-                        <a href="https://rames-qa.github.io/AI-Vector-Automation-Hub/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
+                <div class="card">
+                    <div>
+                        <div class="card-badge-row"><span class="tag-pill">Vector AI</span><span class="tag-pill">Live Demo</span></div>
+                        <h3 style="color:var(--accent-color);">🤖 AI Vector Automation Hub</h3>
+                        <p>An advanced AI-powered test automation framework integrating vector store embeddings, semantic search evaluation, and intelligent test orchestration.</p>
                     </div>
+                    <a href="https://rames-qa.github.io/AI-Vector-Automation-Hub/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
+                </div>
 
-                    <div class="card">
-                        <div>
-                            <div class="card-badge-row"><span class="tag-pill">QA Eval</span><span class="tag-pill">Live Demo</span></div>
-                            <h3 style="color:var(--accent-color);">🤖CHATBOT QA & AI EVAL ENGINE </h3>
-                            <p>A centralized automation testing framework designed to manage, execute, and analyze automated testing projects with integrated reporting and quality insights.</p>
-                        </div>
-                        <a href="https://rames-qa.github.io/Automation-Framework-Hub/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
+                <div class="card">
+                    <div>
+                        <div class="card-badge-row"><span class="tag-pill">QA Eval</span><span class="tag-pill">Live Demo</span></div>
+                        <h3 style="color:var(--accent-color);">🤖CHATBOT QA & AI EVAL ENGINE </h3>
+                        <p>A centralized automation testing framework designed to manage, execute, and analyze automated testing projects with integrated reporting and quality insights.</p>
                     </div>
+                    <a href="https://rames-qa.github.io/Automation-Framework-Hub/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
+                </div>
 
-                    <div class="card">
-                        <div>
-                            <div class="card-badge-row"><span class="tag-pill">CI/CD</span><span class="tag-pill">Security</span></div>
-                            <h3 style="color: var(--accent-color);">🔐 Multi-Environment Configuration &amp; Secure Credential Management</h3>
-                            <p>A modular Python API test automation framework designed to manage multiple environments, securely handle credentials, centralize configuration, and integrate automated API testing with GitHub Actions CI/CD. </p>
-                        </div>
-                        <div class="card-actions">
-                            <a href="https://rames-qa.github.io/Multi-Environment-Configuration-Secure-Credential-Management/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
-                        </div>
+                <div class="card">
+                    <div>
+                        <div class="card-badge-row"><span class="tag-pill">CI/CD</span><span class="tag-pill">Security</span></div>
+                        <h3 style="color: var(--accent-color);">🔐 Multi-Environment Configuration &amp; Secure Credential Management</h3>
+                        <p>A modular Python API test automation framework designed to manage multiple environments, securely handle credentials, centralize configuration, and integrate automated API testing with GitHub Actions CI/CD. </p>
                     </div>
+                    <div class="card-actions">
+                        <a href="https://rames-qa.github.io/Multi-Environment-Configuration-Secure-Credential-Management/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
+                    </div>
+                </div>
 
-                    <div class="card">
-                        <div>
-                            <div class="card-badge-row"><span class="tag-pill">Voice AI</span><span class="tag-pill">NLP</span></div>
-                            <h3 style="color:var(--accent-color);">🛒 Omni-Voice:E-Commerce Automation & Testing Framework</h3>
-                            <p>An AI-powered multi-platform voice automation framework featuring real-time speech recognition, intelligent NLP-based intent detection, fuzzy matching, and dynamic application routing across Amazon,
-                                Flipkart, Meesho, Zomato, and Swiggy. </p>
-                        </div>
-                        <a href="https://rames-qa.github.io/-Omni-Voice-E-Commerce-Automation-Testing-Framework/"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="btn">
-                            🚀 Demo Project</a>
+                <div class="card">
+                    <div>
+                        <div class="card-badge-row"><span class="tag-pill">Voice AI</span><span class="tag-pill">NLP</span></div>
+                        <h3 style="color:var(--accent-color);">🛒 Omni-Voice:E-Commerce Automation & Testing Framework</h3>
+                        <p>An AI-powered multi-platform voice automation framework featuring real-time speech recognition, intelligent NLP-based intent detection, fuzzy matching, and dynamic application routing across Amazon,
+                            Flipkart, Meesho, Zomato, and Swiggy. </p>
                     </div>
+                    <a href="https://rames-qa.github.io/-Omni-Voice-E-Commerce-Automation-Testing-Framework/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn">
+                        🚀 Demo Project</a>
                 </div>
             </div>
         </section>
 
-        <section id="contact">
+        <!-- VIEW 7: CONTACT -->
+        <section id="contact" class="topic-view" data-view-name="📬 Contact">
             <div class="section-header">
-                <div class="section-title-row">
-                    <h2>📬 Contact</h2>
-                    <button type="button" class="section-down-btn" data-section-body="body-contact" aria-label="Toggle Contact content">⌄</button>
-                </div>
+                <h2>📬 Contact</h2>
                 <p class="section-subtitle">Let's connect for QA Automation, SDET, and AI-Assisted Testing opportunities</p>
             </div>
-            <div class="section-body" id="body-contact">
-                <div class="contact-card">
-                    <div class="contact-grid">
-                        <div class="contact-item">📞 Phone: Available on request</div>
-                        <div class="contact-item">📧 Email: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rameshkumar93.68@gmail.com" target="_blank" style="color: var(--accent-color); text-decoration: none; font-weight: bold;">rameshkumar93.68@gmail.com</a></div>
-                        <div class="contact-item">📍 Location: Bangalore, Karnataka, India</div>
-                    </div>
-                    <div class="contact-actions">
-                        <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf"
-                           download="Ramesh_Kumar_K_Resume.pdf"
-                           class="btn">
-                           📄 Download Resume
-                        </a>
+            <div class="contact-card">
+                <div class="contact-grid">
+                    <div class="contact-item">📞 Phone: Available on request</div>
+                    <div class="contact-item">📧 Email: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rameshkumar93.68@gmail.com" target="_blank" style="color: var(--accent-color); text-decoration: none; font-weight: bold;">rameshkumar93.68@gmail.com</a></div>
+                    <div class="contact-item">📍 Location: Bangalore, Karnataka, India</div>
+                </div>
+                <div class="contact-actions">
+                    <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf"
+                       download="Ramesh_Kumar_K_Resume.pdf"
+                       class="btn">
+                       📄 Download Resume
+                    </a>
 
-                        <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb"
-                           target="_blank"
-                           class="btn-linkedin">
-                           🔗 LinkedIn Profile
-                        </a>
-                    </div>
+                    <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb"
+                       target="_blank"
+                       class="btn-linkedin">
+                       🔗 LinkedIn Profile
+                    </a>
                 </div>
             </div>
         </section>
@@ -1581,7 +1481,7 @@
         </footer>
     </div>
 
-    <!-- JavaScript for Theme Switching, Sidebar Navigation & Down-Arrow Topic Views -->
+    <!-- JavaScript for Theme Switching, Hash-Based Multi-View Routing & Dropdowns -->
     <script>
         const lightBtn = document.getElementById('light-btn');
         const darkBtn = document.getElementById('dark-btn');
@@ -1594,17 +1494,18 @@
             document.body.classList.remove('light-mode');
         });
 
-        // Collapsible Sidebar, Down Arrows & Topic View
         const sidebar = document.getElementById('sidebar');
         const sidebarOverlay = document.getElementById('sidebar-overlay');
         const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
         const sidebarCloseBtn = document.getElementById('sidebar-close-btn');
-        const sidebarItems = document.querySelectorAll('.sidebar-item');
-        const sidebarLinks = document.querySelectorAll('#sidebar-menu a[data-target]');
-        const sidebarArrowBtns = document.querySelectorAll('.sidebar-arrow-btn');
-        const sectionDownBtns = document.querySelectorAll('.section-down-btn');
-        const allSections = document.querySelectorAll('section[id]');
-        const showAllTopicsBtn = document.getElementById('show-all-topics-btn');
+        const sidebarItemRows = document.querySelectorAll('.sidebar-item-row');
+        const viewLinks = document.querySelectorAll('[data-view]');
+        const dropdownBtns = document.querySelectorAll('.sidebar-dropdown-btn');
+        const topicViews = document.querySelectorAll('.topic-view');
+        const activeViewIndicator = document.getElementById('active-view-indicator');
+
+        const VALID_VIEWS = Array.from(topicViews).map((v) => v.id);
+        const DEFAULT_VIEW = 'skills';
 
         function openSidebar() {
             sidebar.classList.add('open');
@@ -1616,54 +1517,30 @@
             sidebarOverlay.classList.remove('open');
         }
 
-        function setActiveSidebarItem(topicId) {
-            sidebarItems.forEach((item) => {
-                if (item.getAttribute('data-topic') === topicId) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
-            });
-        }
+        function activateView(viewId, updateHash = true, shouldScroll = false) {
+            const targetViewId = VALID_VIEWS.includes(viewId) ? viewId : DEFAULT_VIEW;
 
-        function openTopicSection(topicId, isolateSingleTopic = true) {
-            if (!topicId) return;
-
-            allSections.forEach((sec) => {
-                const isTarget = sec.id === topicId;
-                if (isolateSingleTopic) {
-                    sec.classList.toggle('topic-hidden', !isTarget);
-                    sec.classList.toggle('topic-focused', isTarget);
-                } else {
-                    sec.classList.remove('topic-hidden');
-                    sec.classList.remove('topic-focused');
-                }
-
-                const bodyEl = sec.querySelector('.section-body');
-                const btnEl = sec.querySelector('.section-down-btn');
-                if (isTarget && bodyEl && bodyEl.classList.contains('collapsed')) {
-                    bodyEl.classList.remove('collapsed');
-                    if (btnEl) btnEl.classList.remove('collapsed');
-                }
+            topicViews.forEach((view) => {
+                view.classList.toggle('active-view', view.id === targetViewId);
             });
 
-            setActiveSidebarItem(topicId);
+            sidebarItemRows.forEach((row) => {
+                row.classList.toggle('active', row.getAttribute('data-view-item') === targetViewId);
+            });
 
-            const targetSection = document.getElementById(topicId);
-            if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const activeViewEl = document.getElementById(targetViewId);
+            if (activeViewIndicator && activeViewEl) {
+                const label = activeViewEl.getAttribute('data-view-name') || targetViewId;
+                activeViewIndicator.textContent = 'View: ' + label;
             }
-        }
 
-        function showAllTopics() {
-            allSections.forEach((sec) => {
-                sec.classList.remove('topic-hidden');
-                sec.classList.remove('topic-focused');
-                const bodyEl = sec.querySelector('.section-body');
-                const btnEl = sec.querySelector('.section-down-btn');
-                if (bodyEl) bodyEl.classList.remove('collapsed');
-                if (btnEl) btnEl.classList.remove('collapsed');
-            });
+            if (updateHash && window.location.hash !== '#' + targetViewId) {
+                history.pushState({ view: targetViewId }, '', '#' + targetViewId);
+            }
+
+            if (shouldScroll && activeViewEl) {
+                activeViewEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
 
         if (sidebarToggleBtn) {
@@ -1678,12 +1555,12 @@
             sidebarOverlay.addEventListener('click', closeSidebar);
         }
 
-        sidebarLinks.forEach((link) => {
+        viewLinks.forEach((link) => {
             link.addEventListener('click', (e) => {
-                const targetId = link.getAttribute('data-target');
-                if (targetId) {
+                const viewId = link.getAttribute('data-view');
+                if (viewId && VALID_VIEWS.includes(viewId)) {
                     e.preventDefault();
-                    openTopicSection(targetId, true);
+                    activateView(viewId, true, true);
                     if (window.innerWidth <= 1024) {
                         closeSidebar();
                     }
@@ -1691,49 +1568,47 @@
             });
         });
 
-        // Sidebar down arrow toggles subpanel and opens/focuses the topic
-        sidebarArrowBtns.forEach((arrowBtn) => {
-            arrowBtn.addEventListener('click', (e) => {
+        dropdownBtns.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const panelId = arrowBtn.getAttribute('data-panel');
-                const subpanel = document.getElementById(panelId);
-                const parentItem = arrowBtn.closest('.sidebar-item');
-                const topicId = parentItem ? parentItem.getAttribute('data-topic') : null;
+                const panelId = btn.getAttribute('data-dropdown');
+                const panel = document.getElementById(panelId);
+                const parentRow = btn.closest('.sidebar-item-row');
+                const viewId = parentRow ? parentRow.getAttribute('data-view-item') : null;
+                const willOpen = panel ? !panel.classList.contains('open') : false;
 
-                const isOpening = subpanel ? !subpanel.classList.contains('open') : true;
+                document.querySelectorAll('.sidebar-dropdown-panel').forEach((p) => p.classList.remove('open'));
+                document.querySelectorAll('.sidebar-dropdown-btn').forEach((b) => {
+                    b.classList.remove('expanded');
+                    b.setAttribute('aria-expanded', 'false');
+                });
 
-                document.querySelectorAll('.sidebar-subpanel').forEach((p) => p.classList.remove('open'));
-                document.querySelectorAll('.sidebar-arrow-btn').forEach((b) => b.classList.remove('open'));
-
-                if (isOpening && subpanel) {
-                    subpanel.classList.add('open');
-                    arrowBtn.classList.add('open');
+                if (willOpen && panel) {
+                    panel.classList.add('open');
+                    btn.classList.add('expanded');
+                    btn.setAttribute('aria-expanded', 'true');
                 }
 
-                if (topicId) {
-                    openTopicSection(topicId, true);
-                }
-            });
-        });
-
-        // Section heading down arrow collapses/expands the topic section
-        sectionDownBtns.forEach((btn) => {
-            btn.addEventListener('click', () => {
-                const bodyId = btn.getAttribute('data-section-body');
-                const bodyEl = document.getElementById(bodyId);
-                if (bodyEl) {
-                    bodyEl.classList.toggle('collapsed');
-                    btn.classList.toggle('collapsed');
+                if (viewId) {
+                    activateView(viewId, true, true);
                 }
             });
         });
 
-        if (showAllTopicsBtn) {
-            showAllTopicsBtn.addEventListener('click', () => {
-                showAllTopics();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
+        // Support Browser Back & Forward Buttons via Hash / History API
+        window.addEventListener('hashchange', () => {
+            const hashView = window.location.hash.replace(/^#/, '');
+            activateView(hashView, false, false);
+        });
+
+        window.addEventListener('popstate', (event) => {
+            const stateView = event.state && event.state.view ? event.state.view : window.location.hash.replace(/^#/, '');
+            activateView(stateView, false, false);
+        });
+
+        // Initial View Load from URL Hash
+        const initialHash = window.location.hash.replace(/^#/, '');
+        activateView(initialHash || DEFAULT_VIEW, !initialHash, false);
     </script>
 </body>
 </html>
