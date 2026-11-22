@@ -1,1881 +1,1739 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Overview — API Test Automation Framework</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          },
-          colors: {
-            cyanBand: '#27a6cf',
-            navyCard: '#063c73',
-            navyHover: '#085099',
-            navyBar: '#053769',
-            arrowBlue: '#0a4980',
-          },
-        },
-      },
-    };
-  </script>
-  <style>
-    /* Structural directional connectors for the layered framework diagram */
-    .v-connector {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 30px;
-    }
-    .v-connector .shaft {
-      width: 4px;
-      height: 18px;
-      background-color: #0a4980;
-    }
-    .v-connector .tip {
-      width: 0;
-      height: 0;
-      border-left: 7px solid transparent;
-      border-right: 7px solid transparent;
-      border-top: 9px solid #0a4980;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramesh Kumar K | Automation Engineer</title>
+    <style>
+        /* CSS VARIABLES FOR THEMING */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a, #1e3a8a);
+            --text-color: #ffffff;
+            --muted-text: rgba(255, 255, 255, 0.78);
+            --nav-bg: rgba(0,0,0,0.7);
+            --sidebar-bg: rgba(9, 14, 30, 0.88);
+            --card-bg: rgba(255,255,255,0.08);
+            --card-hover-bg: rgba(255,255,255,0.13);
+            --border-color: rgba(255, 255, 255, 0.12);
+            --accent-color: #38bdf8;
+            --accent-soft: rgba(56, 189, 248, 0.16);
+            --banner-bg: radial-gradient(circle at right, #0d2c5a, #022b1a);
+            --footer-bg: rgba(0,0,0,0.5);
+            --sidebar-width: 270px;
+        }
 
-    .up-connector {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 30px;
-    }
-    .up-connector .tip {
-      width: 0;
-      height: 0;
-      border-left: 7px solid transparent;
-      border-right: 7px solid transparent;
-      border-bottom: 9px solid #0a4980;
-    }
-    .up-connector .shaft {
-      width: 4px;
-      height: 18px;
-      background-color: #0a4980;
-    }
+        /* LIGHT MODE OVERRIDES */
+        body.light-mode {
+            --bg-gradient: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            --text-color: #0f172a;
+            --muted-text: rgba(15, 23, 42, 0.75);
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --sidebar-bg: rgba(255, 255, 255, 0.92);
+            --card-bg: rgba(0, 0, 0, 0.05);
+            --card-hover-bg: rgba(255, 255, 255, 0.92);
+            --border-color: rgba(15, 23, 42, 0.12);
+            --accent-color: #0284c7;
+            --accent-soft: rgba(2, 132, 199, 0.12);
+            --banner-bg: radial-gradient(circle at right, #e0f2fe, #bae6fd);
+            --footer-bg: rgba(0,0,0,0.05);
+        }
 
-    .h-connector {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .h-connector .shaft {
-      height: 4px;
-      width: 18px;
-      background-color: #0a4980;
-    }
-    .h-connector .tip {
-      width: 0;
-      height: 0;
-      border-top: 7px solid transparent;
-      border-bottom: 7px solid transparent;
-      border-left: 9px solid #0a4980;
-    }
+        * {
+            box-sizing: border-box;
+        }
 
-    .fanout-bus {
-      position: relative;
-      height: 34px;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-    .fanout-bus::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 4px;
-      height: 13px;
-      background-color: #0a4980;
-      transform: translateX(-50%);
-    }
-    .fanout-bus::after {
-      content: "";
-      position: absolute;
-      top: 13px;
-      left: 12.5%;
-      right: 12.5%;
-      height: 4px;
-      background-color: #0a4980;
-    }
-    .fanout-drop {
-      position: relative;
-      height: 34px;
-    }
-    .fanout-drop::before {
-      content: "";
-      position: absolute;
-      top: 13px;
-      left: 50%;
-      width: 4px;
-      height: 12px;
-      background-color: #0a4980;
-      transform: translateX(-50%);
-    }
-    .fanout-drop::after {
-      content: "";
-      position: absolute;
-      top: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-top: 8px solid #0a4980;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    .diag-node {
-      background-color: #063c73;
-      color: #ffffff;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: transform 0.14s ease, background-color 0.14s ease, box-shadow 0.14s ease;
-      box-shadow: 0 2px 6px rgba(5, 55, 105, 0.22);
-    }
-    .diag-node:hover {
-      background-color: #085099;
-      transform: translateY(-2px);
-    }
-    .diag-node.active-node {
-      background-color: #0959a8;
-      box-shadow: 0 0 0 3px #facc15, 0 6px 14px rgba(5, 55, 105, 0.3);
-    }
+        /* GLOBAL */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
 
-    /* Custom scrollbar for sidebar and code blocks */
-    ::-webkit-scrollbar {
-      width: 7px;
-      height: 7px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(100, 116, 139, 0.45);
-      border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(100, 116, 139, 0.7);
-    }
-  </style>
+        /* FIXED SIDEBAR NAVIGATION */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            backdrop-filter: blur(14px);
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 22px 16px;
+            transition: transform 0.3s ease, background 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .sidebar-brand-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-brand-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-color);
+            line-height: 1.25;
+        }
+
+        .sidebar-brand-role {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-color);
+            line-height: 1.3;
+        }
+
+        .sidebar-close-btn {
+            display: none;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            border-radius: 8px;
+            width: 32px;
+            height: 32px;
+            font-size: 18px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--muted-text);
+            margin: 18px 10px 8px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 10px;
+            border: 1px solid transparent;
+            transition: all 0.25s ease;
+        }
+
+        .sidebar-item a.sidebar-link {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 10px 10px 12px;
+            border-radius: 10px 0 0 10px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.25s ease;
+        }
+
+        .sidebar-item a.sidebar-link .nav-icon {
+            width: 22px;
+            text-align: center;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-arrow-btn {
+            background: transparent;
+            border: none;
+            color: var(--muted-text);
+            cursor: pointer;
+            padding: 8px 10px;
+            border-radius: 0 10px 10px 0;
+            font-size: 13px;
+            line-height: 1;
+            transition: transform 0.25s ease, color 0.25s ease, background 0.25s ease;
+        }
+
+        .sidebar-arrow-btn:hover {
+            background: var(--accent-soft);
+            color: var(--accent-color);
+        }
+
+        .sidebar-arrow-btn.open {
+            transform: rotate(180deg);
+            color: var(--accent-color);
+        }
+
+        .sidebar-item:hover {
+            background: var(--accent-soft);
+        }
+
+        .sidebar-item:hover a.sidebar-link {
+            color: var(--accent-color);
+            transform: translateX(2px);
+        }
+
+        .sidebar-item.active {
+            background: var(--accent-color);
+            box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);
+        }
+
+        .sidebar-item.active a.sidebar-link,
+        .sidebar-item.active .sidebar-arrow-btn {
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        .sidebar-subpanel {
+            display: none;
+            margin: 4px 0 6px 14px;
+            padding: 8px 10px;
+            border-left: 2px solid var(--accent-color);
+            background: var(--card-bg);
+            border-radius: 0 8px 8px 0;
+            font-size: 12px;
+            color: var(--muted-text);
+        }
+
+        .sidebar-subpanel.open {
+            display: block;
+            animation: fadeSlideIn 0.22s ease;
+        }
+
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sidebar-subpanel-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .sidebar-subpanel-list a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: block;
+            padding: 3px 4px;
+            border-radius: 5px;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .sidebar-subpanel-list a:hover {
+            background: var(--accent-soft);
+            color: var(--accent-color);
+        }
+
+        .sidebar-footer {
+            margin-top: 20px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar-cta {
+            display: block;
+            text-align: center;
+            padding: 9px 12px;
+            border-radius: 8px;
+            background: var(--accent-color);
+            color: #0f172a;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .sidebar-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(56, 189, 248, 0.35);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.6);
+            z-index: 150;
+            backdrop-filter: blur(2px);
+        }
+
+        .sidebar-overlay.open {
+            display: block;
+        }
+
+        /* MAIN CONTENT AREA SHIFTED FOR FIXED SIDEBAR */
+        .main-wrapper {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* NAVBAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: var(--nav-bg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .sidebar-toggle-btn {
+            display: none;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            border-radius: 8px;
+            padding: 7px 11px;
+            font-size: 18px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.25s ease;
+        }
+
+        .sidebar-toggle-btn:hover {
+            background: var(--accent-soft);
+            color: var(--accent-color);
+        }
+
+        .nav-circle {
+            background: var(--text-color);
+            color: #1e3a8a;
+            padding: 10px;
+            border-radius: 50%;
+            font-weight: bold;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .company-text {
+            font-size: 18px;
+            color: var(--accent-color);
+            line-height: 1.2;
+        }
+
+        .profile-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--accent-color);
+            line-height: 1.2;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .topic-mode-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--muted-text);
+        }
+
+        .show-all-btn {
+            background: var(--accent-soft);
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .show-all-btn:hover {
+            background: var(--accent-color);
+            color: #0f172a;
+        }
+
+        /* THEME TOGGLE STYLES */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 4px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .theme-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* BANNER */
+        .banner {
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 44px 50px;
+            background: var(--banner-bg);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .banner::before {
+            content: "";
+            position: absolute;
+            width: 400%;
+            height: 400%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0,255,255,.05) 0 1px,
+                transparent 1px 40px
+            );
+            animation: move 30s linear infinite;
+            top: 0;
+            left: 0;
+        }
+
+        @keyframes move {
+            to {
+                transform: translateY(-200px);
+            }
+        }
+
+        .banner-content {
+            z-index: 2;
+            text-align: left;
+        }
+
+        .banner-content h1 {
+            font-size: 40px;
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .banner-content h2 {
+            font-size: 20px;
+            color: #00e5ff;
+            margin: 10px 0;
+            min-height: 28px;
+            display: flex;
+            align-items: center;
+        }
+
+        body.light-mode .banner-content h2 {
+            color: #0369a1;
+        }
+
+        /* BLINKING CURSOR FOR TYPEWRITER */
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 20px;
+            background-color: #00e5ff;
+            margin-left: 4px;
+            animation: blink 0.7s infinite;
+        }
+
+        body.light-mode .cursor {
+            background-color: #0369a1;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .banner-content p {
+            font-size: 14px;
+            margin: 6px 0;
+            line-height: 1.5;
+        }
+
+        /* HUD */
+        .hud {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 3px solid #00e5ff;
+            box-shadow:
+                0 0 20px #00e5ff,
+                inset 0 0 20px rgba(0,229,255,.3);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: spin 10s linear infinite;
+            flex-shrink: 0;
+            z-index: 2;
+        }
+
+        .hud::before {
+            content: "";
+            position: absolute;
+            inset: 18px;
+            border: 3px dashed #00e5ff;
+            border-radius: 50%;
+            opacity: .8;
+        }
+
+        .hud::after {
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #00e5ff;
+            border-radius: 50%;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 15px #00e5ff;
+        }
+
+        .hud span {
+            font-size: 34px;
+            font-weight: bold;
+            color: var(--text-color);
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px #00e5ff;
+            animation: counterSpin 10s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes counterSpin {
+            to {
+                transform: rotate(-360deg);
+            }
+        }
+
+        /* DIAGRAM */
+        .diagram-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+        }
+
+        .circle-dotted {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px dotted #aaa;
+            border-radius: 50%;
+        }
+
+        .profile-img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            z-index: 5;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .step {
+            position: absolute;
+            background: #1e7f3f;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            z-index: 6;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* STEP POSITIONS */
+        .selenium {
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .manual {
+            bottom: 80px;
+            right: -30px;
+        }
+
+        .python {
+            top: 60px;
+            right: -30px;
+        }
+
+        .testing {
+            bottom: 80px;
+            left: -30px;
+        }
+
+        .deployment {
+            top: 60px;
+            left: -30px;
+        }
+
+        .building {
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 46px 28px;
+            max-width: 1180px;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            scroll-margin-top: 76px;
+        }
+
+        section.topic-hidden {
+            display: none;
+        }
+
+        section.topic-focused {
+            background: var(--card-bg);
+            border: 1px solid var(--accent-color);
+            border-radius: 18px;
+            margin-top: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 14px 36px rgba(2, 132, 199, 0.22);
+        }
+
+        .section-header {
+            margin-bottom: 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section-title-row {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+            margin: 0 0 8px;
+            letter-spacing: 0.3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-down-btn {
+            background: var(--accent-soft);
+            color: var(--accent-color);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+            margin-bottom: 8px;
+        }
+
+        .section-down-btn:hover {
+            background: var(--accent-color);
+            color: #0f172a;
+            transform: translateY(2px);
+        }
+
+        .section-down-btn.collapsed {
+            transform: rotate(-90deg);
+        }
+
+        .section-body.collapsed {
+            display: none;
+        }
+
+        .section-subtitle {
+            margin: 0 auto;
+            max-width: 640px;
+            font-size: 14px;
+            color: var(--muted-text);
+        }
+
+        .flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 22px;
+            border-radius: 14px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 18px;
+            line-height: 1.35;
+        }
+
+        .card p {
+            font-size: 14px;
+            line-height: 1.55;
+            color: var(--muted-text);
+            margin-bottom: 18px;
+        }
+
+        /* ATTRACTIVE SKILL & TOOL BADGE CARDS */
+        #skills .card, #tools .card, #programming-languages .card {
+            width: 175px;
+            min-height: 82px;
+            padding: 16px 14px;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            background: linear-gradient(145deg, var(--card-bg), var(--accent-soft));
+        }
+
+        .badge-icon {
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-color);
+            background: var(--card-hover-bg);
+            box-shadow: 0 12px 28px rgba(2, 132, 199, 0.22);
+        }
+
+        .card-badge-row {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag-pill {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent-color);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+        }
+
+        .btn,
+        .btn-linkedin {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: auto;
+            display: inline-block;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .btn {
+            background: var(--accent-color);
+            color: black;
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
+        }
+
+        .btn:hover,
+        .btn-linkedin:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.08);
+            box-shadow: 0 8px 18px rgba(56, 189, 248, 0.38);
+        }
+
+        .btn-linkedin {
+            background: var(--accent-color);
+            color: black;
+            margin: 10px;
+        }
+
+        /* CONTACT CARD ENHANCEMENT */
+        .contact-card {
+            max-width: 680px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 28px 24px;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            background: var(--accent-soft);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .contact-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-actions .btn,
+        .contact-actions .btn-linkedin {
+            margin: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 22px;
+            background: var(--footer-bg);
+            margin-top: auto;
+            border-top: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+
+        /* TABLET & SMALL DESKTOP RESPONSIVE SIDEBAR */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar-close-btn {
+                display: flex;
+            }
+
+            .main-wrapper {
+                margin-left: 0;
+            }
+
+            .sidebar-toggle-btn {
+                display: flex;
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-left {
+                flex-direction: row;
+                text-align: left;
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .nav-right {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .banner {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 20px;
+                gap: 20px;
+            }
+
+            .banner-content {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .banner-content h1 {
+                font-size: 28px;
+            }
+
+            .banner-content h2 {
+                justify-content: center;
+                font-size: 16px;
+            }
+
+            .hud {
+                width: 100px;
+                height: 100px;
+            }
+
+            .hud span {
+                font-size: 24px;
+            }
+
+            .diagram-container {
+                width: 220px;
+                height: 220px;
+            }
+
+            .profile-img {
+                width: 90px;
+                height: 90px;
+            }
+
+            .step {
+                font-size: 10px;
+                padding: 5px 10px;
+            }
+
+            .python,
+            .manual {
+                right: -10px;
+            }
+
+            .testing,
+            .deployment {
+                left: -10px;
+            }
+
+            section {
+                padding: 36px 16px;
+            }
+
+            .card {
+                width: 100%;
+            }
+
+            #skills .card, #tools .card, #programming-languages .card {
+                width: calc(50% - 10px);
+            }
+        }
+    </style>
 </head>
-<body class="bg-slate-100 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased transition-colors duration-200 overflow-x-hidden">
 
-  <!-- Toast Notification -->
-  <div id="toast" role="status" aria-live="polite"
-       class="fixed bottom-5 right-5 z-50 hidden items-center gap-2.5 rounded-xl bg-slate-900 dark:bg-slate-800 text-white px-4 py-3 text-sm font-medium shadow-2xl border border-slate-700">
-    <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-    </svg>
-    <span id="toast-text">Copied to clipboard</span>
-  </div>
+<body>
 
-  <!-- Mobile Sidebar Backdrop -->
-  <div id="sidebar-backdrop" class="fixed inset-0 z-30 bg-slate-950/60 backdrop-blur-xs hidden lg:hidden" aria-hidden="true"></div>
+    <!-- Mobile / Tablet Sidebar Backdrop -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
-  <div class="min-h-screen flex flex-col">
-    <!-- Top Persistent Header Bar -->
-    <header class="sticky top-0 z-30 bg-navyBar text-white border-b border-sky-900/70 shadow-md">
-      <div class="max-w-full mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-3">
-        <!-- Left: Mobile Drawer Button + Brand -->
-        <div class="flex items-center gap-2.5 min-w-0">
-          <button id="mobile-menu-btn" type="button" aria-label="Toggle navigation menu"
-                  class="lg:hidden inline-flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 p-2 text-white transition cursor-pointer">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-
-          <a href="#/getting-started/project-overview" class="flex items-center gap-2.5 min-w-0 group">
-            <div class="w-8 h-8 rounded-lg bg-cyanBand flex items-center justify-center font-mono font-extrabold text-xs text-white shadow shrink-0">
-              API
+    <!-- Fixed Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar" aria-label="Portfolio Sidebar Navigation">
+        <div>
+            <div class="sidebar-header">
+                <a href="#top" class="sidebar-brand">
+                    <div class="nav-circle">RK</div>
+                    <div class="sidebar-brand-info">
+                        <span class="sidebar-brand-name">Ramesh Kumar K</span>
+                        <span class="sidebar-brand-role">Automation Engineer</span>
+                    </div>
+                </a>
+                <button type="button" class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close sidebar">&times;</button>
             </div>
-            <div class="min-w-0">
-              <div class="text-sm sm:text-base font-bold tracking-tight truncate group-hover:text-sky-200 transition">
-                 API Automation Framework
-              </div>
-              <div class="hidden sm:block text-[11px] text-sky-200 font-mono truncate">
-                Multi-Environment-Configuration-Secure-Credential-Management
-              </div>
-            </div>
-          </a>
+
+            <div class="sidebar-label">Portfolio Sections</div>
+            <ul class="sidebar-menu" id="sidebar-menu">
+                <li>
+                    <div class="sidebar-item active" data-topic="skills">
+                        <a href="#skills" class="sidebar-link" data-target="skills"><span class="nav-icon">⚡</span><span>Skills</span></a>
+                        <button type="button" class="sidebar-arrow-btn" data-panel="panel-skills" aria-label="Open Skills topics">⌄</button>
+                    </div>
+                    <div class="sidebar-subpanel" id="panel-skills">
+                        <ul class="sidebar-subpanel-list">
+                            <li><a href="#skills" data-target="skills">Java, Python, Selenium</a></li>
+                            <li><a href="#skills" data-target="skills">TestNG, API Testing</a></li>
+                            <li><a href="#skills" data-target="skills">STLC &amp; SDLC</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="sidebar-item" data-topic="tools">
+                        <a href="#tools" class="sidebar-link" data-target="tools"><span class="nav-icon">🛠️</span><span>Tools &amp; Platforms</span></a>
+                        <button type="button" class="sidebar-arrow-btn" data-panel="panel-tools" aria-label="Open Tools & Platforms topics">⌄</button>
+                    </div>
+                    <div class="sidebar-subpanel" id="panel-tools">
+                        <ul class="sidebar-subpanel-list">
+                            <li><a href="#tools" data-target="tools">Git, GitHub, Jenkins, Maven</a></li>
+                            <li><a href="#tools" data-target="tools">Postman, JIRA, HTML, MySQL</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="sidebar-item" data-topic="programming-languages">
+                        <a href="#programming-languages" class="sidebar-link" data-target="programming-languages"><span class="nav-icon">💻</span><span>Programming Languages</span></a>
+                        <button type="button" class="sidebar-arrow-btn" data-panel="panel-programming-languages" aria-label="Open Programming Languages topics">⌄</button>
+                    </div>
+                    <div class="sidebar-subpanel" id="panel-programming-languages">
+                        <ul class="sidebar-subpanel-list">
+                            <li><a href="#programming-languages" data-target="programming-languages">Java &amp; OOPs</a></li>
+                            <li><a href="#programming-languages" data-target="programming-languages">Python &amp; Scripting</a></li>
+                            <li><a href="#programming-languages" data-target="programming-languages">SQL &amp; HTML</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="sidebar-item" data-topic="projects">
+                        <a href="#projects" class="sidebar-link" data-target="projects"><span class="nav-icon">🤖</span><span>Automation Projects</span></a>
+                        <button type="button" class="sidebar-arrow-btn" data-panel="panel-projects" aria-label="Open Automation Projects topics">⌄</button>
+                    </div>
+                    <div class="sidebar-subpanel" id="panel-projects">
+                        <ul class="sidebar-subpanel-list">
+                            <li><a href="#projects" data-target="projects">Selenium WebDriver</a></li>
+                            <li><a href="#projects" data-target="projects">Automation Framework</a></li>
+                            <li><a href="#projects" data-target="projects">Cucumber BDD Framework</a></li>
+                            <li><a href="#projects" data-target="projects">Python-Code &amp; Python-Selenium</a></li>
+                            <li><a href="#projects" data-target="projects">Java-OOPs Concepts</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="sidebar-item" data-topic="python-automation">
+                        <a href="#python-automation" class="sidebar-link" data-target="python-automation"><span class="nav-icon">🐍</span><span>Python Automation</span></a>
+                        <button type="button" class="sidebar-arrow-btn" data-panel="panel-python-automation" aria-label="Open Python Automation topics">⌄</button>
+                    </div>
+                    <div class="sidebar-subpanel" id="panel-python-automation">
+                        <ul class="sidebar-subpanel-list">
+                            <li><a href="#python-automation" data-target="python-automation">Python Scripting &amp; Examples</a></li>
+                            <li><a href="https://rames-qa.github.io/PythonAutomation/" target="_blank" rel="noopener noreferrer">Launch Python Automation Hub</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="sidebar-item" data-topic="demo-projects">
+                        <a href="#demo-projects" class="sidebar-link" data-target="demo-projects"><span class="nav-icon">🚀</span><span>Demo Projects</span></a>
+                        <button type="button" class="sidebar-arrow-btn" data-panel="panel-demo-projects" aria-label="Open Demo Projects topics">⌄</button>
+                    </div>
+                    <div class="sidebar-subpanel" id="panel-demo-projects">
+                        <ul class="sidebar-subpanel-list">
+                            <li><a href="#demo-projects" data-target="demo-projects">Healthcare &amp; Cognitive AI Demos</a></li>
+                            <li><a href="#demo-projects" data-target="demo-projects">Weather &amp; Excel Dashboard</a></li>
+                            <li><a href="#demo-projects" data-target="demo-projects">Vector Hub, Chatbot QA &amp; Omni-Voice</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="sidebar-item" data-topic="contact">
+                        <a href="#contact" class="sidebar-link" data-target="contact"><span class="nav-icon">📬</span><span>Contact</span></a>
+                        <button type="button" class="sidebar-arrow-btn" data-panel="panel-contact" aria-label="Open Contact details">⌄</button>
+                    </div>
+                    <div class="sidebar-subpanel" id="panel-contact">
+                        <ul class="sidebar-subpanel-list">
+                            <li><a href="#contact" data-target="contact">Email &amp; Location (Bangalore)</a></li>
+                            <li><a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf" download="Ramesh_Kumar_K_Resume.pdf">Download Resume</a></li>
+                            <li><a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
         </div>
 
-        <!-- Center/Right: CI Badge, Viewport Switcher, Theme Toggle, GitHub Link -->
-        <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
-          <span class="hidden xl:inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 px-3 py-1 text-xs font-semibold text-emerald-200">
-            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            CI Runs #26–#30 Passing
-          </span>
-
-          <!-- Viewport Preview Switcher (Desktop / Tablet / Mobile) -->
-          <div class="hidden md:inline-flex items-center rounded-lg bg-white/10 border border-white/15 p-0.5" role="group" aria-label="Viewport Preview Width">
-            <button type="button" data-viewport="desktop" title="Full Desktop Layout"
-                    class="vp-btn rounded-md bg-cyanBand text-white px-2.5 py-1 text-xs font-semibold transition cursor-pointer">
-              Desktop
-            </button>
-            <button type="button" data-viewport="tablet" title="Tablet Layout Preview (768px)"
-                    class="vp-btn rounded-md text-sky-100 hover:bg-white/10 px-2.5 py-1 text-xs font-semibold transition cursor-pointer">
-              Tablet
-            </button>
-            <button type="button" data-viewport="mobile" title="Mobile Layout Preview (390px)"
-                    class="vp-btn rounded-md text-sky-100 hover:bg-white/10 px-2.5 py-1 text-xs font-semibold transition cursor-pointer">
-              Mobile
-            </button>
-          </div>
-
-          <!-- Light / Dark Theme Toggle -->
-          <button id="theme-toggle-btn" type="button" aria-label="Toggle Light or Dark Theme"
-                  class="inline-flex items-center gap-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 px-2.5 py-1.5 text-xs font-semibold text-white transition cursor-pointer">
-            <span id="theme-icon" class="font-mono">☀</span>
-            <span id="theme-label" class="hidden sm:inline">Light</span>
-          </button>
-
-          <a href="https://github.com/rames-qa/Multi-Environment-Configuration-Secure-Credential-Management"
-             target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center gap-1 rounded-lg bg-cyanBand hover:bg-sky-500 px-3 py-1.5 text-xs font-semibold text-white shadow transition">
-            <span>GitHub</span>
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
+        <div class="sidebar-footer">
+            <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf"
+               download="Ramesh_Kumar_K_Resume.pdf"
+               class="sidebar-cta">
+               📄 Download Resume
+            </a>
+            <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="sidebar-cta">
+               🔗 LinkedIn Profile
+            </a>
         </div>
-      </div>
-    </header>
+    </aside>
 
-    <!-- Sidebar + Main Content Container -->
-    <div class="flex-1 flex relative max-w-full">
-      <!-- Persistent Sidebar Navigation -->
-      <aside id="sidebar" aria-label="Documentation Navigation Sidebar"
-             class="fixed lg:sticky top-16 left-0 z-40 h-[calc(100vh-4rem)] w-72 shrink-0 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 overflow-y-auto transition-transform duration-200 -translate-x-full lg:translate-x-0">
-        <div class="p-4">
-          <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-200 dark:border-slate-800">
-            <span class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-              Framework Guide Pages
-            </span>
-            <div class="flex items-center gap-1">
-              <button id="expand-all-btn" type="button"
-                      class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 cursor-pointer">
-                Expand
-              </button>
-              <button id="collapse-all-btn" type="button"
-                      class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 cursor-pointer">
-                Collapse
-              </button>
+    <!-- Main Content Wrapper -->
+    <div class="main-wrapper" id="top">
+        <nav>
+            <div class="nav-left">
+                <button type="button" class="sidebar-toggle-btn" id="sidebar-toggle-btn" aria-label="Open navigation menu">&#9776;</button>
+                <div class="nav-circle">RK</div>
+                <div class="profile-container">
+                    <div class="profile-text">Software Testing Engineer</div>
+                </div>
             </div>
-          </div>
+            
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="#skills">Skills</a>
+                    <a href="#tools">Tools</a>
+                    <a href="#projects">Automation Projects</a>
+                    <a href="#python-automation">Python Automation</a>
+                    <a href="#demo-projects">Demo Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
 
-          <!-- Dynamic Sidebar Categories & Links Rendered via JS -->
-          <nav id="sidebar-nav" class="space-y-2"></nav>
-        </div>
-      </aside>
+                <div class="topic-mode-bar">
+                    <button type="button" class="show-all-btn" id="show-all-topics-btn">Show All Topics</button>
+                </div>
 
-      <!-- Main Page Content Area -->
-      <div class="flex-1 min-w-0 w-full">
-        <div id="viewport-frame" class="w-full mx-auto transition-all duration-200 px-4 sm:px-6 lg:px-8 py-6">
-          <!-- Breadcrumb & Quick Actions Bar -->
-          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-5 pb-3 border-b border-slate-200 dark:border-slate-800">
-            <nav id="breadcrumb" aria-label="Breadcrumb" class="flex flex-wrap items-center gap-1.5 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-              <!-- Populated dynamically -->
-            </nav>
-            <div class="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400">
-              <span id="page-route-badge" class="rounded-md bg-slate-200/80 dark:bg-slate-800 px-2.5 py-1 text-slate-700 dark:text-slate-300">
-                #/getting-started/project-overview
-              </span>
+                <!-- Dark / Light Theme Toggle Icons -->
+                <div class="theme-toggle">
+                    <button aria-label="Light mode" class="theme-btn" id="light-btn">
+                        <!-- Sun icon -->
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </button>
+                    <button aria-label="Dark mode" class="theme-btn" id="dark-btn">
+                        <!-- Moon icon -->
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
-          </div>
+        </nav>
 
-          <!-- Active Page Content Mount -->
-          <main id="page-content" class="space-y-6"></main>
+        <header>
+            <div class="banner">
+                <div class="banner-content">
+                    <h1>RAMESH KUMAR K</h1>
+                    <h2>
+                        <span id="typing-heading"></span><span class="cursor"></span>
+                    </h2>
+                    <script>
+                      (function() {
+                        const titles = [
+                          "SOFTWARE TESTING AUTOMATION ENGINEER",
+                          "JAVA & PYTHON SELENIUM WEBDRIVER AUTOMATION",
+                          "AI-POWERED QA & TEST AUTOMATION",
+                          "REST API & SYSTEM V&V ENGINEER",
+                          "CI/CD PIPELINE & DEVOPS QA"
+                        ];
+                        let titleIndex = 0;
+                        let charIndex = 0;
+                        let isDeleting = false;
+                        const typingElement = document.getElementById("typing-heading");
 
-          <!-- Persistent Previous / Next Page Footer Bar -->
-          <footer class="mt-10 pt-5 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-            <button id="prev-page-btn" type="button"
-                    class="flex items-center justify-between gap-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-cyanBand px-4 py-3 text-left transition cursor-pointer">
-              <div>
-                <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Previous Page</div>
-                <div id="prev-page-title" class="text-sm font-semibold text-navyBar dark:text-sky-300">—</div>
-              </div>
-              <span class="text-lg font-bold text-cyanBand">&larr;</span>
-            </button>
+                        function typeLoop() {
+                          const currentTitle = titles[titleIndex];
+                          
+                          if (isDeleting) {
+                            typingElement.textContent = currentTitle.substring(0, charIndex - 1);
+                            charIndex--;
+                          } else {
+                            typingElement.textContent = currentTitle.substring(0, charIndex + 1);
+                            charIndex++;
+                          }
 
-            <button id="next-page-btn" type="button"
-                    class="flex items-center justify-between gap-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-cyanBand px-4 py-3 text-right transition cursor-pointer">
-              <span class="text-lg font-bold text-cyanBand">&rarr;</span>
-              <div>
-                <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Next Page</div>
-                <div id="next-page-title" class="text-sm font-semibold text-navyBar dark:text-sky-300">—</div>
-              </div>
-            </button>
-          </footer>
-        </div>
-      </div>
+                          let delay = isDeleting ? 40 : 70;
+
+                          if (!isDeleting && charIndex === currentTitle.length) {
+                            delay = 2000;
+                            isDeleting = true;
+                          } else if (isDeleting && charIndex === 0) {
+                            isDeleting = false;
+                            titleIndex = (titleIndex + 1) % titles.length;
+                            delay = 500;
+                          }
+
+                          setTimeout(typeLoop, delay);
+                        }
+
+                        document.addEventListener("DOMContentLoaded", typeLoop);
+                      })();
+                    </script>
+                    <p>6.3+ Years of Experience | Software Testing Automation Engineer</p>
+                    <p>Java | Python | Selenium WebDriver | API Testing | TestNG | Jenkins CI/CD | Azure DevOps</p>
+                    <p>AI-Assisted Test Automation | Generative AI | SQL | System Validation & Verification | Git/GitHub</p>
+                </div>
+                <div class="hud">
+                    <span>STE</span>
+                </div>
+            </div>
+
+            <div class="diagram-container">
+                <div class="circle-dotted"></div>
+                <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb/" target="_blank">
+                    <img src="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/dp.png" class="profile-img" alt="Profile Picture">
+                </a>
+                <div class="step selenium">Selenium</div>
+                <div class="step manual">Java</div>
+                <div class="step python">Python</div>
+                <div class="step testing">Testing</div>
+                <div class="step deployment">Manual</div>
+                <div class="step building">WebDriver</div>
+            </div>
+        </header>
+
+        <section id="skills">
+            <div class="section-header">
+                <div class="section-title-row">
+                    <h2>⚡ Skills</h2>
+                    <button type="button" class="section-down-btn" data-section-body="body-skills" aria-label="Toggle Skills content">⌄</button>
+                </div>
+                <p class="section-subtitle">Core QA engineering, test automation frameworks, and software lifecycle expertise</p>
+            </div>
+            <div class="section-body" id="body-skills">
+                <div class="flex">
+                    <div class="card"><span class="badge-icon">☕</span><span>Java</span></div>
+                    <div class="card"><span class="badge-icon">🐍</span><span>Python</span></div>
+                    <div class="card"><span class="badge-icon">🌐</span><span>Selenium</span></div>
+                    <div class="card"><span class="badge-icon">🧪</span><span>TestNG</span></div>
+                    <div class="card"><span class="badge-icon">🔌</span><span>API Testing</span></div>
+                    <div class="card"><span class="badge-icon">📋</span><span>STLC</span></div>
+                    <div class="card"><span class="badge-icon">🔄</span><span>SDLC</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools">
+            <div class="section-header">
+                <div class="section-title-row">
+                    <h2>🛠️ Tools &amp; Platforms</h2>
+                    <button type="button" class="section-down-btn" data-section-body="body-tools" aria-label="Toggle Tools & Platforms content">⌄</button>
+                </div>
+                <p class="section-subtitle">Version control, CI/CD orchestration, build management, API validation, and databases</p>
+            </div>
+            <div class="section-body" id="body-tools">
+                <div class="flex">
+                    <div class="card"><span class="badge-icon">🌿</span><span>Git</span></div>
+                    <div class="card"><span class="badge-icon">🐙</span><span>GitHub</span></div>
+                    <div class="card"><span class="badge-icon">⚙️</span><span>Jenkins</span></div>
+                    <div class="card"><span class="badge-icon">📦</span><span>Maven</span></div>
+                    <div class="card"><span class="badge-icon">🚀</span><span>Postman</span></div>
+                    <div class="card"><span class="badge-icon">📌</span><span>JIRA</span></div>
+                    <div class="card"><span class="badge-icon">🧱</span><span>HTML</span></div>
+                    <div class="card"><span class="badge-icon">🗄️</span><span>MySQL</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="programming-languages">
+            <div class="section-header">
+                <div class="section-title-row">
+                    <h2>💻 Programming Languages</h2>
+                    <button type="button" class="section-down-btn" data-section-body="body-programming-languages" aria-label="Toggle Programming Languages content">⌄</button>
+                </div>
+                <p class="section-subtitle">Languages used for test automation frameworks, scripting, and data validation</p>
+            </div>
+            <div class="section-body" id="body-programming-languages">
+                <div class="flex">
+                    <div class="card"><span class="badge-icon">☕</span><span>Java (OOPs)</span></div>
+                    <div class="card"><span class="badge-icon">🐍</span><span>Python</span></div>
+                    <div class="card"><span class="badge-icon">🗄️</span><span>SQL / MySQL</span></div>
+                    <div class="card"><span class="badge-icon">🧱</span><span>HTML</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="section-header">
+                <div class="section-title-row">
+                    <h2>🤖 Automation Projects</h2>
+                    <button type="button" class="section-down-btn" data-section-body="body-projects" aria-label="Toggle Automation Projects content">⌄</button>
+                </div>
+                <p class="section-subtitle">Java, Python, Selenium WebDriver, Cucumber BDD, and object-oriented automation repositories</p>
+            </div>
+            <div class="section-body" id="body-projects">
+                <div class="flex">
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Java</span><span class="tag-pill">Selenium</span><span class="tag-pill">TestNG</span></div>
+                            <h3 style="color:var(--accent-color);">Selenium WebDriver</h3>
+                            <p>Built automation using Java, Selenium, TestNG and Page Object Model.</p>
+                        </div>
+                        <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" class="btn">🚀 GitHub Selenium WebDriver</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Hybrid</span><span class="tag-pill">Data-Driven</span></div>
+                            <h3 style="color:var(--accent-color);">Automation Framework</h3>
+                            <p>Automated Data-Driven and Hybrid Framework with Validation and Reporting.</p>
+                        </div>
+                        <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" class="btn">🚀 GitHub Automation Framework</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Cucumber</span><span class="tag-pill">BDD</span></div>
+                            <h3 style="color:var(--accent-color);">Cucumber BDD Framework</h3>
+                            <p>BDD automation using Cucumber with Selenium and TestNG integration.</p>
+                        </div>
+                        <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" class="btn">🚀 GitHub Cucumber BDD Framework</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">OOP</span></div>
+                            <h3 style="color:var(--accent-color);">Python-Code</h3>
+                            <p>Python basic and OOPs concepts</p>
+                        </div>
+                        <a href="https://github.com/rames-qa/Python-codes" target="_blank" class="btn">🚀 GitHub Python-Code</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">Selenium</span></div>
+                            <h3 style="color:var(--accent-color);">Python-Selenium</h3>
+                            <p>Automation using Python with Selenium.</p>
+                        </div>
+                        <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" class="btn">🚀 GitHub Python-Selenium</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Java</span><span class="tag-pill">OOPs</span></div>
+                            <h3 style="color:var(--accent-color);">Java-OOPs Concepts</h3>
+                            <p>Java Programming with OOP Concepts.</p>
+                        </div>
+                        <a href="https://github.com/rames-qa/Java-Code.git" target="_blank" class="btn">🚀 GitHub Java(OOP) Concepts</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="python-automation">
+            <div class="section-header">
+                <div class="section-title-row">
+                    <h2>🐍 Python Automation</h2>
+                    <button type="button" class="section-down-btn" data-section-body="body-python-automation" aria-label="Toggle Python Automation content">⌄</button>
+                </div>
+                <p class="section-subtitle">Python programming examples, scripting, and practical automation implementations</p>
+            </div>
+            <div class="section-body" id="body-python-automation">
+                <div class="flex">
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">Scripting</span></div>
+                            <h3 style="color:var(--accent-color);">Python Automation</h3>
+                            <p>Python programming examples and automation projects showcasing core Python concepts, scripting, and practical implementations.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/PythonAutomation/" target="_blank" class="btn">
+                            🐍 View Python Automation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="demo-projects">
+            <div class="section-header">
+                <div class="section-title-row">
+                    <h2>🚀 Demo Projects</h2>
+                    <button type="button" class="section-down-btn" data-section-body="body-demo-projects" aria-label="Toggle Demo Projects content">⌄</button>
+                </div>
+                <p class="section-subtitle">Live interactive applications, AI-powered evaluation hubs, and automation dashboards</p>
+            </div>
+            <div class="section-body" id="body-demo-projects">
+                <div class="flex">
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Healthcare AI</span><span class="tag-pill">Live Demo</span></div>
+                            <h3 style="color:var(--accent-color);">🏥 Smart Health Monitoring Platform</h3>
+                            <p>Smart Health Monitoring Platform for elderly care with emergency alerts, doctor connectivity, AI-powered monitoring, and real-time healthcare tracking features.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Smart-Health-Monitoring-Platform/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Speech AI</span><span class="tag-pill">Live Demo</span></div>
+                            <h3 style="color:var(--accent-color);">🗣️ Cognitive Speech AI</h3>
+                            <p>Cognitive Speech AI technology, the platform uses live neural intelligence, emotional AI processing, real-time analytics, and intelligent automation.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Cognitive-Speech-AI" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Mental Wellness</span><span class="tag-pill">Live Demo</span></div>
+                            <h3 style="color:var(--accent-color);">🧠 AI-Driven Elderly Health, Cognitive Ability & Mental Wellness Assessment</h3>
+                            <p>Created an AI-powered platform to assess elderly health, cognition, and mental wellness, enabling early risk detection and personalized healthcare recommendations.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Physiological-and-Mental-Health-Assessment-of-Elderly-Indians/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">REST API</span><span class="tag-pill">Live Demo</span></div>
+                            <h3 style="color:var(--accent-color);">🌤️ Live Weather Forecast Application</h3>
+                            <p>A dynamic web application delivering real-time weather tracking, extended daily forecasts, temperature trends, and environmental metrics through responsive API integration.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Weather-Forecast-/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Analytics</span><span class="tag-pill">Live Demo</span></div>
+                            <h3 style="color:var(--accent-color);">📈 Excel Sheet Reader Dashboard</h3>
+                            <p>An interactive web-based analytics dashboard engineered to parse, process, and visualize data directly from Excel spreadsheets in real time.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Excel-Sheet-Reader-Dashboard/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Vector AI</span><span class="tag-pill">Live Demo</span></div>
+                            <h3 style="color:var(--accent-color);">🤖 AI Vector Automation Hub</h3>
+                            <p>An advanced AI-powered test automation framework integrating vector store embeddings, semantic search evaluation, and intelligent test orchestration.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/AI-Vector-Automation-Hub/" target="_blank" rel="noopener noreferrer" class="btn">🚀 Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">QA Eval</span><span class="tag-pill">Live Demo</span></div>
+                            <h3 style="color:var(--accent-color);">🤖CHATBOT QA & AI EVAL ENGINE </h3>
+                            <p>A centralized automation testing framework designed to manage, execute, and analyze automated testing projects with integrated reporting and quality insights.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Automation-Framework-Hub/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">CI/CD</span><span class="tag-pill">Security</span></div>
+                            <h3 style="color: var(--accent-color);">🔐 Multi-Environment Configuration &amp; Secure Credential Management</h3>
+                            <p>A modular Python API test automation framework designed to manage multiple environments, securely handle credentials, centralize configuration, and integrate automated API testing with GitHub Actions CI/CD. </p>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://rames-qa.github.io/Multi-Environment-Configuration-Secure-Credential-Management/" target="_blank" rel="noopener noreferrer" class="btn">💻 Demo Project</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Voice AI</span><span class="tag-pill">NLP</span></div>
+                            <h3 style="color:var(--accent-color);">🛒 Omni-Voice:E-Commerce Automation & Testing Framework</h3>
+                            <p>An AI-powered multi-platform voice automation framework featuring real-time speech recognition, intelligent NLP-based intent detection, fuzzy matching, and dynamic application routing across Amazon,
+                                Flipkart, Meesho, Zomato, and Swiggy. </p>
+                        </div>
+                        <a href="https://rames-qa.github.io/-Omni-Voice-E-Commerce-Automation-Testing-Framework/"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn">
+                            🚀 Demo Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="section-header">
+                <div class="section-title-row">
+                    <h2>📬 Contact</h2>
+                    <button type="button" class="section-down-btn" data-section-body="body-contact" aria-label="Toggle Contact content">⌄</button>
+                </div>
+                <p class="section-subtitle">Let's connect for QA Automation, SDET, and AI-Assisted Testing opportunities</p>
+            </div>
+            <div class="section-body" id="body-contact">
+                <div class="contact-card">
+                    <div class="contact-grid">
+                        <div class="contact-item">📞 Phone: Available on request</div>
+                        <div class="contact-item">📧 Email: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rameshkumar93.68@gmail.com" target="_blank" style="color: var(--accent-color); text-decoration: none; font-weight: bold;">rameshkumar93.68@gmail.com</a></div>
+                        <div class="contact-item">📍 Location: Bangalore, Karnataka, India</div>
+                    </div>
+                    <div class="contact-actions">
+                        <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf"
+                           download="Ramesh_Kumar_K_Resume.pdf"
+                           class="btn">
+                           📄 Download Resume
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb"
+                           target="_blank"
+                           class="btn-linkedin">
+                           🔗 LinkedIn Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            © 2026 Ramesh Kumar K
+        </footer>
     </div>
-  </div>
 
-  <script>
-    // =========================================================================
-    // 1. MULTI-PAGE CATALOG (6 Categories, 21 Process Pages)
-    // =========================================================================
-    const NAV_CATEGORIES = [
-      {
-        id: "getting-started",
-        title: "1. Getting Started",
-        pages: [
-          { id: "project-overview", title: "Project Overview", file: "README.md" },
-          { id: "installation-setup", title: "Installation & Setup", file: "requirements.txt" },
-          { id: "project-structure", title: "Project Structure", file: "repository tree" },
-        ],
-      },
-      {
-        id: "framework-architecture",
-        title: "2. Framework Architecture",
-        pages: [
-          { id: "overall-architecture", title: "Overall Architecture", file: "layered diagram" },
-          { id: "execution-workflow", title: "Execution Workflow", file: "8-stage pipeline" },
-          { id: "framework-components", title: "Framework Components", file: "core/ & clients/" },
-        ],
-      },
-      {
-        id: "configuration-security",
-        title: "3. Configuration & Security",
-        pages: [
-          { id: "environment-configuration", title: "Environment Configuration", file: "config/settings.py" },
-          { id: "secure-credential-management", title: "Secure Credential Management", file: "GitHub Secrets" },
-          { id: "authentication-management", title: "Authentication Management", file: "core/auth_manager.py" },
-        ],
-      },
-      {
-        id: "api-automation",
-        title: "4. API Automation",
-        pages: [
-          { id: "http-client-api-communication", title: "HTTP Client & API Communication", file: "core/http_client.py" },
-          { id: "test-case-implementation", title: "Test Case Implementation", file: "tests/test_users.py" },
-          { id: "request-response-validation", title: "Request & Response Validation", file: "tests/conftest.py" },
-          { id: "schema-validation", title: "Schema Validation", file: "models/user_models.py" },
-          { id: "test-data-management", title: "Test Data Management", file: "config/staging.env" },
-        ],
-      },
-      {
-        id: "reliability-debugging",
-        title: "5. Reliability & Debugging",
-        pages: [
-          { id: "retry-mechanism", title: "Retry Mechanism", file: "tenacity @retry" },
-          { id: "error-handling", title: "Error Handling", file: "401 & status guards" },
-          { id: "logging-debugging", title: "Logging & Debugging", file: "allure.step & logs" },
-        ],
-      },
-      {
-        id: "reporting-cicd",
-        title: "6. Reporting & CI/CD",
-        pages: [
-          { id: "allure-reporting", title: "Allure Reporting", file: "allure-results/" },
-          { id: "github-actions-integration", title: "GitHub Actions Integration", file: ".github/workflows/api-tests.yml" },
-          { id: "automated-test-execution", title: "Automated Test Execution", file: "CI Runs #26–#30" },
-          { id: "test-results-dashboard", title: "Test Results Dashboard", file: "CI metrics & runs" },
-        ],
-      },
-    ];
+    <!-- JavaScript for Theme Switching, Sidebar Navigation & Down-Arrow Topic Views -->
+    <script>
+        const lightBtn = document.getElementById('light-btn');
+        const darkBtn = document.getElementById('dark-btn');
 
-    // Flatten ordered pages for Previous/Next navigation
-    const FLAT_PAGES = [];
-    NAV_CATEGORIES.forEach((cat) => {
-      cat.pages.forEach((pg) => {
-        FLAT_PAGES.push({
-          categoryId: cat.id,
-          categoryTitle: cat.title,
-          pageId: pg.id,
-          pageTitle: pg.title,
-          file: pg.file,
-          route: `#/${cat.id}/${pg.id}`,
+        lightBtn.addEventListener('click', () => {
+            document.body.classList.add('light-mode');
         });
-      });
-    });
 
-    // =========================================================================
-    // 2. SHARED CODE SNIPPETS & ARCHITECTURE DATA
-    // =========================================================================
-    const CODE_SNIPPETS = {
-      requirements: `pytest==8.3.3
-httpx==0.27.2
-pydantic==2.9.2
-pydantic-settings==2.6.0
-tenacity==9.0.0
-allure-pytest==2.13.5
-faker==30.8.1`,
-
-      settings: `import os
-from pydantic_settings import BaseSettings, SettingsConfigDict
-
-
-class Settings(BaseSettings):
-    env: str = os.getenv("TEST_ENV", "dev")
-    base_url: str
-    auth_url: str = ""
-    client_id: str = ""
-    client_secret: str = ""
-    timeout: float = 10.0
-    max_retries: int = 2
-
-    model_config = SettingsConfigDict(
-        env_file=(f"config/{os.getenv('TEST_ENV', 'dev')}.env", ".env"),
-        env_file_encoding="utf-8",
-        extra="ignore",
-    )
-
-
-settings = Settings()`,
-
-      stagingEnv: `BASE_URL=https://jsonplaceholder.typicode.com
-AUTH_URL=https://jsonplaceholder.typicode.com/posts
-CLIENT_ID=demo-client
-CLIENT_SECRET=demo-secret
-TIMEOUT=10.0
-MAX_RETRIES=2`,
-
-      authManager: `from typing import Generator
-import httpx
-
-
-class BearerTokenAuth(httpx.Auth):
-    def __init__(self, auth_url: str, client_id: str, client_secret: str):
-        self.auth_url = auth_url
-        self.client_id = client_id
-        self.client_secret = client_secret
-        self._token: str | None = None
-
-    def _fetch_token(self) -> str:
-        response = httpx.post(
-            self.auth_url,
-            json={"client_id": self.client_id, "client_secret": self.client_secret},
-            timeout=10.0,
-        )
-        response.raise_for_status()
-        self._token = response.json()["access_token"]
-        return self._token
-
-    def auth_flow(self, request: httpx.Request) -> Generator[httpx.Request, httpx.Response, None]:
-        if not self._token:
-            self._fetch_token()
-
-        request.headers["Authorization"] = f"Bearer {self._token}"
-        response = yield request
-
-        # Auto-refresh once on 401 Unauthorized and retry
-        if response.status_code == 401:
-            self._fetch_token()
-            request.headers["Authorization"] = f"Bearer {self._token}"
-            yield request`,
-
-      httpClient: `import json
-import logging
-import allure
-import httpx
-from tenacity import retry, retry_if_exception_type, stop_after_attempt, wait_exponential
-from config.settings import settings
-
-logger = logging.getLogger("api_framework")
-
-
-class APIClient:
-    def __init__(self, base_url: str = settings.base_url, headers: dict | None = None, auth: httpx.Auth | None = None):
-        merged_headers = {"Accept": "application/json"}
-        if headers:
-            merged_headers.update(headers)
-        self.client = httpx.Client(
-            base_url=base_url,
-            timeout=settings.timeout,
-            headers=merged_headers,
-            auth=auth,
-        )
-
-    @retry(
-        stop=stop_after_attempt(settings.max_retries),
-        wait=wait_exponential(multiplier=1, min=1, max=5),
-        retry=retry_if_exception_type((httpx.TransportError, httpx.TimeoutException)),
-        reraise=True,
-    )
-    def request(self, method: str, endpoint: str, **kwargs) -> httpx.Response:
-        with allure.step(f"{method.upper()} {endpoint}"):
-            logger.info("Request: %s %s", method.upper(), endpoint)
-            response = self.client.request(method, endpoint, **kwargs)
-
-            allure.attach(
-                json.dumps(dict(response.request.headers), indent=2),
-                name="Request Headers",
-                attachment_type=allure.attachment_type.JSON,
-            )
-            allure.attach(
-                response.text,
-                name=f"Response Body ({response.status_code})",
-                attachment_type=allure.attachment_type.JSON,
-            )
-            return response
-
-    def get(self, endpoint: str, **kwargs) -> httpx.Response:
-        return self.request("GET", endpoint, **kwargs)
-
-    def post(self, endpoint: str, **kwargs) -> httpx.Response:
-        return self.request("POST", endpoint, **kwargs)
-
-    def close(self):
-        self.client.close()`,
-
-      userClient: `from core.http_client import APIClient
-
-
-class UserClient:
-    def __init__(self, api_client: APIClient):
-        self.api = api_client
-
-    def get_user(self, user_id: int):
-        return self.api.get(f"/users/{user_id}")
-
-    def create_user(self, payload: dict):
-        return self.api.post("/users", json=payload)`,
-
-      userModel: `from pydantic import BaseModel, EmailStr
-
-
-class UserResponse(BaseModel):
-    id: int
-    name: str
-    email: EmailStr
-    role: str | None = None`,
-
-      conftest: `import pytest
-from clients.user_client import UserClient
-from config.settings import settings
-from core.http_client import APIClient
-
-
-@pytest.fixture(scope="session")
-def api_client():
-    headers = {}
-    if settings.client_id:
-        headers["X-Client-Id"] = settings.client_id
-    client = APIClient(base_url=settings.base_url, headers=headers)
-    yield client
-    client.close()
-
-
-@pytest.fixture(scope="session")
-def user_client(api_client) -> UserClient:
-    return UserClient(api_client)`,
-
-      testUsers: `import allure
-from models.user_models import UserResponse
-
-
-@allure.feature("User Management")
-@allure.story("Retrieve User Profile")
-def test_get_user_schema_and_business_rules(user_client):
-    response = user_client.get_user(user_id=1)
-
-    assert response.status_code == 200, f"Expected 200, got {response.status_code}"
-    user = UserResponse.model_validate(response.json())
-
-    assert user.id == 1
-    assert "@" in user.email`,
-
-      workflowYml: `name: API Test Automation
-
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  workflow_dispatch:
-
-jobs:
-  api-tests:
-    name: Execute API Automation Tests
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v5
-
-      - name: Set Up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.12"
-
-      - name: Install Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Verify Dependencies
-        run: |
-          python --version
-          python -m pytest --version
-          pip show allure-pytest
-
-      - name: Debug Test Collection
-        run: |
-          ls -la
-          ls -la tests/
-          python -m pytest tests --collect-only -vv
-
-      - name: Run API Tests
-        env:
-          TEST_ENV: staging
-          CLIENT_ID: \${{ secrets.CLIENT_ID }}
-          CLIENT_SECRET: \${{ secrets.CLIENT_SECRET }}
-        run: |
-          python -m pytest tests -vv -s --alluredir=allure-results
-
-      - name: Upload Allure Results
-        if: always()
-        uses: actions/upload-artifact@v5
-        with:
-          name: allure-results
-          path: allure-results/
-          if-no-files-found: warn
-          retention-days: 14`,
-    };
-
-    const DIAGRAM_NODES = {
-      functional: {
-        title: "Functional Testing",
-        file: "tests/test_health_and_users.py",
-        desc: "Verifies active environment settings and endpoint behavior across functional API flows.",
-        code: `def test_health_and_post(api_client):\n    response = api_client.get("/posts/1")\n    assert response.status_code == 200`,
-      },
-      api_testing: {
-        title: "Webservices / API Testing",
-        file: "tests/test_users.py",
-        desc: "Executes REST requests through UserClient and APIClient, validates Pydantic schemas, and asserts business rules.",
-        code: CODE_SNIPPETS.testUsers,
-      },
-      smoke_suite: {
-        title: "Health & Smoke Suite",
-        file: "tests/test_health_and_users.py",
-        desc: "Rapid smoke verification confirming connectivity, environment selection, and baseline 200 responses.",
-        code: `TEST_ENV=staging python -m pytest tests --collect-only -vv`,
-      },
-      schema_validation: {
-        title: "Schema & Contract Validation",
-        file: "models/user_models.py",
-        desc: "Validates response payloads with Pydantic models (id, name, EmailStr email, optional role).",
-        code: CODE_SNIPPETS.userModel,
-      },
-      regression: {
-        title: "Regression Testing",
-        file: ".github/workflows/api-tests.yml",
-        desc: "Runs full Pytest regression checks in CI on push, pull_request, and workflow_dispatch (Runs #26–#30 passing).",
-        code: `TEST_ENV=staging python -m pytest tests -vv -s --alluredir=allure-results`,
-      },
-      multi_env: {
-        title: "Multi-Env Compatibility",
-        file: "config/settings.py & config/staging.env",
-        desc: "Switches seamlessly between dev and staging environments via TEST_ENV without modifying test code.",
-        code: CODE_SNIPPETS.stagingEnv,
-      },
-      config_file: {
-        title: "Config.file (Environment & Settings)",
-        file: "config/settings.py",
-        desc: "Left rail configuration loader reading TEST_ENV, base_url, auth_url, credentials, timeout, and retries.",
-        code: CODE_SNIPPETS.settings,
-      },
-      http_client: {
-        title: "HTTPX Client Accelerators",
-        file: "core/http_client.py",
-        desc: "Reusable HTTPX client wrapper exposing request(), get(), post(), and close() with default headers.",
-        code: CODE_SNIPPETS.httpClient,
-      },
-      auth_manager: {
-        title: "Bearer Token Auth Client",
-        file: "core/auth_manager.py",
-        desc: "Custom httpx.Auth flow fetching bearer tokens and automatically refreshing once on 401 Unauthorized.",
-        code: CODE_SNIPPETS.authManager,
-      },
-      pydantic_models: {
-        title: "Pydantic Schemas",
-        file: "models/user_models.py",
-        desc: "Typed contract models ensuring response fields match expected data types and email formats.",
-        code: CODE_SNIPPETS.userModel,
-      },
-      tenacity_retry: {
-        title: "Tenacity Retry Engine",
-        file: "core/http_client.py",
-        desc: "Exponential backoff retry policy for httpx.TransportError and httpx.TimeoutException.",
-        code: `@retry(\n    stop=stop_after_attempt(settings.max_retries),\n    wait=wait_exponential(multiplier=1, min=1, max=5),\n    retry=retry_if_exception_type((httpx.TransportError, httpx.TimeoutException)),\n    reraise=True,\n)`,
-      },
-      allure_logs: {
-        title: "Logs & Allure Attachments",
-        file: "core/http_client.py",
-        desc: "Logs requests and attaches serialized request headers and response payloads to Allure steps.",
-        code: `with allure.step(f"{method.upper()} {endpoint}"):\n    logger.info("Request: %s %s", method.upper(), endpoint)`,
-      },
-      ci_integration: {
-        title: "CI Integration (GitHub Actions)",
-        file: ".github/workflows/api-tests.yml",
-        desc: "Left rail CI trigger and runner orchestration on ubuntu-latest with GitHub Secrets injection.",
-        code: CODE_SNIPPETS.workflowYml,
-      },
-      test_execution: {
-        title: "Test Scripts Execution",
-        file: "tests/conftest.py",
-        desc: "Central execution bar running Pytest test suites backed by session-scoped api_client and user_client fixtures.",
-        code: CODE_SNIPPETS.conftest,
-      },
-      defect_tracking: {
-        title: "Defect Tracking & Artifacts",
-        file: ".github/workflows/api-tests.yml",
-        desc: "Left rail defect & diagnostics channel preserving allure-results artifacts for 14 days even on failure.",
-        code: `- name: Upload Allure Results\n  if: always()\n  uses: actions/upload-artifact@v5`,
-      },
-      test_data: {
-        title: "Test Data",
-        file: "config/staging.env & requirements.txt",
-        desc: "Lower pillar managing environment endpoints, retry parameters, and Faker test data support.",
-        code: CODE_SNIPPETS.stagingEnv,
-      },
-      endpoint_repo: {
-        title: "Endpoint Repository",
-        file: "clients/user_client.py",
-        desc: "Lower pillar encapsulating domain endpoints (/users/{user_id}, /users) behind clean methods.",
-        code: CODE_SNIPPETS.userClient,
-      },
-      actions_controller: {
-        title: "Actions Controller",
-        file: "core/http_client.py",
-        desc: "Lower pillar coordinating HTTP verb dispatch, retry handling, logging, and Allure attachments.",
-        code: `def get(self, endpoint: str, **kwargs):\n    return self.request("GET", endpoint, **kwargs)\n\ndef post(self, endpoint: str, **kwargs):\n    return self.request("POST", endpoint, **kwargs)`,
-      },
-      reporting: {
-        title: "Reporting",
-        file: "allure-results/",
-        desc: "Lower pillar generating Allure test execution records and serving interactive reports.",
-        code: `allure serve allure-results`,
-      },
-      target_apis: {
-        title: "Application Under Test (REST APIs)",
-        file: "config/staging.env",
-        desc: "Target API service (e.g., https://jsonplaceholder.typicode.com) validated across dev, staging, and CI.",
-        code: `BASE_URL=https://jsonplaceholder.typicode.com`,
-      },
-    };
-
-    const EIGHT_STEPS = [
-      { num: "01", name: "GitHub Actions Trigger", tag: "api-tests.yml", desc: "Triggered on push or pull_request to main, or manual workflow_dispatch.", node: "ci_integration", code: `on:\n  push:\n    branches: [main]\n  pull_request:\n    branches: [main]\n  workflow_dispatch:` },
-      { num: "02", name: "Load Environment Configuration", tag: "settings.py", desc: "Sets TEST_ENV (staging/dev) and loads base_url, timeout, and max_retries.", node: "config_file", code: CODE_SNIPPETS.settings },
-      { num: "03", name: "Load Secure Credentials", tag: "GitHub Secrets", desc: "Injects CLIENT_ID & CLIENT_SECRET via environment variables and refreshes Bearer token on 401.", node: "auth_manager", code: CODE_SNIPPETS.authManager },
-      { num: "04", name: "Initialize HTTPX Client", tag: "http_client.py", desc: "Creates session api_client and user_client fixtures with Tenacity retries.", node: "http_client", code: CODE_SNIPPETS.conftest },
-      { num: "05", name: "Execute Pytest Test Cases", tag: "pytest tests/", desc: "Verifies Python 3.12 & allure-pytest, collects tests, and runs Pytest.", node: "test_execution", code: `python -m pytest tests --collect-only -vv\nTEST_ENV=staging python -m pytest tests -vv -s --alluredir=allure-results` },
-      { num: "06", name: "Validate API Responses", tag: "user_models.py", desc: "Asserts HTTP 200 status, validates Pydantic UserResponse schema, and checks fields.", node: "schema_validation", code: CODE_SNIPPETS.testUsers },
-      { num: "07", name: "Generate Allure Reports", tag: "allure-results/", desc: "Attaches request headers and response bodies under allure.step blocks.", node: "reporting", code: `allure.attach(\n    response.text,\n    name=f"Response Body ({response.status_code})",\n    attachment_type=allure.attachment_type.JSON,\n)` },
-      { num: "08", name: "Publish CI Results", tag: "upload-artifact@v5", desc: "Uploads allure-results with 14-day retention and reports summary metrics.", node: "defect_tracking", code: `- name: Upload Allure Results\n  if: always()\n  uses: actions/upload-artifact@v5\n  with:\n    name: allure-results\n    path: allure-results/\n    retention-days: 14` },
-    ];
-
-    // =========================================================================
-    // 3. HELPER RENDERERS (Code Blocks, Cards, Layered Diagram, Workflow)
-    // =========================================================================
-    function escapeHtml(str) {
-      return String(str)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
-    }
-
-    function renderCodeBlock(title, codeText) {
-      const id = "cb-" + Math.random().toString(36).slice(2, 9);
-      return `
-        <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-950 text-slate-100 overflow-hidden shadow-sm">
-          <div class="flex items-center justify-between px-4 py-2.5 bg-slate-900 border-b border-slate-800">
-            <span class="font-mono text-xs font-semibold text-sky-300">${escapeHtml(title)}</span>
-            <button type="button" data-copy-target="${id}"
-                    class="copy-btn inline-flex items-center gap-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1 text-xs font-medium transition cursor-pointer">
-              <span>Copy</span>
-            </button>
-          </div>
-          <pre class="p-4 text-xs sm:text-[13px] font-mono overflow-x-auto leading-relaxed"><code id="${id}">${escapeHtml(codeText)}</code></pre>
-        </div>
-      `;
-    }
-
-    function renderPageHeader(catTitle, pageTitle, subtitle, badgeText) {
-      return `
-        <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-            <span class="text-xs font-bold uppercase tracking-wider text-cyanBand">${escapeHtml(catTitle)}</span>
-            <span class="rounded-full bg-sky-500/15 text-sky-700 dark:text-sky-300 border border-sky-500/30 px-3 py-0.5 text-xs font-mono font-semibold">
-              ${escapeHtml(badgeText)}
-            </span>
-          </div>
-          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-navyBar dark:text-white">${escapeHtml(pageTitle)}</h1>
-          <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">${escapeHtml(subtitle)}</p>
-        </div>
-      `;
-    }
-
-    function renderLayeredDiagramHtml(selectedNode = "api_testing") {
-      const isAct = (k) => (k === selectedNode ? "active-node" : "");
-      return `
-        <div class="rounded-2xl bg-white dark:bg-slate-900 border-2 border-sky-200 dark:border-sky-900/60 p-4 sm:p-6 shadow-sm">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-            <div>
-              <h2 class="text-base sm:text-lg font-bold text-navyBar dark:text-white">Layered Framework Architecture Diagram</h2>
-              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">Click any cyan/navy component block to inspect its file and implementation.</p>
-            </div>
-            <span class="text-xs font-mono bg-sky-50 dark:bg-sky-950 text-sky-800 dark:text-sky-300 border border-sky-200 dark:border-sky-800 px-3 py-1 rounded-full font-semibold">
-              Interactive Layer Map
-            </span>
-          </div>
-
-          <!-- Top Cyan Band -->
-          <div class="bg-cyanBand rounded-xl p-2.5 sm:p-3">
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
-              <button type="button" data-diag="functional" class="diag-node ${isAct("functional")} min-h-[64px] px-2 py-2 text-xs sm:text-sm flex items-center justify-center text-center cursor-pointer">Functional<br/>Testing</button>
-              <button type="button" data-diag="api_testing" class="diag-node ${isAct("api_testing")} min-h-[64px] px-2 py-2 text-xs sm:text-sm flex items-center justify-center text-center cursor-pointer">Webservices /<br/>API Testing</button>
-              <button type="button" data-diag="smoke_suite" class="diag-node ${isAct("smoke_suite")} min-h-[64px] px-2 py-2 text-xs sm:text-sm flex items-center justify-center text-center cursor-pointer">Health &amp; Smoke<br/>Suite</button>
-              <button type="button" data-diag="schema_validation" class="diag-node ${isAct("schema_validation")} min-h-[64px] px-2 py-2 text-xs sm:text-sm flex items-center justify-center text-center cursor-pointer">Schema &amp; Contract<br/>Validation</button>
-              <button type="button" data-diag="regression" class="diag-node ${isAct("regression")} min-h-[64px] px-2 py-2 text-xs sm:text-sm flex items-center justify-center text-center cursor-pointer">Regression<br/>Testing</button>
-              <button type="button" data-diag="multi_env" class="diag-node ${isAct("multi_env")} min-h-[64px] px-2 py-2 text-xs sm:text-sm flex items-center justify-center text-center cursor-pointer">Multi-Env<br/>Compatibility</button>
-            </div>
-          </div>
-
-          <div class="v-connector" aria-hidden="true"><div class="shaft"></div><div class="tip"></div></div>
-
-          <!-- Middle Row: Config.file + Cyan Accelerators -->
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-center">
-            <button type="button" data-diag="config_file" class="diag-node ${isAct("config_file")} lg:col-span-2 min-h-[92px] lg:min-h-[104px] px-3 py-2 text-xs sm:text-sm flex flex-col items-center justify-center text-center cursor-pointer">
-              <span>Config.file</span>
-              <span class="text-[11px] font-normal text-sky-200 mt-0.5">dev / staging</span>
-            </button>
-            <div class="lg:col-span-10 bg-cyanBand rounded-xl p-2.5 sm:p-3">
-              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
-                <button type="button" data-diag="http_client" class="diag-node ${isAct("http_client")} min-h-[68px] px-2 py-2 text-xs sm:text-sm flex items-center justify-center text-center cursor-pointer">HTTPX Client<br/>Accelerators</button>
-                <button type="button" data-diag="auth_manager" class="diag-node ${isAct("auth_manager")} min-h-[68px] px-2 py-2 text-xs sm:text-sm flex items-center justify-center text-center cursor-pointer">Bearer Token<br/>Auth Client</button>
-                <button type="button" data-diag="pydantic_models" class="diag-node ${isAct("pydantic_models")} min-h-[68px] px-2 py-2 text-xs sm:text-sm flex items-center justify-center text-center cursor-pointer">Pydantic<br/>Schemas</button>
-                <button type="button" data-diag="tenacity_retry" class="diag-node ${isAct("tenacity_retry")} min-h-[68px] px-2 py-2 text-xs sm:text-sm flex items-center justify-center text-center cursor-pointer">Tenacity Retry<br/>Engine</button>
-                <button type="button" data-diag="allure_logs" class="diag-node ${isAct("allure_logs")} min-h-[68px] px-2 py-2 text-xs sm:text-sm flex items-center justify-center text-center cursor-pointer">Logs &amp; Allure<br/>Attachments</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-center" aria-hidden="true">
-            <div class="lg:col-span-2 v-connector"><div class="shaft"></div><div class="tip"></div></div>
-            <div class="hidden lg:flex lg:col-span-10 v-connector"><div class="shaft"></div><div class="tip"></div></div>
-          </div>
-
-          <!-- CI Integration -> Test Scripts Execution -->
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
-            <button type="button" data-diag="ci_integration" class="diag-node ${isAct("ci_integration")} lg:col-span-2 min-h-[70px] px-3 py-2 text-xs sm:text-sm flex flex-col items-center justify-center text-center cursor-pointer">
-              <span>CI Integration</span>
-              <span class="text-[11px] font-normal text-sky-200">GitHub Actions</span>
-            </button>
-            <div class="hidden lg:flex lg:col-span-1 h-connector" aria-hidden="true"><div class="shaft"></div><div class="tip"></div></div>
-            <button type="button" data-diag="test_execution" class="diag-node ${isAct("test_execution")} bg-navyBar lg:col-span-9 min-h-[70px] px-4 py-2.5 text-sm sm:text-base font-bold flex items-center justify-center text-center cursor-pointer">
-              Test Scripts Execution (Pytest + Session Fixtures)
-            </button>
-          </div>
-
-          <!-- Fan-out bus -->
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5" aria-hidden="true">
-            <div class="hidden lg:block lg:col-span-2"></div>
-            <div class="lg:col-span-10 fanout-bus">
-              <div class="fanout-drop"></div>
-              <div class="fanout-drop"></div>
-              <div class="fanout-drop"></div>
-              <div class="fanout-drop"></div>
-            </div>
-          </div>
-
-          <!-- Bottom Row: Defect Tracking + 4 Pillars -->
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-stretch">
-            <button type="button" data-diag="defect_tracking" class="diag-node ${isAct("defect_tracking")} lg:col-span-2 min-h-[76px] px-3 py-2 text-xs sm:text-sm flex flex-col items-center justify-center text-center cursor-pointer">
-              <span>Defect Tracking</span>
-              <span class="text-[11px] font-normal text-sky-200">Artifacts &amp; Logs</span>
-            </button>
-            <div class="lg:col-span-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-              <button type="button" data-diag="test_data" class="diag-node ${isAct("test_data")} min-h-[76px] px-3 py-2 text-xs sm:text-sm flex flex-col items-center justify-center text-center cursor-pointer">
-                <span>Test Data</span>
-                <span class="text-[11px] font-normal text-sky-200">env &amp; requirements</span>
-              </button>
-              <button type="button" data-diag="endpoint_repo" class="diag-node ${isAct("endpoint_repo")} min-h-[76px] px-3 py-2 text-xs sm:text-sm flex flex-col items-center justify-center text-center cursor-pointer">
-                <span>Endpoint Repository</span>
-                <span class="text-[11px] font-normal text-sky-200">clients/user_client.py</span>
-              </button>
-              <button type="button" data-diag="actions_controller" class="diag-node ${isAct("actions_controller")} min-h-[76px] px-3 py-2 text-xs sm:text-sm flex flex-col items-center justify-center text-center cursor-pointer">
-                <span>Actions Controller</span>
-                <span class="text-[11px] font-normal text-sky-200">core/http_client.py</span>
-              </button>
-              <button type="button" data-diag="reporting" class="diag-node ${isAct("reporting")} min-h-[76px] px-3 py-2 text-xs sm:text-sm flex flex-col items-center justify-center text-center cursor-pointer">
-                <span>Reporting</span>
-                <span class="text-[11px] font-normal text-sky-200">allure-results</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-center" aria-hidden="true">
-            <div class="lg:col-span-2 up-connector"><div class="tip"></div><div class="shaft"></div></div>
-            <div class="hidden lg:flex lg:col-span-10 v-connector"><div class="shaft"></div><div class="tip"></div></div>
-          </div>
-
-          <!-- Target AUT Bar -->
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-center">
-            <div class="hidden lg:block lg:col-span-2"></div>
-            <div class="lg:col-span-10 bg-navyBar rounded-xl p-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-white">
-              <div class="bg-white text-slate-900 rounded-lg px-3 py-1.5 flex flex-wrap items-center gap-1.5 text-xs font-bold">
-                <span class="text-slate-500">ENVS:</span>
-                <span class="bg-slate-200 px-2 py-0.5 rounded">DEV</span>
-                <span class="bg-slate-200 px-2 py-0.5 rounded">STAGING</span>
-                <span class="bg-slate-200 px-2 py-0.5 rounded">UBUNTU CI</span>
-                <span class="bg-slate-200 px-2 py-0.5 rounded">GIT BASH</span>
-              </div>
-              <button type="button" data-diag="target_apis" class="diag-node ${isAct("target_apis")} bg-cyanBand hover:bg-sky-500 px-4 py-2 text-xs sm:text-sm font-bold cursor-pointer">
-                Application Under Test (REST APIs)
-              </button>
-            </div>
-          </div>
-
-          <!-- Selected Node Inspector -->
-          <div id="diag-inspector" class="mt-5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-4">
-            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-              <h3 id="diag-title" class="text-sm sm:text-base font-bold text-navyBar dark:text-sky-300">
-                ${escapeHtml(DIAGRAM_NODES[selectedNode].title)}
-              </h3>
-              <span id="diag-file" class="text-xs font-mono font-semibold text-sky-700 dark:text-sky-300 bg-sky-100 dark:bg-sky-900/40 px-2.5 py-0.5 rounded">
-                ${escapeHtml(DIAGRAM_NODES[selectedNode].file)}
-              </span>
-            </div>
-            <p id="diag-desc" class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-3">
-              ${escapeHtml(DIAGRAM_NODES[selectedNode].desc)}
-            </p>
-            <pre class="rounded-lg bg-slate-950 text-slate-100 p-3 text-xs font-mono overflow-x-auto"><code id="diag-code">${escapeHtml(DIAGRAM_NODES[selectedNode].code)}</code></pre>
-          </div>
-        </div>
-      `;
-    }
-
-    function renderEightStepWorkflowHtml() {
-      return `
-        <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm space-y-5">
-          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-            <div>
-              <h2 class="text-lg font-bold text-navyBar dark:text-white">8-Step End-to-End Execution Workflow</h2>
-              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">Click any of the 8 workflow stages to inspect its code and responsibilities.</p>
-            </div>
-            <span class="text-xs font-mono text-emerald-700 dark:text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 px-3 py-1 rounded-full font-semibold">
-              8 Pipeline Stages
-            </span>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
-            ${EIGHT_STEPS.map((st, i) => `
-              <button type="button" data-wf-step="${i}"
-                      class="wf-step-btn text-left rounded-xl border ${i === 0 ? "border-cyanBand ring-2 ring-cyanBand/30 bg-sky-50/60 dark:bg-sky-950/30" : "border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950"} p-3.5 transition cursor-pointer">
-                <div class="flex items-center justify-between gap-2 mb-1.5">
-                  <span class="rounded bg-navyBar text-white font-mono text-[11px] font-bold px-2 py-0.5">STEP ${st.num}</span>
-                  <span class="font-mono text-[11px] text-cyan-700 dark:text-cyan-300 font-semibold">${escapeHtml(st.tag)}</span>
-                </div>
-                <div class="text-sm font-bold text-slate-900 dark:text-white">${escapeHtml(st.name)}</div>
-                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">${escapeHtml(st.desc)}</p>
-              </button>
-            `).join("")}
-          </div>
-
-          <div id="wf-step-detail" class="rounded-xl bg-slate-950 text-slate-100 p-4 border border-slate-800">
-            <div class="flex items-center justify-between gap-2 mb-2">
-              <span id="wf-detail-title" class="text-xs sm:text-sm font-mono font-bold text-sky-300">Step 01: GitHub Actions Trigger</span>
-              <span id="wf-detail-tag" class="text-xs font-mono text-slate-400">api-tests.yml</span>
-            </div>
-            <pre class="text-xs font-mono overflow-x-auto leading-relaxed"><code id="wf-detail-code">${escapeHtml(EIGHT_STEPS[0].code)}</code></pre>
-          </div>
-        </div>
-      `;
-    }
-
-    function renderCiSummaryMetricsHtml(presetKey = "run30") {
-      const presets = {
-        run30: { run: "Run #30 (Manual dispatch)", total: 2, passed: 2, failed: 0, skipped: 0, duration: "1.84s", env: "staging" },
-        run29: { run: "Run #29 (Workflow update)", total: 2, passed: 2, failed: 0, skipped: 0, duration: "1.92s", env: "staging" },
-        run28: { run: "Run #28 (Settings refactoring)", total: 2, passed: 2, failed: 0, skipped: 0, duration: "1.76s", env: "dev" },
-        run27: { run: "Run #27 (API client setup)", total: 2, passed: 2, failed: 0, skipped: 0, duration: "2.05s", env: "staging" },
-        run26: { run: "Run #26 (Dependency updates)", total: 2, passed: 2, failed: 0, skipped: 0, duration: "2.18s", env: "staging" },
-      };
-      const cur = presets[presetKey] || presets.run30;
-      const rate = cur.passed + cur.failed > 0 ? ((cur.passed / (cur.passed + cur.failed)) * 100).toFixed(1) : "0.0";
-
-      return `
-        <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm space-y-5">
-          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
-            <div>
-              <h2 class="text-lg font-bold text-navyBar dark:text-white">Publish CI Results — Execution Summary</h2>
-              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">Interactive CI execution summary across verified runs (#26–#30).</p>
-            </div>
-            <div class="flex flex-wrap gap-1.5">
-              ${Object.entries(presets).map(([k, v]) => `
-                <button type="button" data-ci-preset="${k}"
-                        class="ci-preset-btn rounded-lg px-3 py-1.5 text-xs font-semibold cursor-pointer transition ${k === presetKey ? "bg-navyBar text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"}">
-                  ${escapeHtml(v.run.split(" (")[0])} (${v.env})
-                </button>
-              `).join("")}
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3">
-            <div class="rounded-xl bg-navyBar text-white p-4">
-              <div class="text-[11px] font-bold uppercase tracking-wider text-sky-200">Total Test Cases</div>
-              <div id="m-total" class="text-2xl sm:text-3xl font-extrabold font-mono mt-1">${cur.total}</div>
-              <div class="text-xs text-sky-200 mt-1">Collected by Pytest</div>
-            </div>
-            <div class="rounded-xl bg-emerald-950 text-white p-4 border border-emerald-700/60">
-              <div class="text-[11px] font-bold uppercase tracking-wider text-emerald-300">Passed Tests</div>
-              <div id="m-passed" class="text-2xl sm:text-3xl font-extrabold font-mono text-emerald-400 mt-1">${cur.passed}</div>
-              <div id="m-rate" class="text-xs text-emerald-200 mt-1">${rate}% pass rate</div>
-            </div>
-            <div class="rounded-xl bg-slate-900 text-white p-4 border border-slate-700">
-              <div class="text-[11px] font-bold uppercase tracking-wider text-rose-300">Failed Tests</div>
-              <div id="m-failed" class="text-2xl sm:text-3xl font-extrabold font-mono text-rose-400 mt-1">${cur.failed}</div>
-              <div class="text-xs text-slate-400 mt-1">Assertions &amp; schemas</div>
-            </div>
-            <div class="rounded-xl bg-slate-900 text-white p-4 border border-slate-700">
-              <div class="text-[11px] font-bold uppercase tracking-wider text-amber-300">Skipped Tests</div>
-              <div id="m-skipped" class="text-2xl sm:text-3xl font-extrabold font-mono text-amber-300 mt-1">${cur.skipped}</div>
-              <div class="text-xs text-slate-400 mt-1">Skipped / deselected</div>
-            </div>
-            <div class="rounded-xl bg-slate-900 text-white p-4 border border-slate-700">
-              <div class="text-[11px] font-bold uppercase tracking-wider text-cyan-300">Execution Duration</div>
-              <div id="m-duration" class="text-2xl sm:text-3xl font-extrabold font-mono text-cyan-300 mt-1">${cur.duration}</div>
-              <div class="text-xs text-slate-400 mt-1">Suite runtime</div>
-            </div>
-            <div class="rounded-xl bg-cyanBand text-white p-4">
-              <div class="text-[11px] font-bold uppercase tracking-wider text-sky-950">Environment Tested</div>
-              <div id="m-env" class="text-2xl sm:text-3xl font-extrabold font-mono uppercase mt-1">${cur.env}</div>
-              <div id="m-run" class="text-xs font-semibold text-sky-950 mt-1">${escapeHtml(cur.run)}</div>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-3 border-t border-slate-200 dark:border-slate-800">
-            <div>
-              <label for="ci-in-total" class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Total test cases</label>
-              <input id="ci-in-total" type="number" min="0" value="${cur.total}" class="ci-edit w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-1.5 text-sm font-mono" />
-            </div>
-            <div>
-              <label for="ci-in-passed" class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Passed tests</label>
-              <input id="ci-in-passed" type="number" min="0" value="${cur.passed}" class="ci-edit w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-1.5 text-sm font-mono" />
-            </div>
-            <div>
-              <label for="ci-in-failed" class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Failed tests</label>
-              <input id="ci-in-failed" type="number" min="0" value="${cur.failed}" class="ci-edit w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-1.5 text-sm font-mono" />
-            </div>
-            <div>
-              <label for="ci-in-skipped" class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Skipped tests</label>
-              <input id="ci-in-skipped" type="number" min="0" value="${cur.skipped}" class="ci-edit w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-1.5 text-sm font-mono" />
-            </div>
-            <div>
-              <label for="ci-in-duration" class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Execution duration</label>
-              <input id="ci-in-duration" type="text" value="${cur.duration}" class="ci-edit w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-1.5 text-sm font-mono" />
-            </div>
-            <div>
-              <label for="ci-in-env" class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Environment tested</label>
-              <select id="ci-in-env" class="ci-edit w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-1.5 text-sm font-mono">
-                <option value="staging" ${cur.env === "staging" ? "selected" : ""}>staging</option>
-                <option value="dev" ${cur.env === "dev" ? "selected" : ""}>dev</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function renderAllureViewsHtml() {
-      return `
-        <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm space-y-5">
-          <div>
-            <h2 class="text-lg font-bold text-navyBar dark:text-white">Allure Report Visual Views &amp; Execution Telemetry</h2>
-            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-              Visual breakdown of Allure report panels: Suites &amp; Step Trace, Results Overview, and Status / Severity / Duration Graphs.
-            </p>
-          </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            <!-- View 1: Suites & Execution Steps -->
-            <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-4 space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase text-cyanBand">Allure View 1</span>
-                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 font-semibold">Suites &amp; Steps</span>
-              </div>
-              <div class="text-sm font-bold text-slate-900 dark:text-white">User Management &rarr; Retrieve User Profile</div>
-              <ul class="space-y-1.5 text-xs font-mono">
-                <li class="flex items-center justify-between rounded bg-white dark:bg-slate-900 px-2.5 py-1.5 border border-slate-200 dark:border-slate-800">
-                  <span class="text-emerald-600 dark:text-emerald-400">&#10003; GET /users/1</span>
-                  <span class="text-slate-500">112ms</span>
-                </li>
-                <li class="flex items-center justify-between rounded bg-white dark:bg-slate-900 px-2.5 py-1.5 border border-slate-200 dark:border-slate-800">
-                  <span class="text-sky-600 dark:text-sky-400">&#8862; Attachment: Request Headers</span>
-                  <span class="text-slate-500">JSON</span>
-                </li>
-                <li class="flex items-center justify-between rounded bg-white dark:bg-slate-900 px-2.5 py-1.5 border border-slate-200 dark:border-slate-800">
-                  <span class="text-sky-600 dark:text-sky-400">&#8862; Attachment: Response Body (200)</span>
-                  <span class="text-slate-500">JSON</span>
-                </li>
-                <li class="flex items-center justify-between rounded bg-white dark:bg-slate-900 px-2.5 py-1.5 border border-slate-200 dark:border-slate-800">
-                  <span class="text-emerald-600 dark:text-emerald-400">&#10003; UserResponse.model_validate()</span>
-                  <span class="text-slate-500">4ms</span>
-                </li>
-              </ul>
-            </div>
-
-            <!-- View 2: Results Overview Ring -->
-            <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-4 space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase text-cyanBand">Allure View 2</span>
-                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-sky-500/20 text-sky-700 dark:text-sky-300 font-semibold">Overview</span>
-              </div>
-              <div class="flex items-center gap-4 pt-1">
-                <div class="w-20 h-20 rounded-full flex items-center justify-center font-mono font-extrabold text-sm text-emerald-700 dark:text-emerald-300 shrink-0"
-                     style="background: conic-gradient(#22c55e 0% 100%, #334155 100% 100%); padding: 6px;">
-                  <div class="w-full h-full rounded-full bg-white dark:bg-slate-900 flex items-center justify-center">
-                    100%
-                  </div>
-                </div>
-                <div class="text-xs space-y-1">
-                  <div class="font-bold text-slate-900 dark:text-white text-sm">Environment: staging</div>
-                  <div class="text-emerald-600 dark:text-emerald-400 font-semibold">Passed: 2 &bull; Failed: 0</div>
-                  <div class="text-slate-500 dark:text-slate-400">Broken: 0 &bull; Skipped: 0</div>
-                  <div class="font-mono text-slate-500 dark:text-slate-400">Artifact: allure-results (14d)</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- View 3: Severity & Duration Bars -->
-            <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-4 space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase text-cyanBand">Allure View 3</span>
-                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 font-semibold">Graphs</span>
-              </div>
-              <div class="text-xs font-semibold text-slate-700 dark:text-slate-300">Duration &amp; Retry Distribution</div>
-              <div class="space-y-2 text-xs font-mono">
-                <div>
-                  <div class="flex justify-between mb-0.5"><span>GET /posts/1 (smoke)</span><span>0.68s</span></div>
-                  <div class="h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden"><div class="h-full w-2/5 bg-emerald-500"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between mb-0.5"><span>GET /users/1 (schema)</span><span>1.16s</span></div>
-                  <div class="h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden"><div class="h-full w-3/5 bg-cyanBand"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between mb-0.5"><span>Retry Backoff Cap</span><span>max 5s</span></div>
-                  <div class="h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden"><div class="h-full w-4/5 bg-sky-600"></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function renderSecurityWalkthroughHtml() {
-      return `
-        <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm space-y-4">
-          <h2 class="text-lg font-bold text-navyBar dark:text-white">GitHub Secrets &rarr; Workflow &rarr; Environment Variable Flow</h2>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-4">
-              <div class="text-xs font-mono font-bold text-cyanBand uppercase">1. Stored in GitHub Secrets</div>
-              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1.5">
-                <code>CLIENT_ID</code> and <code>CLIENT_SECRET</code> are encrypted at rest under <strong>Settings &rarr; Secrets and variables &rarr; Actions</strong> and never written to tracked files.
-              </p>
-            </div>
-            <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-4">
-              <div class="text-xs font-mono font-bold text-cyanBand uppercase">2. Injected into Workflow Step</div>
-              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1.5">
-                The <code>Run API Tests</code> step maps <code>\${{ secrets.CLIENT_ID }}</code> and <code>\${{ secrets.CLIENT_SECRET }}</code> into the runner environment at runtime while GitHub automatically masks secret values in logs.
-              </p>
-            </div>
-            <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-4">
-              <div class="text-xs font-mono font-bold text-cyanBand uppercase">3. Consumed via Settings &amp; Auth</div>
-              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1.5">
-                <code>config/settings.py</code> reads environment variables via <code>pydantic-settings</code>, and <code>BearerTokenAuth</code> uses them in <code>core/auth_manager.py</code> to fetch and refresh Bearer tokens.
-              </p>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function renderEndToEndFlowWalkthroughHtml() {
-      const hops = [
-        { hop: "1. Test Entry", file: "tests/test_users.py", text: "Pytest invokes test_get_user_schema_and_business_rules(user_client) with Allure feature/story decorators." },
-        { hop: "2. Domain Client", file: "clients/user_client.py", text: "UserClient.get_user(user_id=1) constructs endpoint /users/1 and delegates to APIClient.get()." },
-        { hop: "3. Core HTTP & Retry", file: "core/http_client.py", text: "APIClient wraps httpx.Client with Tenacity retries, timeout guards, logging, and Allure attachments." },
-        { hop: "4. Authentication", file: "core/auth_manager.py", text: "BearerTokenAuth attaches Authorization: Bearer <token> and refreshes automatically if 401 is returned." },
-        { hop: "5. Configuration", file: "config/settings.py", text: "Provides base_url, timeout, max_retries, and credentials loaded from TEST_ENV (.env) and CI env vars." },
-        { hop: "6. Schema Validation", file: "models/user_models.py", text: "UserResponse.model_validate(response.json()) verifies types and email format before assertions run." },
-      ];
-      return `
-        <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm space-y-4">
-          <h2 class="text-lg font-bold text-navyBar dark:text-white">End-to-End Request &amp; Validation Walkthrough</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
-            ${hops.map((h) => `
-              <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-4">
-                <div class="flex items-center justify-between gap-2 mb-1.5">
-                  <span class="text-xs font-bold text-navyBar dark:text-sky-300">${escapeHtml(h.hop)}</span>
-                  <span class="text-[11px] font-mono text-cyan-700 dark:text-cyan-300">${escapeHtml(h.file)}</span>
-                </div>
-                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">${escapeHtml(h.text)}</p>
-              </div>
-            `).join("")}
-          </div>
-        </div>
-      `;
-    }
-
-    // =========================================================================
-    // 4. ALL 21 PAGE CONTENT GENERATORS
-    // =========================================================================
-    function buildPageHtml(categoryId, pageId) {
-      const cat = NAV_CATEGORIES.find((c) => c.id === categoryId) || NAV_CATEGORIES[0];
-      const pg = cat.pages.find((p) => p.id === pageId) || cat.pages[0];
-      const key = `${cat.id}/${pg.id}`;
-
-      switch (key) {
-        case "getting-started/project-overview":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "Modular Python API test automation framework combining Pytest, HTTPX, Pydantic, Tenacity, Allure reporting, and GitHub Actions CI/CD across dev and staging environments.", pg.file)}
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4">
-                <div class="text-xs font-bold uppercase text-cyanBand">Tech Stack</div>
-                <div class="text-base font-bold mt-1">Python 3.12 &bull; Pytest &bull; HTTPX</div>
-                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Pydantic v2 schemas, Tenacity retries, and Allure-pytest.</p>
-              </div>
-              <div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4">
-                <div class="text-xs font-bold uppercase text-cyanBand">CI/CD Status</div>
-                <div class="text-base font-bold text-emerald-600 dark:text-emerald-400 mt-1">Runs #26–#30 Passing</div>
-                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Automated execution on push, PR, and workflow_dispatch.</p>
-              </div>
-              <div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4">
-                <div class="text-xs font-bold uppercase text-cyanBand">Multi-Environment</div>
-                <div class="text-base font-bold mt-1">TEST_ENV (dev / staging)</div>
-                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Dynamic config/<env>.env loading via pydantic-settings.</p>
-              </div>
-              <div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4">
-                <div class="text-xs font-bold uppercase text-cyanBand">Credential Safety</div>
-                <div class="text-base font-bold mt-1">GitHub Secrets</div>
-                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Zero hardcoded secrets; injected into runtime env vars.</p>
-              </div>
-            </div>
-            ${renderEndToEndFlowWalkthroughHtml()}
-            ${renderCiSummaryMetricsHtml("run30")}
-          `;
-
-        case "getting-started/installation-setup":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "Set up a clean Python virtual environment in Git Bash or Eclipse IDE and install pinned dependencies from requirements.txt.", pg.file)}
-            ${renderCodeBlock("Local Setup & Pytest Verification (Git Bash)", `python -m venv .venv
-source .venv/Scripts/activate
-python -m pip install --upgrade pip
-python -m pip install --prefer-binary -r requirements.txt
-python -m pytest tests --collect-only -vv`)}
-            ${renderCodeBlock("requirements.txt", CODE_SNIPPETS.requirements)}
-          `;
-
-        case "getting-started/project-structure":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "Layered directory layout separating configuration, authentication, transport client, domain clients, Pydantic schemas, tests, and CI workflows.", pg.file)}
-            ${renderCodeBlock("Repository Directory Tree", `rames-qa/Multi-Environment-Configuration-Secure-Credential-Management/
-├── .github/workflows/api-tests.yml
-├── config/
-│   ├── __init__.py
-│   ├── settings.py
-│   ├── dev.env
-│   └── staging.env
-├── core/
-│   ├── __init__.py
-│   ├── auth_manager.py
-│   └── http_client.py
-├── clients/
-│   ├── __init__.py
-│   └── user_client.py
-├── models/
-│   ├── __init__.py
-│   └── user_models.py
-├── tests/
-│   ├── __init__.py
-│   ├── conftest.py
-│   ├── test_health_and_users.py
-│   └── test_users.py
-├── index.html
-└── requirements.txt`)}
-          `;
-
-        case "framework-architecture/overall-architecture":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "Interactive layered architecture diagram connecting testing suites, Config.file, HTTPX/Auth/Pydantic/Tenacity/Allure core modules, CI integration, four lower pillars, and target REST APIs.", pg.file)}
-            ${renderLayeredDiagramHtml("api_testing")}
-          `;
-
-        case "framework-architecture/execution-workflow":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "Complete 8-stage automated workflow from GitHub Actions trigger through environment loading, credential injection, HTTPX initialization, Pytest execution, response validation, Allure reporting, and CI publishing.", pg.file)}
-            ${renderEightStepWorkflowHtml()}
-            ${renderCiSummaryMetricsHtml("run30")}
-          `;
-
-        case "framework-architecture/framework-components":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "Walk through how a test flows from tests/ through clients/user_client.py, core/http_client.py, core/auth_manager.py, config/settings.py, and models/user_models.py.", pg.file)}
-            ${renderEndToEndFlowWalkthroughHtml()}
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              ${renderCodeBlock("clients/user_client.py", CODE_SNIPPETS.userClient)}
-              ${renderCodeBlock("tests/conftest.py", CODE_SNIPPETS.conftest)}
-            </div>
-          `;
-
-        case "configuration-security/environment-configuration":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "Manage base URLs, auth URLs, timeouts, and retry limits across dev and staging using TEST_ENV and pydantic-settings.", pg.file)}
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              ${renderCodeBlock("config/settings.py", CODE_SNIPPETS.settings)}
-              ${renderCodeBlock("config/staging.env", CODE_SNIPPETS.stagingEnv)}
-            </div>
-          `;
-
-        case "configuration-security/secure-credential-management":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "How CLIENT_ID and CLIENT_SECRET are stored in GitHub Secrets, mapped into workflow step environment variables, and consumed safely without exposing sensitive values.", pg.file)}
-            ${renderSecurityWalkthroughHtml()}
-            ${renderCodeBlock("GitHub Actions Secret Injection (.github/workflows/api-tests.yml)", `- name: Run API Tests
-  env:
-    TEST_ENV: staging
-    CLIENT_ID: \${{ secrets.CLIENT_ID }}
-    CLIENT_SECRET: \${{ secrets.CLIENT_SECRET }}
-  run: |
-    python -m pytest tests -vv -s --alluredir=allure-results`)}
-          `;
-
-        case "configuration-security/authentication-management":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "BearerTokenAuth subclasses httpx.Auth to fetch bearer tokens, attach Authorization headers, and automatically refresh on HTTP 401 responses.", pg.file)}
-            ${renderCodeBlock("core/auth_manager.py", CODE_SNIPPETS.authManager)}
-          `;
-
-        case "api-automation/http-client-api-communication":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "APIClient wraps httpx.Client with configurable timeouts, default JSON headers, get()/post()/request() methods, Tenacity retries, and Allure attachments.", pg.file)}
-            ${renderCodeBlock("core/http_client.py", CODE_SNIPPETS.httpClient)}
-          `;
-
-        case "api-automation/test-case-implementation":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "Write readable, maintainable Pytest test cases using session fixtures, Allure feature/story metadata, and Pydantic response validation.", pg.file)}
-            ${renderCodeBlock("tests/test_users.py", CODE_SNIPPETS.testUsers)}
-          `;
-
-        case "api-automation/request-response-validation":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "Verify HTTP status codes, outgoing request headers, response payloads, and domain assertions across test cases.", pg.file)}
-            ${renderCodeBlock("Status, Schema & Assertion Checks", `def test_user_validation(user_client):
-    response = user_client.get_user(user_id=1)
-    assert response.status_code == 200, f"Expected 200, got {response.status_code}"
-    user = UserResponse.model_validate(response.json())
-    assert user.id == 1
-    assert "@" in user.email`)}
-          `;
-
-        case "api-automation/schema-validation":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "Enforce response structure and types using Pydantic BaseModel and EmailStr while keeping optional fields like role safely nullable.", pg.file)}
-            ${renderCodeBlock("models/user_models.py", CODE_SNIPPETS.userModel)}
-          `;
-
-        case "api-automation/test-data-management":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "Combine environment-specific configuration files, parameterized test inputs, and Faker for deterministic and synthetic test payloads.", pg.file)}
-            ${renderCodeBlock("Environment & Payload Example", `TEST_ENV=staging python -m pytest tests -vv -s`)}
-          `;
-
-        case "reliability-debugging/retry-mechanism":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "Configure exponential backoff retries via tenacity on transient httpx.TransportError and httpx.TimeoutException exceptions.", pg.file)}
-            ${renderCodeBlock("Tenacity Retry Decorator in APIClient.request", `@retry(
-    stop=stop_after_attempt(settings.max_retries),
-    wait=wait_exponential(multiplier=1, min=1, max=5),
-    retry=retry_if_exception_type((httpx.TransportError, httpx.TimeoutException)),
-    reraise=True,
-)`)}
-          `;
-
-        case "reliability-debugging/error-handling":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "Handle 401 token expiration, schema validation errors, missing test collection (exit code 4), and Git rebase conflicts cleanly.", pg.file)}
-            <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm overflow-x-auto">
-              <table class="w-full text-left border-collapse text-xs sm:text-sm">
-                <thead>
-                  <tr class="border-b border-slate-200 dark:border-slate-800 text-navyBar dark:text-sky-300">
-                    <th class="py-2.5 pr-4">Scenario</th>
-                    <th class="py-2.5 pr-4">Behavior / Cause</th>
-                    <th class="py-2.5">Resolution</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
-                  <tr>
-                    <td class="py-2.5 pr-4 font-mono font-semibold">401 Unauthorized</td>
-                    <td class="py-2.5 pr-4">Expired bearer token</td>
-                    <td class="py-2.5">BearerTokenAuth fetches a new token and retries once</td>
-                  </tr>
-                  <tr>
-                    <td class="py-2.5 pr-4 font-mono font-semibold">Pytest Exit Code 4</td>
-                    <td class="py-2.5 pr-4">0 tests collected or missing plugin</td>
-                    <td class="py-2.5">Verify tests/test_*.py and install allure-pytest</td>
-                  </tr>
-                  <tr>
-                    <td class="py-2.5 pr-4 font-mono font-semibold">Git Push Rejected</td>
-                    <td class="py-2.5 pr-4">Remote main ahead of local branch</td>
-                    <td class="py-2.5 font-mono">git pull origin main --rebase</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          `;
-
-        case "reliability-debugging/logging-debugging":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "Inspect live test collection, verbose Pytest output, structured logger statements, and attached JSON headers/responses in Allure.", pg.file)}
-            ${renderCodeBlock("Collection & Verbose Execution Commands", `python -m pytest tests --collect-only -vv
-TEST_ENV=staging python -m pytest tests -vv -s --alluredir=allure-results`)}
-          `;
-
-        case "reporting-cicd/allure-reporting":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "Generate allure-results during test runs, inspect Suites, Overview, and Graphs views, and serve interactive Allure reports locally.", pg.file)}
-            ${renderAllureViewsHtml()}
-            ${renderCodeBlock("Serve Allure Report Locally", `allure serve allure-results`)}
-          `;
-
-        case "reporting-cicd/github-actions-integration":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "Complete GitHub Actions workflow (.github/workflows/api-tests.yml) installing dependencies, verifying collection, running Pytest, and uploading Allure artifacts.", pg.file)}
-            ${renderCodeBlock(".github/workflows/api-tests.yml", CODE_SNIPPETS.workflowYml)}
-          `;
-
-        case "reporting-cicd/automated-test-execution":
-          return `
-            ${renderPageHeader(cat.title, pg.title, "Verified GitHub Actions execution history across Runs #26–#30 with dependency checks, collection debugging, test execution, and artifact upload.", pg.file)}
-            ${renderEightStepWorkflowHtml()}
-            <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm overflow-x-auto">
-              <h3 class="text-base font-bold text-navyBar dark:text-white mb-3">Verified CI Workflow Runs (#26–#30)</h3>
-              <table class="w-full text-left border-collapse text-xs sm:text-sm">
-                <thead>
-                  <tr class="border-b border-slate-200 dark:border-slate-800 text-navyBar dark:text-sky-300">
-                    <th class="py-2 pr-4">Run</th>
-                    <th class="py-2 pr-4">Milestone</th>
-                    <th class="py-2 pr-4">Environment</th>
-                    <th class="py-2">Status</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
-                  <tr><td class="py-2 pr-4 font-mono font-bold">#30</td><td class="py-2 pr-4">Manual workflow_dispatch trigger</td><td class="py-2 pr-4 font-mono">staging</td><td class="py-2"><span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-700 dark:text-emerald-300">Successful</span></td></tr>
-                  <tr><td class="py-2 pr-4 font-mono font-bold">#29</td><td class="py-2 pr-4">Workflow configuration update</td><td class="py-2 pr-4 font-mono">staging</td><td class="py-2"><span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-700 dark:text-emerald-300">Successful</span></td></tr>
-                  <tr><td class="py-2 pr-4 font-mono font-bold">#28</td><td class="py-2 pr-4">Settings refactoring</td><td class="py-2 pr-4 font-mono">dev</td><td class="py-2"><span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-700 dark:text-emerald-300">Successful</span></td></tr>
-                  <tr><td class="py-2 pr-4 font-mono font-bold">#27</td><td class="py-2 pr-4">API client setup</td><td class="py-2 pr-4 font-mono">staging</td><td class="py-2"><span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-700 dark:text-emerald-300">Successful</span></td></tr>
-                  <tr><td class="py-2 pr-4 font-mono font-bold">#26</td><td class="py-2 pr-4">Dependency updates</td><td class="py-2 pr-4 font-mono">staging</td><td class="py-2"><span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-700 dark:text-emerald-300">Successful</span></td></tr>
-                </tbody>
-              </table>
-            </div>
-          `;
-
-        case "reporting-cicd/test-results-dashboard":
-        default:
-          return `
-            ${renderPageHeader(cat.title, pg.title, "Track total test cases, passed tests, failed tests, skipped tests, execution duration, and environment tested across CI runs.", pg.file)}
-            ${renderCiSummaryMetricsHtml("run30")}
-            ${renderAllureViewsHtml()}
-          `;
-      }
-    }
-
-    // =========================================================================
-    // 5. SIDEBAR, ROUTING, THEME, VIEWPORT & INTERACTIVITY CONTROLLER
-    // =========================================================================
-    const sidebarNavEl = document.getElementById("sidebar-nav");
-    const pageContentEl = document.getElementById("page-content");
-    const breadcrumbEl = document.getElementById("breadcrumb");
-    const routeBadgeEl = document.getElementById("page-route-badge");
-    const prevPageBtn = document.getElementById("prev-page-btn");
-    const nextPageBtn = document.getElementById("next-page-btn");
-    const prevPageTitleEl = document.getElementById("prev-page-title");
-    const nextPageTitleEl = document.getElementById("next-page-title");
-
-    // Track expanded categories (all expanded by default, collapsible individually or in bulk)
-    const expandedCategories = new Set(NAV_CATEGORIES.map((c) => c.id));
-
-    function parseHash() {
-      const raw = (window.location.hash || "#/getting-started/project-overview").replace(/^#\/?/, "");
-      const parts = raw.split("/").filter(Boolean);
-      const catId = parts[0] || "getting-started";
-      const pgId = parts[1] || "project-overview";
-
-      const matchedCat = NAV_CATEGORIES.find((c) => c.id === catId) || NAV_CATEGORIES[0];
-      const matchedPage = matchedCat.pages.find((p) => p.id === pgId) || matchedCat.pages[0];
-
-      return { categoryId: matchedCat.id, pageId: matchedPage.id };
-    }
-
-    function renderSidebar(activeCategoryId, activePageId) {
-      sidebarNavEl.innerHTML = NAV_CATEGORIES.map((cat) => {
-        const isOpen = expandedCategories.has(cat.id);
-        return `
-          <div class="rounded-xl border border-slate-200/80 dark:border-slate-800/90 bg-slate-50/70 dark:bg-slate-950/50 overflow-hidden">
-            <button type="button" data-cat-toggle="${cat.id}" aria-expanded="${isOpen}"
-                    class="w-full flex items-center justify-between gap-2 px-3 py-2.5 text-left text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition cursor-pointer">
-              <span>${escapeHtml(cat.title)}</span>
-              <span class="font-mono text-sm text-cyanBand">${isOpen ? "−" : "+"}</span>
-            </button>
-            <div class="${isOpen ? "block" : "hidden"} px-2 pb-2 pt-0.5 space-y-1">
-              ${cat.pages.map((pg) => {
-                const isActive = cat.id === activeCategoryId && pg.id === activePageId;
-                return `
-                  <a href="#/${cat.id}/${pg.id}" data-nav-link="${cat.id}/${pg.id}"
-                     class="flex items-center justify-between gap-2 rounded-lg px-3 py-2 text-xs sm:text-[13px] font-medium transition ${
-                       isActive
-                         ? "bg-navyBar text-white font-semibold shadow-xs"
-                         : "text-slate-700 dark:text-slate-300 hover:bg-sky-500/10 hover:text-cyanBand"
-                     }">
-                    <span class="truncate">${escapeHtml(pg.title)}</span>
-                    <span class="text-[10px] font-mono ${isActive ? "text-sky-200" : "text-slate-400 dark:text-slate-500"} shrink-0">${escapeHtml(pg.file)}</span>
-                  </a>
-                `;
-              }).join("")}
-            </div>
-          </div>
-        `;
-      }).join("");
-
-      sidebarNavEl.querySelectorAll("[data-cat-toggle]").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const cid = btn.getAttribute("data-cat-toggle");
-          if (expandedCategories.has(cid)) {
-            expandedCategories.delete(cid);
-          } else {
-            expandedCategories.add(cid);
-          }
-          const cur = parseHash();
-          renderSidebar(cur.categoryId, cur.pageId);
+        darkBtn.addEventListener('click', () => {
+            document.body.classList.remove('light-mode');
         });
-      });
 
-      sidebarNavEl.querySelectorAll("[data-nav-link]").forEach((link) => {
-        link.addEventListener("click", () => {
-          closeMobileSidebar();
-        });
-      });
-    }
+        // Collapsible Sidebar, Down Arrows & Topic View
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
+        const sidebarCloseBtn = document.getElementById('sidebar-close-btn');
+        const sidebarItems = document.querySelectorAll('.sidebar-item');
+        const sidebarLinks = document.querySelectorAll('#sidebar-menu a[data-target]');
+        const sidebarArrowBtns = document.querySelectorAll('.sidebar-arrow-btn');
+        const sectionDownBtns = document.querySelectorAll('.section-down-btn');
+        const allSections = document.querySelectorAll('section[id]');
+        const showAllTopicsBtn = document.getElementById('show-all-topics-btn');
 
-    function bindDynamicPageInteractions() {
-      // Copy buttons
-      pageContentEl.querySelectorAll(".copy-btn[data-copy-target]").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const codeEl = document.getElementById(btn.getAttribute("data-copy-target"));
-          if (!codeEl) return;
-          const ta = document.createElement("textarea");
-          ta.value = codeEl.textContent || "";
-          ta.setAttribute("readonly", "");
-          ta.style.position = "fixed";
-          ta.style.opacity = "0";
-          document.body.appendChild(ta);
-          ta.select();
-          try {
-            document.execCommand("copy");
-            showToast("Code copied to clipboard");
-          } catch (e) {
-            showToast("Unable to copy in this browser");
-          }
-          document.body.removeChild(ta);
-        });
-      });
+        function openSidebar() {
+            sidebar.classList.add('open');
+            sidebarOverlay.classList.add('open');
+        }
 
-      // Layered Diagram Node clicks
-      const diagBtns = pageContentEl.querySelectorAll("[data-diag]");
-      if (diagBtns.length > 0) {
-        diagBtns.forEach((btn) => {
-          btn.addEventListener("click", () => {
-            const key = btn.getAttribute("data-diag");
-            const info = DIAGRAM_NODES[key];
-            if (!info) return;
-            diagBtns.forEach((b) => b.classList.remove("active-node"));
-            btn.classList.add("active-node");
-            const t = document.getElementById("diag-title");
-            const f = document.getElementById("diag-file");
-            const d = document.getElementById("diag-desc");
-            const c = document.getElementById("diag-code");
-            if (t) t.textContent = info.title;
-            if (f) f.textContent = info.file;
-            if (d) d.textContent = info.desc;
-            if (c) c.textContent = info.code;
-          });
-        });
-      }
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('open');
+        }
 
-      // 8-Step Workflow Step buttons
-      const wfBtns = pageContentEl.querySelectorAll("[data-wf-step]");
-      if (wfBtns.length > 0) {
-        wfBtns.forEach((btn) => {
-          btn.addEventListener("click", () => {
-            const idx = parseInt(btn.getAttribute("data-wf-step"), 10) || 0;
-            const st = EIGHT_STEPS[idx] || EIGHT_STEPS[0];
-            wfBtns.forEach((b, i) => {
-              b.classList.remove("border-cyanBand", "ring-2", "ring-cyanBand/30", "bg-sky-50/60", "dark:bg-sky-950/30");
-              b.classList.add("border-slate-200", "dark:border-slate-800", "bg-slate-50", "dark:bg-slate-950");
-              if (i === idx) {
-                b.classList.remove("border-slate-200", "dark:border-slate-800", "bg-slate-50", "dark:bg-slate-950");
-                b.classList.add("border-cyanBand", "ring-2", "ring-cyanBand/30", "bg-sky-50/60", "dark:bg-sky-950/30");
-              }
+        function setActiveSidebarItem(topicId) {
+            sidebarItems.forEach((item) => {
+                if (item.getAttribute('data-topic') === topicId) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
             });
-            const dt = document.getElementById("wf-detail-title");
-            const dtag = document.getElementById("wf-detail-tag");
-            const dc = document.getElementById("wf-detail-code");
-            if (dt) dt.textContent = `Step ${st.num}: ${st.name}`;
-            if (dtag) dtag.textContent = st.tag;
-            if (dc) dc.textContent = st.code;
-          });
-        });
-      }
-
-      // CI Summary Presets & Live Inputs
-      const ciPresets = {
-        run30: { run: "Run #30 (Manual dispatch)", total: 2, passed: 2, failed: 0, skipped: 0, duration: "1.84s", env: "staging" },
-        run29: { run: "Run #29 (Workflow update)", total: 2, passed: 2, failed: 0, skipped: 0, duration: "1.92s", env: "staging" },
-        run28: { run: "Run #28 (Settings refactoring)", total: 2, passed: 2, failed: 0, skipped: 0, duration: "1.76s", env: "dev" },
-        run27: { run: "Run #27 (API client setup)", total: 2, passed: 2, failed: 0, skipped: 0, duration: "2.05s", env: "staging" },
-        run26: { run: "Run #26 (Dependency updates)", total: 2, passed: 2, failed: 0, skipped: 0, duration: "2.18s", env: "staging" },
-      };
-
-      function refreshCiMetrics(customLabel) {
-        const inTotal = document.getElementById("ci-in-total");
-        const inPassed = document.getElementById("ci-in-passed");
-        const inFailed = document.getElementById("ci-in-failed");
-        const inSkipped = document.getElementById("ci-in-skipped");
-        const inDuration = document.getElementById("ci-in-duration");
-        const inEnv = document.getElementById("ci-in-env");
-        if (!inTotal) return;
-
-        const t = Math.max(0, parseInt(inTotal.value, 10) || 0);
-        const p = Math.max(0, parseInt(inPassed.value, 10) || 0);
-        const f = Math.max(0, parseInt(inFailed.value, 10) || 0);
-        const s = Math.max(0, parseInt(inSkipped.value, 10) || 0);
-        const d = (inDuration.value || "0.00s").trim();
-        const e = (inEnv.value || "staging").trim();
-        const denom = p + f;
-        const pct = denom > 0 ? ((p / denom) * 100).toFixed(1) : "0.0";
-
-        document.getElementById("m-total").textContent = String(t);
-        document.getElementById("m-passed").textContent = String(p);
-        document.getElementById("m-failed").textContent = String(f);
-        document.getElementById("m-skipped").textContent = String(s);
-        document.getElementById("m-duration").textContent = d;
-        document.getElementById("m-env").textContent = e;
-        document.getElementById("m-rate").textContent = `${pct}% pass rate`;
-        if (customLabel) {
-          document.getElementById("m-run").textContent = customLabel;
-        }
-      }
-
-      pageContentEl.querySelectorAll("[data-ci-preset]").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const pk = btn.getAttribute("data-ci-preset");
-          const pr = ciPresets[pk];
-          if (!pr) return;
-          document.getElementById("ci-in-total").value = pr.total;
-          document.getElementById("ci-in-passed").value = pr.passed;
-          document.getElementById("ci-in-failed").value = pr.failed;
-          document.getElementById("ci-in-skipped").value = pr.skipped;
-          document.getElementById("ci-in-duration").value = pr.duration;
-          document.getElementById("ci-in-env").value = pr.env;
-
-          pageContentEl.querySelectorAll("[data-ci-preset]").forEach((b) => {
-            b.classList.remove("bg-navyBar", "text-white");
-            b.classList.add("bg-slate-100", "dark:bg-slate-800", "text-slate-700", "dark:text-slate-300");
-          });
-          btn.classList.remove("bg-slate-100", "dark:bg-slate-800", "text-slate-700", "dark:text-slate-300");
-          btn.classList.add("bg-navyBar", "text-white");
-          refreshCiMetrics(pr.run);
-        });
-      });
-
-      pageContentEl.querySelectorAll(".ci-edit").forEach((inp) => {
-        inp.addEventListener("input", () => refreshCiMetrics("Custom CI Summary"));
-        inp.addEventListener("change", () => refreshCiMetrics("Custom CI Summary"));
-      });
-    }
-
-    function renderRoute() {
-      const { categoryId, pageId } = parseHash();
-      expandedCategories.add(categoryId);
-      renderSidebar(categoryId, pageId);
-
-      const flatIdx = FLAT_PAGES.findIndex((item) => item.categoryId === categoryId && item.pageId === pageId);
-      const current = FLAT_PAGES[flatIdx] || FLAT_PAGES[0];
-
-      document.title = `${current.pageTitle} — API Test Automation Framework`;
-      routeBadgeEl.textContent = current.route;
-
-      breadcrumbEl.innerHTML = `
-        <a href="#/getting-started/project-overview" class="hover:text-cyanBand font-medium">Docs</a>
-        <span>/</span>
-        <span>${escapeHtml(current.categoryTitle)}</span>
-        <span>/</span>
-        <span class="font-semibold text-navyBar dark:text-sky-300">${escapeHtml(current.pageTitle)}</span>
-      `;
-
-      pageContentEl.innerHTML = buildPageHtml(current.categoryId, current.pageId);
-      bindDynamicPageInteractions();
-
-      const prevItem = FLAT_PAGES[(flatIdx - 1 + FLAT_PAGES.length) % FLAT_PAGES.length];
-      const nextItem = FLAT_PAGES[(flatIdx + 1) % FLAT_PAGES.length];
-
-      prevPageTitleEl.textContent = prevItem.pageTitle;
-      nextPageTitleEl.textContent = nextItem.pageTitle;
-
-      prevPageBtn.onclick = () => {
-        window.location.hash = prevItem.route;
-      };
-      nextPageBtn.onclick = () => {
-        window.location.hash = nextItem.route;
-      };
-    }
-
-    // Mobile drawer toggle
-    const sidebarEl = document.getElementById("sidebar");
-    const backdropEl = document.getElementById("sidebar-backdrop");
-    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
-
-    function openMobileSidebar() {
-      sidebarEl.classList.remove("-translate-x-full");
-      backdropEl.classList.remove("hidden");
-    }
-
-    function closeMobileSidebar() {
-      sidebarEl.classList.add("-translate-x-full");
-      backdropEl.classList.add("hidden");
-    }
-
-    mobileMenuBtn.addEventListener("click", () => {
-      if (sidebarEl.classList.contains("-translate-x-full")) {
-        openMobileSidebar();
-      } else {
-        closeMobileSidebar();
-      }
-    });
-    backdropEl.addEventListener("click", closeMobileSidebar);
-
-    document.getElementById("expand-all-btn").addEventListener("click", () => {
-      NAV_CATEGORIES.forEach((c) => expandedCategories.add(c.id));
-      const cur = parseHash();
-      renderSidebar(cur.categoryId, cur.pageId);
-    });
-
-    document.getElementById("collapse-all-btn").addEventListener("click", () => {
-      expandedCategories.clear();
-      const cur = parseHash();
-      renderSidebar(cur.categoryId, cur.pageId);
-    });
-
-    // Theme Toggle persisted in localStorage
-    const themeToggleBtn = document.getElementById("theme-toggle-btn");
-    const themeIconEl = document.getElementById("theme-icon");
-    const themeLabelEl = document.getElementById("theme-label");
-
-    function applyTheme(mode) {
-      const root = document.documentElement;
-      if (mode === "light") {
-        root.classList.remove("dark");
-        themeIconEl.textContent = "🌙";
-        themeLabelEl.textContent = "Dark";
-      } else {
-        root.classList.add("dark");
-        themeIconEl.textContent = "☀";
-        themeLabelEl.textContent = "Light";
-      }
-      try {
-        localStorage.setItem("api_docs_theme", mode);
-      } catch (e) {
-        // Ignore storage restrictions
-      }
-    }
-
-    let savedTheme = "dark";
-    try {
-      savedTheme = localStorage.getItem("api_docs_theme") || "dark";
-    } catch (e) {
-      savedTheme = "dark";
-    }
-    applyTheme(savedTheme);
-
-    themeToggleBtn.addEventListener("click", () => {
-      const isDark = document.documentElement.classList.contains("dark");
-      applyTheme(isDark ? "light" : "dark");
-    });
-
-    // Viewport Preview Switcher (Desktop / Tablet / Mobile)
-    const viewportFrame = document.getElementById("viewport-frame");
-    document.querySelectorAll(".vp-btn[data-viewport]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const mode = btn.getAttribute("data-viewport");
-        viewportFrame.classList.remove("max-w-7xl", "max-w-[768px]", "max-w-[390px]", "border-x", "border-cyanBand/40", "shadow-xl");
-
-        if (mode === "tablet") {
-          viewportFrame.classList.add("max-w-[768px]", "border-x", "border-cyanBand/40", "shadow-xl");
-        } else if (mode === "mobile") {
-          viewportFrame.classList.add("max-w-[390px]", "border-x", "border-cyanBand/40", "shadow-xl");
-        } else {
-          viewportFrame.classList.add("max-w-7xl");
         }
 
-        document.querySelectorAll(".vp-btn[data-viewport]").forEach((b) => {
-          b.classList.remove("bg-cyanBand", "text-white");
-          b.classList.add("text-sky-100");
+        function openTopicSection(topicId, isolateSingleTopic = true) {
+            if (!topicId) return;
+
+            allSections.forEach((sec) => {
+                const isTarget = sec.id === topicId;
+                if (isolateSingleTopic) {
+                    sec.classList.toggle('topic-hidden', !isTarget);
+                    sec.classList.toggle('topic-focused', isTarget);
+                } else {
+                    sec.classList.remove('topic-hidden');
+                    sec.classList.remove('topic-focused');
+                }
+
+                const bodyEl = sec.querySelector('.section-body');
+                const btnEl = sec.querySelector('.section-down-btn');
+                if (isTarget && bodyEl && bodyEl.classList.contains('collapsed')) {
+                    bodyEl.classList.remove('collapsed');
+                    if (btnEl) btnEl.classList.remove('collapsed');
+                }
+            });
+
+            setActiveSidebarItem(topicId);
+
+            const targetSection = document.getElementById(topicId);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function showAllTopics() {
+            allSections.forEach((sec) => {
+                sec.classList.remove('topic-hidden');
+                sec.classList.remove('topic-focused');
+                const bodyEl = sec.querySelector('.section-body');
+                const btnEl = sec.querySelector('.section-down-btn');
+                if (bodyEl) bodyEl.classList.remove('collapsed');
+                if (btnEl) btnEl.classList.remove('collapsed');
+            });
+        }
+
+        if (sidebarToggleBtn) {
+            sidebarToggleBtn.addEventListener('click', openSidebar);
+        }
+
+        if (sidebarCloseBtn) {
+            sidebarCloseBtn.addEventListener('click', closeSidebar);
+        }
+
+        if (sidebarOverlay) {
+            sidebarOverlay.addEventListener('click', closeSidebar);
+        }
+
+        sidebarLinks.forEach((link) => {
+            link.addEventListener('click', (e) => {
+                const targetId = link.getAttribute('data-target');
+                if (targetId) {
+                    e.preventDefault();
+                    openTopicSection(targetId, true);
+                    if (window.innerWidth <= 1024) {
+                        closeSidebar();
+                    }
+                }
+            });
         });
-        btn.classList.remove("text-sky-100");
-        btn.classList.add("bg-cyanBand", "text-white");
-      });
-    });
-    viewportFrame.classList.add("max-w-7xl");
 
-    // Toast Helper
-    let toastTimeout = null;
-    function showToast(msg) {
-      const toast = document.getElementById("toast");
-      const toastText = document.getElementById("toast-text");
-      toastText.textContent = msg;
-      toast.classList.remove("hidden");
-      toast.classList.add("flex");
-      clearTimeout(toastTimeout);
-      toastTimeout = setTimeout(() => {
-        toast.classList.add("hidden");
-        toast.classList.remove("flex");
-      }, 2200);
-    }
+        // Sidebar down arrow toggles subpanel and opens/focuses the topic
+        sidebarArrowBtns.forEach((arrowBtn) => {
+            arrowBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const panelId = arrowBtn.getAttribute('data-panel');
+                const subpanel = document.getElementById(panelId);
+                const parentItem = arrowBtn.closest('.sidebar-item');
+                const topicId = parentItem ? parentItem.getAttribute('data-topic') : null;
 
-    // Listen to URL Hash Changes
-    window.addEventListener("hashchange", () => {
-      renderRoute();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+                const isOpening = subpanel ? !subpanel.classList.contains('open') : true;
 
-    // Initial Render
-    if (!window.location.hash) {
-      window.location.hash = "#/getting-started/project-overview";
-    }
-    renderRoute();
-  </script>
+                document.querySelectorAll('.sidebar-subpanel').forEach((p) => p.classList.remove('open'));
+                document.querySelectorAll('.sidebar-arrow-btn').forEach((b) => b.classList.remove('open'));
+
+                if (isOpening && subpanel) {
+                    subpanel.classList.add('open');
+                    arrowBtn.classList.add('open');
+                }
+
+                if (topicId) {
+                    openTopicSection(topicId, true);
+                }
+            });
+        });
+
+        // Section heading down arrow collapses/expands the topic section
+        sectionDownBtns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const bodyId = btn.getAttribute('data-section-body');
+                const bodyEl = document.getElementById(bodyId);
+                if (bodyEl) {
+                    bodyEl.classList.toggle('collapsed');
+                    btn.classList.toggle('collapsed');
+                }
+            });
+        });
+
+        if (showAllTopicsBtn) {
+            showAllTopicsBtn.addEventListener('click', () => {
+                showAllTopics();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
 </body>
 </html>
