@@ -1,66 +1,77 @@
-# Hi, I'm Ramesh Kumar K
+Hi, I'm Ramesh Kumar K
+Software Testing Automation Engineer | 6.3+ Years of Experience | Software Reliability
+I am a quality-driven and automation-focused engineer specializing in designing, scaling, and maintaining robust automation frameworks and software reliability practices. Passionate about leveraging cutting-edge tools, CI/CD pipelines, and AI-assisted testing methodologies to optimize the software development lifecycle and ensure high-fidelity system validation.
 
-### Software Testing Automation Engineer | 6.3+ Years of Experience
+Technical Stack & Tools
+Core Expertise
+Programming Languages: Java | Python | C | C++ | SQL | HTML | CSS | JavaScript
 
-I am a quality-driven and automation-focused engineer specializing in designing, scaling, and maintaining robust automation frameworks. Passionate about leveraging cutting-edge tools, CI/CD pipelines, and AI-assisted testing methodologies to optimize the software development lifecycle and ensure high-fidelity system validation.
+Automation Frameworks & Tools: Selenium WebDriver | Playwright | TestNG | JUnit | Cucumber (BDD) | Pytest | REST Assured | Robot Framework
 
----
+Methodologies: Data-Driven Testing | Hybrid Frameworks | Page Object Model (POM) | Software Reliability | STLC | SDLC
 
-## Technical Stack & Tools
+Advanced Testing & AI: API Testing | System Validation & Verification | Manual Testing | AI-Assisted Test Automation | Generative AI
 
-### **Core Expertise**
-- **Programming Languages:** `Java` | `Python`
-- **Automation Frameworks:** `Selenium WebDriver` | `TestNG` | `Cucumber BDD`
-- **Methodologies:** `Data-Driven Testing` | `Hybrid Frameworks` | `Page Object Model (POM)` | `STLC` | `SDLC`
-- **Advanced Testing:** `API Testing` | `System Validation & Verification` | `Manual Testing`
+Tools, Platforms & Infrastructure
+CI/CD & DevOps: Jenkins | Azure DevOps | GitHub Actions
 
-### **Tools, Platforms & Infrastructure**
-- **CI/CD & DevOps:** `Jenkins` | `Azure DevOps`
-- **Build & Version Control:** `Git` | `GitHub` | `Maven`
-- **APIs & Databases:** `Postman` | `SQL` | `MySQL`
-- **Project Management:** `JIRA`
-- **Web Technologies & Innovations:** `HTML` | `Generative AI` | `AI-Assisted Test Automation`
+Build, IDEs & Version Control: Git | GitHub | Maven | Eclipse IDE | PyCharm | VS Code
 
----
+APIs, Data & Analytics: Postman | SQL | MySQL | Apache POI | SheetJS
 
-## Featured Automation Repositories
+Project Management & Reporting: JIRA | Allure TestNG
 
-### 💻 Java & Selenium Frameworks
-- **[Selenium WebDriver Framework](https://github.com/rames-qa/Selenium-Feb)** — Built automation using Java, Selenium, TestNG, and Page Object Model (POM).
-- **[Hybrid Automation Framework](https://github.com/rames-qa/com.selenium.java)** — Automated Data-Driven and Hybrid Framework with validation and reporting.
-- **[Cucumber BDD Framework](https://github.com/rames-qa/Cucumber-BDD)** — BDD automation using Cucumber with Selenium and TestNG integration.
-- **[Java OOPs Concepts](https://github.com/rames-qa/Java-Code.git)** — Java programming with OOP concepts.
+Web & AI Frameworks: HTML | CSS | JavaScript | Streamlit | Flask | OpenCV | Web Speech API | Generative AI
 
-### 🐍 Python Automation
-- **[Python Selenium Automation](https://github.com/rames-qa/Python-Selenium)** — Automation using Python with Selenium.
-- **[Python & OOPs Core](https://github.com/rames-qa/Python-codes)** — Python basic and OOPs concepts.
-- **[Python Automation Projects](https://rames-qa.github.io/PythonAutomation/)** — Python programming examples and automation projects showcasing core Python concepts, scripting, and practical implementations.
+Featured Automation Repositories
+💻 Java & Selenium Frameworks
+Selenium WebDriver Framework — Built automation using Java, Selenium, TestNG, and Page Object Model (POM).
 
----
+Hybrid Automation Framework — Automated Data-Driven and Hybrid Framework with validation and reporting.
 
-## Innovative Demo Projects
+Cucumber BDD Framework — BDD automation using Cucumber with Selenium and TestNG integration.
 
-### HealthTech & AI Solutions
-- **[Smart Health Monitoring Platform](https://rames-qa.github.io/Smart-Health-Monitoring-Platform/)** — Smart Health Monitoring Platform for elderly care with emergency alerts, doctor connectivity, AI-powered monitoring, and real-time healthcare tracking features.
-- **[Cognitive Speech AI](https://rames-qa.github.io/Cognitive-Speech-AI)** — Cognitive Speech AI technology using live neural intelligence, emotional AI processing, real-time analytics, and intelligent automation.
-- **[AI-Driven Elderly Health, Cognitive Ability & Mental Wellness Assessment](https://rames-qa.github.io/Physiological-and-Mental-Health-Assessment-of-Elderly-Indians/)** — An AI-powered platform to assess elderly health, cognition, and mental wellness, enabling early risk detection and personalized healthcare recommendations.
+Java OOPs Concepts — Java programming with OOP concepts.
 
-### Automation, Intelligence & Analytics
-- **[AI Vector Automation Hub](https://rames-qa.github.io/AI-Vector-Automation-Hub/)** — An advanced AI-powered test automation framework integrating vector store embeddings, semantic search evaluation, and intelligent test orchestration.
-- **[Chatbot QA & AI Eval Engine](https://rames-qa.github.io/Automation-Framework-Hub/)** — A centralized automation testing framework designed to manage, execute, and analyze automated testing projects with integrated reporting and quality insights.
-- **[Omni-Voice: E-Commerce Automation & Testing Framework](https://rames-qa.github.io/-Omni-Voice-E-Commerce-Automation-Testing-Framework/)** — An AI-powered multi-platform voice automation framework featuring real-time speech recognition, intelligent NLP-based intent detection, fuzzy matching, and dynamic application routing across Amazon, Flipkart, Meesho, Zomato, and Swiggy.
-- **[Excel Sheet Reader Dashboard](https://rames-qa.github.io/Excel-Sheet-Reader-Dashboard/)** — An interactive web-based analytics dashboard engineered to parse, process, and visualize data directly from Excel spreadsheets in real time.
-- **[Live Weather Forecast Application](https://rames-qa.github.io/Weather-Forecast-/)** — A dynamic web application delivering real-time weather tracking, extended daily forecasts, temperature trends, and environmental metrics through responsive API integration.
+🐍 Python Automation & AI QA Frameworks
+Python Selenium Automation — Automation using Python with Selenium.
 
----
+Python & OOPs Core — Python basic and OOPs concepts.
 
-## Let's Connect!
+Python Automation Projects — Python programming examples and automation projects showcasing core Python concepts, scripting, and practical implementations.
 
-- 📍 **Location:** Bangalore, Karnataka, India
-- 📧 **Email:** [rameshkumar93.68@gmail.com](https://mail.google.com/mail/?view=cm&fs=1&to=rameshkumar93.68@gmail.com)
-- 💼 **LinkedIn:** [Ramesh Kumar K](https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb)
-- 📄 **Resume:** [Download Resume](https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf)
-- 📞 *Contact number available on request*
+Universal Chatbot QA Automation Framework — Configuration-driven chatbot & AI evaluation framework integrating Selenium WebDriver, TestNG, Apache POI, Allure reporting, LLM evaluation, interactive analytics dashboards, and CI/CD pipelines.
 
----
-<p align="center">© 2026 Ramesh Kumar K • Quality Driven • Automation Enthusiast • Software Testing Engineer</p>
+Innovative Demo Projects
+HealthTech & AI Solutions
+Smart Health Monitoring Platform — Smart Health Monitoring Platform for elderly care with emergency alerts, doctor connectivity, AI-powered monitoring, and real-time healthcare tracking features.
+
+Cognitive Speech AI — Cognitive Speech AI technology using live neural intelligence, emotional AI processing, real-time analytics, and intelligent automation.
+
+AI-Driven Elderly Health, Cognitive Ability & Mental Wellness Assessment — An AI-powered platform to assess elderly health, cognition, and mental wellness, enabling early risk detection and personalized healthcare recommendations.
+
+Automation, Intelligence & Analytics
+AI Vector Automation Hub — An advanced AI-powered test automation framework integrating vector store embeddings, semantic search evaluation, and intelligent test orchestration.
+
+Chatbot QA & AI Eval Engine — A centralized automation testing framework designed to manage, execute, and analyze automated testing projects with integrated reporting and quality insights.
+
+Omni-Voice: E-Commerce Automation & Testing Framework — An AI-powered multi-platform voice automation framework featuring real-time speech recognition, intelligent NLP-based intent detection, fuzzy matching, and dynamic application routing across Amazon, Flipkart, Meesho, Zomato, and Swiggy.
+
+Multi-Environment Configuration & Secure Credential Management — A modular Python API test automation framework managing multiple environments, secure credentials, centralized configuration, and GitHub Actions CI/CD integration.
+
+Excel Sheet Reader Dashboard — An interactive web-based analytics dashboard engineered to parse, process, and visualize data directly from Excel spreadsheets in real time.
+
+Live Weather Forecast Application — A dynamic web application delivering real-time weather tracking, extended daily forecasts, temperature trends, and environmental metrics through responsive API integration.
+
+Let's Connect!
+📍 Location: Bengaluru, Karnataka, India
+
+📧 Email: rameshkumar93.68@gmail.com
+
+💼 LinkedIn: Ramesh Kumar K
+
+🌐 Portfolio: Rameshkumar K Portfolio
+
+📄 Resume: Download Resume
+
+📞 Contact number available on request
