@@ -10,16 +10,16 @@
             --bg-gradient: linear-gradient(135deg, #0f172a, #1e3a8a);
             --text-color: #ffffff;
             --muted-text: rgba(255, 255, 255, 0.78);
-            --nav-bg: rgba(9, 14, 30, 0.85);
-            --sidebar-bg: rgba(9, 14, 30, 0.95);
+            --nav-bg: rgba(9, 14, 30, 0.78);
+            --sidebar-bg: rgba(9, 14, 30, 0.94);
             --card-bg: rgba(255, 255, 255, 0.08);
-            --card-hover-bg: rgba(255, 255, 255, 0.14);
-            --border-color: rgba(255, 255, 255, 0.14);
+            --card-hover-bg: rgba(255, 255, 255, 0.13);
+            --border-color: rgba(255, 255, 255, 0.12);
             --accent-color: #38bdf8;
             --accent-soft: rgba(56, 189, 248, 0.16);
             --banner-bg: radial-gradient(circle at right, #0d2c5a, #022b1a);
             --footer-bg: rgba(0, 0, 0, 0.45);
-            --sidebar-width: 275px;
+            --sidebar-width: 276px;
         }
 
         /* LIGHT MODE OVERRIDES */
@@ -27,10 +27,10 @@
             --bg-gradient: linear-gradient(135deg, #f0f9ff, #e0f2fe);
             --text-color: #0f172a;
             --muted-text: rgba(15, 23, 42, 0.75);
-            --nav-bg: rgba(255, 255, 255, 0.9);
+            --nav-bg: rgba(255, 255, 255, 0.88);
             --sidebar-bg: rgba(255, 255, 255, 0.96);
-            --card-bg: rgba(255, 255, 255, 0.72);
-            --card-hover-bg: rgba(255, 255, 255, 0.98);
+            --card-bg: rgba(255, 255, 255, 0.65);
+            --card-hover-bg: rgba(255, 255, 255, 0.95);
             --border-color: rgba(15, 23, 42, 0.12);
             --accent-color: #0284c7;
             --accent-soft: rgba(2, 132, 199, 0.12);
@@ -70,7 +70,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 20px 14px;
+            padding: 20px 15px;
             transition: transform 0.3s ease, background 0.3s ease;
             overflow-y: auto;
         }
@@ -140,7 +140,7 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
         }
 
         .sidebar-item-row {
@@ -157,19 +157,18 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 10px 10px 10px 12px;
+            padding: 9px 10px 9px 12px;
             border-radius: 10px 0 0 10px;
             color: var(--text-color);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 500;
             transition: all 0.25s ease;
         }
 
-        .sidebar-item-row a.sidebar-link .nav-emoji {
+        .sidebar-item-row a.sidebar-link .nav-icon {
             font-size: 15px;
-            width: 20px;
-            text-align: center;
+            line-height: 1;
             flex-shrink: 0;
         }
 
@@ -389,14 +388,17 @@
         }
 
         .active-view-badge {
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 12.5px;
+            font-weight: 700;
             padding: 6px 14px;
             border-radius: 999px;
             background: var(--accent-soft);
             color: var(--accent-color);
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(56, 189, 248, 0.35);
             white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
         /* THEME TOGGLE STYLES */
@@ -438,7 +440,7 @@
             height: 17px;
         }
 
-        /* BANNER */
+        /* BANNER (ONLY ON HOME PAGE VIEW) */
         .banner {
             min-height: 150px;
             display: flex;
@@ -589,7 +591,7 @@
             position: relative;
             width: 280px;
             height: 280px;
-            margin: 42px auto 16px;
+            margin: 42px auto 26px;
         }
 
         .circle-dotted {
@@ -664,50 +666,40 @@
             transform: translateX(-50%);
         }
 
-        /* SLIDE / PAGE VIEW CONTAINER (8 DEDICATED SLIDE WEBPAGES) */
-        .slide-page {
+        /* DEDICATED VIEW CONTAINER (8 INDEPENDENT WEBPAGE VIEWS) */
+        .page-view {
             display: none;
+            width: 100%;
+            flex: 1;
+        }
+
+        .page-view.active-view {
+            display: block;
+            animation: viewFadeIn 0.28s ease;
+        }
+
+        .view-inner {
             padding: 40px 32px 54px;
             max-width: 1180px;
             width: 100%;
             margin: 0 auto;
             text-align: center;
-            scroll-margin-top: 76px;
         }
 
-        .slide-page.active-slide {
-            display: block;
-            animation: slideFadeIn 0.32s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        @keyframes slideFadeIn {
-            from { opacity: 0; transform: translateX(14px); }
-            to { opacity: 1; transform: translateX(0); }
+        @keyframes viewFadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .section-header {
             margin-bottom: 32px;
         }
 
-        .slide-number-pill {
-            display: inline-block;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 4px 12px;
-            border-radius: 999px;
-            background: var(--accent-soft);
-            color: var(--accent-color);
-            border: 1px solid var(--border-color);
-            margin-bottom: 10px;
-        }
-
         .section-header h2 {
             font-size: 28px;
             margin: 0 0 8px;
             letter-spacing: 0.3px;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
@@ -833,13 +825,13 @@
             box-shadow: 0 8px 18px rgba(56, 189, 248, 0.38);
         }
 
-        /* SLIDE PAGER BAR (PREVIOUS / HOME / NEXT) */
-        .slide-pager {
+        /* VIEW PAGER BAR (PREVIOUS / HOME / NEXT) */
+        .page-pager {
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 16px;
-            margin-top: 40px;
+            margin-top: 42px;
             padding-top: 22px;
             border-top: 1px solid var(--border-color);
             flex-wrap: wrap;
@@ -1006,7 +998,7 @@
                 left: -10px;
             }
 
-            .slide-page {
+            .view-inner {
                 padding: 32px 16px 44px;
             }
 
@@ -1014,7 +1006,7 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .slide-pager {
+            .page-pager {
                 justify-content: center;
             }
         }
@@ -1025,11 +1017,11 @@
     <!-- Mobile / Tablet Sidebar Backdrop -->
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
-    <!-- Fixed Sidebar Navigation Connected to All 8 Slide Webpages -->
+    <!-- Fixed Sidebar Navigation (Connected to All 8 Webpage Views) -->
     <aside class="sidebar" id="sidebar" aria-label="Portfolio Sidebar Navigation">
         <div>
             <div class="sidebar-header">
-                <a href="#home" class="sidebar-brand" data-slide="home">
+                <a href="#home" class="sidebar-brand" data-view="home">
                     <div class="nav-circle">RK</div>
                     <div class="sidebar-brand-info">
                         <span class="sidebar-brand-name">Ramesh Kumar K</span>
@@ -1039,130 +1031,130 @@
                 <button type="button" class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close sidebar">&times;</button>
             </div>
 
-            <div class="sidebar-label">8 Portfolio Slides</div>
+            <div class="sidebar-label">8 Webpage Views</div>
             <ul class="sidebar-menu" id="sidebar-menu">
                 <li>
-                    <div class="sidebar-item-row active" data-slide-item="home">
-                        <a href="#home" class="sidebar-link" data-slide="home">
-                            <span class="nav-emoji">🏠</span>
-                            <span>1. Home Page</span>
+                    <div class="sidebar-item-row active" data-view-item="home">
+                        <a href="#home" class="sidebar-link" data-view="home">
+                            <span class="nav-icon">🏠</span>
+                            <span>Home Page</span>
                         </a>
                     </div>
                 </li>
 
                 <li>
-                    <div class="sidebar-item-row" data-slide-item="skills">
-                        <a href="#skills" class="sidebar-link" data-slide="skills">
-                            <span class="nav-emoji">⚡</span>
-                            <span>2. Skills</span>
+                    <div class="sidebar-item-row" data-view-item="skills">
+                        <a href="#skills" class="sidebar-link" data-view="skills">
+                            <span class="nav-icon">⚡</span>
+                            <span>Skills</span>
                         </a>
                         <button type="button" class="sidebar-dropdown-btn" data-dropdown="dd-skills" aria-expanded="false" aria-label="Toggle Skills dropdown">⌄</button>
                     </div>
                     <div class="sidebar-dropdown-panel" id="dd-skills">
                         <ul class="sidebar-dropdown-list">
-                            <li><a href="#skills" data-slide="skills">Java, Python, Selenium</a></li>
-                            <li><a href="#skills" data-slide="skills">TestNG &amp; API Testing</a></li>
-                            <li><a href="#skills" data-slide="skills">STLC &amp; SDLC</a></li>
+                            <li><a href="#skills" data-view="skills">Java, Python, Selenium</a></li>
+                            <li><a href="#skills" data-view="skills">TestNG &amp; API Testing</a></li>
+                            <li><a href="#skills" data-view="skills">STLC &amp; SDLC</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li>
-                    <div class="sidebar-item-row" data-slide-item="tools">
-                        <a href="#tools" class="sidebar-link" data-slide="tools">
-                            <span class="nav-emoji">🛠️</span>
-                            <span>3. Tools &amp; Platforms</span>
+                    <div class="sidebar-item-row" data-view-item="tools">
+                        <a href="#tools" class="sidebar-link" data-view="tools">
+                            <span class="nav-icon">🛠️</span>
+                            <span>Tools &amp; Platforms</span>
                         </a>
                         <button type="button" class="sidebar-dropdown-btn" data-dropdown="dd-tools" aria-expanded="false" aria-label="Toggle Tools & Platforms dropdown">⌄</button>
                     </div>
                     <div class="sidebar-dropdown-panel" id="dd-tools">
                         <ul class="sidebar-dropdown-list">
-                            <li><a href="#tools" data-slide="tools">Git, GitHub, Jenkins, Maven</a></li>
-                            <li><a href="#tools" data-slide="tools">Postman, JIRA, HTML, MySQL</a></li>
+                            <li><a href="#tools" data-view="tools">Git, GitHub, Jenkins, Maven</a></li>
+                            <li><a href="#tools" data-view="tools">Postman, JIRA, HTML, MySQL</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li>
-                    <div class="sidebar-item-row" data-slide-item="programming-languages">
-                        <a href="#programming-languages" class="sidebar-link" data-slide="programming-languages">
-                            <span class="nav-emoji">💻</span>
-                            <span>4. Programming Languages</span>
+                    <div class="sidebar-item-row" data-view-item="programming-languages">
+                        <a href="#programming-languages" class="sidebar-link" data-view="programming-languages">
+                            <span class="nav-icon">💻</span>
+                            <span>Programming Languages</span>
                         </a>
                         <button type="button" class="sidebar-dropdown-btn" data-dropdown="dd-languages" aria-expanded="false" aria-label="Toggle Programming Languages dropdown">⌄</button>
                     </div>
                     <div class="sidebar-dropdown-panel" id="dd-languages">
                         <ul class="sidebar-dropdown-list">
-                            <li><a href="#programming-languages" data-slide="programming-languages">Java &amp; OOPs</a></li>
-                            <li><a href="#programming-languages" data-slide="programming-languages">Python &amp; Scripting</a></li>
-                            <li><a href="#programming-languages" data-slide="programming-languages">MySQL &amp; HTML</a></li>
+                            <li><a href="#programming-languages" data-view="programming-languages">Java &amp; OOPs</a></li>
+                            <li><a href="#programming-languages" data-view="programming-languages">Python &amp; Scripting</a></li>
+                            <li><a href="#programming-languages" data-view="programming-languages">MySQL &amp; HTML</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li>
-                    <div class="sidebar-item-row" data-slide-item="projects">
-                        <a href="#projects" class="sidebar-link" data-slide="projects">
-                            <span class="nav-emoji">🤖</span>
-                            <span>5. Automation Projects</span>
+                    <div class="sidebar-item-row" data-view-item="projects">
+                        <a href="#projects" class="sidebar-link" data-view="projects">
+                            <span class="nav-icon">🤖</span>
+                            <span>Automation Projects</span>
                         </a>
                         <button type="button" class="sidebar-dropdown-btn" data-dropdown="dd-projects" aria-expanded="false" aria-label="Toggle Automation Projects dropdown">⌄</button>
                     </div>
                     <div class="sidebar-dropdown-panel" id="dd-projects">
                         <ul class="sidebar-dropdown-list">
-                            <li><a href="#projects" data-slide="projects">Selenium WebDriver</a></li>
-                            <li><a href="#projects" data-slide="projects">Automation Framework</a></li>
-                            <li><a href="#projects" data-slide="projects">Cucumber BDD Framework</a></li>
-                            <li><a href="#projects" data-slide="projects">Python-Code &amp; Python-Selenium</a></li>
-                            <li><a href="#projects" data-slide="projects">Java-OOPs Concepts</a></li>
+                            <li><a href="#projects" data-view="projects">Selenium WebDriver</a></li>
+                            <li><a href="#projects" data-view="projects">Automation Framework</a></li>
+                            <li><a href="#projects" data-view="projects">Cucumber BDD Framework</a></li>
+                            <li><a href="#projects" data-view="projects">Python-Code &amp; Python-Selenium</a></li>
+                            <li><a href="#projects" data-view="projects">Java-OOPs Concepts</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li>
-                    <div class="sidebar-item-row" data-slide-item="python-automation">
-                        <a href="#python-automation" class="sidebar-link" data-slide="python-automation">
-                            <span class="nav-emoji">🐍</span>
-                            <span>6. Python Automation</span>
+                    <div class="sidebar-item-row" data-view-item="python-automation">
+                        <a href="#python-automation" class="sidebar-link" data-view="python-automation">
+                            <span class="nav-icon">🐍</span>
+                            <span>Python Automation</span>
                         </a>
                         <button type="button" class="sidebar-dropdown-btn" data-dropdown="dd-python" aria-expanded="false" aria-label="Toggle Python Automation dropdown">⌄</button>
                     </div>
                     <div class="sidebar-dropdown-panel" id="dd-python">
                         <ul class="sidebar-dropdown-list">
-                            <li><a href="#python-automation" data-slide="python-automation">Python Scripting &amp; Examples</a></li>
+                            <li><a href="#python-automation" data-view="python-automation">Python Scripting &amp; Examples</a></li>
                             <li><a href="https://rames-qa.github.io/PythonAutomation/" target="_blank" rel="noopener noreferrer">Open Python Automation Hub</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li>
-                    <div class="sidebar-item-row" data-slide-item="demo-projects">
-                        <a href="#demo-projects" class="sidebar-link" data-slide="demo-projects">
-                            <span class="nav-emoji">🚀</span>
-                            <span>7. Demo Projects</span>
+                    <div class="sidebar-item-row" data-view-item="demo-projects">
+                        <a href="#demo-projects" class="sidebar-link" data-view="demo-projects">
+                            <span class="nav-icon">🚀</span>
+                            <span>Demo Projects</span>
                         </a>
                         <button type="button" class="sidebar-dropdown-btn" data-dropdown="dd-demos" aria-expanded="false" aria-label="Toggle Demo Projects dropdown">⌄</button>
                     </div>
                     <div class="sidebar-dropdown-panel" id="dd-demos">
                         <ul class="sidebar-dropdown-list">
-                            <li><a href="#demo-projects" data-slide="demo-projects">Health &amp; Cognitive AI Demos</a></li>
-                            <li><a href="#demo-projects" data-slide="demo-projects">Weather &amp; Excel Dashboard</a></li>
-                            <li><a href="#demo-projects" data-slide="demo-projects">AI Vector Hub, QA Eval &amp; Omni-Voice</a></li>
+                            <li><a href="#demo-projects" data-view="demo-projects">Health &amp; Cognitive AI Demos</a></li>
+                            <li><a href="#demo-projects" data-view="demo-projects">Weather &amp; Excel Dashboard</a></li>
+                            <li><a href="#demo-projects" data-view="demo-projects">AI Vector Hub, QA Eval &amp; Omni-Voice</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li>
-                    <div class="sidebar-item-row" data-slide-item="contact">
-                        <a href="#contact" class="sidebar-link" data-slide="contact">
-                            <span class="nav-emoji">📬</span>
-                            <span>8. Contact</span>
+                    <div class="sidebar-item-row" data-view-item="contact">
+                        <a href="#contact" class="sidebar-link" data-view="contact">
+                            <span class="nav-icon">📬</span>
+                            <span>Contact</span>
                         </a>
                         <button type="button" class="sidebar-dropdown-btn" data-dropdown="dd-contact" aria-expanded="false" aria-label="Toggle Contact dropdown">⌄</button>
                     </div>
                     <div class="sidebar-dropdown-panel" id="dd-contact">
                         <ul class="sidebar-dropdown-list">
-                            <li><a href="#contact" data-slide="contact">Email &amp; Location (Bangalore)</a></li>
+                            <li><a href="#contact" data-view="contact">Email &amp; Location (Bangalore)</a></li>
                             <li><a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf" download="Ramesh_Kumar_K_Resume.pdf">Download Resume</a></li>
                             <li><a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></li>
                         </ul>
@@ -1188,6 +1180,7 @@
 
     <!-- Main Content Wrapper -->
     <div class="main-wrapper" id="top">
+        <!-- Consistent Sticky Header with Top-Right Active View Title & Theme Switcher -->
         <nav>
             <div class="nav-left">
                 <button type="button" class="sidebar-toggle-btn" id="sidebar-toggle-btn" aria-label="Open navigation menu">&#9776;</button>
@@ -1219,410 +1212,432 @@
             </div>
         </nav>
 
-        <!-- CONSISTENT HEADER ACROSS ALL 8 SLIDE WEBPAGES -->
-        <header>
-            <div class="banner">
-                <div class="banner-content">
-                    <h1>RAMESH KUMAR K</h1>
-                    <h2>
-                        <span id="typing-heading"></span><span class="cursor"></span>
-                    </h2>
-                    <p>6.3+ Years of Experience | Software Testing Automation Engineer</p>
-                    <p>Java | Python | Selenium WebDriver | API Testing | TestNG | Jenkins CI/CD | Azure DevOps</p>
-                    <p>AI-Assisted Test Automation | Generative AI | SQL | System Validation &amp; Verification | Git/GitHub</p>
-                </div>
-                <div class="hud">
-                    <span>STE</span>
-                </div>
-            </div>
-        </header>
-
-        <!-- SLIDE 1 OF 8: HOME PAGE -->
-        <section id="home" class="slide-page active-slide" data-slide-title="🏠 Home Page" data-crumb="Home Page">
-            <div class="diagram-container">
-                <div class="circle-dotted"></div>
-                <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb/" target="_blank" rel="noopener noreferrer">
-                    <img src="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/dp.png" class="profile-img" alt="Ramesh Kumar K Profile Picture">
-                </a>
-                <div class="step selenium">Selenium</div>
-                <div class="step manual">Java</div>
-                <div class="step python">Python</div>
-                <div class="step testing">Testing</div>
-                <div class="step deployment">Manual</div>
-                <div class="step building">WebDriver</div>
-            </div>
-
-            <div class="section-header" style="margin-top: 32px;">
-                <span class="slide-number-pill">Slide 01 / 08</span>
-                <h2>Portfolio Overview &amp; Slide Navigator</h2>
-                <p class="section-subtitle">Click any sidebar item or card below to jump directly to its dedicated slide webpage.</p>
-            </div>
-
-            <div class="cards-grid">
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Slide 02</span></div>
-                        <h3>⚡ Skills</h3>
-                        <p>Core QA engineering, test automation frameworks, and software lifecycle expertise</p>
+        <!-- ===================================================================== -->
+        <!-- WEBPAGE VIEW 1: HOME PAGE (Based on the attached screenshot)          -->
+        <!-- ===================================================================== -->
+        <main id="home" class="page-view active-view" data-view-title="🏠 Home Page" data-crumb="Home Page">
+            <header>
+                <div class="banner">
+                    <div class="banner-content">
+                        <h1>RAMESH KUMAR K</h1>
+                        <h2>
+                            <span id="typing-heading"></span><span class="cursor"></span>
+                        </h2>
+                        <p>6.3+ Years of Experience | Software Testing Automation Engineer</p>
+                        <p>Java | Python | Selenium WebDriver | API Testing | TestNG | Jenkins CI/CD | Azure DevOps</p>
+                        <p>AI-Assisted Test Automation | Generative AI | SQL | System Validation &amp; Verification | Git/GitHub</p>
                     </div>
-                    <a href="#skills" data-slide="skills" class="btn">Open Skills &rarr;</a>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Slide 03</span></div>
-                        <h3>🛠️ Tools &amp; Platforms</h3>
-                        <p>Version control, CI/CD orchestration, build management, API validation, and databases</p>
+                    <div class="hud">
+                        <span>STE</span>
                     </div>
-                    <a href="#tools" data-slide="tools" class="btn">Open Tools &amp; Platforms &rarr;</a>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Slide 04</span></div>
-                        <h3>💻 Programming Languages</h3>
-                        <p>Core programming and scripting languages for test automation, OOPs, and data validation</p>
-                    </div>
-                    <a href="#programming-languages" data-slide="programming-languages" class="btn">Open Languages &rarr;</a>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Slide 05</span></div>
-                        <h3>🤖 Automation Projects</h3>
-                        <p>Java, Python, Selenium WebDriver, Cucumber BDD, and object-oriented automation repositories</p>
-                    </div>
-                    <a href="#projects" data-slide="projects" class="btn">Open Automation Projects &rarr;</a>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Slide 06</span></div>
-                        <h3>🐍 Python Automation</h3>
-                        <p>Python programming examples, scripting, and practical automation implementations</p>
-                    </div>
-                    <a href="#python-automation" data-slide="python-automation" class="btn">Open Python Automation &rarr;</a>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Slide 07</span></div>
-                        <h3>🚀 Demo Projects</h3>
-                        <p>Live interactive applications, AI-powered evaluation hubs, and automation dashboards</p>
-                    </div>
-                    <a href="#demo-projects" data-slide="demo-projects" class="btn">Open Demo Projects &rarr;</a>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Slide 08</span></div>
-                        <h3>📬 Contact</h3>
-                        <p>Let's connect for QA Automation, SDET, and AI-Assisted Testing opportunities</p>
-                    </div>
-                    <a href="#contact" data-slide="contact" class="btn">Open Contact &rarr;</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 2 OF 8: SKILLS -->
-        <section id="skills" class="slide-page" data-slide-title="⚡ Skills" data-crumb="⚡ Skills">
-            <div class="section-header">
-                <span class="slide-number-pill">Slide 02 / 08</span>
-                <h2>⚡ Skills</h2>
-                <p class="section-subtitle">Core QA engineering, test automation frameworks, and software lifecycle expertise</p>
-            </div>
-            <div class="badges-grid">
-                <div class="card badge-card"><span class="badge-code">Core</span><span>Java</span></div>
-                <div class="card badge-card"><span class="badge-code">Scripting</span><span>Python</span></div>
-                <div class="card badge-card"><span class="badge-code">UI Auto</span><span>Selenium</span></div>
-                <div class="card badge-card"><span class="badge-code">Runner</span><span>TestNG</span></div>
-                <div class="card badge-card"><span class="badge-code">Services</span><span>API Testing</span></div>
-                <div class="card badge-card"><span class="badge-code">Process</span><span>STLC</span></div>
-                <div class="card badge-card"><span class="badge-code">Process</span><span>SDLC</span></div>
-            </div>
-            <div class="slide-pager">
-                <a href="#home" data-slide="home" class="pager-link">&larr; 🏠 Home Page</a>
-                <a href="#home" data-slide="home" class="pager-link">All 8 Slides</a>
-                <a href="#tools" data-slide="tools" class="pager-link">🛠️ Tools &amp; Platforms &rarr;</a>
-            </div>
-        </section>
-
-        <!-- SLIDE 3 OF 8: TOOLS & PLATFORMS -->
-        <section id="tools" class="slide-page" data-slide-title="🛠️ Tools & Platforms" data-crumb="🛠️ Tools & Platforms">
-            <div class="section-header">
-                <span class="slide-number-pill">Slide 03 / 08</span>
-                <h2>🛠️ Tools &amp; Platforms</h2>
-                <p class="section-subtitle">Version control, CI/CD orchestration, build management, API validation, and databases</p>
-            </div>
-            <div class="badges-grid">
-                <div class="card badge-card"><span class="badge-code">VCS</span><span>Git</span></div>
-                <div class="card badge-card"><span class="badge-code">Repository</span><span>GitHub</span></div>
-                <div class="card badge-card"><span class="badge-code">CI/CD</span><span>Jenkins</span></div>
-                <div class="card badge-card"><span class="badge-code">Build</span><span>Maven</span></div>
-                <div class="card badge-card"><span class="badge-code">API Client</span><span>Postman</span></div>
-                <div class="card badge-card"><span class="badge-code">Tracking</span><span>JIRA</span></div>
-                <div class="card badge-card"><span class="badge-code">Markup</span><span>HTML</span></div>
-                <div class="card badge-card"><span class="badge-code">Database</span><span>MySQL</span></div>
-            </div>
-            <div class="slide-pager">
-                <a href="#skills" data-slide="skills" class="pager-link">&larr; ⚡ Skills</a>
-                <a href="#home" data-slide="home" class="pager-link">All 8 Slides</a>
-                <a href="#programming-languages" data-slide="programming-languages" class="pager-link">💻 Programming Languages &rarr;</a>
-            </div>
-        </section>
-
-        <!-- SLIDE 4 OF 8: PROGRAMMING LANGUAGES -->
-        <section id="programming-languages" class="slide-page" data-slide-title="💻 Programming Languages" data-crumb="💻 Programming Languages">
-            <div class="section-header">
-                <span class="slide-number-pill">Slide 04 / 08</span>
-                <h2>💻 Programming Languages</h2>
-                <p class="section-subtitle">Core programming and scripting languages for test automation, OOPs, and data validation</p>
-            </div>
-            <div class="badges-grid">
-                <div class="card badge-card"><span class="badge-code">OOPs</span><span>Java (OOPs)</span></div>
-                <div class="card badge-card"><span class="badge-code">Language</span><span>Python</span></div>
-                <div class="card badge-card"><span class="badge-code">Query</span><span>SQL / MySQL</span></div>
-                <div class="card badge-card"><span class="badge-code">Web</span><span>HTML</span></div>
-            </div>
-            <div class="slide-pager">
-                <a href="#tools" data-slide="tools" class="pager-link">&larr; 🛠️ Tools &amp; Platforms</a>
-                <a href="#home" data-slide="home" class="pager-link">All 8 Slides</a>
-                <a href="#projects" data-slide="projects" class="pager-link">🤖 Automation Projects &rarr;</a>
-            </div>
-        </section>
-
-        <!-- SLIDE 5 OF 8: AUTOMATION PROJECTS -->
-        <section id="projects" class="slide-page" data-slide-title="🤖 Automation Projects" data-crumb="🤖 Automation Projects">
-            <div class="section-header">
-                <span class="slide-number-pill">Slide 05 / 08</span>
-                <h2>🤖 Automation Projects</h2>
-                <p class="section-subtitle">Java, Python, Selenium WebDriver, Cucumber BDD, and object-oriented automation repositories</p>
-            </div>
-            <div class="cards-grid">
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Java</span><span class="tag-pill">Selenium</span><span class="tag-pill">TestNG</span></div>
-                        <h3>Selenium WebDriver</h3>
-                        <p>Built automation using Java, Selenium, TestNG and Page Object Model.</p>
-                    </div>
-                    <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" rel="noopener noreferrer" class="btn">GitHub Selenium WebDriver</a>
                 </div>
 
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Hybrid</span><span class="tag-pill">Data-Driven</span></div>
-                        <h3>Automation Framework</h3>
-                        <p>Automated Data-Driven and Hybrid Framework with Validation and Reporting.</p>
-                    </div>
-                    <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" rel="noopener noreferrer" class="btn">GitHub Automation Framework</a>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Cucumber</span><span class="tag-pill">BDD</span></div>
-                        <h3>Cucumber BDD Framework</h3>
-                        <p>BDD automation using Cucumber with Selenium and TestNG integration.</p>
-                    </div>
-                    <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" rel="noopener noreferrer" class="btn">GitHub Cucumber BDD Framework</a>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">OOP</span></div>
-                        <h3>Python-Code</h3>
-                        <p>Python basic and OOPs concepts</p>
-                    </div>
-                    <a href="https://github.com/rames-qa/Python-codes" target="_blank" rel="noopener noreferrer" class="btn">GitHub Python-Code</a>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">Selenium</span></div>
-                        <h3>Python-Selenium</h3>
-                        <p>Automation using Python with Selenium.</p>
-                    </div>
-                    <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" rel="noopener noreferrer" class="btn">GitHub Python-Selenium</a>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Java</span><span class="tag-pill">OOPs</span></div>
-                        <h3>Java-OOPs Concepts</h3>
-                        <p>Java Programming with OOP Concepts.</p>
-                    </div>
-                    <a href="https://github.com/rames-qa/Java-Code.git" target="_blank" rel="noopener noreferrer" class="btn">GitHub Java(OOP) Concepts</a>
-                </div>
-            </div>
-            <div class="slide-pager">
-                <a href="#programming-languages" data-slide="programming-languages" class="pager-link">&larr; 💻 Programming Languages</a>
-                <a href="#home" data-slide="home" class="pager-link">All 8 Slides</a>
-                <a href="#python-automation" data-slide="python-automation" class="pager-link">🐍 Python Automation &rarr;</a>
-            </div>
-        </section>
-
-        <!-- SLIDE 6 OF 8: PYTHON AUTOMATION -->
-        <section id="python-automation" class="slide-page" data-slide-title="🐍 Python Automation" data-crumb="🐍 Python Automation">
-            <div class="section-header">
-                <span class="slide-number-pill">Slide 06 / 08</span>
-                <h2>🐍 Python Automation</h2>
-                <p class="section-subtitle">Python programming examples, scripting, and practical automation implementations</p>
-            </div>
-            <div class="cards-grid" style="max-width: 460px; margin: 0 auto;">
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">Scripting</span></div>
-                        <h3>Python Automation</h3>
-                        <p>Python programming examples and automation projects showcasing core Python concepts, scripting, and practical implementations.</p>
-                    </div>
-                    <a href="https://rames-qa.github.io/PythonAutomation/" target="_blank" rel="noopener noreferrer" class="btn">
-                        View Python Automation
+                <div class="diagram-container">
+                    <div class="circle-dotted"></div>
+                    <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/dp.png" class="profile-img" alt="Ramesh Kumar K Profile Picture">
                     </a>
+                    <div class="step selenium">Selenium</div>
+                    <div class="step manual">Java</div>
+                    <div class="step python">Python</div>
+                    <div class="step testing">Testing</div>
+                    <div class="step deployment">Manual</div>
+                    <div class="step building">WebDriver</div>
+                </div>
+            </header>
+
+            <div class="view-inner">
+                <div class="section-header">
+                    <h2>Portfolio Directory</h2>
+                    <p class="section-subtitle">Select any of the seven dedicated webpage views below or use the sidebar menu to switch between independent views.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Page 02</span></div>
+                            <h3>⚡ Skills</h3>
+                            <p>Core QA engineering, test automation frameworks, and software lifecycle expertise</p>
+                        </div>
+                        <a href="#skills" data-view="skills" class="btn">Open Skills &rarr;</a>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Page 03</span></div>
+                            <h3>🛠️ Tools &amp; Platforms</h3>
+                            <p>Version control, CI/CD orchestration, build management, API validation, and databases</p>
+                        </div>
+                        <a href="#tools" data-view="tools" class="btn">Open Tools &amp; Platforms &rarr;</a>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Page 04</span></div>
+                            <h3>💻 Programming Languages</h3>
+                            <p>Core programming and scripting languages for test automation, OOPs, and data validation</p>
+                        </div>
+                        <a href="#programming-languages" data-view="programming-languages" class="btn">Open Programming Languages &rarr;</a>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Page 05</span></div>
+                            <h3>🤖 Automation Projects</h3>
+                            <p>Java, Python, Selenium WebDriver, Cucumber BDD, and object-oriented automation repositories</p>
+                        </div>
+                        <a href="#projects" data-view="projects" class="btn">Open Automation Projects &rarr;</a>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Page 06</span></div>
+                            <h3>🐍 Python Automation</h3>
+                            <p>Python programming examples, scripting, and practical automation implementations</p>
+                        </div>
+                        <a href="#python-automation" data-view="python-automation" class="btn">Open Python Automation &rarr;</a>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Page 07</span></div>
+                            <h3>🚀 Demo Projects</h3>
+                            <p>Live interactive applications, AI-powered evaluation hubs, and automation dashboards</p>
+                        </div>
+                        <a href="#demo-projects" data-view="demo-projects" class="btn">Open Demo Projects &rarr;</a>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Page 08</span></div>
+                            <h3>📬 Contact</h3>
+                            <p>Let's connect for QA Automation, SDET, and AI-Assisted Testing opportunities</p>
+                        </div>
+                        <a href="#contact" data-view="contact" class="btn">Open Contact &rarr;</a>
+                    </div>
                 </div>
             </div>
-            <div class="slide-pager">
-                <a href="#projects" data-slide="projects" class="pager-link">&larr; 🤖 Automation Projects</a>
-                <a href="#home" data-slide="home" class="pager-link">All 8 Slides</a>
-                <a href="#demo-projects" data-slide="demo-projects" class="pager-link">🚀 Demo Projects &rarr;</a>
-            </div>
-        </section>
+        </main>
 
-        <!-- SLIDE 7 OF 8: DEMO PROJECTS -->
-        <section id="demo-projects" class="slide-page" data-slide-title="🚀 Demo Projects" data-crumb="🚀 Demo Projects">
-            <div class="section-header">
-                <span class="slide-number-pill">Slide 07 / 08</span>
-                <h2>🚀 Demo Projects</h2>
-                <p class="section-subtitle">Live interactive applications, AI-powered evaluation hubs, and automation dashboards</p>
-            </div>
-            <div class="cards-grid">
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Healthcare AI</span><span class="tag-pill">Live Demo</span></div>
-                        <h3>Smart Health Monitoring Platform</h3>
-                        <p>Smart Health Monitoring Platform for elderly care with emergency alerts, doctor connectivity, AI-powered monitoring, and real-time healthcare tracking features.</p>
-                    </div>
-                    <a href="https://rames-qa.github.io/Smart-Health-Monitoring-Platform/" target="_blank" rel="noopener noreferrer" class="btn">Demo Project</a>
+        <!-- ===================================================================== -->
+        <!-- WEBPAGE VIEW 2: ⚡ SKILLS                                              -->
+        <!-- ===================================================================== -->
+        <section id="skills" class="page-view" data-view-title="⚡ Skills" data-crumb="⚡ Skills">
+            <div class="view-inner">
+                <div class="section-header">
+                    <h2>⚡ Skills</h2>
+                    <p class="section-subtitle">Core QA engineering, test automation frameworks, and software lifecycle expertise</p>
                 </div>
-
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Speech AI</span><span class="tag-pill">Live Demo</span></div>
-                        <h3>Cognitive Speech AI</h3>
-                        <p>Cognitive Speech AI technology, the platform uses live neural intelligence, emotional AI processing, real-time analytics, and intelligent automation.</p>
-                    </div>
-                    <a href="https://rames-qa.github.io/Cognitive-Speech-AI" target="_blank" rel="noopener noreferrer" class="btn">Demo Project</a>
+                <div class="badges-grid">
+                    <div class="card badge-card"><span class="badge-code">Core</span><span>Java</span></div>
+                    <div class="card badge-card"><span class="badge-code">Scripting</span><span>Python</span></div>
+                    <div class="card badge-card"><span class="badge-code">UI Auto</span><span>Selenium</span></div>
+                    <div class="card badge-card"><span class="badge-code">Runner</span><span>TestNG</span></div>
+                    <div class="card badge-card"><span class="badge-code">Services</span><span>API Testing</span></div>
+                    <div class="card badge-card"><span class="badge-code">Process</span><span>STLC</span></div>
+                    <div class="card badge-card"><span class="badge-code">Process</span><span>SDLC</span></div>
                 </div>
-
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Mental Wellness</span><span class="tag-pill">Live Demo</span></div>
-                        <h3>AI-Driven Elderly Health, Cognitive Ability &amp; Mental Wellness Assessment</h3>
-                        <p>Created an AI-powered platform to assess elderly health, cognition, and mental wellness, enabling early risk detection and personalized healthcare recommendations.</p>
-                    </div>
-                    <a href="https://rames-qa.github.io/Physiological-and-Mental-Health-Assessment-of-Elderly-Indians/" target="_blank" rel="noopener noreferrer" class="btn">Demo Project</a>
+                <div class="page-pager">
+                    <a href="#home" data-view="home" class="pager-link">&larr; 🏠 Home Page</a>
+                    <a href="#home" data-view="home" class="pager-link">All 8 Views</a>
+                    <a href="#tools" data-view="tools" class="pager-link">🛠️ Tools &amp; Platforms &rarr;</a>
                 </div>
-
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">REST API</span><span class="tag-pill">Live Demo</span></div>
-                        <h3>Live Weather Forecast Application</h3>
-                        <p>A dynamic web application delivering real-time weather tracking, extended daily forecasts, temperature trends, and environmental metrics through responsive API integration.</p>
-                    </div>
-                    <a href="https://rames-qa.github.io/Weather-Forecast-/" target="_blank" rel="noopener noreferrer" class="btn">Demo Project</a>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Analytics</span><span class="tag-pill">Live Demo</span></div>
-                        <h3>Excel Sheet Reader Dashboard</h3>
-                        <p>An interactive web-based analytics dashboard engineered to parse, process, and visualize data directly from Excel spreadsheets in real time.</p>
-                    </div>
-                    <a href="https://rames-qa.github.io/Excel-Sheet-Reader-Dashboard/" target="_blank" rel="noopener noreferrer" class="btn">Demo Project</a>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Vector AI</span><span class="tag-pill">Live Demo</span></div>
-                        <h3>AI Vector Automation Hub</h3>
-                        <p>An advanced AI-powered test automation framework integrating vector store embeddings, semantic search evaluation, and intelligent test orchestration.</p>
-                    </div>
-                    <a href="https://rames-qa.github.io/AI-Vector-Automation-Hub/" target="_blank" rel="noopener noreferrer" class="btn">Demo Project</a>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">QA Eval</span><span class="tag-pill">Live Demo</span></div>
-                        <h3>CHATBOT QA &amp; AI EVAL ENGINE</h3>
-                        <p>A centralized automation testing framework designed to manage, execute, and analyze automated testing projects with integrated reporting and quality insights.</p>
-                    </div>
-                    <a href="https://rames-qa.github.io/Automation-Framework-Hub/" target="_blank" rel="noopener noreferrer" class="btn">Demo Project</a>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">CI/CD</span><span class="tag-pill">Security</span></div>
-                        <h3>Multi-Environment Configuration &amp; Secure Credential Management</h3>
-                        <p>A modular Python API test automation framework designed to manage multiple environments, securely handle credentials, centralize configuration, and integrate automated API testing with GitHub Actions CI/CD.</p>
-                    </div>
-                    <a href="https://rames-qa.github.io/Multi-Environment-Configuration-Secure-Credential-Management/" target="_blank" rel="noopener noreferrer" class="btn">Demo Project</a>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="card-badge-row"><span class="tag-pill">Voice AI</span><span class="tag-pill">NLP</span></div>
-                        <h3>Omni-Voice: E-Commerce Automation &amp; Testing Framework</h3>
-                        <p>An AI-powered multi-platform voice automation framework featuring real-time speech recognition, intelligent NLP-based intent detection, fuzzy matching, and dynamic application routing across Amazon, Flipkart, Meesho, Zomato, and Swiggy.</p>
-                    </div>
-                    <a href="https://rames-qa.github.io/-Omni-Voice-E-Commerce-Automation-Testing-Framework/" target="_blank" rel="noopener noreferrer" class="btn">Demo Project</a>
-                </div>
-            </div>
-            <div class="slide-pager">
-                <a href="#python-automation" data-slide="python-automation" class="pager-link">&larr; 🐍 Python Automation</a>
-                <a href="#home" data-slide="home" class="pager-link">All 8 Slides</a>
-                <a href="#contact" data-slide="contact" class="pager-link">📬 Contact &rarr;</a>
             </div>
         </section>
 
-        <!-- SLIDE 8 OF 8: CONTACT -->
-        <section id="contact" class="slide-page" data-slide-title="📬 Contact" data-crumb="📬 Contact">
-            <div class="section-header">
-                <span class="slide-number-pill">Slide 08 / 08</span>
-                <h2>📬 Contact</h2>
-                <p class="section-subtitle">Let's connect for QA Automation, SDET, and AI-Assisted Testing opportunities</p>
-            </div>
-            <div class="contact-card">
-                <div class="contact-grid">
-                    <div class="contact-item">
-                        📞 Phone:
-                        <a href="tel:+919632758871">Available on request</a>
-                    </div>
-                    <div class="contact-item">
-                        ✉️ Email:
-                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rameshkumar93.68@gmail.com" target="_blank" rel="noopener noreferrer">rameshkumar93.68@gmail.com</a>
-                    </div>
-                    <div class="contact-item">📍 Location: Bangalore, Karnataka, India</div>
+        <!-- ===================================================================== -->
+        <!-- WEBPAGE VIEW 3: 🛠️ TOOLS & PLATFORMS                                  -->
+        <!-- ===================================================================== -->
+        <section id="tools" class="page-view" data-view-title="🛠️ Tools & Platforms" data-crumb="🛠️ Tools & Platforms">
+            <div class="view-inner">
+                <div class="section-header">
+                    <h2>🛠️ Tools &amp; Platforms</h2>
+                    <p class="section-subtitle">Version control, CI/CD orchestration, build management, API validation, and databases</p>
                 </div>
-                <div class="contact-actions">
-                    <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf"
-                       download="Ramesh_Kumar_K_Resume.pdf"
-                       class="btn">
-                       Download Resume
-                    </a>
+                <div class="badges-grid">
+                    <div class="card badge-card"><span class="badge-code">VCS</span><span>Git</span></div>
+                    <div class="card badge-card"><span class="badge-code">Repository</span><span>GitHub</span></div>
+                    <div class="card badge-card"><span class="badge-code">CI/CD</span><span>Jenkins</span></div>
+                    <div class="card badge-card"><span class="badge-code">Build</span><span>Maven</span></div>
+                    <div class="card badge-card"><span class="badge-code">API Client</span><span>Postman</span></div>
+                    <div class="card badge-card"><span class="badge-code">Tracking</span><span>JIRA</span></div>
+                    <div class="card badge-card"><span class="badge-code">Markup</span><span>HTML</span></div>
+                    <div class="card badge-card"><span class="badge-code">Database</span><span>MySQL</span></div>
+                </div>
+                <div class="page-pager">
+                    <a href="#skills" data-view="skills" class="pager-link">&larr; ⚡ Skills</a>
+                    <a href="#home" data-view="home" class="pager-link">All 8 Views</a>
+                    <a href="#programming-languages" data-view="programming-languages" class="pager-link">💻 Programming Languages &rarr;</a>
+                </div>
+            </div>
+        </section>
 
-                    <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="btn-linkedin">
-                       LinkedIn Profile
-                    </a>
+        <!-- ===================================================================== -->
+        <!-- WEBPAGE VIEW 4: 💻 PROGRAMMING LANGUAGES                              -->
+        <!-- ===================================================================== -->
+        <section id="programming-languages" class="page-view" data-view-title="💻 Programming Languages" data-crumb="💻 Programming Languages">
+            <div class="view-inner">
+                <div class="section-header">
+                    <h2>💻 Programming Languages</h2>
+                    <p class="section-subtitle">Core programming and scripting languages for test automation, OOPs, and data validation</p>
+                </div>
+                <div class="badges-grid">
+                    <div class="card badge-card"><span class="badge-code">OOPs</span><span>Java (OOPs)</span></div>
+                    <div class="card badge-card"><span class="badge-code">Language</span><span>Python</span></div>
+                    <div class="card badge-card"><span class="badge-code">Query</span><span>SQL / MySQL</span></div>
+                    <div class="card badge-card"><span class="badge-code">Web</span><span>HTML</span></div>
+                </div>
+                <div class="page-pager">
+                    <a href="#tools" data-view="tools" class="pager-link">&larr; 🛠️ Tools &amp; Platforms</a>
+                    <a href="#home" data-view="home" class="pager-link">All 8 Views</a>
+                    <a href="#projects" data-view="projects" class="pager-link">🤖 Automation Projects &rarr;</a>
                 </div>
             </div>
-            <div class="slide-pager">
-                <a href="#demo-projects" data-slide="demo-projects" class="pager-link">&larr; 🚀 Demo Projects</a>
-                <a href="#home" data-slide="home" class="pager-link">All 8 Slides</a>
-                <a href="#skills" data-slide="skills" class="pager-link">⚡ Skills &rarr;</a>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- WEBPAGE VIEW 5: 🤖 AUTOMATION PROJECTS                                -->
+        <!-- ===================================================================== -->
+        <section id="projects" class="page-view" data-view-title="🤖 Automation Projects" data-crumb="🤖 Automation Projects">
+            <div class="view-inner">
+                <div class="section-header">
+                    <h2>🤖 Automation Projects</h2>
+                    <p class="section-subtitle">Java, Python, Selenium WebDriver, Cucumber BDD, and object-oriented automation repositories</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Java</span><span class="tag-pill">Selenium</span><span class="tag-pill">TestNG</span></div>
+                            <h3>Selenium WebDriver</h3>
+                            <p>Built automation using Java, Selenium, TestNG and Page Object Model.</p>
+                        </div>
+                        <a href="https://github.com/rames-qa/Selenium-Feb" target="_blank" rel="noopener noreferrer" class="btn">GitHub Selenium WebDriver</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Hybrid</span><span class="tag-pill">Data-Driven</span></div>
+                            <h3>Automation Framework</h3>
+                            <p>Automated Data-Driven and Hybrid Framework with Validation and Reporting.</p>
+                        </div>
+                        <a href="https://github.com/rames-qa/com.selenium.java" target="_blank" rel="noopener noreferrer" class="btn">GitHub Automation Framework</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Cucumber</span><span class="tag-pill">BDD</span></div>
+                            <h3>Cucumber BDD Framework</h3>
+                            <p>BDD automation using Cucumber with Selenium and TestNG integration.</p>
+                        </div>
+                        <a href="https://github.com/rames-qa/Cucumber-BDD" target="_blank" rel="noopener noreferrer" class="btn">GitHub Cucumber BDD Framework</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">OOP</span></div>
+                            <h3>Python-Code</h3>
+                            <p>Python basic and OOPs concepts</p>
+                        </div>
+                        <a href="https://github.com/rames-qa/Python-codes" target="_blank" rel="noopener noreferrer" class="btn">GitHub Python-Code</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">Selenium</span></div>
+                            <h3>Python-Selenium</h3>
+                            <p>Automation using Python with Selenium.</p>
+                        </div>
+                        <a href="https://github.com/rames-qa/Python-Selenium" target="_blank" rel="noopener noreferrer" class="btn">GitHub Python-Selenium</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Java</span><span class="tag-pill">OOPs</span></div>
+                            <h3>Java-OOPs Concepts</h3>
+                            <p>Java Programming with OOP Concepts.</p>
+                        </div>
+                        <a href="https://github.com/rames-qa/Java-Code.git" target="_blank" rel="noopener noreferrer" class="btn">GitHub Java(OOP) Concepts</a>
+                    </div>
+                </div>
+                <div class="page-pager">
+                    <a href="#programming-languages" data-view="programming-languages" class="pager-link">&larr; 💻 Programming Languages</a>
+                    <a href="#home" data-view="home" class="pager-link">All 8 Views</a>
+                    <a href="#python-automation" data-view="python-automation" class="pager-link">🐍 Python Automation &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- WEBPAGE VIEW 6: 🐍 PYTHON AUTOMATION                                  -->
+        <!-- ===================================================================== -->
+        <section id="python-automation" class="page-view" data-view-title="🐍 Python Automation" data-crumb="🐍 Python Automation">
+            <div class="view-inner">
+                <div class="section-header">
+                    <h2>🐍 Python Automation</h2>
+                    <p class="section-subtitle">Python programming examples, scripting, and practical automation implementations</p>
+                </div>
+                <div class="cards-grid" style="max-width: 460px; margin: 0 auto;">
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Python</span><span class="tag-pill">Scripting</span></div>
+                            <h3>Python Automation</h3>
+                            <p>Python programming examples and automation projects showcasing core Python concepts, scripting, and practical implementations.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/PythonAutomation/" target="_blank" rel="noopener noreferrer" class="btn">
+                            View Python Automation
+                        </a>
+                    </div>
+                </div>
+                <div class="page-pager">
+                    <a href="#projects" data-view="projects" class="pager-link">&larr; 🤖 Automation Projects</a>
+                    <a href="#home" data-view="home" class="pager-link">All 8 Views</a>
+                    <a href="#demo-projects" data-view="demo-projects" class="pager-link">🚀 Demo Projects &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- WEBPAGE VIEW 7: 🚀 DEMO PROJECTS                                      -->
+        <!-- ===================================================================== -->
+        <section id="demo-projects" class="page-view" data-view-title="🚀 Demo Projects" data-crumb="🚀 Demo Projects">
+            <div class="view-inner">
+                <div class="section-header">
+                    <h2>🚀 Demo Projects</h2>
+                    <p class="section-subtitle">Live interactive applications, AI-powered evaluation hubs, and automation dashboards</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Healthcare AI</span><span class="tag-pill">Live Demo</span></div>
+                            <h3>Smart Health Monitoring Platform</h3>
+                            <p>Smart Health Monitoring Platform for elderly care with emergency alerts, doctor connectivity, AI-powered monitoring, and real-time healthcare tracking features.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Smart-Health-Monitoring-Platform/" target="_blank" rel="noopener noreferrer" class="btn">Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Speech AI</span><span class="tag-pill">Live Demo</span></div>
+                            <h3>Cognitive Speech AI</h3>
+                            <p>Cognitive Speech AI technology, the platform uses live neural intelligence, emotional AI processing, real-time analytics, and intelligent automation.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Cognitive-Speech-AI" target="_blank" rel="noopener noreferrer" class="btn">Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Mental Wellness</span><span class="tag-pill">Live Demo</span></div>
+                            <h3>AI-Driven Elderly Health, Cognitive Ability &amp; Mental Wellness Assessment</h3>
+                            <p>Created an AI-powered platform to assess elderly health, cognition, and mental wellness, enabling early risk detection and personalized healthcare recommendations.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Physiological-and-Mental-Health-Assessment-of-Elderly-Indians/" target="_blank" rel="noopener noreferrer" class="btn">Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">REST API</span><span class="tag-pill">Live Demo</span></div>
+                            <h3>Live Weather Forecast Application</h3>
+                            <p>A dynamic web application delivering real-time weather tracking, extended daily forecasts, temperature trends, and environmental metrics through responsive API integration.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Weather-Forecast-/" target="_blank" rel="noopener noreferrer" class="btn">Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Analytics</span><span class="tag-pill">Live Demo</span></div>
+                            <h3>Excel Sheet Reader Dashboard</h3>
+                            <p>An interactive web-based analytics dashboard engineered to parse, process, and visualize data directly from Excel spreadsheets in real time.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Excel-Sheet-Reader-Dashboard/" target="_blank" rel="noopener noreferrer" class="btn">Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Vector AI</span><span class="tag-pill">Live Demo</span></div>
+                            <h3>AI Vector Automation Hub</h3>
+                            <p>An advanced AI-powered test automation framework integrating vector store embeddings, semantic search evaluation, and intelligent test orchestration.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/AI-Vector-Automation-Hub/" target="_blank" rel="noopener noreferrer" class="btn">Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">QA Eval</span><span class="tag-pill">Live Demo</span></div>
+                            <h3>CHATBOT QA &amp; AI EVAL ENGINE</h3>
+                            <p>A centralized automation testing framework designed to manage, execute, and analyze automated testing projects with integrated reporting and quality insights.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Automation-Framework-Hub/" target="_blank" rel="noopener noreferrer" class="btn">Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">CI/CD</span><span class="tag-pill">Security</span></div>
+                            <h3>Multi-Environment Configuration &amp; Secure Credential Management</h3>
+                            <p>A modular Python API test automation framework designed to manage multiple environments, securely handle credentials, centralize configuration, and integrate automated API testing with GitHub Actions CI/CD.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/Multi-Environment-Configuration-Secure-Credential-Management/" target="_blank" rel="noopener noreferrer" class="btn">Demo Project</a>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="card-badge-row"><span class="tag-pill">Voice AI</span><span class="tag-pill">NLP</span></div>
+                            <h3>Omni-Voice: E-Commerce Automation &amp; Testing Framework</h3>
+                            <p>An AI-powered multi-platform voice automation framework featuring real-time speech recognition, intelligent NLP-based intent detection, fuzzy matching, and dynamic application routing across Amazon, Flipkart, Meesho, Zomato, and Swiggy.</p>
+                        </div>
+                        <a href="https://rames-qa.github.io/-Omni-Voice-E-Commerce-Automation-Testing-Framework/" target="_blank" rel="noopener noreferrer" class="btn">Demo Project</a>
+                    </div>
+                </div>
+                <div class="page-pager">
+                    <a href="#python-automation" data-view="python-automation" class="pager-link">&larr; 🐍 Python Automation</a>
+                    <a href="#home" data-view="home" class="pager-link">All 8 Views</a>
+                    <a href="#contact" data-view="contact" class="pager-link">📬 Contact &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- WEBPAGE VIEW 8: 📬 CONTACT                                            -->
+        <!-- ===================================================================== -->
+        <section id="contact" class="page-view" data-view-title="📬 Contact" data-crumb="📬 Contact">
+            <div class="view-inner">
+                <div class="section-header">
+                    <h2>📬 Contact</h2>
+                    <p class="section-subtitle">Let's connect for QA Automation, SDET, and AI-Assisted Testing opportunities</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            📞 Phone:
+                            <a href="tel:+919632758871">Available on request</a>
+                        </div>
+                        <div class="contact-item">
+                            Email:
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rameshkumar93.68@gmail.com" target="_blank" rel="noopener noreferrer">rameshkumar93.68@gmail.com</a>
+                        </div>
+                        <div class="contact-item">Location: Bangalore, Karnataka, India</div>
+                    </div>
+                    <div class="contact-actions">
+                        <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20Kumar...K%20.pdf"
+                           download="Ramesh_Kumar_K_Resume.pdf"
+                           class="btn">
+                           Download Resume
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn-linkedin">
+                           LinkedIn Profile
+                        </a>
+                    </div>
+                </div>
+                <div class="page-pager">
+                    <a href="#demo-projects" data-view="demo-projects" class="pager-link">&larr; 🚀 Demo Projects</a>
+                    <a href="#home" data-view="home" class="pager-link">All 8 Views</a>
+                    <a href="#skills" data-view="skills" class="pager-link">⚡ Skills &rarr;</a>
+                </div>
             </div>
         </section>
 
         <footer>
-            &copy; 2026 Ramesh Kumar K | Software Testing Automation Engineer
+            &copy; 2026 Ramesh Kumar K | Software Testing Engineer
         </footer>
     </div>
 
-    <!-- Consolidated Application Script: Persistent Theme, Typewriter, Hash/History Slide Router, Sidebar & Dropdowns -->
+    <!-- Single-File Application Logic: Persistent Theme, Typewriter, History API Router (8 Views), Sidebar & Dropdowns -->
     <script>
         (function () {
             // 1. PERSISTENT THEME TOGGLE
@@ -1648,7 +1663,7 @@
             if (lightBtn) lightBtn.addEventListener('click', () => applyTheme('light'));
             if (darkBtn) darkBtn.addEventListener('click', () => applyTheme('dark'));
 
-            // 2. TYPEWRITER HEADING
+            // 2. TYPEWRITER HEADING (ON HOME PAGE BANNER)
             const typingElement = document.getElementById('typing-heading');
             if (typingElement) {
                 const titles = [
@@ -1686,20 +1701,20 @@
                 typeLoop();
             }
 
-            // 3. SIDEBAR DRAWER & SLIDE ROUTING ACROSS ALL 8 SLIDE WEBPAGES
+            // 3. SIDEBAR DRAWER & SPA ROUTER FOR ALL 8 INDEPENDENT WEBPAGE VIEWS
             const sidebar = document.getElementById('sidebar');
             const sidebarOverlay = document.getElementById('sidebar-overlay');
             const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
             const sidebarCloseBtn = document.getElementById('sidebar-close-btn');
             const sidebarItemRows = document.querySelectorAll('.sidebar-item-row');
-            const slideLinks = document.querySelectorAll('[data-slide]');
+            const viewLinks = document.querySelectorAll('[data-view]');
             const dropdownBtns = document.querySelectorAll('.sidebar-dropdown-btn');
-            const slidePages = document.querySelectorAll('.slide-page');
+            const pageViews = document.querySelectorAll('.page-view');
             const activeViewIndicator = document.getElementById('active-view-indicator');
             const navBreadcrumb = document.getElementById('nav-breadcrumb');
 
-            const VALID_SLIDES = Array.from(slidePages).map((s) => s.id);
-            const DEFAULT_SLIDE = 'home';
+            const VALID_VIEWS = Array.from(pageViews).map((v) => v.id);
+            const DEFAULT_VIEW = 'home';
 
             function openSidebar() {
                 if (sidebar) sidebar.classList.add('open');
@@ -1711,51 +1726,60 @@
                 if (sidebarOverlay) sidebarOverlay.classList.remove('open');
             }
 
-            function activateSlide(slideId, updateHash = true, shouldScroll = false) {
-                const targetSlideId = VALID_SLIDES.includes(slideId) ? slideId : DEFAULT_SLIDE;
+            function activateView(viewId, pushToHistory = true, scrollTop = true) {
+                const targetViewId = VALID_VIEWS.includes(viewId) ? viewId : DEFAULT_VIEW;
 
-                slidePages.forEach((page) => {
-                    page.classList.toggle('active-slide', page.id === targetSlideId);
+                // Show only the selected webpage view and hide all other 7 views
+                pageViews.forEach((view) => {
+                    view.classList.toggle('active-view', view.id === targetViewId);
                 });
 
+                // Highlight the matching item in the sidebar navigation
                 sidebarItemRows.forEach((row) => {
-                    row.classList.toggle('active', row.getAttribute('data-slide-item') === targetSlideId);
+                    row.classList.toggle('active', row.getAttribute('data-view-item') === targetViewId);
                 });
 
-                const activeSlideEl = document.getElementById(targetSlideId);
-                if (activeSlideEl) {
-                    const label = activeSlideEl.getAttribute('data-slide-title') || targetSlideId;
-                    const crumb = activeSlideEl.getAttribute('data-crumb') || targetSlideId;
+                // Update top-right title badge, breadcrumb, and document title
+                const activeViewEl = document.getElementById(targetViewId);
+                if (activeViewEl) {
+                    const viewTitle = activeViewEl.getAttribute('data-view-title') || targetViewId;
+                    const crumb = activeViewEl.getAttribute('data-crumb') || targetViewId;
 
                     if (activeViewIndicator) {
-                        activeViewIndicator.textContent = 'View: ' + label;
+                        activeViewIndicator.textContent = 'View: ' + viewTitle;
                     }
 
                     if (navBreadcrumb) {
-                        navBreadcrumb.innerHTML = targetSlideId === 'home'
-                            ? '<span>Home / Home Page</span>'
-                            : '<a href="#home" data-slide="home">Home</a> <span>/</span> <span>' + crumb + '</span>';
-
-                        const homeCrumb = navBreadcrumb.querySelector('[data-slide="home"]');
-                        if (homeCrumb) {
-                            homeCrumb.addEventListener('click', (e) => {
-                                e.preventDefault();
-                                activateSlide('home', true, true);
-                            });
+                        if (targetViewId === 'home') {
+                            navBreadcrumb.innerHTML = '<span>Home / Home Page</span>';
+                        } else {
+                            navBreadcrumb.innerHTML =
+                                '<a href="#home" data-view="home">Home</a> <span>/</span> <span>' + crumb + '</span>';
+                            const homeCrumb = navBreadcrumb.querySelector('[data-view="home"]');
+                            if (homeCrumb) {
+                                homeCrumb.addEventListener('click', (e) => {
+                                    e.preventDefault();
+                                    activateView('home', true, true);
+                                });
+                            }
                         }
                     }
 
-                    document.title = targetSlideId === 'home'
+                    document.title = targetViewId === 'home'
                         ? 'Ramesh Kumar K | Software Testing Automation Engineer'
-                        : crumb + ' | Ramesh Kumar K';
+                        : viewTitle + ' | Ramesh Kumar K';
                 }
 
-                if (updateHash && window.location.hash !== '#' + targetSlideId) {
-                    history.pushState({ slide: targetSlideId }, '', '#' + targetSlideId);
+                // Update browser URL hash & History API for Back / Forward navigation
+                if (pushToHistory) {
+                    const nextHash = '#' + targetViewId;
+                    if (window.location.hash !== nextHash) {
+                        history.pushState({ view: targetViewId }, '', nextHash);
+                    }
                 }
 
-                if (shouldScroll && activeSlideEl) {
-                    activeSlideEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (scrollTop) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
             }
 
@@ -1763,12 +1787,12 @@
             if (sidebarCloseBtn) sidebarCloseBtn.addEventListener('click', closeSidebar);
             if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
 
-            slideLinks.forEach((link) => {
+            viewLinks.forEach((link) => {
                 link.addEventListener('click', (e) => {
-                    const slideId = link.getAttribute('data-slide');
-                    if (slideId && VALID_SLIDES.includes(slideId)) {
+                    const viewId = link.getAttribute('data-view');
+                    if (viewId && VALID_VIEWS.includes(viewId)) {
                         e.preventDefault();
-                        activateSlide(slideId, true, true);
+                        activateView(viewId, true, true);
                         if (window.innerWidth <= 1024) {
                             closeSidebar();
                         }
@@ -1783,7 +1807,7 @@
                     const panelId = btn.getAttribute('data-dropdown');
                     const panel = document.getElementById(panelId);
                     const parentRow = btn.closest('.sidebar-item-row');
-                    const slideId = parentRow ? parentRow.getAttribute('data-slide-item') : null;
+                    const viewId = parentRow ? parentRow.getAttribute('data-view-item') : null;
                     const willOpen = panel ? !panel.classList.contains('open') : false;
 
                     document.querySelectorAll('.sidebar-dropdown-panel').forEach((p) => p.classList.remove('open'));
@@ -1798,27 +1822,30 @@
                         btn.setAttribute('aria-expanded', 'true');
                     }
 
-                    if (slideId) {
-                        activateSlide(slideId, true, true);
+                    if (viewId) {
+                        activateView(viewId, true, true);
                     }
                 });
             });
 
             // 4. BROWSER BACK & FORWARD SUPPORT
-            window.addEventListener('hashchange', () => {
-                const hashSlide = window.location.hash.replace(/^#/, '');
-                activateSlide(hashSlide, false, false);
-            });
-
             window.addEventListener('popstate', (event) => {
-                const stateSlide = event.state && event.state.slide
-                    ? event.state.slide
+                const stateView = event.state && event.state.view
+                    ? event.state.view
                     : window.location.hash.replace(/^#/, '');
-                activateSlide(stateSlide, false, false);
+                activateView(stateView || DEFAULT_VIEW, false, true);
             });
 
+            window.addEventListener('hashchange', () => {
+                const hashView = window.location.hash.replace(/^#/, '');
+                activateView(hashView || DEFAULT_VIEW, false, true);
+            });
+
+            // Initialize initial route state without duplicating history entries
             const initialHash = window.location.hash.replace(/^#/, '');
-            activateSlide(initialHash || DEFAULT_SLIDE, !initialHash, false);
+            const initialView = VALID_VIEWS.includes(initialHash) ? initialHash : DEFAULT_VIEW;
+            history.replaceState({ view: initialView }, '', '#' + initialView);
+            activateView(initialView, false, false);
         })();
     </script>
 </body>
