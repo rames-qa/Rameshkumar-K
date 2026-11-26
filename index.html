@@ -1155,7 +1155,7 @@
                     <div class="sidebar-dropdown-panel" id="dd-contact">
                         <ul class="sidebar-dropdown-list">
                             <li><a href="#contact" data-view="contact">Email &amp; Location (Bangalore)</a></li>
-                            <li><a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/blob/main/Ramesh%20-%20Kumar.K.pdf" download="Ramesh_Kumar_K_Resume.pdf">Download Resume</a></li>
+                            <li><a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20-%20Kumar.K.pdf" download="Ramesh_Kumar_Resume.pdf" data-resume-download>Download Resume</a></li>
                             <li><a href="https://www.linkedin.com/in/ramesh-kumar-k-2a3b7b1bb" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></li>
                         </ul>
                     </div>
@@ -1164,8 +1164,9 @@
         </div>
 
         <div class="sidebar-footer">
-            <a href="https://github.com/rames-qa/Rameshkumar-K/blob/main/Ramesh%20-%20Kumar.K.pdf"
-               download="Ramesh_Kumar_K_Resume.pdf"
+            <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20-%20Kumar.K.pdf"
+               download="Ramesh_Kumar_Resume.pdf"
+               data-resume-download
                class="sidebar-cta">
                Download Resume
             </a>
@@ -1610,8 +1611,9 @@
                         <div class="contact-item">Location: Bangalore, Karnataka, India</div>
                     </div>
                     <div class="contact-actions">
-                        <a href="https://github.com/rames-qa/Rameshkumar-K/blob/main/Ramesh%20-%20Kumar.K.pdf"
-                           download="Ramesh_Kumar_K_Resume.pdf"
+                        <a href="https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20-%20Kumar.K.pdf"
+                           download="Ramesh_Kumar_Resume.pdf"
+                           data-resume-download
                            class="btn">
                            Download Resume
                         </a>
@@ -1640,6 +1642,54 @@
     <!-- Single-File Application Logic: Persistent Theme, Typewriter, History API Router (8 Views), Sidebar & Dropdowns -->
     <script>
         (function () {
+            // 0. IMMEDIATE RESUME DOWNLOAD HANDLER
+            const RESUME_URL = 'https://raw.githubusercontent.com/rames-qa/Rameshkumar-K/main/Ramesh%20-%20Kumar.K.pdf';
+            const RESUME_FILENAME = 'Ramesh_Kumar_Resume.pdf';
+
+            async function triggerResumeDownload(linkEl) {
+                const targetUrl = (linkEl && linkEl.getAttribute('href')) || RESUME_URL;
+                const fileName = (linkEl && linkEl.getAttribute('download')) || RESUME_FILENAME;
+
+                try {
+                    const response = await fetch(targetUrl, { mode: 'cors', cache: 'no-store' });
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    const blob = await response.blob();
+                    const pdfBlob = blob.type === 'application/pdf'
+                        ? blob
+                        : new Blob([blob], { type: 'application/pdf' });
+                    const blobUrl = URL.createObjectURL(pdfBlob);
+
+                    const tempLink = document.createElement('a');
+                    tempLink.href = blobUrl;
+                    tempLink.download = fileName;
+                    tempLink.style.display = 'none';
+                    document.body.appendChild(tempLink);
+                    tempLink.click();
+                    document.body.removeChild(tempLink);
+
+                    setTimeout(() => URL.revokeObjectURL(blobUrl), 1500);
+                } catch (err) {
+                    const fallbackLink = document.createElement('a');
+                    fallbackLink.href = targetUrl;
+                    fallbackLink.download = fileName;
+                    fallbackLink.rel = 'noopener noreferrer';
+                    document.body.appendChild(fallbackLink);
+                    fallbackLink.click();
+                    document.body.removeChild(fallbackLink);
+                }
+            }
+
+            document.querySelectorAll('[data-resume-download]').forEach((link) => {
+                link.setAttribute('href', RESUME_URL);
+                link.setAttribute('download', RESUME_FILENAME);
+                link.removeAttribute('target');
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    triggerResumeDownload(link);
+                });
+            });
+
             // 1. PERSISTENT THEME TOGGLE
             const lightBtn = document.getElementById('light-btn');
             const darkBtn = document.getElementById('dark-btn');
